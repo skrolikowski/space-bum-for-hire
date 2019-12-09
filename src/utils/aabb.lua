@@ -63,6 +63,32 @@ function AABB:intersects(other)
            self.bottom >= other.top
 end
 
+function AABB:clamp(other)
+    aabb = other:copy()
+
+    if aabb.left < self.left then
+        aabb.right = aabb.right + (self.left - aabb.left)
+        aabb.left  = self.left
+    end
+
+    if aabb.right > self.right then
+        aabb.left  = aabb.left - (aabb.right - self.right)
+        aabb.right = self.right
+    end
+
+    if aabb.top < self.top then
+        aabb.bottom = aabb.bottom + (self.top - aabb.top)
+        aabb.top    = self.top
+    end
+
+    if aabb.bottom > self.bottom then
+        aabb.top    = aabb.top - (aabb.bottom - self.bottom)
+        aabb.bottom = self.bottom
+    end
+
+    return aabb
+end
+
 function AABB:unpack()
     return self.left,
            self.top,

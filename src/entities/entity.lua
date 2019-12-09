@@ -5,19 +5,28 @@
 local Modern = require 'modern'
 local Entity = Modern:extend()
 
-function Entity:new(...)
-	local params   = ...
-	local x, y     = params.x, params.y
-	local bodyType = params.bodyType or 'static'
-	local density  = params.density or 1
-	local shape    = params.shape
+function Entity:new(data)
+	local bodyType = data.bodyType or 'static'
+	local density  = data.density  or 1
+	local shape    = data.shape    or 'rectangle'
 
-	self.body    = lp.newBody(_World.world, x, y, bodyType)
-	self.shape   = Shapes[shape.type](unpack(shape.props))
-	self.fixture = lp.newFixture(self.body, self.shape.shape, density)
+	self.name    = data.name or 'entity'
+	self.visible = data.visible or true
+	self.body = lp.newBody(_World.world, data.x, data.y, bodyType)
 
+	self.shape = Shapes[shape](unpack(data.shapeData))
 	self.shape:setBody(self.body)
+
+	self.fixture = lp.newFixture(self.body, self.shape.shape, density)
 	self.fixture:setUserData(self)
+	self.fixture:setFriction(data.friction       or 0.25)
+	self.fixture:setRestitution(data.restitution or 0.0)
+	self.fixture:setSensor(data.sensor           or false)
+	-- self.fixture:setFilterData(
+	-- 	data.group      or 0,
+	-- 	data.categories or 1,
+	-- 	data.mask       or 65535
+	-- )
 end
 
 function Entity:destroy()
@@ -25,34 +34,16 @@ function Entity:destroy()
 	self.fixture:destroy()
 end
 
--- [???] x,y-position of body
+-- Set x,y-position of body
 --
-function Entity:position(value)
-	if value then
-		self.body:setPosition(value:unpack())
-	else
-		return Vec2(self.body:getPosition())
-	end
+function Entity:setPosition(x, y)
+	self.body:setPosition(x, y)
 end
 
--- [World] x-position of body
+-- Get x,y-position of body
 --
-function Entity:x(value)
-	if value then
-		self.body:setX(value)
-	else
-		return self.body:getX()
-	end
-end
-
--- [World] y-position of body
---
-function Entity:y(value)
-	if value then
-		self.body:setY(value)
-	else
-		return self.body:getY()
-	end
+function Entity:getPosition()
+	return self.body:getPosition()
 end
 
 -- Angle of body
@@ -72,6 +63,16 @@ function Entity:type(value)
 		self.body:setType(value)
 	else
 		return self.body:getType()
+	end
+end
+
+-- Whether body's rotation is locked..
+--
+function Entity:fixedRotation(value)
+	if value then
+		self.body:setFixedRotation(value)
+	else
+		return self.body:isFixedRotation()
 	end
 end
 
@@ -129,24 +130,26 @@ end
 
 -- Rate of change of position over time
 --
-function Entity:linearVelocity(value)
-	if value then
-		self.body:setLinearVelocity(value:unpack())
-	else
-		return Vec2(self.body:getLinearVelocity())
-	end
+function Entity:setLinearVelocity(...)  -- x, y
+	self.body:setLinearVelocity(...)
+end
+
+-- Rate of change of position over time
+--
+function Entity:getLinearVelocity()
+	return self.body:getLinearVelocity()
 end
 
 -- Continuous force
 --
-function Entity:applyForce(fx, fy, x, y)
-	self.body:applyForce(fx, fy, x, y)
+function Entity:applyForce(...)  -- fx, fx, [x, y]
+	self.body:applyForce(...)
 end
 
 -- Instantaneous motion
 --
-function Entity:applyLinearImpulse(ix, iy, x, y)
-	self.body:applyLinearImpulse(ix, iy, x, y)
+function Entity:applyLinearImpulse(...)  -- ix, ix, [x, y]
+	self.body:applyLinearImpulse(...)
 end
 
 -- Instantaneous addition to body momentum
@@ -235,6 +238,18 @@ function Entity:testPoint(...)
 	return self.shape.shape:testPoint(...)
 end
 
+-- Event - beginContact
+--
+function Entity:beginContact(other, col)
+	--
+end
+
+-- Event - endContact
+--
+function Entity:endContact(other, col)
+	--
+end
+
 -- Update entity
 --
 function Entity:update(dt)
@@ -244,7 +259,23 @@ end
 -- Draw entity
 --
 function Entity:draw()
-	self.shape:draw()
+	if self.visible then
+		self.shape:draw()
+	end
+end
+
+-- Update entity
+--
+function Entity:update(dt)
+    --
+end
+
+-- Draw entity
+--
+function Entity:draw()
+	if self.visible then
+		self.shape:draw()
+	end
 end
 
 return Entity

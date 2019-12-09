@@ -5,9 +5,13 @@
 Config = {
     width  = lg.getWidth(),
     height = lg.getHeight(),
-    world  = {
-    	meter   = 32,
-    	gravity = { x = 0, y = 9.81 },
+    map = {
+        xOffset = 0,
+        yOffset = 0,
+    },
+    world = {
+        meter   = 32,
+        gravity = { x = 0, y = 40 },
         categories = {
             civilians = 1,
             enemies   = 2,
@@ -21,4 +25,24 @@ Config = {
     	shape   = { _:color('green-300') },
     	heading = { _:color('red-600') },
     },
+    ui = {
+        -- cursor = lm.newCursor('res/ui/cursors/.png'),
+        fonts = {
+            sm = lg.newFont('res/ui/fonts/Improbable.ttf', 16),
+            md = lg.newFont('res/ui/fonts/Improbable.ttf', 18),
+            lg = lg.newFont('res/ui/fonts/Improbable.ttf', 24),
+        },
+    },
+    image = {
+        spritesheet = {
+            cyberpunk = {
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+            }
+        }
+    }
 }

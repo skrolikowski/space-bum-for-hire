@@ -10,5 +10,8 @@ Shapes = {
 	circle    = require 'src.entities.shapes.circle',
 }
 
--- Player
-Player = require 'src.entities.player'
+-- Entities
+Entities = {
+	player   = require 'src.entities.player',
+ 	platform = require 'src.entities.platform',
+}

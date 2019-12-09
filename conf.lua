@@ -1,13 +1,17 @@
 require 'lua-lander'
 --
 
--- Vendors
+-- Vendor packages
 Inspect = require 'inspect'
+-- Camera  = require 'vendor.hump.camera'
+Camera  = require 'vendor.STALKER-X.Camera'
+-- Gamestate = require 'vendor.hump.gamestate'
+-- Timer     = require 'vendor.hump.timer'
 
 -- Globals
-Entities = require 'src.entities'
-World    = require 'src.world'
-Utils    = require 'src.utils'
+require 'src.entities'
+require 'src.world'
+require 'src.utils'
 --
 
 function love.conf(t)
@@ -21,9 +25,9 @@ function love.conf(t)
     -- t.window.icon       = 'res/ui/crossair_black.png'
     t.window.x          = 125
     t.window.y          = 100
-    t.window.width      = 600
-    t.window.height     = 600
-    t.window.fullscreen = false
+    -- t.window.width      = 1280
+    -- t.window.height     = 800
+    t.window.fullscreen = true
     t.window.highdpi    = true
     t.window.vsync      = true
 

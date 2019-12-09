@@ -1,38 +1,87 @@
 -- Tower Defense
 -- Shane Krolikowski
 --
+la = love.audio
 lp = love.physics
+lm = love.mouse
 lg = love.graphics
 
 --
 require 'src.config'
 
--- Vendor packages
--- Gamestate = require 'vendor.hump.gamestate'
--- Timer     = require 'vendor.hump.timer'
-
---
-lg.setBackgroundColor(Config.color.white)
+lg.setBackgroundColor(_:color('gray-900'))
 
 function love.load()
-    _World  = World()
-    _Player = Player(Config.width / 2, Config.height / 2)
-    
-    _:on('key_escape', function() love.event.quit() end)
+    local STI = require 'vendor.sti.sti'
+
+    -- setup world/map
+    _Map          = STI('res/maps/Spaceship.lua')
+    _World        = World()
+    _World.width  = _Map.width * _Map.tilewidth
+    _World.height = _Map.height * _Map.tileheight
+
+    -- setup camera
+    _Camera = Camera()
+    _Camera.scale = 2
+    _Camera:setBounds(
+        -- adjusting bounds for scale
+        -Config.width  / _Camera.scale / 2,
+        -Config.height / _Camera.scale / 2,
+        _World.width  + Config.width / _Camera.scale,
+        _World.height + Config.height / _Camera.scale
+    )
+
+    -- spawn entities
+    EntitySpawner(_Map)
+
+    -- keyboard events
+    _Keys = {}
+    _:on('key_escape_on', function() love.event.quit() end)
 end
 
 function love.update(dt)
 	_World:update(dt)
+
+    -- Controls - Key Down
+    for key, time in pairs(_Keys) do
+        _Keys[key] = time + dt
+        
+        _:dispatch('key_' .. key .. '_down', dt, _Keys[key])
+    end
 end
 
+-- Draw game world
+--
 function love.draw()
+    _Camera:attach()
+    --
+    lg.setColor(Config.color.white)
+    _Map:drawTileLayer('Background')
+    _Map:drawTileLayer('Environment')
+    _Map:drawTileLayer('Details')
+
 	_World:draw()
+
+    lg.setColor(Config.color.white)
+    _Map:drawTileLayer('Foreground')
+    --
+    _Camera:detach()
+    -- _Camera:draw()
 end
 
--- Controls - Key Press
+-- Controls - Key Pressed
 --
 function love.keypressed(key)
-    _:dispatch('key_' .. key)
+    _:dispatch('key_' .. key .. '_on')
+    
+    _Keys[key] = 0
+end
+
+-- Controls - Key Released
+--
+function love.keyreleased(key)
+    _:dispatch('key_' .. key .. '_off')
+    _Keys[key] = nil
 end
 
 -- Controls - Wheel Moved
