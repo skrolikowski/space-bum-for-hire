@@ -79,16 +79,19 @@ end
 --
 function Animator:switchTo(name)
 	if self.animations[name] then
-		self.current = self.animations[name]
+		if not self.current or (self.current and self.current.name ~= name) then
+			self.current = self.animations[name]
 
-		-- setup
-		if self.current.frames then
-			self.current.frame   = 1
-			self.current.timer   = 1 / self.current.fps
-			self.current.count   = 0
-			self.current.playing = true
-		else
-			self.current.playing = false
+
+			-- setup
+			if self.current.frames then
+				self.current.frame   = 1
+				self.current.timer   = 1 / self.current.fps
+				self.current.count   = 0
+				self.current.playing = true
+			else
+				self.current.playing = false
+			end
 		end
 	end
 end
@@ -99,13 +102,13 @@ function Animator:nextFrame()
 	self.current.frame = self.current.frame + 1
 
 	-- end of animation?
-	if self.current.frame > #self.current.frames then
-		self.current.frame = 1
+	if self.current.frame >= #self.current.frames then
 		self.current.count = self.current.count + 1
 
 		-- loop animation?
 		if self.current.total == nil or self.current.count < self.current.total then
 			self.current.playing = true
+			self.current.frame   = 1
 		else
 			self.current.playing = false
 		end
@@ -131,7 +134,7 @@ end
 -- Draw animation
 --
 function Animator:draw(...)
-	if self.current and self.current.playing then
+	if self.current then
 		if self.current.frames then
 			love.graphics.draw(self.current.image, self.current.frames[self.current.frame], ...)
 		else

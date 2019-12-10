@@ -25,9 +25,9 @@ function love.conf(t)
     -- t.window.icon       = 'res/ui/crossair_black.png'
     t.window.x          = 125
     t.window.y          = 100
-    -- t.window.width      = 1280
-    -- t.window.height     = 800
-    t.window.fullscreen = true
+    t.window.width      = 1280
+    t.window.height     = 800
+    t.window.fullscreen = false
     t.window.highdpi    = true
     t.window.vsync      = true
 

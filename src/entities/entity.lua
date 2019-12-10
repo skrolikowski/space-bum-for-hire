@@ -6,32 +6,45 @@ local Modern = require 'modern'
 local Entity = Modern:extend()
 
 function Entity:new(data)
-	local bodyType = data.bodyType or 'static'
-	local density  = data.density  or 1
-	local shape    = data.shape    or 'rectangle'
+	self.bodyType    = data.bodyType    or 'static'
+	self.density     = data.density     or 1
+	self.shapeType   = data.shape       or 'rectangle'
+	self.name        = data.name        or 'entity'
+	self.visible     = data.visible     or true
+	self.friction    = data.friction    or 0.35
+	self.restitution = data.restitution or 0.0
+	self.isSensor    = data.isSensor    or false
 
-	self.name    = data.name or 'entity'
-	self.visible = data.visible or true
-	self.body = lp.newBody(_World.world, data.x, data.y, bodyType)
-
-	self.shape = Shapes[shape](unpack(data.shapeData))
+	-- body & shape
+	self.body  = lp.newBody(_World.world, data.x, data.y, self.bodyType)
+	self.shape = Shapes[self.shapeType](unpack(data.shapeData))
 	self.shape:setBody(self.body)
 
-	self.fixture = lp.newFixture(self.body, self.shape.shape, density)
+	-- fixture
+	self:setFixture()
+end
+
+-- Create fixture around
+function Entity:setFixture()
+	if self.fixture ~= nil then
+		self.fixture:destroy()
+	end
+
+	self.fixture = lp.newFixture(self.body, self.shape.shape, self.density)
 	self.fixture:setUserData(self)
-	self.fixture:setFriction(data.friction       or 0.25)
-	self.fixture:setRestitution(data.restitution or 0.0)
-	self.fixture:setSensor(data.sensor           or false)
+	self.fixture:setFriction(self.friction)
+	self.fixture:setRestitution(self.restitution)
+	self.fixture:setSensor(self.isSensor)
 	-- self.fixture:setFilterData(
-	-- 	data.group      or 0,
-	-- 	data.categories or 1,
-	-- 	data.mask       or 65535
+	-- 	self.group      or 0,
+	-- 	self.categories or 1,
+	-- 	self.mask       or 65535
 	-- )
 end
 
 function Entity:destroy()
-	self.body:destroy()
 	self.fixture:destroy()
+	self.body:destroy()
 end
 
 -- Set x,y-position of body
@@ -238,6 +251,16 @@ function Entity:testPoint(...)
 	return self.shape.shape:testPoint(...)
 end
 
+-- -- Resize shape - WIP
+-- --
+-- function Entity:resize(...)
+-- 	self.shape = Shapes[self.shapeType](...)
+-- 	self.shape:setBody(self.body)
+
+-- 	-- reset fixture
+-- 	self:setFixture()
+-- end
+
 -- Event - beginContact
 --
 function Entity:beginContact(other, col)
@@ -250,18 +273,16 @@ function Entity:endContact(other, col)
 	--
 end
 
--- Update entity
+-- Event - preSolve
 --
-function Entity:update(dt)
+function Entity:preSolve(other, col)
 	--
 end
 
--- Draw entity
+-- Event - postSolve
 --
-function Entity:draw()
-	if self.visible then
-		self.shape:draw()
-	end
+function Entity:postSolve(other, col, norm, tang)
+	--
 end
 
 -- Update entity

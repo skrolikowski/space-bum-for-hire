@@ -64,7 +64,7 @@ function love.draw()
 
     lg.setColor(Config.color.white)
     _Map:drawTileLayer('Foreground')
-    --
+    
     _Camera:detach()
     -- _Camera:draw()
 end

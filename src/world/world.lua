@@ -27,9 +27,9 @@ function World:bootstrap()
 	-- register collision callbacks
 	self.world:setCallbacks(
 		function(a, b, col) self:beginContact(a, b, col) end,
-		function(a, b, col) self:endContact(a, b, col)   end
-		-- function(a, b, col) self:preSolve(a, b, col)     end,
-		-- function(a, b, col, norm, tang) self:postSolve(a, b, col, norm, tang) end
+		function(a, b, col) self:endContact(a, b, col)   end,
+		function(a, b, col) self:preSolve(a, b, col)     end,
+		function(a, b, col, norm, tang) self:postSolve(a, b, col, norm, tang) end
 	)
 end
 
@@ -74,7 +74,7 @@ end
 -- Query - entire screen
 --
 function World:queryScreen(callback)
-	local cx, cy = _Camera.x, _Camera.y--_Camera:position()
+	local cx, cy = _Camera.x, _Camera.y
 	local left   = cx - Config.width / 2
 	local top    = cy - Config.height / 2
 	local right  = cx + Config.width / 2
@@ -165,19 +165,19 @@ function World:endContact(fix1, fix2, col)
 	fix2:getUserData():endContact(fix1:getUserData(), col)
 end
 
--- -- Event - Before collision resolution
--- --
--- function World:preSolve(fix1, fix2, col)
--- 	fix1:getUserData():preSolve(fix2:getUserData(), col)
--- 	fix2:getUserData():preSolve(fix1:getUserData(), col)
--- end
+-- Event - Before collision resolution
+--
+function World:preSolve(fix1, fix2, col)
+	fix1:getUserData():preSolve(fix2:getUserData(), col)
+	fix2:getUserData():preSolve(fix1:getUserData(), col)
+end
 
--- -- Event - Collision has been resolved
--- --
--- function World:postSolve(fix1, fix2, col, norm, tang)
--- 	fix1:getUserData():postSolve(fix2:getUserData(), col, norm, tang)
--- 	fix2:getUserData():postSolve(fix1:getUserData(), col, norm, tang)
--- end
+-- Event - Collision has been resolved
+--
+function World:postSolve(fix1, fix2, col, norm, tang)
+	fix1:getUserData():postSolve(fix2:getUserData(), col, norm, tang)
+	fix2:getUserData():postSolve(fix1:getUserData(), col, norm, tang)
+end
 
 -- Update world and it's entities
 --

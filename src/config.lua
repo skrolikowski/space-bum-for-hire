@@ -36,12 +36,20 @@ Config = {
     image = {
         spritesheet = {
             cyberpunk = {
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                idle = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                crouch     = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Crouch.png'),
+                crouchAim  = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_CrouchPistolAim.png'),
+                death      = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Death.png'),
+                idle       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
+                jump       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Jump.png'),
+                jumpAim    = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_JumpPistolAim.png'),
+                aim        = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAim.png'),
+                run        = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Run.png'),
+                stop       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Guard.png'),
+                runAim     = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRun.png'),
+                runAimUp   = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRunDown.png'),
+                runAimDown = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRunUp.png'),
+                talk       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Talking.png'),
+                walk       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Walk.png'),
             }
         }
     }
