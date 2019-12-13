@@ -6,22 +6,21 @@ local Entity = require 'src.entities.entity'
 local Player = Entity:extend()
 
 function Player:new(data)
-	self.width   = 64
-	self.height  = 64
-	self.heading = { false, 'E' }
+	self.width    = 64
+	self.height   = 64
+	self.heading  = { false, 'E' }
+	self.cooldown = { now = 0, max = 1 }
 	-- scaling
 	self.sx = 1.25            -- x-sprite scaling
 	self.sy = 1.25            -- y-sprite scaling
 	self.bx = 0.5 * self.sx   -- x-bound scaling
 	self.by = 1   * self.sy   -- y-bound scaling
 
-	-- properties
-	data.x        = data.x + self.width / 2
-	data.y        = data.y + self.height / 2
-	data.density  = 80
-	data.bodyType = 'dynamic'
-
-	-- shape
+	-- @overrides
+	data.x         = data.x + self.width / 2
+	data.y         = data.y + self.height / 2
+	data.density   = 50
+	data.bodyType  = 'dynamic'
 	data.shape     = 'rectangle'
 	data.shapeData = {
 		self.width  * self.bx,  -- shape width (scaled)
@@ -47,163 +46,51 @@ function Player:new(data)
 	-- flags
 	self.isMirrored = false
 	self.isFlipped  = false
+	self.onGround   = false
+	self.onWall     = false
+	self.lockedIn   = false
 
-	self.fsm = FSM(self, 'idle')
+	-- behavior/animation
+	self.behavior = Behaviors['idle'](self)
+	self.weapon   = Weapons['pistol'](self)
 
-	-- sprite
-	self.sprite = Animator()
-	self.sprite:addAnimation('idle', {
-		image  = Config.image.spritesheet.cyberpunk.idle,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 6 } }
-	})
-	self.sprite:addAnimation('death', {
-		image  = Config.image.spritesheet.cyberpunk.death,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 7 } }
-	})
-	self.sprite:addAnimation('crouch', {
-		image  = Config.image.spritesheet.cyberpunk.crouch,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 1, 1, 3 } },
-	})
-	self.sprite:addAnimation('crouched', {
-		image  = Config.image.spritesheet.cyberpunk.crouch,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 3, 1, 3 } },
-	})
-	self.sprite:addAnimation('crouchAim', {
-		image  = Config.image.spritesheet.cyberpunk.crouchAim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 3, 1, 3 } }
-	})
-	self.sprite:addAnimation('crouchAimUp', {
-		image  = Config.image.spritesheet.cyberpunk.crouchAim,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 4, 1, 5 } }
-	})
-	self.sprite:addAnimation('crouchAimDown', {
-		image  = Config.image.spritesheet.cyberpunk.crouchAim,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 1, 1, 2 } }
-	})
-	self.sprite:addAnimation('stand', {
-		image  = Config.image.spritesheet.cyberpunk.crouch,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 4, 1, 6 } },
-		after  = function() self.sprite:switchTo('idle') end
-	})
-	self.sprite:addAnimation('aim', {
-		image  = Config.image.spritesheet.cyberpunk.aim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 5, 1, 5 } }
-	})
-	self.sprite:addAnimation('aimUp', {
-		image  = Config.image.spritesheet.cyberpunk.aim,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 6, 1, 7 } }
-	})
-	self.sprite:addAnimation('aimDown', {
-		image  = Config.image.spritesheet.cyberpunk.aim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 3, 1, 3 } }
-	})
-	self.sprite:addAnimation('run', {
-		image  = Config.image.spritesheet.cyberpunk.run,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 8 } }
-	})
-	self.sprite:addAnimation('runAim', {
-		image  = Config.image.spritesheet.cyberpunk.runAim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 5 } }
-	})
-	self.sprite:addAnimation('walk', {
-		image  = Config.image.spritesheet.cyberpunk.walk,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 10 } }
-	})
-	self.sprite:addAnimation('stop', {
-		image  = Config.image.spritesheet.cyberpunk.stop,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 1, 1, 6 } },
-		after  = function() self.sprite:switchTo('idle') end
-	})
-	self.sprite:addAnimation('jump', {
-		image  = Config.image.spritesheet.cyberpunk.jump,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 3, 1, 8 } }
-	})
-	self.sprite:addAnimation('jumpAim', {
-		image  = Config.image.spritesheet.cyberpunk.jumpAim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 3, 1, 3 } }
-	})
-	self.sprite:addAnimation('jumpAimUp', {
-		image  = Config.image.spritesheet.cyberpunk.jumpAim,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 4, 1, 5 } }
-	})
-	self.sprite:addAnimation('jumpAimDown', {
-		image  = Config.image.spritesheet.cyberpunk.jumpAim,
-		width  = 64,
-		height = 64,
-		total  = 1,
-		frames = { { 1, 1, 1, 2 } }
-	})
-	self.sprite:addAnimation('fall', {
-		image  = Config.image.spritesheet.cyberpunk.jumpAim,
-		width  = 64,
-		height = 64,
-		frames = { { 1, 8, 1, 8 } }
-	})
-
-	-- keyboard events
-	_:on('key_space_on',  function() self:jumpStart() end)
-	_:on('key_space_off', function() self:jumpStop()  end)
-	_:on('key_w_on',      function() self:adjustHeading(2, 'N') end)
-	_:on('key_a_on',      function() self:adjustHeading(1, 'W') end)
-	_:on('key_s_on',      function() self:adjustHeading(2, 'S') end)
-	_:on('key_d_on',      function() self:adjustHeading(1, 'E') end)
-	_:on('key_l_down',    function(dt, et) self:lock()          end)
-	_:on('key_k_down',    function(dt, et) self:shoot(dt, et)   end)
-	_:on('key_a_down',    function(dt, et) self:moveStart(dt, et, 'left')  end)
-	_:on('key_d_down',    function(dt, et) self:moveStart(dt, et, 'right') end)
-	_:on('key_s_down',    function(dt, et) self:crouchStart(dt, et) end)
-	_:on('key_w_off',     function() self:adjustHeading(2, false)   end)
-	_:on('key_a_off',     function() self:adjustHeading(1, false) self:moveStop()   end)
-	_:on('key_d_off',     function() self:adjustHeading(1, false) self:moveStop()   end)
-	_:on('key_s_off',     function() self:adjustHeading(2, false) self:crouchStop() end)
-	_:on('key_l_off',     function() self:unlock()  end)
-	_:on('key_k_off',     function() self:holster() end)
+	-- -- keyboard events
+	_:on('key_space_on',  function() self.jumping = true  end)
+	_:on('key_space_off', function() self.jumping = false self:terminateJump() end)
+	_:on('key_w_on',      function() self.heading.y = 'N' end)
+	_:on('key_a_on',      function() self.heading.x = 'W' self.running = true self.isMirrored = true  end)
+	_:on('key_s_on',      function() self.heading.y = 'S' self.crouching = true end)
+	_:on('key_d_on',      function() self.heading.x = 'E' self.running = true self.isMirrored = false end)
+	_:on('key_l_on',      function() self:setLock()           end)
+	_:on('key_a_down',    function(dt, et) self:move(dt, et)  end)
+	_:on('key_d_down',    function(dt, et) self:move(dt, et)  end)
+	_:on('key_k_down',    function(dt, et) self.weapon:trigger(dt, et) end)
+	_:on('key_w_off',     function() self:keyOff('w')         end)
+	_:on('key_a_off',     function() self:keyOff('a')         end)
+	_:on('key_d_off',     function() self:keyOff('d')         end)
+	_:on('key_s_off',     function() self:keyOff('s')         end)
+	_:on('key_l_off',     function() self:setLock()           end)
+	_:on('key_k_off',     function() self.weapon:holster()    end)
 
 	-- camera control
 	_Camera.x, _Camera.y = self:getPosition()
+end
+
+function Player:keyOff(key)
+	if key == 's' then
+	-- South
+		self.heading.y = false
+		self.standing  = (self.behavior.name == 'crouch')
+		self.crouching = false
+	elseif key == 'a' or key == 'd' then
+	-- East/West
+		self.heading.x = false
+		self.running = false
+	elseif key == 'w' then
+	-- North
+		self.heading.y = false
+	end
+
 end
 
 -- Destroy!
@@ -211,7 +98,7 @@ end
 function Player:destroy(dt, et)
 	Entity.destroy(self)
 
-	-- release keyboard events
+	-- -- release keyboard events
 	_:off('key_space_on')
 	_:off('key_space_off')
 	_:off('key_w_on')
@@ -219,10 +106,9 @@ function Player:destroy(dt, et)
 	_:off('key_s_on')
 	_:off('key_d_on')
 	_:off('key_l_on')
-	_:off('key_k_down')
 	_:off('key_a_down')
 	_:off('key_d_down')
-	_:off('key_s_down')
+	_:off('key_k_down')
 	_:off('key_w_off')
 	_:off('key_a_off')
 	_:off('key_d_off')
@@ -231,149 +117,56 @@ function Player:destroy(dt, et)
 	_:off('key_k_off')
 end
 
--- Adjust aiming angle
-function Player:adjustHeading(axis, value)
-	if axis == 2 then
-		self.heading.y = value
-	else
-		self.heading.x = value
-	end
-end
-
--- Set player to idle
---
-function Player:idle()
-	if self:can('idle') then
-		self:setAction('idle')
-	end
-end
-
--- Lock on target
---
-function Player:lock()
-	if self:can('lock') then
-		self:setAction('lock')
-	end
-end
-
--- Unlock from aiming
---
-function Player:unlock()
-	if self:can('unlock') then
-		self:setAction('unlock')
-	end
-end
-
 function Player:shoot(dt, et)
-	if self:can('shoot') then
-		self:setAction('shoot')
-		--
-		if et % 1 == 0 then
-			print('shoot')
-			-- self.pistol:shoot()
-		end
-	end
+	self.weapon:fire()
+	self.shooting = true
 end
 
-function Player:holster()
-	if self:can('holster') then
-		self:setAction('holster')
-	end
-end
-
--- Move in direction
---
-function Player:moveStart(dt, et, dir)
-	if self:can('move') then
-		self:setAction('move')
-		--
-		local vx, vy = self:getLinearVelocity()
-		local ix, iy = 0, 0
-		local speed  = self.speed
-
-		-- apply movement force
-		if not self.onGround then
-			speed = speed * 0.75
-		end
-
-		if     dir == 'left'  then ix = self:mass() * (-speed - vx)
-		elseif dir == 'right' then ix = self:mass() * ( speed - vx)
-		end
-
-		self:applyForce(ix, iy)
-	end
-
-	-- change sprite direction accordingly
-	if dir == 'left' then
-		self.isMirrored = true
+function Player:setLock()
+	if self.locking then
+		-- print('unlock!')
+		self.locking  = false
+		self.lockedIn = false
 	else
-		self.isMirrored = false
-	end
-end
-
--- Reduce speed
---
-function Player:moveStop()
-	if self:can('stop') then
-		self:setAction('stop')
+		-- print('lock!')
+		self.locking = true
 		--
-		local vx, vy = self:getLinearVelocity()
-
-		if self.onPlatform then
-			-- on ground
-			vx = vx * self.friction
+		if self.crouching then
+			self.lockedIn = 'crouch'
 		else
-			-- in air
-			vx = vx * self.friction / 2
+			self.lockedIn = 'idle'
 		end
-
-		self:setLinearVelocity(vx, vy)
 	end
 end
 
--- Crouch down
---
-function Player:crouchStart()
-	if self:can('crouch') then
-		self:setAction('crouch')
-		--
-		--TODO: handle shape resize
+function Player:move(dt, et)
+	local vx, vy = self:getLinearVelocity()
+	local ix, iy = 0, 0
+	local speed  = self.speed
+
+	if self.crouching or self.lockedIn ~= false then
+		return
 	end
+
+	-- apply movement force
+	if not self.onGround then
+		speed = speed * 0.75
+	end
+
+	if self.heading.x == 'W'  then
+		ix = self:mass() * (-speed - vx)
+	elseif self.heading.x == 'E' then
+		ix = self:mass() * ( speed - vx)
+	end
+
+	self:applyForce(ix, iy)
 end
 
--- Stand from crouch
---
-function Player:crouchStop()
-	if self:can('stand') then
-		self:setAction('stand')
-		--
-		--TODO: handle shape resize
-	end
-end
+function Player:terminateJump()
+	local vx, vy = self:getLinearVelocity()
 
--- Start jump action
---
-function Player:jumpStart()
-	if self:can('jump') then
-		-- apply impulse for jump
-		self:applyLinearImpulse(0, -self.initImpulse)
-		--
-		self:setAction('jump')
-	end
-end
-
--- Terminate jump action
---
-function Player:jumpStop()
-	if self:can('unjump') then
-		-- terminate jump height
-		local vx, vy = self:getLinearVelocity()
-
-		if vy < 0 then
-			self:setLinearVelocity(vx, 0)
-		end
-		--
-		self:setAnimation('inAir')
+	if vy < 0 then
+		self:setLinearVelocity(vx, 0)
 	end
 end
 
@@ -383,7 +176,11 @@ function Player:beginContact(other, col)
 	if col:isTouching() then
 		if other.name == 'Platform' then
 			if select(2, col:getNormal()) > 0 then
-				self:setAction('grounded')
+				self.onGround = true
+			end
+
+			if select(1, col:getNormal()) > 0 then
+				self.onWall = true
 			end
 		end
 	end
@@ -392,44 +189,81 @@ end
 -- Event - endContact
 --
 function Player:endContact(other, col)
-	if other.name == 'Platform' then
-		--
-	end
+	-- if other.name == 'Platform' then
+		
+	-- end
 end
 
 -- Update
 --
 function Player:update(dt)
-	_Camera:update(dt)
-    _Camera:follow(self:getPosition())
+    local cx, cy = self:getPosition()
+    local vx, vy = self:getLinearVelocity()
 
-    self.fsm:update(dt)
-	self.sprite:update(dt)
+	_Camera:update(dt)
+    _Camera:follow(cx, cy)
+
+    -- Mini State Machine ------------
+
+    if self.onGround then
+    -- on Ground
+    	if self.jumping then
+    	-- Jumping
+    		self:setBehavior('jump')
+    	elseif self.lockedIn then
+    	-- Locked in..
+    		self:setBehavior(self.lockedIn)
+		elseif self.crouching then
+		-- Crouching
+			self:setBehavior('crouch')
+		elseif self.running then
+		-- Running
+			self:setBehavior('run')
+		elseif self.standing then
+		-- Standing
+			self:setBehavior('standup')
+		elseif _.__abs(vx) > 100 then
+		-- Sliding
+			self:setBehavior('slide')
+		else
+		-- Idle
+			self:setBehavior('idle')
+		end
+    else
+    -- In Air
+    	if vy > 0 then
+    		self:setBehavior('fall')
+		end
+    end
+	----------------------------------
+
+	self.behavior:update(dt)
+	self.weapon:update(dt)
 
 	Entity.update(self, dt)
+end
+
+function Player:setBehavior(name)
+	if self.behavior.name ~= name then
+		print('Set: ' .. name)
+		self.behavior:destroy()
+		self.behavior = Behaviors[name](self)
+	end
 end
 
 -- Draw
 --
 function Player:draw()
 	if self.visible then
-    	local cx, cy = self:getPosition()
-    	local w, h   = self.sprite:dimensions()
-    	local sx, sy = self.sx, self.sy
-
-        if self.isMirrored then sx = -sx end
-        if self.isFlipped  then sy = -sy end
-
-        love.graphics.setColor(Config.color.white)
-
-        self.sprite:draw(cx, cy, 0, sx, sy, w/2, h/2)
+		self.behavior:draw()
+		self.weapon:draw()
     end
 
     Entity.draw(self)
 end
 
 ----
-
+--[[
 -- Can do action?
 -- ---------------------
 -- isGrounded isJumping
@@ -615,5 +449,5 @@ function Player:setAnimation(action)
 		end
 	end
 end
-
+--]]
 return Player

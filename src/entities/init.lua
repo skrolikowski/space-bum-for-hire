@@ -10,11 +10,29 @@ Shapes = {
 	circle    = require 'src.entities.shapes.circle',
 }
 
--- Behaviors
-Behaviors = require 'src.entities.behaviors'
-
 -- Entities
 Entities = {
 	player   = require 'src.entities.player',
  	platform = require 'src.entities.platform',
+}
+
+-- Entity Behaviors
+Behaviors = {
+    idle    = require 'src.entities.behaviors.idle',
+    crouch  = require 'src.entities.behaviors.crouch',
+    standup = require 'src.entities.behaviors.standup',
+    jump    = require 'src.entities.behaviors.jump',
+    fall    = require 'src.entities.behaviors.fall',
+    run     = require 'src.entities.behaviors.run',
+    slide   = require 'src.entities.behaviors.slide',
+}
+
+-- Entity Weapons
+Weapons = {
+    pistol = require 'src.entities.weapons.pistol'
+}
+
+-- Entity Weapon Rounds
+WeaponRounds = {
+    pistol = require 'src.entities.rounds.pistol'
 }

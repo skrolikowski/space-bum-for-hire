@@ -17,6 +17,11 @@ Config = {
             enemies   = 2,
             platforms = 3,
             walls     = 4,
+        },
+        player = {
+            rounds = {
+                pistol = 100
+            }
         }
     },
     color = {
@@ -27,29 +32,37 @@ Config = {
     },
     ui = {
         -- cursor = lm.newCursor('res/ui/cursors/.png'),
-        fonts = {
-            sm = lg.newFont('res/ui/fonts/Improbable.ttf', 16),
-            md = lg.newFont('res/ui/fonts/Improbable.ttf', 18),
-            lg = lg.newFont('res/ui/fonts/Improbable.ttf', 24),
+        font = {
+            sm = lg.newFont('res/ui/fonts/Improbable.ttf', 10),
+            md = lg.newFont('res/ui/fonts/Improbable.ttf', 16),
+            lg = lg.newFont('res/ui/fonts/Improbable.ttf', 18),
         },
+    },
+    audio = {
+        round = {
+            pistol = la.newSource('res/sfx/pistol.ogg', 'static'),
+        }
     },
     image = {
         spritesheet = {
             cyberpunk = {
-                crouch     = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Crouch.png'),
-                crouchAim  = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_CrouchPistolAim.png'),
-                death      = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Death.png'),
-                idle       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Idle.png'),
-                jump       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Jump.png'),
-                jumpAim    = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_JumpPistolAim.png'),
-                aim        = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAim.png'),
-                run        = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Run.png'),
-                stop       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Guard.png'),
-                runAim     = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRun.png'),
-                runAimUp   = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRunDown.png'),
-                runAimDown = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_PistolAimRunUp.png'),
-                talk       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Talking.png'),
-                walk       = lg.newImage('res/spritesheets/CyberPunk/CyberPunk_Walk.png'),
+                crouch     = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_crouch.png'),
+                crouchAim  = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_crouchpistolaim.png'),
+                death      = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_death.png'),
+                idle       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_idle.png'),
+                jump       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_jump.png'),
+                jumpAim    = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_jumppistolaim.png'),
+                aim        = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_pistolaim.png'),
+                run        = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_run.png'),
+                slide      = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_guard.png'),
+                runAim     = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_pistolaimrun.png'),
+                runAimUp   = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_pistolaimrundown.png'),
+                runAimDown = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_pistolaimrunup.png'),
+                talk       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_talking.png'),
+                walk       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_walk.png'),
+            },
+            round = {
+                pistol = lg.newImage('res/spritesheets/weapons/handgun_35x6.png'),
             }
         }
     }

@@ -9,6 +9,12 @@ function Stack:new(...)
     self.elements = {...}
 end
 
+function Stack:reset()
+	for i = #self.elements, 1, -1 do
+		table.remove(self.elements, i)
+	end
+end
+
 function Stack:put(element)
     table.insert(self.elements, 1, element)
 end

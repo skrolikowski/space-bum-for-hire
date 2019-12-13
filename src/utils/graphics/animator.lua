@@ -40,6 +40,14 @@ function Animator:addAnimation(name, options)
 	end
 end
 
+-- Remove an existing animation
+--
+function Animator:removeAnimation(name)
+	if self.animations[name] then
+		self.animations[name] = nil
+	end
+end
+
 -- Parse frames requested for image
 --
 function Animator:parseFrames(segments, image, width, height)
@@ -77,15 +85,14 @@ end
 
 -- Switch to different animation
 --
-function Animator:switchTo(name)
+function Animator:switchTo(name, frame)
 	if self.animations[name] then
 		if not self.current or (self.current and self.current.name ~= name) then
 			self.current = self.animations[name]
 
-
 			-- setup
 			if self.current.frames then
-				self.current.frame   = 1
+				self.current.frame   = frame or 1
 				self.current.timer   = 1 / self.current.fps
 				self.current.count   = 0
 				self.current.playing = true

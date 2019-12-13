@@ -33,16 +33,16 @@ function Polygon:draw()
 	local r, g, b = unpack(Config.color.shape)
 
 	-- shape
-	lg.setColor(r, g, b, 0.35)
+	lg.setColor(r, g, b, 0.25)
 	lg.polygon('fill', unpack(points))
 
 	-- shape outline
 	lg.setColor(r, g, b, 0.75)
 	lg.polygon('line', unpack(points))
 
-	-- heading
-	lg.setColor(Config.color.heading)
-	lg.line(x, y, self.body:getWorldPoints(x2, y2))
+	-- -- heading
+	-- lg.setColor(Config.color.heading)
+	-- lg.line(x, y, self.body:getWorldPoints(x2, y2))
 end
 
 return Polygon

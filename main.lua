@@ -4,6 +4,7 @@
 la = love.audio
 lp = love.physics
 lm = love.mouse
+lx = love.math
 lg = love.graphics
 
 --

@@ -9,26 +9,49 @@ function FSM:new(host, state)
     self.host   = host
     self.states = Stack()
 
-    if state then
-        self.states:put(state)
+    if state ~= nil then
+        self:pushState(state)
     end
 end
 
+-- Start fresh stack w/ new state
+--
 function FSM:setState(state)
-    self:popState()
-    self:pushState(state)
-end
-
-function FSM:pushState(state)
-    if self:state().name ~= state then
-        self.states:put(
-            Behaviors[state](self.host)
-        )
+    if self:state() then
+        if self:state().name == state then
+            -- ignore request for same state push
+            return
+        end
+        if self:state():can(state) then
+            self.states:reset()
+            self:pushState(state)
+        end
     end
 end
 
+-- Push new state on top of stack
+--
+function FSM:pushState(state)
+    if self:state() then
+        if self:state().name == state then
+            -- ignore request for same state push
+            return
+        end
+
+        if self:state():can(state) then
+            self.states:put(Behaviors[state](self.host))
+        end
+    else
+        self.states:put(Behaviors[state](self.host))
+    end
+end
+
+-- Pop current state
+--
 function FSM:popState()
-    return self.states:get()
+    if self:state() then
+        self.states:destroy()
+    end
 end
 
 function FSM:state()
@@ -36,24 +59,23 @@ function FSM:state()
 end
 
 function FSM:update(dt)
-    local state = self:state()
-
-    if state then
-        state:update(dt)
+    if self:state() then
+        self:state():update(dt)
     end
 end
 
 function FSM:draw()
-    -- local state = self:state()
-    -- local x, y, w, h
+    if self:state() then
+        self:state():draw()
 
-    -- -- For debugging purposes..
-    -- if state then
-    --     x, y, w, h = self.host:container()
+        local cx, cy = self.host:getPosition()
+        local w,h    = self.host.width, self.host.height
+        local font   = love.graphics.newFont(10)
 
-    --     love.graphics.setColor(Config.color.black)
-    --     love.graphics.printf(state, x - 25, y + h + 5, w + 50, 'center')
-    -- end
+        love.graphics.setColor(Config.color.white)
+        love.graphics.setFont(Config.ui.font.sm)
+        love.graphics.printf(self:state().name, cx - w/2, cy - h/2, w, 'center')
+    end
 end
 
 return FSM
