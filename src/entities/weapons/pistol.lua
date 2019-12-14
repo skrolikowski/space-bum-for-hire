@@ -1,11 +1,11 @@
--- Pistol Weapon
+-- PistolWeapon Weapon
 --
 
-local Weapon = require 'src.entities.weapons.weapon'
-local Pistol = Weapon:extend()
+local Weapon       = require 'src.entities.weapons.weapon'
+local PistolWeapon = Weapon:extend()
 
-function Pistol:new(host)
-	Weapon.new(self, 'pistol', host)
+function PistolWeapon:new(host)
+	Weapon.new(self, 'pistol-weapon', host)
 
 	-- properties
 	self.fireRate = { now = 0, max = 0.25 }
@@ -15,15 +15,17 @@ end
 
 -- Trigger weapon
 --
-function Pistol:trigger(dt, et)
+function PistolWeapon:trigger(dt, et)
 	if self.fireRate.now == 0 then
 		self:fire()
 		self.firing = true
 		--
 		self.rounds       = self.rounds - 1
 		self.fireRate.now = self.fireRate.max
-		--
+		-- update global
 		Config.world.player.rounds.pistol = self.rounds
+		-- play sound
+		Config.audio.round.pistol:play()
 	end
 	--
 	Weapon.trigger(self, dt, et)
@@ -31,35 +33,22 @@ end
 
 -- Fire!
 --
-function Pistol:fire()
-	local cx, cy  = self.host:getPosition()
-	local w, h    = self.host.width, self.host.height
-	local vx, vy  = self.host:getLinearVelocity()
-	local sx, sy  = self.host.sx, self.host.sy
-	local heading = self.host.heading.y
-	local angle
+function PistolWeapon:fire()
+	local cx, cy = self.host:getPosition()
+	local vx, vy = self.host:getLinearVelocity()
+	local w, h   = self.host.width, self.host.height
+	local ax, ay = self.host.axis:unpack()
 
-	if heading == 'N' then
-	-- Aiming Up
-		angle = -_.__pi / 7
-	elseif heading == 'S' then
-	-- Aiming Down
-		angle =  _.__pi / 5
-	else
-	-- Aiming Forward
-		angle = 0
+	if self.host.isMirrored then
+		ax   = -ax
 	end
 
-	if self.host.isMirrored then sx = -sx end
-	if self.host.isFlipped  then sy = -sy end
+	-- round position & angle
+	local angle = Vec2(ax, ay):heading()
+	self.nx    = cx         + _.__cos(angle) * (w / 2) + (vx * 0.1)
+	self.ny    = cy - h / 4 + _.__sin(angle) * (w / 2) + (vy * 0.1)
 
-	local nx = cx       + _.__cos(angle) * (w / 2)
-	local ny = cy - h/4 + _.__sin(angle) * (w / 2)
-
-	table.insert(self.children, self.round(self, nx, ny, angle, sx, sy))
-	--
-	-- TODO: 
-	-- Damage -> _World:querySegment()
+	table.insert(self.children, self.round(self, self.nx, self.ny, angle))
 end
 
-return Pistol
+return PistolWeapon

@@ -1,10 +1,10 @@
 -- Pistol Rounds
 --
 
-local Round  = require 'src.entities.rounds.round'
-local Pistol = Round:extend()
+local Round       = require 'src.entities.rounds.round'
+local PistolRound = Round:extend()
 
-function Pistol:new(host, x, y, angle, sx, sy)
+function PistolRound:new(host, x, y, angle)
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
 		image  = Config.image.spritesheet.round.pistol,
@@ -14,11 +14,11 @@ function Pistol:new(host, x, y, angle, sx, sy)
 		fps    = 50,
 		frames = { { 1, 1, 14, 1 } },
 		after  = function() self.remove = true end
+		-- NOTE: setting remove could be a problem
+		--       if the attack doesn't finish in time.
 	})
 	--
-	Round.new(self, host, x, y, angle, sx, sy)
-	--
-	Config.audio.round.pistol:play()
+	Round.new(self, 'pistol-round', host, x, y, angle)
 end
 
-return Pistol
+return PistolRound

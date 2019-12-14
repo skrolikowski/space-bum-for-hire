@@ -37,14 +37,16 @@ end
 -- Update animation
 --
 function Idle:update(dt)
-	local heading  = self.host.heading.y
-	--local isAiming = self.host.locking
+	-- print(self.host.heading.name)
+	local heading  = self.host.axis.y
+	local isAiming = self.host.lockedIn == self.name or
+	                 self.host.shooting
 
-	if self.host.lockedIn == self.name then
+	if isAiming then
 	-- Aiming
-		if heading == 'N' then
+		if self.host.axis.y < 0 then
 			self.sprite:switchTo('aimUp')
-		elseif heading == 'S' then
+		elseif self.host.axis.y > 0 then
 			self.sprite:switchTo('aimDown')
 		else
 			self.sprite:switchTo('aim')

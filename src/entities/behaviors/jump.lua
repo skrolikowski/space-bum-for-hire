@@ -41,4 +41,27 @@ function Jump:new(host)
 	self.host.onWall   = false
 end
 
+-- Switch out animation
+--
+function Jump:update(dt)
+	local isAiming = self.host.shooting
+
+	-- update animation
+	if isAiming then
+	-- Aiming
+		if self.host.axis.y < 0 then
+			self.sprite:switchTo('jumpAimUp')
+		elseif self.host.axis.y > 0 then
+			self.sprite:switchTo('jumpAimDown')
+		else
+			self.sprite:switchTo('jumpAim')
+		end
+	else
+	-- Jump
+		self.sprite:switchTo('jump')
+	end
+	--
+	Behavior.update(self, dt)
+end
+
 return Jump

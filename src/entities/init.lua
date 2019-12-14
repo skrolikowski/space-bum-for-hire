@@ -36,3 +36,4 @@ Weapons = {
 WeaponRounds = {
     pistol = require 'src.entities.rounds.pistol'
 }
+Contact = require 'src.entities.rounds.contact'

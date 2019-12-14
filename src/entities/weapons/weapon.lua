@@ -10,7 +10,7 @@ local Weapon = Modern:extend()
 function Weapon:new(name, host)
 	self.host = host
 	-- properties
-	self.name   = name
+	self.name = name
 	-- flags
 	self.firing = false
 	-- ancestry
@@ -70,6 +70,11 @@ function Weapon:draw()
 	-- draw children
 	for __, child in pairs(self.children) do
 		child:draw()
+	end
+
+	if self.nx then
+	love.graphics.setColor(Config.color.white)
+	love.graphics.circle('fill', self.nx, self.ny, '3')
 	end
 end
 

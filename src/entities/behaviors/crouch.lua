@@ -53,14 +53,14 @@ end
 -- Update animation
 --
 function Crouch:update(dt)
-	local heading  = self.host.heading.y
-	--local isAiming = self.host.locking or self.host.shooting
+	local isAiming = self.host.lockedIn == self.name or
+	                 self.host.shooting
 
-	if self.host.lockedIn == self.name then
+	if isAiming then
 	-- Aiming
-		if heading == 'N' then
+		if self.host.axis.y < 0 then
 			self.sprite:switchTo('crouchAimUp')
-		elseif heading == 'S' then
+		elseif self.host.axis.y > 0 then
 			self.sprite:switchTo('crouchAimDown')
 		else
 			self.sprite:switchTo('crouchAim')

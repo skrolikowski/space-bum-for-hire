@@ -48,6 +48,7 @@ function Behavior:draw()
 	love.graphics.setColor(Config.color.white)
 	love.graphics.setFont(Config.ui.font.sm)
 	love.graphics.printf(stateName, cx - w/2, cy - h/2, w, 'center')
+	-- love.graphics.printf(self.host.axis:heading(), cx - w/2, cy - h, w, 'center')
 end
 
 return Behavior

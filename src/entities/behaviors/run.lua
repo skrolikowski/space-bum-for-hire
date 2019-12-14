@@ -42,16 +42,15 @@ end
 
 function Run:update(dt)
 	local vx, vy   = self.host:getLinearVelocity()
-	local heading  = self.host.heading.y
 	local isAiming = self.host.shooting
 
 	if isAiming then
-		if heading == 'N' then
+		if self.host.axis.y < 0 then
 			self.sprite:switchTo('runAimUp')
-		elseif heading == 'S' then
+		elseif self.host.axis.y > 0 then
 			self.sprite:switchTo('runAimDown')
 		else
-			self.sprite:switchTo('run')
+			self.sprite:switchTo('runAim')
 		end
 	else
 		if _.__abs(vx) > 150 then
