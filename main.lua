@@ -16,7 +16,7 @@ function love.load()
     local STI = require 'vendor.sti.sti'
 
     -- setup world/map
-    _Map          = STI('res/maps/Spaceship.lua')
+    _Map          = STI('res/maps/Mountains.lua')
     _World        = World()
     _World.width  = _Map.width * _Map.tilewidth
     _World.height = _Map.height * _Map.tileheight
@@ -31,6 +31,8 @@ function love.load()
         _World.width  + Config.width / _Camera.scale,
         _World.height + Config.height / _Camera.scale
     )
+
+    -- _Dialogue = Dialogue()
 
     -- spawn entities
     EntitySpawner(_Map)
@@ -57,14 +59,21 @@ function love.draw()
     _Camera:attach()
     --
     lg.setColor(Config.color.white)
-    _Map:drawTileLayer('Background')
-    _Map:drawTileLayer('Environment')
-    _Map:drawTileLayer('Details')
+    _Map:drawTileLayer('Sharp Cliffs')
+    _Map:drawTileLayer('Decoratives (BG)')
+    _Map:drawTileLayer('Cliffs')
+    _Map:drawTileLayer('Castle')
+    _Map:drawTileLayer('Decoratives (MG)')
+    _Map:drawTileLayer('Platforms')
+ --    _Map:drawTileLayer('Background')
+ --    _Map:drawTileLayer('Environment')
+ --    _Map:drawTileLayer('Details')
 
 	_World:draw()
 
     lg.setColor(Config.color.white)
-    _Map:drawTileLayer('Foreground')
+ --    _Map:drawTileLayer('Foreground')
+    _Map:drawTileLayer('Flora')
     
     _Camera:detach()
     -- _Camera:draw()

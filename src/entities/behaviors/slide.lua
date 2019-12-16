@@ -57,9 +57,9 @@ function Slide:update(dt)
 
 	-- update linear velocity
 	if self.host.onGround then
-		vx = vx - 2 * vx * dt
+		vx = vx - 4 * vx * dt
 	else
-		vx = vx - vx * dt
+		vx = vx - 2 * vx * dt
 	end
 
 	self.host:setLinearVelocity(vx, vy)

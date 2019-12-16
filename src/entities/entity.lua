@@ -11,11 +11,11 @@ function Entity:new(data)
 	self.shapeType   = data.shape       or 'rectangle'
 	self.name        = data.name        or 'entity'
 	self.visible     = data.visible     or true
-	self.friction    = data.friction    or 0.35
+	self.friction    = data.friction    or 0.25
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
 
-	-- body & shape
+	-- body & shape	
 	self.body  = lp.newBody(_World.world, data.x, data.y, self.bodyType)
 	self.shape = Shapes[self.shapeType](unpack(data.shapeData))
 	self.shape:setBody(self.body)

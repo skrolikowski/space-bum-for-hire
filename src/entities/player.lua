@@ -6,8 +6,8 @@ local Entity = require 'src.entities.entity'
 local Player = Entity:extend()
 
 function Player:new(data)
-	self.width    = 64
-	self.height   = 64
+	self.width    = data.width
+	self.height   = data.height
 	self.axis     = Vec2()
 	self.heading  = { name = 'E', angle = 0 }
 	self.cooldown = { now = 0, max = 1 }
@@ -18,11 +18,10 @@ function Player:new(data)
 	self.by = 1   * self.sy   -- y-bound scaling
 
 	-- @overrides
-	data.x         = data.x + self.width / 2
-	data.y         = data.y + self.height / 2
+	data.x         = data.x + data.width / 2
+	data.y         = data.y + data.height / 2
 	data.density   = 50
 	data.bodyType  = 'dynamic'
-	data.shape     = 'rectangle'
 	data.shapeData = {
 		self.width  * self.bx,  -- shape width (scaled)
 		self.height * self.by   -- shape height (scaled)
@@ -31,9 +30,9 @@ function Player:new(data)
 	Entity.new(self, data)
 	
 	-- attributes
-	self.speed       = 40 * Config.world.meter
+	self.speed       = 1000
 	self.speedMax    = 2 * self.speed
-	self.jumpHeight  = 5 * data.height * Config.world.meter
+	self.jumpHeight  = 3000
 	self.initJumpVel = _.__sqrt(2 * Config.world.gravity.y * self.jumpHeight)
 	self.initImpulse = self:mass() * self.initJumpVel
 
@@ -209,7 +208,7 @@ end
 function Player:beginContact(other, col)
 	if col:isTouching() then
 		if other.name == 'Platform' then
-			if select(2, col:getNormal()) > 0 then
+			if select(2, col:getNormal()) < 0 then
 				self.onGround = true
 			end
 

@@ -7,7 +7,8 @@ local Polygon = Shape:extend()
 -- New polygon shape
 --
 function Polygon:new(...)
-	self.shape = lp.newPolygonShape(...)
+	local points = {0, 0, 128, -64, 128, -48, 0, 16}
+	self.shape = lp.newPolygonShape(points)
 end
 
 -- Get vertices of polygon shape
@@ -25,22 +26,22 @@ end
 -- Draw polygon shape
 --
 function Polygon:draw()
-	local x, y    = self.body:getPosition()
-	local w, h    = self:dimensions()
-	local points  = { self.body:getWorldPoints(self:getPoints()) }
-	local angle   = self.body:getAngle()
-	local x2, y2  = Vec2:polar(angle, w / 2):unpack()
+	local points = { self.body:getWorldPoints(self:getPoints()) }
 	local r, g, b = unpack(Config.color.shape)
 
 	-- shape
 	lg.setColor(r, g, b, 0.25)
-	lg.polygon('fill', unpack(points))
+	lg.polygon('fill', points)
 
 	-- shape outline
 	lg.setColor(r, g, b, 0.75)
-	lg.polygon('line', unpack(points))
+	lg.polygon('line', points)
 
 	-- -- heading
+	-- local x, y    = self.body:getPosition()
+	-- local angle   = self.body:getAngle()
+	-- local w, h    = self:dimensions()
+	-- local x2, y2  = Vec2:polar(angle, w / 2):unpack()
 	-- lg.setColor(Config.color.heading)
 	-- lg.line(x, y, self.body:getWorldPoints(x2, y2))
 end
