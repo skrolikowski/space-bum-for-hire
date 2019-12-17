@@ -36,6 +36,7 @@ function Jump:new(host)
 	--
 	Behavior.new(self, 'jump', host)
 	--
+	self.host.jumping  = false
 	self.host:applyLinearImpulse(0, -self.host.initImpulse)
 	self.host.onGround = false
 	self.host.onWall   = false
