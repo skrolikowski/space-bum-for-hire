@@ -6,11 +6,12 @@ local Modern = require 'modern'
 local Entity = Modern:extend()
 
 function Entity:new(data)
+	self.id          = data.id
+	self.name        = data.name        or 'Entity'
+	self.shapeType   = data.shape       or 'rectangle'
+	self.visible     = data.visible     or true
 	self.bodyType    = data.bodyType    or 'static'
 	self.density     = data.density     or 1
-	self.shapeType   = data.shape       or 'rectangle'
-	self.name        = data.name        or 'entity'
-	self.visible     = data.visible     or true
 	self.friction    = data.friction    or 0.25
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
@@ -288,7 +289,7 @@ end
 -- Update entity
 --
 function Entity:update(dt)
-    --
+	--
 end
 
 -- Draw entity

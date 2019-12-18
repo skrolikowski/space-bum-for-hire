@@ -61,9 +61,14 @@ Config = {
                 talk       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_talking.png'),
                 walk       = lg.newImage('res/spritesheets/cyberpunk/cyberpunk_walk.png'),
             },
-            round = {
-                pistol = lg.newImage('res/spritesheets/weapons/handgun_35x6.png'),
-            }
-        }
+            particles = {
+                pistol = lg.newImage('res/spritesheets/particles/handgun_35x6.png'),
+                warp   = lg.newImage('res/spritesheets/particles/level_up_102x135.png'),
+            },
+        },
+        sprites = {
+            platform = lg.newImage('res/sprites/platform.png'),
+            spikes   = lg.newImage('res/sprites/spikes.png'),
+        },
     }
 }

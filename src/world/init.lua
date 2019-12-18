@@ -1,7 +1,11 @@
 
 --
 
-World = require 'src.world.world'
+Spawner = require 'src.world.spawner'
+World   = require 'src.world.world'
 
--- Spawners
-EntitySpawner = require 'src.world.spawners.entity'
+-- Events
+Events = {
+	PlayerEnter = require 'src.world.events.player_enter',
+	Move        = require 'src.world.events.move',
+}

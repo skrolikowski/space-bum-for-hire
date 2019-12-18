@@ -137,6 +137,24 @@ function World:fetchOnLine(x1, y1, x2, y2)
 		return fixtures
 end
 
+-- Fetch an Entity
+--
+function World:fetchEntityById(id)
+	local bodies = self.world:getBodies()
+	local fixture, entity
+
+	for __, body in pairs(bodies) do
+		fixture = body:getFixtures()[1]
+		entity  = fixture:getUserData()
+
+		if entity.id and entity.id == id then
+			return entity
+		end
+	end
+
+	return false
+end
+
 -- Event - handle onClick (mouse)
 --
 function World:onClick(x, y, button)

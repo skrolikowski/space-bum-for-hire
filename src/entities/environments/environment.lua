@@ -6,12 +6,14 @@ local Entity      = require 'src.entities.entity'
 local Environment = Entity:extend()
 
 function Environment:new(data)
+	data.name = 'Environment'
+
 	if data.shape == 'rectangle' then
 	-- Rectangle
 		data.x         = data.x + data.width / 2
 		data.y         = data.y + data.height / 2
 		data.shapeData = {
-			data.width,  -- rectangle width
+			data.width,
 			data.height
 		}
 	else
@@ -24,10 +26,7 @@ function Environment:new(data)
 		end
 	end
 	
-	-- filters
-	-- data.categories = {}  -- belongs to...
-	-- data.mask       = {}  -- ingores these...
-
+	--
 	Entity.new(self, data)
 end
 

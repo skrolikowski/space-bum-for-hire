@@ -7,7 +7,7 @@ local PistolRound = Round:extend()
 function PistolRound:new(host, x, y, angle)
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.round.pistol,
+		image  = Config.image.spritesheet.particles.pistol,
 		width  = 35,
 		height = 6,
 		total  = 1,

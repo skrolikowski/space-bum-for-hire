@@ -12,12 +12,13 @@ function Player:new(data)
 	self.heading  = { name = 'E', angle = 0 }
 	self.cooldown = { now = 0, max = 1 }
 	-- scaling
-	self.sx = 1.25            -- x-sprite scaling
-	self.sy = 1.25            -- y-sprite scaling
+	self.sx = 1.00            -- x-sprite scaling
+	self.sy = 1.00            -- y-sprite scaling
 	self.bx = 0.5 * self.sx   -- x-bound scaling
 	self.by = 1   * self.sy   -- y-bound scaling
 
 	-- @overrides
+	data.name      = 'Player'
 	data.x         = data.x + data.width / 2
 	data.y         = data.y + data.height / 2
 	data.density   = 50
@@ -71,9 +72,6 @@ function Player:new(data)
 	_:on('key_l_off',     function() self:setLock()           end)
 	_:on('key_k_off',     function() self.weapon:holster()    end)
 	_:on('key_space_off', function() self:keyOff('space_off') end)
-
-	-- camera control
-	_Camera.x, _Camera.y = self:getPosition()
 end
 
 -- Convienence keyOn method
@@ -207,7 +205,7 @@ end
 --
 function Player:beginContact(other, col)
 	if col:isTouching() then
-		if other.name == 'Platform' then
+		if other.name == 'Environment' then
 			if select(2, col:getNormal()) < 0 then
 				self.onGround = true
 			end
@@ -222,9 +220,7 @@ end
 -- Event - endContact
 --
 function Player:endContact(other, col)
-	-- if other.name == 'Platform' then
-		
-	-- end
+	--
 end
 
 -- Update
@@ -233,11 +229,9 @@ function Player:update(dt)
     local cx, cy = self:getPosition()
     local vx, vy = self:getLinearVelocity()
 
-	_Camera:update(dt)
     _Camera:follow(cx, cy)
 
     -- Mini State Machine ------------
-
     if self.onGround then
     -- on Ground
     	if self.jumping then

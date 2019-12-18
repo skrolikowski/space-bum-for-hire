@@ -12,8 +12,10 @@ Shapes = {
 
 -- Entities
 Entities = {
-	player   = require 'src.entities.player',
- 	platform = require 'src.entities.environments.platform',
+	Player         = require 'src.entities.player',
+    MovingPlatform = require 'src.entities.environments.moving_platform',
+    Environment    = require 'src.entities.environments.environment',
+    Spikes         = require 'src.entities.environments.spikes',
 }
 
 -- Entity Behaviors

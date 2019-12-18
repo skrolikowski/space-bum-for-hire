@@ -10,7 +10,7 @@ Timer   = require 'vendor.hump.timer'
 
 -- Globals
 require 'src.entities'
-require 'src.dialogue'
+-- require 'src.dialogue'
 require 'src.world'
 require 'src.utils'
 --

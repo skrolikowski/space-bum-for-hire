@@ -16,7 +16,8 @@ function love.load()
     local STI = require 'vendor.sti.sti'
 
     -- setup world/map
-    _Map          = STI('res/maps/Mountains.lua')
+    -- _Map          = STI('res/maps/Mountains.lua')
+    _Map          = STI('res/maps/Spikes.lua')
     _World        = World()
     _World.width  = _Map.width * _Map.tilewidth
     _World.height = _Map.height * _Map.tileheight
@@ -35,7 +36,7 @@ function love.load()
     -- _Dialogue = Dialogue()
 
     -- spawn entities
-    EntitySpawner(_Map)
+    _Spawner = Spawner(_Map)
 
     -- keyboard events
     _Keys = {}
@@ -43,7 +44,9 @@ function love.load()
 end
 
 function love.update(dt)
+    _Camera:update(dt)
 	_World:update(dt)
+    _Spawner:update(dt)
 
     -- Controls - Key Down
     for key, time in pairs(_Keys) do
@@ -59,21 +62,20 @@ function love.draw()
     _Camera:attach()
     --
     lg.setColor(Config.color.white)
-    _Map:drawTileLayer('Sharp Cliffs')
-    _Map:drawTileLayer('Decoratives (BG)')
-    _Map:drawTileLayer('Cliffs')
-    _Map:drawTileLayer('Castle')
-    _Map:drawTileLayer('Decoratives (MG)')
     _Map:drawTileLayer('Platforms')
- --    _Map:drawTileLayer('Background')
- --    _Map:drawTileLayer('Environment')
- --    _Map:drawTileLayer('Details')
+
+    -- _Map:drawTileLayer('Sharp Cliffs')
+    -- _Map:drawTileLayer('Decoratives (BG)')
+    -- _Map:drawTileLayer('Cliffs')
+    -- _Map:drawTileLayer('Castle')
+    -- _Map:drawTileLayer('Decoratives (MG)')
+    -- _Map:drawTileLayer('Platforms')
 
 	_World:draw()
+    _Spawner:draw()
 
-    lg.setColor(Config.color.white)
- --    _Map:drawTileLayer('Foreground')
-    _Map:drawTileLayer('Flora')
+    -- lg.setColor(Config.color.white)
+    -- _Map:drawTileLayer('Flora')
     
     _Camera:detach()
     -- _Camera:draw()
