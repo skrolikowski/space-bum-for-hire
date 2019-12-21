@@ -3,8 +3,8 @@ require 'lua-lander'
 
 -- Vendor packages
 Inspect = require 'inspect'
--- Camera  = require 'vendor.hump.camera'
-Camera  = require 'vendor.STALKER-X.Camera'
+Camera  = require 'vendor.hump.camera'
+-- Camera  = require 'vendor.STALKER-X.Camera'
 -- Gamestate = require 'vendor.hump.gamestate'
 Timer   = require 'vendor.hump.timer'
 

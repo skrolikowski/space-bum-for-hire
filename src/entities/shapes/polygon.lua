@@ -7,8 +7,7 @@ local Polygon = Shape:extend()
 -- New polygon shape
 --
 function Polygon:new(...)
-	local points = {0, 0, 128, -64, 128, -48, 0, 16}
-	self.shape = lp.newPolygonShape(points)
+	self.shape = lp.newPolygonShape(...)
 end
 
 -- Get vertices of polygon shape

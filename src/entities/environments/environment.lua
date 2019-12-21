@@ -21,8 +21,8 @@ function Environment:new(data)
 		data.shapeData = {}
 
 		for __, point in pairs(data.polygon) do
-			table.insert(data.shapeData, point.x)
-			table.insert(data.shapeData, point.y)
+			table.insert(data.shapeData, point.x - data.x)
+			table.insert(data.shapeData, point.y - data.y)
 		end
 	end
 	

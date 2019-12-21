@@ -16,6 +16,9 @@ function Entity:new(data)
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
 
+	-- flags
+	self.canDestroy = false
+
 	-- body & shape	
 	self.body  = lp.newBody(_World.world, data.x, data.y, self.bodyType)
 	self.shape = Shapes[self.shapeType](unpack(data.shapeData))
@@ -46,6 +49,12 @@ end
 function Entity:destroy()
 	self.fixture:destroy()
 	self.body:destroy()
+end
+
+-- Set whether sleeing is allowed or not
+--
+function Entity:setSleepingAllowed(...)
+	self.body:setSleepingAllowed(...)
 end
 
 -- Set x,y-position of body
@@ -284,6 +293,19 @@ end
 --
 function Entity:postSolve(other, col, norm, tang)
 	--
+end
+
+-- Take damage
+--
+function Entity:damage(other, attack)
+	if self.canDestroy then
+		self.health = self.health - attack
+		print('hit!', self.health)
+
+		if self.health <= 0 then
+			self:destroy()
+		end
+	end
 end
 
 -- Update entity

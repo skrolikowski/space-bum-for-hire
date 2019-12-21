@@ -10,33 +10,44 @@ lg = love.graphics
 --
 require 'src.config'
 
-lg.setBackgroundColor(_:color('gray-900'))
+-- lg.setBackgroundColor(_:color('orange-100'))
 
 function love.load()
     local STI = require 'vendor.sti.sti'
 
     -- setup world/map
-    -- _Map          = STI('res/maps/Mountains.lua')
-    _Map          = STI('res/maps/Spikes.lua')
+    _Map          = STI('res/maps/Mountains.lua')
     _World        = World()
     _World.width  = _Map.width * _Map.tilewidth
     _World.height = _Map.height * _Map.tileheight
 
-    -- setup camera
-    _Camera = Camera()
-    _Camera.scale = 2
-    _Camera:setBounds(
-        -- adjusting bounds for scale
-        -Config.width  / _Camera.scale / 2,
-        -Config.height / _Camera.scale / 2,
-        _World.width  + Config.width / _Camera.scale,
-        _World.height + Config.height / _Camera.scale
-    )
+    -- canvas
+    _Background = lg.newCanvas(_World.width, _World.height)
+    lg.setCanvas(_Background)
+    _Map:drawTileLayer('Background')
+    _Map:drawTileLayer('Sharp Cliffs')
+    _Map:drawTileLayer('Decoratives (BG)')
+    _Map:drawTileLayer('Cliffs')
+    _Map:drawTileLayer('Castle')
+    _Map:drawTileLayer('Decoratives (MG)')
+    _Map:drawTileLayer('Platforms')
+    lg.setCanvas()
 
-    -- _Dialogue = Dialogue()
+    -- setup camera
+    _Camera = Camera(0,0,2)
+    --TODO: camera bounds
+    -- _Camera.scale = 2
+    -- _Camera:setBounds(
+    --     -- adjusting bounds for scale
+    --     -Config.width  / _Camera.scale / 2,
+    --     -Config.height / _Camera.scale / 2,
+    --     _World.width  + Config.width / _Camera.scale,
+    --     _World.height + Config.height / _Camera.scale
+    -- )
 
     -- spawn entities
-    _Spawner = Spawner(_Map)
+    _Spawner  = Spawner(_Map)
+    _Passport = Passport()
 
     -- keyboard events
     _Keys = {}
@@ -44,7 +55,9 @@ function love.load()
 end
 
 function love.update(dt)
-    _Camera:update(dt)
+    Timer.update(dt)
+    --
+    -- _Camera:update(dt)
 	_World:update(dt)
     _Spawner:update(dt)
 
@@ -59,26 +72,18 @@ end
 -- Draw game world
 --
 function love.draw()
-    _Camera:attach()
+    _Camera:draw(function()
     --
-    lg.setColor(Config.color.white)
-    _Map:drawTileLayer('Platforms')
+        lg.setColor(Config.color.white)
+        lg.draw(_Background)
 
-    -- _Map:drawTileLayer('Sharp Cliffs')
-    -- _Map:drawTileLayer('Decoratives (BG)')
-    -- _Map:drawTileLayer('Cliffs')
-    -- _Map:drawTileLayer('Castle')
-    -- _Map:drawTileLayer('Decoratives (MG)')
-    -- _Map:drawTileLayer('Platforms')
+        _World:draw()
+        _Spawner:draw()
 
-	_World:draw()
-    _Spawner:draw()
-
-    -- lg.setColor(Config.color.white)
-    -- _Map:drawTileLayer('Flora')
-    
-    _Camera:detach()
-    -- _Camera:draw()
+        lg.setColor(Config.color.white)
+        _Map:drawTileLayer('Flora')
+    --
+    end)
 end
 
 -- Controls - Key Pressed

@@ -30,11 +30,13 @@ function PlayerEnter:new(data)
 		frames = { { 1, 1, 7, 5 } },
 		after  = function() self:destroy() end
 	})
+
 	-- focus!
-	_Camera:follow(
+	_Camera:lookAt(
 		data.x + data.width / 2,
 		data.y + data.height / 2
 	)
+	
 	-- timing is everything
 	self.timer = Timer.new()
 	self.timer:after(0.85, function() self:spawnPlayer() end)

@@ -31,15 +31,17 @@ function Player:new(data)
 	Entity.new(self, data)
 	
 	-- attributes
+	self.health      = 100
 	self.speed       = 1000
 	self.speedMax    = 2 * self.speed
-	self.jumpHeight  = 3000
+	self.jumpHeight  = 4000
 	self.initJumpVel = _.__sqrt(2 * Config.world.gravity.y * self.jumpHeight)
 	self.initImpulse = self:mass() * self.initJumpVel
 
 	-- physics
 	self:fixedRotation(true)
 	self.contactNormal = Vec2()
+	self:setSleepingAllowed(false)
 	-- filters
 	-- data.categories = {}  -- belongs to...
 	-- data.mask       = {}  -- ingores these...
@@ -50,6 +52,7 @@ function Player:new(data)
 	self.onGround   = false
 	self.onWall     = false
 	self.lockedIn   = false
+	self.canDestroy = true
 
 	-- behavior/animation
 	self.behavior = Behaviors['idle'](self)
@@ -229,7 +232,10 @@ function Player:update(dt)
     local cx, cy = self:getPosition()
     local vx, vy = self:getLinearVelocity()
 
-    _Camera:follow(cx, cy)
+    --_Camera:follow(cx, cy)
+    _Camera:lookAt(cx, cy)
+    -- _Camera:lockPosition(cx, cy, Camera.smooth.none())
+
 
     -- Mini State Machine ------------
     if self.onGround then

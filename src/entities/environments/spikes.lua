@@ -10,36 +10,76 @@ function Spikes:new(data)
 	
 	Environment.new(self, data)
 	--
-	self.color = Config.color.white
+	-- self.delay  = data.delay or 1
+	self.attack = data.attack or 5
+	self.facing = data.properties.facing or 'N'
+	self.color  = Config.color.white
+
+	-- image
 	self.image = Config.image.sprites.spikes
+	self.image:setWrap('repeat', 'repeat')
+
+	if self.facing == 'N' then
+		self.angle = 0
+		self.quad  = lg.newQuad(0, 0, data.width, self.image:getHeight(), self.image:getDimensions())
+	elseif self.facing == 'E' then
+		self.angle = _.__rad(90)
+		self.quad  = lg.newQuad(0, 0, data.height, self.image:getHeight(), self.image:getDimensions())
+	elseif self.facing == 'S' then
+		self.angle = _.__rad(180)
+		self.quad  = lg.newQuad(0, 0, data.width, self.image:getHeight(), self.image:getDimensions())
+	else
+		self.angle = _.__rad(270)
+		self.quad  = lg.newQuad(0, 0, data.height, self.image:getHeight(), self.image:getDimensions())
+	end
 end
 
 -- Check for contacts
 --
 function Spikes:beginContact(other, col)
 	if col:isTouching() then
-		if other.name == 'Player' then
-			print('spikes!')
-		end
+		self:causeDamage(other)
 	end
+end
+
+-- Inflict damage to visiting entity
+--
+function Spikes:causeDamage(other)
+	other:damage(self, self.attack)
+
+	-- -- 
+	-- _Passport:add(other, self)
+
+	-- if self.delay > 0 then
+	-- 	-- schedule another pounding..
+	-- 	Timer.after(self.delay, function()
+	-- 		if _Passport:get(other, self) ~= nil then
+	-- 			self:causeDamage(other)
+	-- 		end
+	-- 	end)
+	-- end
 end
 
 -- Check for separations
 --
 function Spikes:endContact(other, col)
-	if other.name == 'Player' then
-		--
-	end
+	-- _Passport:remove(other, self)
+end
+
+function Spikes:update(dt)
+	--self.rotation = self.rotation + 1
 end
 
 -- Draw platform
 --
 function Spikes:draw()
-	local cx, cy = self:getPosition()
-	local w, h   = self.image:getDimensions()
+	local cx, cy     = self:getPosition()
+	local x, y, w, h = self.quad:getViewport()
+	local angle      = self.angle
+	local sx, sy     = 1, 1
 
 	lg.setColor(self.color)
-	lg.draw(self.image, cx, cy, 0, 1, 1, w/2, h/2)
+	lg.draw(self.image, self.quad, cx, cy, angle, sx, sy, w/2, h/2)
 	--
 	Environment.draw(self)
 end
