@@ -31,6 +31,10 @@ function World:bootstrap()
 		function(a, b, col) self:preSolve(a, b, col)     end,
 		function(a, b, col, norm, tang) self:postSolve(a, b, col, norm, tang) end
 	)
+	-- self.world:setContactFilter(function(fix1, fix2)
+	-- 	print(fix1:getUserData().name, fix2:getUserData().name)
+	-- 	return true
+	-- end)
 end
 
 -- Destroy world

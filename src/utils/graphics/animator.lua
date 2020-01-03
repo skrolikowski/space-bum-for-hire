@@ -83,6 +83,15 @@ function Animator:dimensions()
 	return 0, 0
 end
 
+-- Restart animation
+function Animator:restart()
+	if self.current then
+		self.current.frame   = 1
+		self.current.count   = 0
+		self.current.playing = true
+	end
+end
+
 -- Switch to different animation
 --
 function Animator:switchTo(name, frame)

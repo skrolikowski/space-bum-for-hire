@@ -7,43 +7,21 @@ local Entity = Modern:extend()
 
 function Entity:new(data)
 	self.id          = data.id
+	self.uuid        = Util:uuid()
+	self.category    = data.category    or nil
 	self.name        = data.name        or 'Entity'
-	self.shapeType   = data.shape       or 'rectangle'
 	self.visible     = data.visible     or true
 	self.bodyType    = data.bodyType    or 'static'
+	self.shapeType   = data.shape       or 'rectangle'
+	self.shapeData   = data.shapeData   or { 0, 0, data.width, data.height }
 	self.density     = data.density     or 1
 	self.friction    = data.friction    or 0.25
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
+	self.body        = lp.newBody(_World.world, data.x, data.y, self.bodyType)
 
 	-- flags
 	self.canDestroy = false
-
-	-- body & shape	
-	self.body  = lp.newBody(_World.world, data.x, data.y, self.bodyType)
-	self.shape = Shapes[self.shapeType](unpack(data.shapeData))
-	self.shape:setBody(self.body)
-
-	-- fixture
-	self:setFixture()
-end
-
--- Create fixture around
-function Entity:setFixture()
-	if self.fixture ~= nil then
-		self.fixture:destroy()
-	end
-
-	self.fixture = lp.newFixture(self.body, self.shape.shape, self.density)
-	self.fixture:setUserData(self)
-	self.fixture:setFriction(self.friction)
-	self.fixture:setRestitution(self.restitution)
-	self.fixture:setSensor(self.isSensor)
-	-- self.fixture:setFilterData(
-	-- 	self.group      or 0,
-	-- 	self.categories or 1,
-	-- 	self.mask       or 65535
-	-- )
 end
 
 function Entity:destroy()
@@ -187,66 +165,16 @@ function Entity:applyTorque(torque)
 	self.body:applyTorque(torque)
 end
 
--- Is fixture a sensor?
--- Sensors only call beginContact & endContact
+-- Entity aabb based on shape
 --
-function Entity:sensor(value)
-	if value then
-		self.fixture:setSensor(value)
-	else
-		return self.fixture:isSensor()
-	end
+function Entity:bounds()
+	return self.shape:bounds()
 end
 
--- Friction - slide reaction
--- Greater friction = Rougher texture
+-- Entity dimensions based on shape
 --
-function Entity:friction(value)
-	if value then
-		self.fixture:setFriction(value)
-	else
-		return self.fixture:getFriction()
-	end
-end
-
--- Restitution - bounce reaction
--- Greater restitution = Higher bounce
---
-function Entity:restitution(value)
-	if value then
-		self.fixture:setRestitution(value)
-	else
-		return self.fixture:getRestitution()
-	end
-end
-
--- Density
---
-function Entity:density(value)
-	if value then
-		self.fixture:setDensity(value)
-	else
-		return self.fixture:getDensity()
-	end
-end
-
--- Category (i.e. 1, 2, 3, ..., 16)
---
-function Entity:setCategory(...)
-	return self.fixture:setCategory(...)
-end
-
--- Mask (i.e. 1, 2, 3, ..., 16)
--- Intersecting masks = IGNORE
---
-function Entity:setMask(...)
-	return self.fixture:setMask(...)
-end
-
--- Group Index
---
-function Entity:setGroupIndex(group)
-	return self.fixture:setGroupIndex(group)
+function Entity:dimensions()
+	return self.shape:dimensions()
 end
 
 -- Test if line segment intersects with entity's shape
@@ -261,15 +189,25 @@ function Entity:testPoint(...)
 	return self.shape.shape:testPoint(...)
 end
 
--- -- Resize shape - WIP
--- --
--- function Entity:resize(...)
--- 	self.shape = Shapes[self.shapeType](...)
--- 	self.shape:setBody(self.body)
+-- Setup new fixture
+--
+function Entity:setFixture(shape, ...)
+	if self.fixture then
+	-- Remove current fixture
+		self.fixture:destroy()
+	end
 
--- 	-- reset fixture
--- 	self:setFixture()
--- end
+	-- Create new shape with requested arguments
+	self.shape = Shapes[shape](...)
+	self.shape:setBody(self.body)
+
+	-- Create new fixture connecting body to shape
+	self.fixture = lp.newFixture(self.shape.body, self.shape.shape, self.density)
+	self.fixture:setUserData(self)
+	self.fixture:setFriction(self.friction)
+	self.fixture:setRestitution(self.restitution)
+	self.fixture:setSensor(self.isSensor)
+end
 
 -- Event - beginContact
 --
@@ -299,12 +237,12 @@ end
 --
 function Entity:damage(other, attack)
 	if self.canDestroy then
-		self.health = self.health - attack
+	-- 	self.health = self.health - attack
 		print('hit!', self.health)
 
-		if self.health <= 0 then
-			self:destroy()
-		end
+	-- 	if self.health <= 0 then
+	-- 		self:destroy()
+	-- 	end
 	end
 end
 
@@ -317,9 +255,10 @@ end
 -- Draw entity
 --
 function Entity:draw()
-	if self.visible then
-		self.shape:draw()
-	end
+	-- if self.visible then
+	-- 	lg.setColor(Config.color.shape)
+	-- 	self.shape:draw()
+	-- end
 end
 
 return Entity

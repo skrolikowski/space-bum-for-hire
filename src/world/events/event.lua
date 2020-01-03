@@ -7,13 +7,14 @@ local Event  = Modern:extend()
 function Event:new(data)
 	self.data = data
 	--
-	self.id      = data.id
-	self.name    = data.name or 'Event'
-	self.cx      = data.x + data.width / 2
-	self.cy      = data.y + data.height / 2
-	self.visible = data.visible or false
-	self.width   = data.width
-	self.height  = data.height
+	self.id       = data.id
+	self.name     = data.name     or 'Event'
+	self.category = data.category or 'Event'
+	self.cx       = data.x + data.width / 2
+	self.cy       = data.y + data.height / 2
+	self.visible  = data.visible or false
+	self.width    = data.width
+	self.height   = data.height
 
 	-- body & shape	
 	self.body  = lp.newBody(_World.world, self.cx, self.cy, 'static')
@@ -22,6 +23,9 @@ function Event:new(data)
 
 	-- fixture
 	self.fixture = lp.newFixture(self.body, self.shape.shape, 1)
+	self.fixture:setGroupIndex(Config.world.filter.group.event)
+	self.fixture:setCategory(Config.world.filter.category.event)
+	self.fixture:setMask(unpack(Config.world.filter.mask.event))
 	self.fixture:setUserData(self)
 	self.fixture:setSensor(true)
 end
@@ -54,6 +58,7 @@ end
 
 -- Draw Event
 function Event:draw()
+	lg.setColor(Config.color.sensor.event)
 	self.shape:draw()
 end
 

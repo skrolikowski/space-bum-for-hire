@@ -105,6 +105,28 @@ end
 
 --
 
+function AABB:translate(tx, ty)
+    return AABB:fromContainer(
+        self.left + tx,
+        self.top + ty,
+        self:width(),
+        self:height()
+    )
+end
+
+function AABB:scale(sx, sy)
+    sy = sy or sx
+    
+    return AABB:fromContainer(
+        self.left,
+        self.top,
+        self:width()  * sx,
+        self:height() * sy
+    )
+end
+
+--
+
 function AABB:__eq(other)
     return self.left   == other.left  and
            self.top    == other.top   and

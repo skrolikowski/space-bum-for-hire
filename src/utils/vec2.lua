@@ -14,8 +14,8 @@ end
 
 function Vec2:polar(angle, mag)
     return Vec2(
-        _.__cos(angle) * (mag or 1),
-        _.__sin(angle) * (mag or 1)
+        self.x + _.__cos(angle) * (mag or 1),
+        self.y + _.__sin(angle) * (mag or 1)
     )
 end
 

@@ -10,7 +10,8 @@ function MovingPlatform:new(data)
 	--
 	self.color   = Config.color.white
 	self.image   = Config.image.sprites.platform
-	self.hosting = nil
+	self.hosting = {}
+	self.affects = Util:toBoolean({ 'Unit' })
 	self.dx = 0
 	self.dy = 0
 end
@@ -21,9 +22,10 @@ function MovingPlatform:beginContact(other, col)
 	-- local nx, ny = col:getNormal()
 
 	if col:isTouching() then
-		if other.name == 'Player' then
-			self.hosting = other
-			-- print('hosting player')
+		if self.affects[other.category] then
+			if not self.hosting[other.uuid] then
+				self.hosting[other.uuid] = other
+			end
 		end
 	end
 end
@@ -31,9 +33,10 @@ end
 -- Check for separations
 --
 function MovingPlatform:endContact(other, col)
-	if other.name == 'Player' then
-		self.hosting = nil
-		-- print('unhosting player')
+	if self.affects[other.category] then
+		if self.hosting[other.uuid] then
+			self.hosting[other.uuid] = nil
+		end
 	end
 end
 
@@ -44,11 +47,12 @@ function MovingPlatform:setPosition(nx, ny)
 	local cx, cy = self:getPosition()
 	local dx, dy = nx - cx, ny - cy
 
-	if self.hosting ~= nil then
-	-- adjust host's position
-		local hx, hy = self.hosting:getPosition()
+	for __, guest in pairs(self.hosting) do
+		-- adjust guest's position
+		local hx, hy = guest:getPosition()
 		local nx, ny = hx + dx, hy + dy
-		self.hosting:setPosition(nx, ny)
+
+		guest:setPosition(nx, ny)
 	end
 	--
 	Environment.setPosition(self, nx, ny)

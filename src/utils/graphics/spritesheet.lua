@@ -13,7 +13,7 @@ local Modern      = require 'modern'
 local SpriteSheet = Modern:extend()
 
 function SpriteSheet:new(filePath)
-    local path, name, extn = Utils:filenameSplit(filePath)
+    local path, name, extn = Util:filenameSplit(filePath)
     local ok, message = pcall(love.filesystem.getInfo, filePath, "file")
 
     if not ok then
@@ -26,7 +26,7 @@ function SpriteSheet:new(filePath)
         self.quads = {}
 
         for _, texture in ipairs(json["TextureAtlas"]["SubTexture"]) do
-            self:quad(Utils:basename(texture.name), texture)
+            self:quad(Util:basename(texture.name), texture)
         end
     end
 end

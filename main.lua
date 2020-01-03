@@ -7,16 +7,16 @@ lm = love.mouse
 lx = love.math
 lg = love.graphics
 
+lg.setDefaultFilter('nearest', 'nearest')
 --
 require 'src.config'
-
--- lg.setBackgroundColor(_:color('orange-100'))
 
 function love.load()
     local STI = require 'vendor.sti.sti'
 
     -- setup world/map
     _Map          = STI('res/maps/Mountains.lua')
+    -- _Map          = STI('res/maps/Enemies.lua')
     _World        = World()
     _World.width  = _Map.width * _Map.tilewidth
     _World.height = _Map.height * _Map.tileheight
@@ -45,9 +45,8 @@ function love.load()
     --     _World.height + Config.height / _Camera.scale
     -- )
 
-    -- spawn entities
-    _Spawner  = Spawner(_Map)
-    _Passport = Passport()
+    -- spawn entities into map
+    _Spawner = Spawner(_Map)
 
     -- keyboard events
     _Keys = {}
@@ -73,7 +72,6 @@ end
 --
 function love.draw()
     _Camera:draw(function()
-    --
         lg.setColor(Config.color.white)
         lg.draw(_Background)
 
@@ -82,7 +80,6 @@ function love.draw()
 
         lg.setColor(Config.color.white)
         _Map:drawTileLayer('Flora')
-    --
     end)
 end
 

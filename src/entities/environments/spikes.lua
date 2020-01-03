@@ -2,13 +2,16 @@
 -- Shane Krolikowski
 --
 
+local Entity = require 'src.entities.entity'
 local Environment    = require 'src.entities.environments.environment'
 local Spikes = Environment:extend()
 
 function Spikes:new(data)
-	data.isSensor = true
-	
-	Environment.new(self, data)
+	Environment.new(self, _:merge(data, {
+		--@overrides
+		name     = 'Spikes',
+		isSensor = true
+	}))
 	--
 	-- self.delay  = data.delay or 1
 	self.attack = data.attack or 5
@@ -32,42 +35,6 @@ function Spikes:new(data)
 		self.angle = _.__rad(270)
 		self.quad  = lg.newQuad(0, 0, data.height, self.image:getHeight(), self.image:getDimensions())
 	end
-end
-
--- Check for contacts
---
-function Spikes:beginContact(other, col)
-	if col:isTouching() then
-		self:causeDamage(other)
-	end
-end
-
--- Inflict damage to visiting entity
---
-function Spikes:causeDamage(other)
-	other:damage(self, self.attack)
-
-	-- -- 
-	-- _Passport:add(other, self)
-
-	-- if self.delay > 0 then
-	-- 	-- schedule another pounding..
-	-- 	Timer.after(self.delay, function()
-	-- 		if _Passport:get(other, self) ~= nil then
-	-- 			self:causeDamage(other)
-	-- 		end
-	-- 	end)
-	-- end
-end
-
--- Check for separations
---
-function Spikes:endContact(other, col)
-	-- _Passport:remove(other, self)
-end
-
-function Spikes:update(dt)
-	--self.rotation = self.rotation + 1
 end
 
 -- Draw platform

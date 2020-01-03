@@ -14,6 +14,13 @@ function Spawner:new(map)
 			-- Spawn Events
 			-- Events are sensors, which cause things to happen. 
 				self:spawnEvents(layer.objects)
+			elseif layer.name == 'Units' then
+			-- Spawn Unit
+				for __, object in ipairs(layer.objects) do
+					if object.name then
+						Entities[object.name](object)
+					end
+				end
 			else
 			-- Spawn Entities
 				for __, object in ipairs(layer.objects) do
