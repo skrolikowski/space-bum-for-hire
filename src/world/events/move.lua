@@ -6,7 +6,12 @@ local Event = require 'src.world.events.event'
 local Move  = Event:extend()
 
 function Move:new(data)
-	data.name  = 'MoveEvent'
+		--@overrides
+	data.name = 'MoveEvent'
+	data.cx   = data.x + data.width  / 2
+	data.cy   = data.y + data.height / 2
+	
+	Event.new(self, data)
 	
 	-- animation settings
 	self.replay = data.properties.replay or false
@@ -34,16 +39,6 @@ function Move:new(data)
 	self.running = nil
 	self.bodies  = 0
 	self.timer   = Timer.new()
-
-	-- body & shape	
-	self.body  = lp.newBody(_World.world, data.x + data.width / 2, data.y + data.height / 2, 'static')
-	self.shape = Shapes['rectangle'](data.width, data.height)
-	self.shape:setBody(self.body)
-
-	-- fixture
-	self.fixture = lp.newFixture(self.body, self.shape.shape, 1)
-	self.fixture:setUserData(self)
-	self.fixture:setSensor(true)
 end
 
 -- Check for contacts

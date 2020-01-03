@@ -130,10 +130,13 @@ Config = {
             }
         },
         sprites = {
-            platform  = lg.newImage('res/sprites/platform.png'),
             spikes    = lg.newImage('res/sprites/spikes.png'),
             playerAim = lg.newImage('res/sprites/player_aim_arm.png'),
             comment   = lg.newImage('res/sprites/comment.png'),
+            platform = {
+                mountains = lg.newImage('res/sprites/platforms/mountains.png'),
+                spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
+            }
         },
     },
     dialogue = {

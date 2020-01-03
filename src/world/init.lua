@@ -13,6 +13,7 @@ Dialogue = {
 Events = {
 	PlayerEnter = require 'src.world.events.player_enter',
 	Move        = require 'src.world.events.move',
+	Call        = require 'src.world.events.call',
 }
 
 Sensors = {

@@ -9,7 +9,8 @@ function MovingPlatform:new(data)
 	Environment.new(self, data)
 	--
 	self.color   = Config.color.white
-	self.image   = Config.image.sprites.platform
+	self.area    = data.properties.area or 'spaceship'
+	self.image   = Config.image.sprites.platform[self.area]
 	self.hosting = {}
 	self.affects = Util:toBoolean({ 'Unit' })
 	self.dx = 0

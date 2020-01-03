@@ -33,10 +33,8 @@ end
 -- Flag for removal
 --
 function Event:destroy()
-	self.fixture:destroy()
-	self.body:destroy()
-	--
 	self.remove = true
+	self.body:destroy()
 end
 
 -- Event - beginContact

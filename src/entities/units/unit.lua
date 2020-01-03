@@ -51,18 +51,21 @@ function Unit:beginContact(other, col)
 		--
 		if other.name == 'Environment' then
 		-- on wall/ground
-			if select(2, col:getNormal()) ~= 0 then
+			if select(2, col:getNormal()) == -1 then
+print(self.name, 'ground contact')
 			-- ground contact
 				if not self.grounds[other.uuid] then
 					self.grounds[other.uuid] = other
-					self.onGround = true
+					-- self.onGround = true
 					-- print(self.name, 'onGround')
 				end
-			elseif select(1, col:getNormal()) ~= 0 then
+			end
+			
+			if select(1, col:getNormal()) ~= 0 then
 			-- wall contact
 				if not self.walls[other.uuid] then
 					self.walls[other.uuid] = other
-					self.onWall = true
+					-- self.onWall = true
 					-- print(self.name, 'onWall')
 				end
 			end
@@ -77,23 +80,28 @@ function Unit:endContact(other, col)
 	--
 	if other.name == 'Environment' then
 	-- off wall/ground
+		
 		if self.grounds[other.uuid] then
 		-- ground departure
 			self.grounds[other.uuid] = nil
+		end
 
-			if #self.grounds == 0 then
-				self.onGround = false
-				-- print(self.name, 'offGround')
-			end
-		elseif self.walls[other.uuid] then
+		if self.walls[other.uuid] then
 		-- wall departure
 			self.walls[other.uuid] = nil
-
-			if #self.walls == 0 then
-				self.onWall = true
-				-- print(self.name, 'offWall')
-			end
 		end
+
+		-- if #self.grounds == 0 then
+		-- -- onGrounds check
+		-- 	self.onGround = false
+		-- 	-- print(self.name, 'offGround')
+		-- end
+
+		-- if #self.walls == 0 then
+		-- -- offWalls check
+		-- 	self.onWall = false
+		-- 	-- print(self.name, 'offWall')
+		-- end
 	end
 end
 
@@ -117,6 +125,10 @@ end
 --
 function Unit:update(dt)
 	self.behavior:update(dt)
+
+	-- set flags
+	self.onGround = _:size(self.grounds) > 0
+	self.onWall   = _:size(self.walls) > 0
 	--
 	Entity.update(self, dt)
 end
