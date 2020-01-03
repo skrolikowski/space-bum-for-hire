@@ -24,8 +24,8 @@ function love.conf(t)
 
     t.window.title      = 'Star Crusader'
     -- t.window.icon       = 'res/ui/crossair_black.png'
-    t.window.x          = 125
-    t.window.y          = 100
+    t.window.x          = 400
+    t.window.y          = 25
     t.window.width      = 1280
     t.window.height     = 800
     t.window.fullscreen = false

@@ -20,12 +20,13 @@ end
 --
 function Strike:isInStrike(x, y)
 	local cx, cy     = self:getPosition()
+	local radius     = self.shape:getRadius()
 	local heading    = self.host.isMirrored and _.__pi or 0
 	local range      = self.shape:getRadius()
 	local toTarget   = Vec2(x, y) - Vec2(cx, cy)
 	local strikeLine = Vec2(
-		_.__cos(heading) * self.shape:getRadius(),
-		_.__sin(heading) * self.shape:getRadius()
+		_.__cos(heading) * radius,
+		_.__sin(heading) * radius
 	)
 	local angleBetween = toTarget:angleBetween(strikeLine)
 	
@@ -51,15 +52,15 @@ function Strike:draw()
 	-- self.shape:draw()
 
 	local cx, cy  = self:getPosition()
-	local range   = self:getRadius()
+	local radius  = self.shape:getRadius()
 	local heading = self.host.isMirrored and _.__pi or 0
 	local r, g, b = unpack(Config.color.sensor.strike)
 
 	lg.setColor(r, g, b, 0.25)
-	lg.arc('fill', cx, cy, range, heading - self.arc, heading + self.arc)
+	lg.arc('fill', cx, cy, radius, heading - self.arc, heading + self.arc)
 	lg.setColor(r, g, b, 0.75)
 	lg.setLineWidth(1)
-	lg.arc('line', cx, cy, range, heading - self.arc, heading + self.arc)
+	lg.arc('line', cx, cy, radius, heading - self.arc, heading + self.arc)
 end
 
 return Strike

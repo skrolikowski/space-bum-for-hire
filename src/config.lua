@@ -70,7 +70,7 @@ Config = {
             sight  = { _:color('yellow-300') },
             strike = { _:color('purple-300') },
             projectile = { _:color('yellow-400') },
-            flagger = { _:color('orange-400') },
+            dispatcher = { _:color('orange-400') },
         }
     },
     ui = {

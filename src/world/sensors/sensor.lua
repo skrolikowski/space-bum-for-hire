@@ -16,12 +16,8 @@ end
 -- Destroy fixture
 --
 function Sensor:destroy()
-	self.fixture:destroy()
-
-	-- some sensors may have bodies
-	if self.body then
-		self.body:destroy()
-	end
+	-- set for removal
+	self.remove = true
 end
 
 -- Get x,y-position of sensor
@@ -30,19 +26,9 @@ function Sensor:getPosition()
 	return self.shape:center()
 end
 
--- Get radius of sensor
---
-function Sensor:getRadius()
-	return self.shape:getRadius()
-end
-
 -- Set shape of sensor and attach to host entity
 --
 function Sensor:setShape(shape)
-	if self.fixture then
-		self.fixture:destroy()
-	end
-
 	-- shape
 	self.shape = shape
 	self.shape:setBody(self.host.body)

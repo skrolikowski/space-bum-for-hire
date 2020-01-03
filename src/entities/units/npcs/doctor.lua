@@ -11,21 +11,4 @@ function Doctor:new(data)
 	--
 end
 
--- In Focus Event
--- Handle when entity comes into focus
---
-function Doctor:inFocus(other)
-	if other.category == 'Enemy' then
-	-- Run from enemies
-		self.fleeing = true
-		self.target  = other
-	elseif other.name == 'Player' then
-	-- Comment to player
-		if self.talking == false then
-			self.talking = true
-			self.target  = other
-		end
-	end
-end
-
 return Doctor

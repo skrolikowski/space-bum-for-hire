@@ -15,8 +15,8 @@ function love.load()
     local STI = require 'vendor.sti.sti'
 
     -- setup world/map
-    _Map          = STI('res/maps/Mountains.lua')
-    -- _Map          = STI('res/maps/Enemies.lua')
+    -- _Map          = STI('res/maps/Mountains.lua')
+    _Map          = STI('res/maps/Enemies.lua')
     _World        = World()
     _World.width  = _Map.width * _Map.tilewidth
     _World.height = _Map.height * _Map.tileheight
@@ -24,12 +24,12 @@ function love.load()
     -- canvas
     _Background = lg.newCanvas(_World.width, _World.height)
     lg.setCanvas(_Background)
-    _Map:drawTileLayer('Background')
-    _Map:drawTileLayer('Sharp Cliffs')
-    _Map:drawTileLayer('Decoratives (BG)')
-    _Map:drawTileLayer('Cliffs')
-    _Map:drawTileLayer('Castle')
-    _Map:drawTileLayer('Decoratives (MG)')
+    -- _Map:drawTileLayer('Background')
+    -- _Map:drawTileLayer('Sharp Cliffs')
+    -- _Map:drawTileLayer('Decoratives (BG)')
+    -- _Map:drawTileLayer('Cliffs')
+    -- _Map:drawTileLayer('Castle')
+    -- _Map:drawTileLayer('Decoratives (MG)')
     _Map:drawTileLayer('Platforms')
     lg.setCanvas()
 
@@ -78,8 +78,8 @@ function love.draw()
         _World:draw()
         _Spawner:draw()
 
-        lg.setColor(Config.color.white)
-        _Map:drawTileLayer('Flora')
+        -- lg.setColor(Config.color.white)
+        -- _Map:drawTileLayer('Flora')
     end)
 end
 

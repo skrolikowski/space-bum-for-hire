@@ -2,16 +2,18 @@
 -- Ignores gravity, given initial impulse, invokes damage
 --
 
-local Sensor     = require 'src.world.sensors.sensor'
-local Projectile = Sensor:extend()
+local Modern     = require 'modern'
+local Projectile = Modern:extend()
 
 -- New Projectile
 -- Host is firing weapon
 --
 function Projectile:new(host, x, y, impulse, damage)
-	Sensor.new(self, 'Projectile', host)
-	--
-	self.damage = damage or 0
+	self.name     = 'Projectile'
+	self.uuid     = Util:uuid()
+	self.category = 'Projectile'
+	self.host     = host
+	self.damage   = damage or 0
 
 	-- body	
 	self.body  = lp.newBody(_World.world, x, y, 'dynamic')
@@ -29,6 +31,13 @@ function Projectile:new(host, x, y, impulse, damage)
 	self.fixture:setMask(unpack(Config.world.filter.mask.sensor))
 	self.fixture:setUserData(self)
 	self.fixture:setSensor(true)
+end
+
+-- Destroy fixture
+--
+function Projectile:destroy()
+	self.fixture:destroy()
+	self.body:destroy()
 end
 
 -- Check for collisions

@@ -40,4 +40,11 @@ function Environment:setFixture(shape, ...)
 	self.fixture:setCategory(Config.world.filter.category.environment)
 end
 
+-- Draw entity
+--
+function Environment:draw()
+	lg.setColor(Config.color.shape)
+	self.shape:draw()
+end
+
 return Environment

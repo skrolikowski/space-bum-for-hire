@@ -9,9 +9,9 @@ function Behavior:new(name, host)
 	local x, y, w, h = unpack(host.shapeData)
 	local sw, sh     = self.sprite:dimensions()
 
-	self.name     = host.name .. '_' .. name
-	self.host     = host
-	self.hitboxes = {}
+	self.name    = host.name .. '_' .. name
+	self.host    = host
+	self.sensors = {}
 
 	-- scale to fit bounds
 	self.sx = w / sw
@@ -19,17 +19,17 @@ function Behavior:new(name, host)
 
 	self:setBounds()
 	self:setEntityShape()
-	self:setHitBoxes()
+	self:setSensors()
 end
 
 -- Tear Down
 --
 function Behavior:destroy()
-	for i = #self.hitboxes, 1, -1 do
-		self.hitboxes[i]:destroy()
-	end
+	for i = #self.sensors, 1, -1 do
+		self.sensors[i]:destroy()
 
-	self.hitboxes = {}
+		table.remove(self.sensors, i)
+	end
 end
 
 -- Create fixture/shape for entity around sprite
@@ -38,7 +38,6 @@ function Behavior:setEntityShape()
 	if self.host.shape then
 		local cw, ch = self.host.shape:dimensions()
 		local nw, nh = self.bounds:dimensions()
-
 		-- only update shape if dimension changes
 		-- 
 		if _.__abs(cw - nw) > 1 or _.__abs(ch - nh) > 1 then
@@ -55,29 +54,10 @@ function Behavior:setBounds()
 	self.bounds = AABB:fromContainer(unpack(host.shapeData))
 end
 
--- Set hit boxes for behavior
+-- Set sensors for behavior
 --
-function Behavior:setHitBoxes()
+function Behavior:setSensors()
 	--
-end
-
--- Add a Hit Box
---
-function Behavior:addHitBox(name, shape, multiplier)
-	if not self.hitboxes[name] then
-		self.hitboxes[name] = Sensors['hitbox'](self.host)
-		self.hitboxes[name]:setShape(shape)
-		self.hitboxes[name]:setMultiplier(multiplier or 1)
-	end
-end
-
--- Remove a Hit Box
---
-function Behavior:removeHitBox(name)
-	if self.hitboxes[name] then
-		self.hitboxes[name]:destroy()
-		self.hitboxes[name] = nil
-	end
 end
 
 -- Handle collision detection

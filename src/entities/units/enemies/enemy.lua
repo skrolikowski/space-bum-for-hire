@@ -11,7 +11,6 @@ function Enemy:new(data)
 	--
 	-- AI
 	self.sight  = Sensors['sight'](self, { 'Player' })
-	self.target = nil
 	self.timer  = Timer.new()
 end
 
@@ -56,7 +55,6 @@ end
 --
 function Enemy:update(dt)
 	self.timer:update(dt)
-	self.sight:update(dt)
 	--
 	Unit.update(self, dt)
 end

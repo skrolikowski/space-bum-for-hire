@@ -19,9 +19,7 @@ function NPC:new(data)
 	self.walking = false
 
 	-- AI
-	self.sight  = Sensors['sight'](self, { 'Unit' }, 100)
-	self.timer  = Timer.new()
-	self.target = nil
+	self.timer = Timer.new()
 
 	-- behavior/animation
 	self:setBehavior('fall')
@@ -35,37 +33,10 @@ function NPC:destroy()
 	Unit.destroy(self)
 end
 
--- In Focus Event
--- Handle when entity comes into focus
---
-function NPC:inFocus(other)
-	-- print('inFocus', other.name)
-end
-
--- Out of Focus Event
--- Handle when entity goes out of focus
---
-function NPC:outOfFocus(other)
-	-- print('outOfFocus', other.name)
-end
-
--- Handle entity entering sight range
---
-function NPC:inRange(other, col)
-	-- print('inRange', other.name)
-end
-
--- Handle entity exiting sight range
---
-function NPC:outOfRange(other, col)
-	-- print('outOfRange', other.name)
-end
-
 -- Update
 --
 function NPC:update(dt)
 	self.timer:update(dt)
-	self.sight:update(dt)
 	--
 	local vx, vy = self:getLinearVelocity()
 

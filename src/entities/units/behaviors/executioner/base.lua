@@ -17,16 +17,22 @@ function Base:setBounds()
 	self.bounds = AABB:fromContainer(x, y, w/2, h)
 end
 
--- Set up Hit Boxes for base
--- Executioner sprite
+-- Set sensors for: Executioner
+--   - Hit Boxes
 --
-function Base:setHitBoxes()
+function Base:setSensors()
 	local x, y, w, h = self.bounds:container()
 	local bodyShape = Shapes['rectangle'](self.bounds:translate(0, h/4):scale(0.35, 0.35):container())
 	local headShape = Shapes['circle'](0, 0, 10)
 
-	self:addHitBox('Body', bodyShape)
-	self:addHitBox('Head', headShape, 3)
+	-- body hitbox
+	self.sensors['body'] = Sensors['hitbox'](self.host)
+	self.sensors['body']:setShape(bodyShape)
+
+	-- head hitbox
+	self.sensors['head'] = Sensors['hitbox'](self.host)
+	self.sensors['head']:setShape(headShape)
+	self.sensors['head']:setMultiplier(2)
 end
 
 return Base

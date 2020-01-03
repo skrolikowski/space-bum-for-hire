@@ -124,9 +124,7 @@ end
 -- Draw
 --
 function Unit:draw()
-	if self.visible then
-		self.behavior:draw()
-    end
+	self.behavior:draw()
 	--
 	Entity.draw(self)
 end
