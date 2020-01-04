@@ -1,18 +1,11 @@
 require 'lua-lander'
 --
 
--- Vendor packages
-Inspect = require 'inspect'
-Camera  = require 'vendor.hump.camera'
--- Camera  = require 'vendor.STALKER-X.Camera'
--- Gamestate = require 'vendor.hump.gamestate'
-Timer   = require 'vendor.hump.timer'
-
 -- Globals
 require 'src.entities'
--- require 'src.dialogue'
 require 'src.world'
 require 'src.utils'
+require 'src.gamestates'
 --
 
 function love.conf(t)

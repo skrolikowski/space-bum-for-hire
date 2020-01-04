@@ -10,7 +10,6 @@ AABB        = require 'src.utils.aabb'
 Stack       = require 'src.utils.containers.stack'
 Animator    = require 'src.utils.graphics.animator'
 Spritesheet = require 'src.utils.graphics.spritesheet'
--- Passport    = require 'src.utils.passport'
 
 --
 Shapes = {
