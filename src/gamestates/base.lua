@@ -12,6 +12,7 @@ function Base:init(name)
 
 	self.name = name
 	self.map  = STI('res/maps/' .. name .. '.lua')
+	self.hud  = UI['player_hud']()
 
 	_World        = World()
     _World.width  = self.map.width  * self.map.tilewidth
@@ -49,28 +50,30 @@ end
 --
 function Base:registerControls()
 	-- keyboard events
-    _:on('key_escape', function() self:quitGame() end)
-    _:on('key_q',      function() self:quitGame() end)
+    _:on('key_escape_on', function() self:quitGame() end)
+    _:on('key_q_on',      function() self:quitGame() end)
 end
 
 -- Unregister Base Controls
 --
 function Base:unregisterControls()
 	-- release keyboard events
-	_:off('key_escape')
-	_:off('key_q')
+	_:off('key_escape_on')
+	_:off('key_q_on')
 end
 
 -- Update Shapeship
 --
 function Base:update(dt)
 	_World:update(dt)
+	--
+	self.hud:update(dt)
 end
 
 -- Draw Base
 --
 function Base:draw()
-	--
+	self.hud:draw()
 end
 
 return Base

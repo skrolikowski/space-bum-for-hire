@@ -3,8 +3,9 @@
 --
 
 Config = {
-    width  = lg.getWidth(),
-    height = lg.getHeight(),
+    width   = lg.getWidth(),
+    height  = lg.getHeight(),
+    padding = 15,
     map = {
         xOffset = 0,
         yOffset = 0,
@@ -32,9 +33,12 @@ Config = {
             },
         },
         player = {
+            location = 'Spaceship',
+            health = 100,
+            shield = 35,
             weapon = {
                 name   = 'pistol',
-                rounds = 100,
+                rounds = 24,
             },
         },
         filter = {
@@ -76,11 +80,15 @@ Config = {
     ui = {
         -- cursor = lm.newCursor('res/ui/cursors/.png'),
         font = {
-            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 12),
-            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 14),
-            md = lg.newFont('res/ui/fonts/Marksman.ttf', 16),
-            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
+            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 16),
+            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
+            md = lg.newFont('res/ui/fonts/Marksman.ttf', 24),
+            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
         },
+        hud = {
+            player   = lg.newImage('res/ui/HUD_health.png'),
+            dialogue = lg.newImage('res/ui/Dialogue.png'),
+        }
     },
     image = {
         spritesheet = {
@@ -127,26 +135,19 @@ Config = {
                 speech  = Spritesheet('res/spritesheets/emotes/vector_style3.json'),
                 thought = Spritesheet('res/spritesheets/emotes/vector_style5.json'),
                 free    = Spritesheet('res/spritesheets/emotes/vector_style8.json'),
-            }
+            },
+            ui = Spritesheet('res/spritesheets/ui/sheet.json')
         },
         sprites = {
-            spikes    = lg.newImage('res/sprites/spikes.png'),
-            playerAim = lg.newImage('res/sprites/player_aim_arm.png'),
-            comment   = lg.newImage('res/sprites/comment.png'),
+            arm = {
+                player_aim = lg.newImage('res/sprites/arms/player_aim.png'),
+            },
+            comment  = lg.newImage('res/sprites/comment.png'),
+            spikes   = lg.newImage('res/sprites/spikes.png'),
             platform = {
                 mountains = lg.newImage('res/sprites/platforms/mountains.png'),
                 spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
             }
         },
-    },
-    dialogue = {
-        Doctor = {
-            comment = {
-                "I wish I was back at Harvard... watching a hospital drama.",
-                "This planet reminds me of a brilliant speech I once gave...",
-                "I am from a league of special minds. We were born to learn.",
-                "I would tell you a joke but there's a 87.9% possibility you wouldn't understand."
-            }
-        }
     }
 }

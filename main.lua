@@ -10,6 +10,7 @@ lg = love.graphics
 lg.setDefaultFilter('nearest', 'nearest')
 --
 require 'src.config'
+require 'src.dialogue'
 
 -- Vendor packages
 Inspect   = require 'inspect'
@@ -18,14 +19,11 @@ Gamestate = require 'vendor.hump.gamestate'
 Timer     = require 'vendor.hump.timer'
 
 function love.load()
+    _Keys   = {}
     _Camera = Camera(0, 0, 2)
 
     Gamestate.registerEvents()
     Gamestate.switch(Gamestates['spaceship'])
-
-    -- keyboard events
-    _Keys = {}
-    _:on('key_escape_on', function() love.event.quit() end)
 end
 
 -- -- Update

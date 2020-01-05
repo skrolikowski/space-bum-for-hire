@@ -17,7 +17,7 @@ function Unit:new(data)
 
 	-- properties
 	self.health     = 100
-	self.jumpHeight = 4000
+	self.jumpHeight = 4500
 
 	-- flags
 	self.isMirrored = false
@@ -52,7 +52,6 @@ function Unit:beginContact(other, col)
 		if other.name == 'Environment' then
 		-- on wall/ground
 			if select(2, col:getNormal()) == -1 then
-print(self.name, 'ground contact')
 			-- ground contact
 				if not self.grounds[other.uuid] then
 					self.grounds[other.uuid] = other
@@ -90,18 +89,6 @@ function Unit:endContact(other, col)
 		-- wall departure
 			self.walls[other.uuid] = nil
 		end
-
-		-- if #self.grounds == 0 then
-		-- -- onGrounds check
-		-- 	self.onGround = false
-		-- 	-- print(self.name, 'offGround')
-		-- end
-
-		-- if #self.walls == 0 then
-		-- -- offWalls check
-		-- 	self.onWall = false
-		-- 	-- print(self.name, 'offWall')
-		-- end
 	end
 end
 

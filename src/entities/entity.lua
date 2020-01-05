@@ -237,12 +237,12 @@ end
 --
 function Entity:damage(other, attack)
 	if self.canDestroy then
-	-- 	self.health = self.health - attack
+		self.health = self.health - attack
 		print('hit!', self.health)
 
-	-- 	if self.health <= 0 then
-	-- 		self:destroy()
-	-- 	end
+		if self.health <= 0 then
+			self:destroy()
+		end
 	end
 end
 

@@ -1,22 +1,21 @@
--- Dialogue
+-- Comment
 --
 
-local Modern   = require 'modern'
-local Dialogue = Modern:extend()
+local Modern  = require 'modern'
+local Comment = Modern:extend()
 
-function Dialogue:new(host, callback)
-	self.name  = 'dialogue'
-	self.host  = host
-	self.after = after or function() end
+function Comment:new(host, callback)
+	self.name = 'dialogue'
+	self.host = host
 
 	-- text
-	local index = _.__random(#Config.dialogue[host.name].comment)
-	local text  = Config.dialogue[host.name].comment[index]
+	local index = _.__random(#Dialogue_.comment[host.name])
+	local text  = Dialogue_.comment[host.name][index]
 	local font  = Config.ui.font.xs
 
 	self.text = lg.newText(font)
 	self.text:setf(text, 150, 'center')
-	self.padding = 10
+	self.padding = 15
 	self.width   = self.text:getWidth()  + self.padding
 	self.height  = self.text:getHeight() + self.padding
 
@@ -32,7 +31,7 @@ end
 
 -- Center position
 --
-function Dialogue:center()
+function Comment:center()
 	local cx, cy = self.host:getPosition()
 	local w, h   = self.host:dimensions()
 
@@ -41,7 +40,7 @@ end
 
 -- Containing box
 --
-function Dialogue:container()
+function Comment:container()
 	local cx, cy = self:center()
 	local w, h   = self:dimensions()
 	local x      = cx - w/2
@@ -50,31 +49,30 @@ function Dialogue:container()
 	return x, y, w, h
 end
 
--- Dialogue width/height
+-- Comment width/height
 --
-function Dialogue:dimensions()
-	return self.width, self.height
+function Comment:dimensions()
+	return self.image:getDimensions()
 end
 
 -- Update
 --
-function Dialogue:update(dt)
-	--TODO: scrolling text
+function Comment:update(dt)
 	self.timer:update(dt)
 end
 
 -- Draw
 --
-function Dialogue:draw()
+function Comment:draw()
 	local x, y, w, h = self:container()
+	local halfPad    = self.padding / 2
 
+	-- draw backdrop
 	lg.setColor(Config.color.white)
 	lg.draw(self.image, self.quad, x, y)
 
 	-- draw text
-	-- lg.setFont(Config.ui.font.xs)
-	-- lg.printf(self.text, x + 5, y + h/2, w - 10, 'center')
-	lg.draw(self.text, x + self.padding/2, y + self.padding/2)
+	lg.draw(self.text, x + halfPad, y + halfPad)
 end
 
-return Dialogue
+return Comment

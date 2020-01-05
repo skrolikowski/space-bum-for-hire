@@ -4,6 +4,7 @@ require 'lua-lander'
 -- Globals
 require 'src.entities'
 require 'src.world'
+require 'src.ui'
 require 'src.utils'
 require 'src.gamestates'
 --

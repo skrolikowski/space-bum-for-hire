@@ -53,6 +53,8 @@ function Spaceship:draw()
         lg.setColor(Config.color.white)
         self.map:drawTileLayer('Foreground')
     end)
+    --
+    Base.draw(self)
 end
 
 return Spaceship

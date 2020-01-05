@@ -5,7 +5,7 @@ Spawner = require 'src.world.spawner'
 World   = require 'src.world.world'
 
 Dialogue = {
-	comment = require 'src.world.dialogue.dialogue',
+	comment = require 'src.world.dialogue.comment',
 	emote   = require 'src.world.dialogue.emote',
 }
 

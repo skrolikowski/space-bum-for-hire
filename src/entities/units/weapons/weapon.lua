@@ -104,7 +104,7 @@ function Weapon:draw()
 	-- draw player arm
 	-- TODO: re-factor
 	if self.host.shooting then
-		local image  = Config.image.sprites.playerAim
+		local image  = Config.image.sprites.arm.player_aim
 		local cx, cy = self.host:getPosition()
 		local w, h   = image:getDimensions()
 		local angle  = self.angle
