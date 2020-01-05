@@ -20,7 +20,7 @@ Timer     = require 'vendor.hump.timer'
 
 function love.load()
     _Keys   = {}
-    _Camera = Camera(0, 0, 2)
+    _Camera = Camera(0, 0, Config.scale)
 
     Gamestate.registerEvents()
     Gamestate.switch(Gamestates['spaceship'])

@@ -6,13 +6,8 @@ local Event = require 'src.world.events.event'
 local Move  = Event:extend()
 
 function Move:new(data)
-		--@overrides
-	data.name = 'MoveEvent'
-	data.cx   = data.x + data.width  / 2
-	data.cy   = data.y + data.height / 2
-	
-	Event.new(self, data)
-	
+	Event.new(self, 'Move', data)
+	--
 	-- animation settings
 	self.replay = data.properties.replay or false
 	self.delay  = data.properties.delay  or 0
@@ -26,9 +21,6 @@ function Move:new(data)
 		tween = data.properties.tweenIn or 'linear'
 	}
 
-	Event.new(self, data)
-	--
-
 	-- properties
 	self.target   = _World:fetchEntityById(data.properties['Target'])
 	self.pos      = Vec2(self.target:getPosition())
@@ -36,7 +28,7 @@ function Move:new(data)
 	self.lastPos  = Vec2(data.properties['Goal.x'], data.properties['Goal.y'])
 
 	-- animation/tween
-	self.running = nil
+	self.running = false
 	self.bodies  = 0
 	self.timer   = Timer.new()
 end

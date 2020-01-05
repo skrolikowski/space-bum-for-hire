@@ -6,12 +6,7 @@ local Event = require 'src.world.events.event'
 local Call  = Event:extend()
 
 function Call:new(data)
-	--@overrides
-	data.name = 'CallEvent'
-	data.cx   = data.x + data.width  / 2
-	data.cy   = data.y + data.height / 2
-	
-	Event.new(self, data)
+	Event.new(self, 'Call', data)
 	--
 	-- properties
 	self.target  = _World:fetchEntityById(data.properties['Target'])

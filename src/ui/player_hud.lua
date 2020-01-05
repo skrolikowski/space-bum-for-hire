@@ -1,45 +1,34 @@
 -- Player HUD
 --
 
+--local Base = require 'src.ui.ui'
 local Modern = require 'modern'
 local HUD    = Modern:extend()
 
 function HUD:new()
 	self.spritesheet = Config.image.spritesheet.ui
-	self.background  = Config.ui.hud.player
-	self.dirty       = true
+	self.background = Config.ui.hud.player
+	self.dirty      = true
+
+	-- dimensions
+	self.width  = self.background:getWidth()
+	self.height = self.background:getHeight()
 
 	-- scaling
 	self.sx = 0.75
 	self.sy = 0.75
 
-	-- bootstrap
-	self:setTransform()
-	self:resetCanvas()
+	-- translate
+	self.tx = Config.padding
+	self.ty = Config.height - self.height * self.sy
+
+	--
+	self:setCanvas()
 end
 
--- HUD dimensions
+-- Set canvas w/ latest stats
 --
-function HUD:dimensions()
-	return self.background:getDimensions()
-end
-
--- Set HUD transform
---
-function HUD:setTransform()
-	local w, h = self:dimensions()
-	local tx   = Config.padding
-	local ty   = Config.height - h * self.sy - Config.padding
-
-	self.transform = lx.newTransform()
-	self.transform:translate(tx, ty)
-	self.transform:scale(self.sx, self.sy)
-end
-
--- (Re)set canvas w/ latest stats
---
-function HUD:resetCanvas()
-	local w, h    = self:dimensions()
+function HUD:setCanvas()
 	local hpImage = lg.newCanvas(1, 32)
 	local spImage = lg.newCanvas(1, 32)
 	local apImage = lg.newCanvas(1, 32)
@@ -66,12 +55,12 @@ function HUD:resetCanvas()
 	spImage:setWrap('clamp')
 	apImage:setWrap('clamp')
 	-- location
-	location = lg.newText(Config.ui.font.lg)
-	location:setf(Config.world.player.location, w, 'center')
+	location = lg.newText(Config.ui.font.md)
+	location:setf(Config.world.player.location, self.width, 'center')
 	-- END SETUP -----------------------
 
 	-- BEGIN CANVAS ---------------
-	self.canvas = lg.newCanvas(w, h)
+	self.canvas = lg.newCanvas(self.width, self.height)
 	lg.setCanvas(self.canvas)
 	
 	-- background
@@ -109,21 +98,29 @@ function HUD:resetCanvas()
 	self.dirty = false
 end
 
--- Update w/ Player stats
+-- Update
 --
 function HUD:update(dt)
 	if self.dirty then
-		self:resetCanvas()
+		self:setCanvas()
 	end
 end
 
--- Draw HUD
+-- Draw UI
 --
 function HUD:draw()
 	local r, g, b = unpack(Config.color.white)
 
+	lg.push("all")
+	lg.translate(self.tx, self.ty)
+	lg.scale(self.sx, self.sy)
+	--
+
 	lg.setColor(r, g, b, 0.95)
-	lg.draw(self.canvas, self.transform)
+	lg.draw(self.canvas)
+	
+	--
+	lg.pop()
 end
 
 return HUD

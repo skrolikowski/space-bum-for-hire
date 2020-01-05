@@ -9,8 +9,7 @@ local Event       = require 'src.world.events.event'
 local PlayerEnter = Event:extend()
 
 function PlayerEnter:new(data)
-	data.name = 'PlayerEnterEvent'
-	Event.new(self, data)
+	Event.new(self, 'PlayerEnter', data)
 	--
 	-- properties
 	self.x     = data.x + data.width / 2

@@ -12,6 +12,7 @@ Dialogue = {
 -- Events
 Events = {
 	PlayerEnter = require 'src.world.events.player_enter',
+	Dialogue    = require 'src.world.events.dialogue',
 	Move        = require 'src.world.events.move',
 	Call        = require 'src.world.events.call',
 }

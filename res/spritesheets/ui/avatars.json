@@ -1,0 +1,98 @@
+{
+	"TextureAtlas": {
+		"SubTexture": [
+			{
+				"name": "swat.png",
+				"x": "0",
+				"y": "0",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "soldier.png",
+				"x": "16",
+				"y": "0",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "normalguy.png",
+				"x": "32",
+				"y": "0",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "normalgirl.png",
+				"x": "32",
+				"y": "0",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "hero.png",
+				"x": "0",
+				"y": "16",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "futuresoldier.png",
+				"x": "16",
+				"y": "16",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "doctor.png",
+				"x": "32",
+				"y": "16",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "cyborg.png",
+				"x": "48",
+				"y": "16",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "police.png",
+				"x": "0",
+				"y": "32",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "cyberpunk.png",
+				"x": "16",
+				"y": "32",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "agent.png",
+				"x": "32",
+				"y": "32",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "adventureguy.png",
+				"x": "48",
+				"y": "32",
+				"width": "16",
+				"height": "16"
+			},
+			{
+				"name": "adventuregirl.png",
+				"x": "48",
+				"y": "0",
+				"width": "16",
+				"height": "16"
+			}
+		],
+		"imagePath": "avatars.png"
+	}
+}

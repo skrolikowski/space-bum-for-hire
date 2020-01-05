@@ -18,7 +18,7 @@ function Shape:dimensions()
 end
 
 function Shape:bounds()
-	return AABB(self.shape:computeAABB(0,0,0))
+	return AABB(self.body:getWorldPoints(self.shape:computeAABB(0,0,0)))
 end
 
 function Shape:getRadius()

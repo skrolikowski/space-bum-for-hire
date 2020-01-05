@@ -4,7 +4,20 @@
 
 Dialogue_ = {
 	script = {
-
+		story_1 = {
+			{
+				title = "Doctor",
+				text  = "Who are you?",
+			},
+			{
+				title = "Doctor",
+				text  = "Do you understand my words?",
+			},
+			{
+				title = "Doctor",
+				text  = "You are a simpleton afterall.",
+			}
+		}
 	},
 	comment = {
 		Doctor = {

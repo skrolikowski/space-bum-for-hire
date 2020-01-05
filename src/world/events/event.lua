@@ -4,11 +4,11 @@
 local Modern = require 'modern'
 local Event  = Modern:extend()
 
-function Event:new(data)
+function Event:new(name, data)
+	self.name = name or 'Event'
 	self.data = data
 	--
 	self.id       = data.id
-	self.name     = data.name     or 'Event'
 	self.category = data.category or 'Event'
 	self.cx       = data.x + data.width / 2
 	self.cy       = data.y + data.height / 2
@@ -28,6 +28,18 @@ function Event:new(data)
 	self.fixture:setMask(unpack(Config.world.filter.mask.event))
 	self.fixture:setUserData(self)
 	self.fixture:setSensor(true)
+end
+
+-- Body position
+--
+function Event:getPosition()
+	return self.body:getPosition()
+end
+
+-- Shape bounds
+--
+function Event:bounds()
+	return self.shape:bounds()
 end
 
 -- Flag for removal

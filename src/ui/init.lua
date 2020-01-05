@@ -1,4 +1,4 @@
 UI = {
-	dialogue   = require 'src.ui.dialogue',
+	script     = require 'src.ui.script',
 	player_hud = require 'src.ui.player_hud',
 }

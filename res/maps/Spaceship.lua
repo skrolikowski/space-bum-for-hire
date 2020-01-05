@@ -8,8 +8,8 @@ return {
   height = 80,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 16,
-  nextobjectid = 68,
+  nextlayerid = 20,
+  nextobjectid = 69,
   properties = {},
   tilesets = {
     {
@@ -36,6 +36,32 @@ return {
       properties = {},
       terrains = {},
       tilecount = 224,
+      tiles = {}
+    },
+    {
+      name = "tiles_ui",
+      firstgid = 225,
+      filename = "tiles/tiles_ui.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 13,
+      image = "tiles/tiles_ui.png",
+      imagewidth = 208,
+      imageheight = 128,
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 16,
+        height = 16
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 104,
       tiles = {}
     }
   },
@@ -711,6 +737,21 @@ return {
             ["Goal.y"] = 808,
             ["Target"] = 57,
             ["replay"] = false
+          }
+        },
+        {
+          id = 68,
+          name = "Dialogue",
+          type = "",
+          shape = "rectangle",
+          x = 1104,
+          y = 320,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["script"] = "story_1"
           }
         }
       }

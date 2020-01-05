@@ -3,15 +3,17 @@
 --
 
 Config = {
-    width   = lg.getWidth(),
-    height  = lg.getHeight(),
-    padding = 15,
+    width    = lg.getWidth(),
+    height   = lg.getHeight(),
+    scale    = 2,
+    tileSize = 16,
+    padding  = 15,
     map = {
         xOffset = 0,
         yOffset = 0,
     },
     world = {
-        meter   = 32,
+        meter   = 32,  -- Config.tileSize * Config.scale
         gravity = { x = 0, y = 40 },
         categories = {
             civilians = 1,
@@ -80,14 +82,15 @@ Config = {
     ui = {
         -- cursor = lm.newCursor('res/ui/cursors/.png'),
         font = {
-            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 16),
-            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
-            md = lg.newFont('res/ui/fonts/Marksman.ttf', 24),
-            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
+            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
+            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 24),
+            md = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
+            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 48),
+            xl = lg.newFont('res/ui/fonts/Marksman.ttf', 64),
         },
         hud = {
-            player   = lg.newImage('res/ui/HUD_health.png'),
-            dialogue = lg.newImage('res/ui/Dialogue.png'),
+            player = lg.newImage('res/ui/HUD_health.png'),
+            script = lg.newImage('res/ui/Dialogue.png'),
         }
     },
     image = {
@@ -136,7 +139,8 @@ Config = {
                 thought = Spritesheet('res/spritesheets/emotes/vector_style5.json'),
                 free    = Spritesheet('res/spritesheets/emotes/vector_style8.json'),
             },
-            ui = Spritesheet('res/spritesheets/ui/sheet.json')
+            avatars = Spritesheet('res/spritesheets/ui/avatars.json'),
+            ui = Spritesheet('res/spritesheets/ui/sheet.json'),
         },
         sprites = {
             arm = {
