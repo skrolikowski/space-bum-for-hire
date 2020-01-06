@@ -78,7 +78,8 @@ end
 -- Query - entire screen
 --
 function World:queryScreen(callback)
-	local cx, cy = _Camera.x, _Camera.y
+	local camera = Gamestate:current():getCamera()
+	local cx, cy = camera.x, camera.y
 	local left   = cx - Config.width / 2
 	local top    = cy - Config.height / 2
 	local right  = cx + Config.width / 2

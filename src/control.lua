@@ -4,6 +4,9 @@
 
 Control_ = {
 	none   = {},
+	cutscene = {
+		key_escape_on = function() Gamestate:current():quit() end,
+	},
 	player = {
 		key_escape_on = function() Gamestate:current():quit() end,
 		key_w_on      = function() _Player:keyOn('w')         end,

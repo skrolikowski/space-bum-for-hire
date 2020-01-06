@@ -30,15 +30,12 @@ function PlayerEnter:new(data)
 		after  = function() self:destroy() end
 	})
 
-	Gamestate:current():setCamera(
-		'custom',
-		data.x + data.width  / 2,
-		data.y + data.height / 2
-	)
-
 	-- timing is everything
 	self.timer = Timer.new()
 	self.timer:after(0.75, function() self:spawnPlayer() end)
+
+	-- notify of player spawning
+	_:dispatch('onNew' .. self.name, data.x + data.width / 2, data.y + data.height / 2)
 end
 
 -- Teardown
@@ -51,13 +48,9 @@ function PlayerEnter:destroy()
 end
 
 -- Spawn Player to the World
--- _Player => global
 --
 function PlayerEnter:spawnPlayer()
-	_Player = Entities['Player'](self.data)
-	--
-	Gamestate:current():setCamera('player')
-	Gamestate:current():setControl('player')
+	_:dispatch('onReady' .. self.name, Entities['Player'](self.data))
 end
 
 -- Update animation

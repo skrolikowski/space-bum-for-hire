@@ -20,8 +20,9 @@ Shapes = {
 }
 
 Cameras = {
-	custom = require 'src.utils.cameras.custom',
-	player = require 'src.utils.cameras.player',
+	custom   = require 'src.utils.cameras.custom',
+	cutscene = require 'src.utils.cameras.cutscene',
+	player   = require 'src.utils.cameras.player',
 }
 
 --

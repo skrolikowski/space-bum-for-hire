@@ -7,17 +7,15 @@ local Base   = Modern:extend()
 
 -- Init
 --
-function Base:init(name)
+function Base:init(data)
 	local STI = require 'vendor.sti.sti'
 
-	self.name    = name
-	self.map     = STI('res/maps/' .. name .. '.lua')
+	self.name    = data.name
+	self.map     = STI(data.map)
+	self.width   = self.map.width  * self.map.tilewidth
+	self.height  = self.map.height * self.map.tileheight
 	self.control = 'none'
-
-	-- world init
-	_World        = {}
-	_World.width  = self.map.width  * self.map.tilewidth
-	_World.height = self.map.height * self.map.tileheight
+	self.camera  = Camera(0, 0, Config.scale)
 end
 
 -- Enter screen
@@ -25,14 +23,11 @@ end
 function Base:enter(from, ...)
 	self.from = from -- previous screen
 
-	-- controls
-	self:setControl('none')
-
 	_World = World()   -- create world
     Spawner(self.map)  -- spawn entities
 
-    -- UI
-    self.hud = UI['player_hud']()
+    --
+    Config.world.player.location = self.name
 end
 
 -- Resume screen
@@ -61,12 +56,17 @@ function Base:setControl(name)
 	end
 end
 
--- Set camera
+-- Focus camera
 --
-function Base:setCamera(name, ...)
-	_Camera = Cameras[name](...)
+function Base:lookAt(x, y)
+	self.camera:lookAt(x, y)
 end
 
+-- Get camera
+--
+function Base:getCamera()
+	return self.camera
+end
 
 -- Register Base Controls
 --
@@ -90,19 +90,16 @@ function Base:quit()
 	love.event.quit()
 end
 
--- Update Shapeship
+-- Update
 --
 function Base:update(dt)
 	_World:update(dt)
-	_Camera:update(dt)
-	--
-	self.hud:update(dt)
 end
 
--- Draw Base
+-- Draw
 --
 function Base:draw()
-	self.hud:draw()
+	--
 end
 
 return Base

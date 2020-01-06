@@ -1,17 +1,19 @@
--- Mountains Gamestate
--- Shane Krolikowski
+-- Mount01 Screen
 --
 
-local Base      = require 'src.gamestates.base'
-local Mountains = Base:extend()
+local Gameplay = require 'src.gamestates.gameplay.gameplay'
+local Mount01  = Gameplay:extend()
 
 -- Init
 --
-function Mountains:init()
-	Base.init(self, 'Mountains')
+function Mount01:init()
+	Gameplay.init(self, {
+        name = 'Mountains',
+        map  = Config.world.maps['mount01'],
+    })
 	--
 	-- canvas
-    self.background = lg.newCanvas(_World.width, _World.height)
+    self.background = lg.newCanvas(self.width, self.height)
     lg.setCanvas(self.background)
     self.map:drawTileLayer('Background')
     self.map:drawTileLayer('Sharp Cliffs')
@@ -23,10 +25,10 @@ function Mountains:init()
     lg.setCanvas()
 end
 
--- Draw Mountains
+-- Draw
 --
-function Mountains:draw()
-	_Camera:draw(function()
+function Mount01:draw()
+    self.camera:draw(function()
         lg.setColor(Config.color.white)
         lg.draw(self.background)
 
@@ -35,6 +37,8 @@ function Mountains:draw()
         lg.setColor(Config.color.white)
         self.map:drawTileLayer('Foreground')
     end)
+    --
+    Gameplay.draw(self)
 end
 
-return Mountains
+return Mount01

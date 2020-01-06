@@ -4,13 +4,13 @@
 local Base         = require 'src.utils.cameras.camera'
 local CustomCamera = Base:extend()
 
-function CustomCamera:new(x, y, w, h)
+function CustomCamera:new(x, y)
 	Base.new(self, 'CustomCamera')
 	--
-	self.width  = w or _World.width
-	self.height = h or _World.height
-	self.x      = x or self.width  / 2
-	self.y      = y or self.height / 2
+	self.width  = w or Gamestate:current().width
+	self.height = h or Gamestate:current().height
+	self.x      = x or 0
+	self.y      = y or 0
 	--
 	self.camera:lookAt(self.x, self.y)
 end

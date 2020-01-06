@@ -23,7 +23,7 @@ function love.load()
     _Keys = {}
 
     Gamestate.registerEvents()
-    Gamestate.switch(Gamestates['spaceship'])
+    Gamestate.switch(Gamestates['cut01'])
 end
 
 -- -- Update

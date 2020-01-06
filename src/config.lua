@@ -21,6 +21,11 @@ Config = {
             platforms = 3,
             walls     = 4,
         },
+        maps = {
+            cut01   = 'res/maps/cutscenes/Cut01.lua',
+            space01 = 'res/maps/Spaceship.lua',
+            mount01 = 'res/maps/Mountains.lua',
+        },
         weapon = {
             pistol = {
                 animation = lg.newImage('res/spritesheets/particles/handgun_35x6.png'),
@@ -35,7 +40,7 @@ Config = {
             },
         },
         player = {
-            location = 'Spaceship',
+            location = '',
             health = 100,
             shield = 35,
             weapon = {

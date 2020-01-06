@@ -11,6 +11,12 @@ end
 
 -- Pass through
 --
+function BaseCamera:zoomTo(zoom)
+	self.camera:zoomTo(zoom)
+end
+
+-- Pass through
+--
 function BaseCamera:lookAt(...)
 	self.camera:lookAt(...)
 end

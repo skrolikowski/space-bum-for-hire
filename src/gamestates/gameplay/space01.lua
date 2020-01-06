@@ -1,17 +1,19 @@
--- Spaceship Gamestate
--- Shane Krolikowski
+-- Space01 Screen
 --
 
-local Base      = require 'src.gamestates.base'
-local Spaceship = Base:extend()
+local Gameplay = require 'src.gamestates.gameplay.gameplay'
+local Space01  = Gameplay:extend()
 
 -- Init
 --
-function Spaceship:init()
-	Base.init(self, 'Spaceship')
-	--
-	-- canvas
-    self.background = lg.newCanvas(_World.width, _World.height)
+function Space01:init()
+	Gameplay.init(self, {
+        name = 'Spaceship',
+        map  = Config.world.maps['space01'],
+    })
+    --
+    -- canvas
+    self.background = lg.newCanvas(self.width, self.height)
     lg.setCanvas(self.background)
     self.map:drawTileLayer('Background')
     self.map:drawTileLayer('Decoratives (BG)')
@@ -21,10 +23,10 @@ function Spaceship:init()
     lg.setCanvas()
 end
 
--- Draw Spaceship
+-- Draw
 --
-function Spaceship:draw()
-	_Camera:draw(function()
+function Space01:draw()
+    self.camera:draw(function()
         lg.setColor(Config.color.white)
         lg.draw(self.background)
 
@@ -34,7 +36,7 @@ function Spaceship:draw()
         self.map:drawTileLayer('Foreground')
     end)
     --
-    Base.draw(self)
+    Gameplay.draw(self)
 end
 
-return Spaceship
+return Space01
