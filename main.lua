@@ -11,6 +11,7 @@ lg.setDefaultFilter('nearest', 'nearest')
 --
 require 'src.config'
 require 'src.dialogue'
+require 'src.control'
 
 -- Vendor packages
 Inspect   = require 'inspect'
@@ -19,8 +20,7 @@ Gamestate = require 'vendor.hump.gamestate'
 Timer     = require 'vendor.hump.timer'
 
 function love.load()
-    _Keys   = {}
-    _Camera = Camera(0, 0, Config.scale)
+    _Keys = {}
 
     Gamestate.registerEvents()
     Gamestate.switch(Gamestates['spaceship'])

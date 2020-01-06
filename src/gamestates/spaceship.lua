@@ -21,26 +21,6 @@ function Spaceship:init()
     lg.setCanvas()
 end
 
--- Register controls
---
-function Spaceship:registerControls()
-	--
-	Base.registerControls(self)
-end
-
--- Unregister controls
---
-function Spaceship:unregisterControls()
-	--
-	Base.unregisterControls(self)
-end
-
--- Quit game
---
-function Spaceship:quitGame()
-	love.event.quit()
-end
-
 -- Draw Spaceship
 --
 function Spaceship:draw()

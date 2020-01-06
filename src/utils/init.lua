@@ -19,6 +19,11 @@ Shapes = {
 	circle    = require 'src.utils.shapes.circle',
 }
 
+Cameras = {
+	custom = require 'src.utils.cameras.custom',
+	player = require 'src.utils.cameras.player',
+}
+
 --
 
 function Util:toBoolean(value)

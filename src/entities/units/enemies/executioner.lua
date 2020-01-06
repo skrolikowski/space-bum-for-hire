@@ -22,10 +22,7 @@ function Executioner:new(data)
 end
 
 function Executioner:update(dt)
-	local cx, cy = self:getPosition()
     local vx, vy = self:getLinearVelocity()
-
-    -- _Camera:lookAt(cx, cy)
 
 	-- Mini State Machine ------------
     if self.onGround then

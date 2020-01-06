@@ -24,24 +24,6 @@ function Player:new(data)
 
 	-- behavior/animation
 	self:setBehavior('idle')
-
-	-- -- keyboard events
-	_:on('key_w_on',      function() self:keyOn('w')         end)
-	_:on('key_a_on',      function() self:keyOn('a')         end)
-	_:on('key_s_on',      function() self:keyOn('s')         end)
-	_:on('key_d_on',      function() self:keyOn('d')         end)
-	_:on('key_l_on',      function() self:setLock()          end)
-	_:on('key_space_on',  function() self:keyOn('space_on')  end)
-	_:on('key_a_down',    function(dt, et) self:move(dt, et) end)
-	_:on('key_d_down',    function(dt, et) self:move(dt, et) end)
-	_:on('key_k_down',    function(dt, et) self.weapon:trigger(dt, et) end)
-	_:on('key_w_off',     function() self:keyOff('w')         end)
-	_:on('key_a_off',     function() self:keyOff('a')         end)
-	_:on('key_d_off',     function() self:keyOff('d')         end)
-	_:on('key_s_off',     function() self:keyOff('s')         end)
-	_:on('key_l_off',     function() self:setLock()           end)
-	_:on('key_k_off',     function() self.weapon:holster()    end)
-	_:on('key_space_off', function() self:keyOff('space_off') end)
 end
 
 -- Convienence keyOn method
@@ -87,28 +69,9 @@ function Player:keyOff(key)
 	end
 end
 
--- Destroy!
+-- Clean up
 --
 function Player:destroy(dt, et)
-	-- release keyboard events
-	_:off('key_w_on')
-	_:off('key_a_on')
-	_:off('key_s_on')
-	_:off('key_d_on')
-	_:off('key_l_on')
-	_:off('key_space_on')
-	_:off('key_a_down')
-	_:off('key_d_down')
-	_:off('key_k_down')
-	_:off('key_w_off')
-	_:off('key_a_off')
-	_:off('key_d_off')
-	_:off('key_s_off')
-	_:off('key_l_off')
-	_:off('key_k_off')
-	_:off('key_space_off')
-
-	-- clean up
 	self.weapon:destroy()
 	--
 	Unit.destroy(self)
@@ -171,10 +134,7 @@ end
 -- Update
 --
 function Player:update(dt)
-    local cx, cy = self:getPosition()
     local vx, vy = self:getLinearVelocity()
-
-    _Camera:lookAt(cx, cy)
 
     -- Mini State Machine ------------
     if self.onGround then

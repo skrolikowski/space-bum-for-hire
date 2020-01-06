@@ -23,26 +23,6 @@ function Mountains:init()
     lg.setCanvas()
 end
 
--- Register controls
---
-function Mountains:registerControls()
-	--
-	Base.registerControls(self)
-end
-
--- Unregister controls
---
-function Mountains:unregisterControls()
-	--
-	Base.unregisterControls(self)
-end
-
--- Quit game
---
-function Mountains:quitGame()
-	love.event.quit()
-end
-
 -- Draw Mountains
 --
 function Mountains:draw()

@@ -30,15 +30,15 @@ function PlayerEnter:new(data)
 		after  = function() self:destroy() end
 	})
 
-	-- focus!
-	_Camera:lookAt(
-		data.x + data.width / 2,
+	Gamestate:current():setCamera(
+		'custom',
+		data.x + data.width  / 2,
 		data.y + data.height / 2
 	)
-	
+
 	-- timing is everything
 	self.timer = Timer.new()
-	self.timer:after(0.85, function() self:spawnPlayer() end)
+	self.timer:after(0.75, function() self:spawnPlayer() end)
 end
 
 -- Teardown
@@ -51,9 +51,13 @@ function PlayerEnter:destroy()
 end
 
 -- Spawn Player to the World
+-- _Player => global
 --
 function PlayerEnter:spawnPlayer()
-	Entities['Player'](self.data)
+	_Player = Entities['Player'](self.data)
+	--
+	Gamestate:current():setCamera('player')
+	Gamestate:current():setControl('player')
 end
 
 -- Update animation
@@ -70,7 +74,6 @@ function PlayerEnter:draw()
 	local w, h = self.sprite:dimensions()
 
 	love.graphics.setColor(self.color)
-
 	self.sprite:draw(self.x, self.y, 0, self.sx, self.sy, w/2, h/2)
 end
 
