@@ -7,13 +7,13 @@ local Slide = Base:extend()
 function Slide:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('slide', {
-		image  = Config.image.spritesheet.player.slide,
+		image  = host.sprite.slide,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 6 } }
 	})
 	self.sprite:addAnimation('aim', {
-		image  = Config.image.spritesheet.player.aim,
+		image  = host.sprite.aim,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 1 } }

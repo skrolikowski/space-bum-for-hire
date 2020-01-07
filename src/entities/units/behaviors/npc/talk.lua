@@ -7,7 +7,7 @@ local Talk = Base:extend()
 function Talk:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('talk', {
-		image  = Config.image.spritesheet.doctor.talk,
+		image  = host.sprite.talk,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 8 } }

@@ -33,10 +33,16 @@ function Projectile:new(host, x, y, impulse, damage)
 	self.fixture:setSensor(true)
 end
 
+-- Update
+--
+function Projectile:update(dt)
+	--
+end
+
 -- Destroy fixture
 --
 function Projectile:destroy()
-	self.fixture:destroy()
+	self.remove = true
 	self.body:destroy()
 end
 
@@ -48,6 +54,12 @@ function Projectile:beginContact(other, col)
 		--TODO: animation?
 		self:destroy()
 	end
+end
+
+-- Check for separations
+--
+function Projectile:endContact(other, col)
+	--
 end
 
 -- Draw Projectile

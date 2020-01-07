@@ -9,7 +9,7 @@ function Walk:new(host)
 
 	self.sprite = Animator()
 	self.sprite:addAnimation('walk', {
-		image  = Config.image.spritesheet.doctor.walk,
+		image  = host.sprite.walk,
 		width  = 64,
 		height = 64,
 		total  = cycles,

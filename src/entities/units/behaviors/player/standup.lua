@@ -7,7 +7,7 @@ local StandUp = Base:extend()
 function StandUp:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('standup', {
-		image  = Config.image.spritesheet.player.crouch,
+		image  = host.sprite.crouch,
 		width  = 64,
 		height = 64,
 		total  = 1,

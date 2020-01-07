@@ -7,13 +7,13 @@ local Idle = Base:extend()
 function Idle:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('idle', {
-		image  = Config.image.spritesheet.player.idle,
+		image  = host.sprite.idle,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 6 } }
 	})
 	self.sprite:addAnimation('aim', {
-		image  = Config.image.spritesheet.player.aim,
+		image  = host.sprite.aim,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 1 } }

@@ -7,8 +7,10 @@ lm = love.mouse
 lx = love.math
 lg = love.graphics
 
+-- pixels please..
 lg.setDefaultFilter('nearest', 'nearest')
---
+
+-- configurations
 require 'src.config'
 require 'src.dialogue'
 require 'src.control'
@@ -23,7 +25,7 @@ function love.load()
     _Keys = {}
 
     Gamestate.registerEvents()
-    Gamestate.switch(Gamestates['cut01'])
+    Gamestate.switch(Gamestates['space01'])
 end
 
 -- -- Update

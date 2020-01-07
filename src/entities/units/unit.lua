@@ -19,6 +19,10 @@ function Unit:new(data)
 	self.health     = 100
 	self.jumpHeight = 4500
 
+	-- sprite, for behaviors
+	self.sprite = Config.image.cast[_.__lower(self.name)]
+	self.sprite = self.sprite[_.__random(#self.sprite)]
+
 	-- flags
 	self.isMirrored = false
 	self.isFlipped  = false

@@ -8,7 +8,7 @@ local Crouch   = Base:extend()
 function Crouch:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('crouch', {
-		image  = Config.image.spritesheet.player.crouch,
+		image  = host.sprite.crouch,
 		width  = 64,
 		height = 64,
 		total  = 1,
@@ -18,13 +18,13 @@ function Crouch:new(host)
 		end
 	})
 	self.sprite:addAnimation('crouched', {
-		image  = Config.image.spritesheet.player.crouch,
+		image  = host.sprite.crouch,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 3, 1, 3 } }
 	})
 	self.sprite:addAnimation('crouchAim', {
-		image  = Config.image.spritesheet.player.crouchAim,
+		image  = host.sprite.crouchAim,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 1 } }

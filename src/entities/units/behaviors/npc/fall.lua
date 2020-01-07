@@ -7,7 +7,7 @@ local Fall = Base:extend()
 function Fall:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('fall', {
-		image  = Config.image.spritesheet.doctor.jump,
+		image  = host.sprite.jump,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 8, 1, 8 } }

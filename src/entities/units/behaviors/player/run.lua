@@ -7,19 +7,19 @@ local Run  = Base:extend()
 function Run:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('walk', {
-		image  = Config.image.spritesheet.player.walk,
+		image  = host.sprite.walk,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 10 } }
 	})
 	self.sprite:addAnimation('run', {
-		image  = Config.image.spritesheet.player.run,
+		image  = host.sprite.run,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 8 } }
 	})
 	self.sprite:addAnimation('runAim', {
-		image  = Config.image.spritesheet.player.runAim,
+		image  = host.sprite.runAim,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 8 } }

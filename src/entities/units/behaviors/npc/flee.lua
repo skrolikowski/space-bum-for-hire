@@ -9,7 +9,7 @@ function Flee:new(host)
 
 	self.sprite = Animator()
 	self.sprite:addAnimation('flee', {
-		image  = Config.image.spritesheet.doctor.run,
+		image  = host.sprite.run,
 		width  = 64,
 		height = 64,
 		total  = count,

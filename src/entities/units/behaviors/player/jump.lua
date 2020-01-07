@@ -7,14 +7,14 @@ local Jump = Base:extend()
 function Jump:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('jump', {
-		image  = Config.image.spritesheet.player.jump,
+		image  = host.sprite.jump,
 		width  = 64,
 		height = 64,
 		total  = 1,
 		frames = { { 1, 3, 1, 8 } }
 	})
 	self.sprite:addAnimation('jumpAim', {
-		image  = Config.image.spritesheet.player.jumpAim,
+		image  = host.sprite.jumpAim,
 		width  = 64,
 		height = 64,
 		frames = { { 1, 1, 1, 1 } }
