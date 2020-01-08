@@ -6,11 +6,11 @@ local Modern = require 'modern'
 local Entity = Modern:extend()
 
 function Entity:new(data)
-	self.id          = data.id
 	self.uuid        = Util:uuid()
+	self.visible     = data.visible
+	self.id          = data.id          or 0
 	self.category    = data.category    or nil
 	self.name        = data.name        or 'Entity'
-	self.visible     = data.visible     or true
 	self.bodyType    = data.bodyType    or 'static'
 	self.shapeType   = data.shape       or 'rectangle'
 	self.shapeData   = data.shapeData   or { 0, 0, data.width, data.height }
@@ -19,7 +19,6 @@ function Entity:new(data)
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
 	self.body        = lp.newBody(_World.world, data.x, data.y, self.bodyType)
-
 	-- flags
 	self.canDestroy = false
 end

@@ -43,8 +43,10 @@ end
 -- Draw entity
 --
 function Environment:draw()
-	lg.setColor(Config.color.shape)
-	self.shape:draw()
+	-- if self.visible then
+	-- 	lg.setColor(Config.color.shape)
+	-- 	self.shape:draw()
+	-- end
 end
 
 return Environment

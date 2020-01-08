@@ -22,7 +22,7 @@ Config = {
             walls     = 4,
         },
         maps = {
-            cut01   = 'res/maps/cutscenes/Cut01.lua',
+            space00 = 'res/maps/WarpRoom.lua',
             space01 = 'res/maps/Spaceship.lua',
             mount01 = 'res/maps/Mountains.lua',
         },
@@ -37,6 +37,12 @@ Config = {
                     fire = la.newSource('res/sfx/pistol.ogg', 'static'),
                     -- empty = la.newSource('res/sfx/.ogg', 'static')
                 }
+            },
+            rifle = {
+                animation = lg.newImage('res/spritesheets/particles/gunshot_rifle_46x26.png'),
+            },
+            shotgun = {
+                animation = lg.newImage('res/spritesheets/particles/gunshot_60x8.png'),
             },
         },
         player = {
@@ -95,7 +101,6 @@ Config = {
         },
         hud = {
             player = lg.newImage('res/ui/HUD_health.png'),
-            script = lg.newImage('res/ui/Dialogue.png'),
         }
     },
     image = {
@@ -118,20 +123,26 @@ Config = {
             },
             doctor = {
                 {
-                    death = lg.newImage('res/spritesheets/doctor/death.png'),
-                    idle  = lg.newImage('res/spritesheets/doctor/idle.png'),
-                    jump  = lg.newImage('res/spritesheets/doctor/jump.png'),
-                    run   = lg.newImage('res/spritesheets/doctor/run.png'),
-                    talk  = lg.newImage('res/spritesheets/doctor/talking.png'),
-                    walk  = lg.newImage('res/spritesheets/doctor/walk.png'),
+                    crouch = lg.newImage('res/spritesheets/doctor/crouch.png'),
+                    death  = lg.newImage('res/spritesheets/doctor/death.png'),
+                    guard  = lg.newImage('res/spritesheets/doctor/guard.png'),
+                    idle   = lg.newImage('res/spritesheets/doctor/idle.png'),
+                    melee  = lg.newImage('res/spritesheets/doctor/melee.png'),
+                    jump   = lg.newImage('res/spritesheets/doctor/jump.png'),
+                    run    = lg.newImage('res/spritesheets/doctor/run.png'),
+                    talk   = lg.newImage('res/spritesheets/doctor/talking.png'),
+                    walk   = lg.newImage('res/spritesheets/doctor/walk.png'),
                 },
                 {
-                    death = lg.newImage('res/spritesheets/doctor/deathB.png'),
-                    idle  = lg.newImage('res/spritesheets/doctor/idleB.png'),
-                    jump  = lg.newImage('res/spritesheets/doctor/jumpB.png'),
-                    run   = lg.newImage('res/spritesheets/doctor/runB.png'),
-                    talk  = lg.newImage('res/spritesheets/doctor/talkingB.png'),
-                    walk  = lg.newImage('res/spritesheets/doctor/walkB.png'),
+                    crouch = lg.newImage('res/spritesheets/doctor/crouchB.png'),
+                    death  = lg.newImage('res/spritesheets/doctor/deathB.png'),
+                    guard  = lg.newImage('res/spritesheets/doctor/guardB.png'),
+                    idle   = lg.newImage('res/spritesheets/doctor/idleB.png'),
+                    melee  = lg.newImage('res/spritesheets/doctor/meleeB.png'),
+                    jump   = lg.newImage('res/spritesheets/doctor/jumpB.png'),
+                    run    = lg.newImage('res/spritesheets/doctor/runB.png'),
+                    talk   = lg.newImage('res/spritesheets/doctor/talkingB.png'),
+                    walk   = lg.newImage('res/spritesheets/doctor/walkB.png'),
                 },
             },
             executioner = {
@@ -149,6 +160,10 @@ Config = {
         },
         spritesheet = {
             particles = {
+                explosion1             = lg.newImage('res/spritesheets/particles/explosion_47x57.png'),
+                explosion2             = lg.newImage('res/spritesheets/particles/explosion_short_57x56.png'),
+                flame1                 = lg.newImage('res/spritesheets/particles/flame_continously_66x47.png'),
+                flame2                 = lg.newImage('res/spritesheets/particles/flames_pulse_65x43.png'),
                 warp                   = lg.newImage('res/spritesheets/particles/level_up_102x135.png'),
                 imp_projectile         = lg.newImage('res/spritesheets/enemies/imp-projectile.png'),
                 necromancer_projectile = lg.newImage('res/spritesheets/enemies/necromancer-projectile.png'),
@@ -170,7 +185,12 @@ Config = {
             platform = {
                 mountains = lg.newImage('res/sprites/platforms/mountains.png'),
                 spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
-            }
+            },
+            dialogue = {
+                speech = lg.newImage('res/sprites/speech.png'),
+            },
+            spacedoor = lg.newImage('res/sprites/spacedoor.png'),
+            narration = lg.newImage('res/sprites/narration.png'),
         },
     }
 }

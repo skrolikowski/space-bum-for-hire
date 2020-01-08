@@ -10,16 +10,22 @@ function NPC:new(data)
 	}))
 	--
 	-- properties
+	self.title  = data.title 
 	self.health = 100
-	self.speed  = 350
 
 	-- flags
-	self.fleeing = false
-	self.talking = false
-	self.walking = false
+	self.canDestroy = false
 
 	-- AI
 	self.timer = Timer.new()
+
+	-- behaviors
+	self.dying    = false
+	self.punching = false
+	self.fleeing  = false
+	self.talking  = false
+	self.guarding = false
+	self.walking  = false
 
 	-- behavior/animation
 	self:setBehavior('fall')
@@ -43,9 +49,12 @@ function NPC:update(dt)
 	-- Mini State Machine ------------
     if self.onGround then
     -- on Ground
-    	if self.health <= 0 then
+    	if self.dying then
     	-- Dying
     		self:setBehavior('die')
+    	elseif self.attacking then
+        -- Attacking
+            self:setBehavior('attack')
     	elseif self.talking then
         -- Talking
             self:setBehavior('talk')
@@ -55,6 +64,9 @@ function NPC:update(dt)
     	elseif self.walking then
     	-- Walking
     		self:setBehavior('walk')
+    	elseif self.guarding then
+    	-- Guarding
+    		self:setBehavior('guard')
     	else
     	-- Idle
     		self:setBehavior('idle')
@@ -65,8 +77,20 @@ function NPC:update(dt)
     		self:setBehavior('fall')
 		end
    	end
+
+   	if self.dialogue then
+   		self.dialogue:update(dt)
+   	end
    	--
 	Unit.update(self, dt)
+end
+
+function NPC:draw()
+	Unit.draw(self)
+	--
+	if self.visible and self.dialogue then
+		self.dialogue:draw()
+	end
 end
 
 return NPC

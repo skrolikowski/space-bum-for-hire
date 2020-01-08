@@ -19,7 +19,8 @@ function Player:new(data)
 	self.weapon = Weapons[Config.world.player.weapon.name](self)
 	--
 	Unit.new(self, _:merge(data, {
-		name = 'Player'
+		name  = 'Player',
+		shape = 'rectangle',
 	}))
 
 	-- behavior/animation

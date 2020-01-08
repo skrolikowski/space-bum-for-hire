@@ -8,8 +8,26 @@ local Cutscene = Base:extend()
 function Cutscene:init(data)
 	Base.init(self, data)
 	--
-	-- callbacks
-	self.onLeave = data.onLeave or function() end
+	self.target = nil
+	
+	-- flags
+	self.comments = false
+
+	-- default foreground canvas
+	self.foreground = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.foreground)
+		self.map:drawTileLayer('Foreground')
+	lg.setCanvas()
+
+	-- default background canvas
+	self.background = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.background)
+		self.map:drawTileLayer('Background')
+		self.map:drawTileLayer('Decorative (BG)')
+		self.map:drawTileLayer('Walls')
+		self.map:drawTileLayer('Platforms')
+		self.map:drawTileLayer('Decorative (FG)')
+	lg.setCanvas()
 end
 
 -- Enter cutscene
@@ -29,9 +47,6 @@ function Cutscene:leave()
 	Base.leave(self)
 	--
 	self.timer:clear()
-
-	-- callback
-	self.onLeave()
 end
 
 -- Update timer
@@ -39,6 +54,10 @@ end
 function Cutscene:update(dt)
 	Base.update(self, dt)
 	--
+	if self.target then
+		self:lookAt(self.target:getPosition())
+	end
+
 	self.timer:update(dt)
 end
 

@@ -16,6 +16,13 @@ function Base:init(data)
 	self.height  = self.map.height * self.map.tileheight
 	self.control = 'none'
 	self.camera  = Camera(0, 0, Config.scale)
+
+	-- special effects
+	self.effects = {}
+
+	-- flags
+	self.comments = false
+	self.isPaused = false
 end
 
 -- Enter screen
@@ -94,12 +101,36 @@ end
 --
 function Base:update(dt)
 	_World:update(dt)
+
+	-- update effects
+    for i = #self.effects, 1, -1 do
+    	if self.effects[i].remove then
+    	-- remove
+    		table.remove(self.effects, i)
+    	else
+    	-- update
+    		self.effects[i]:update(dt)
+    	end
+    end
 end
 
 -- Draw
 --
 function Base:draw()
-	--
+    self.camera:draw(function()
+        lg.setColor(Config.color.white)
+        lg.draw(self.background)
+
+        _World:draw()
+
+        lg.setColor(Config.color.white)
+        lg.draw(self.foreground)
+    end)
+
+    -- draw effects
+    for __, effect in pairs(self.effects) do
+    	effect:draw()
+    end
 end
 
 return Base

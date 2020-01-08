@@ -4,7 +4,7 @@
 local Modern  = require 'modern'
 local Comment = Modern:extend()
 
-function Comment:new(host, callback)
+function Comment:new(host, delay, callback)
 	self.name = 'dialogue'
 	self.host = host
 
@@ -14,10 +14,9 @@ function Comment:new(host, callback)
 	local font  = Config.ui.font.xs
 
 	self.text = lg.newText(font)
-	self.text:setf(text, 150, 'center')
-	self.padding = 15
-	self.width   = self.text:getWidth()  + self.padding
-	self.height  = self.text:getHeight() + self.padding
+	self.text:setf(text, Config.world.meter * 8, 'center')
+	self.width   = self.text:getWidth()  + Config.padding
+	self.height  = self.text:getHeight() + Config.padding
 
 	-- backdrop
 	self.image = Config.image.sprites.comment
@@ -26,7 +25,7 @@ function Comment:new(host, callback)
 
 	-- start dialogue
 	self.timer = Timer.new()
-	self.timer:after(5, callback)
+	self.timer:after(delay, callback)
 end
 
 -- Center position

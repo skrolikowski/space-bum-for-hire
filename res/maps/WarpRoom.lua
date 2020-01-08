@@ -4,24 +4,24 @@ return {
   tiledversion = "1.3.1",
   orientation = "orthogonal",
   renderorder = "right-down",
-  width = 30,
-  height = 20,
+  width = 40,
+  height = 30,
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 11,
-  nextobjectid = 9,
+  nextobjectid = 10,
   properties = {},
   tilesets = {
     {
       name = "tiles_spaceship",
       firstgid = 1,
-      filename = "../tiles/tiles_spaceship.tsx",
+      filename = "tiles/tiles_spaceship.tsx",
       tilewidth = 16,
       tileheight = 16,
       spacing = 0,
       margin = 0,
       columns = 16,
-      image = "../tiles/tiles_spaceship.png",
+      image = "tiles/tiles_spaceship.png",
       imagewidth = 256,
       imageheight = 224,
       tileoffset = {
@@ -46,8 +46,8 @@ return {
       name = "Background",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -55,7 +55,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJy9lesKwyAMhX3n3e9jm2vp7rgN+rY7BQNZUCvV9seHqDWnSTxtoZQqLCUYgxkbDwOgwQRM2ZgSz4C3Z4/nembzWMqA7gjMW87ohBr59qhXUk/3rCt7pTPqXsDVU0djoWcXYAlWGXQf4BmoI2cDtmCXQdc4Ymi73rxTc7cqceaYSdc4dGtbgxu4B8531eU58/6t7doLfFt0fR6P1eX929t8Py265PGUOvP+ndT/HZfnaF16PPab1BWKTR536aX0PrZeIV/0pe26azTWmWNXgX66fJEL6WnD8pS+yN1XOZf/YfLFkHerL34JczM/"
+      data = "eAHNl+lqxDAMhPed0/tcem3pXXpA37YzsB8IE2eVxCn9IWTL0mjWNuPsZrVabbZ2L78nOwz+SuP/Yrfisi87CH4Otw/hfMrmYMS9uxMW86z3ntf6d1o76sEcqqlhee9qa0PxoTruCr8VXkM1tV5Taow1VMddoSe5eOIZP6XGuI+yJxl7ZM8++f7Z6H+s8YnsNMRY2+Wn8ntVrzdZ5FXDOlfehexStotPuV7DLPPKedwfMOwdN/dO9iCLddfFPK7VxmDX1mtx84AjGPY/Mu/ps+xFVqvPxsHO5sc8+MX7dbbl9C7/3YjfVC2FX7xfa3Hy/n3JWvDrhGMtjfuSGZsb/Mj3/bqRmR/G2lhPfamlxO3Ri7HYLfLhgZYyj7zm3M0WHI3BOcWzgpd9jLfquTQO/JfsY+2MZxrPtU8voub+Bb9SO32O9O3TC/NHc8lbcv/Ke+U534H0jXrhGJq7BD/eHc4UDvbmhsV4HLsOzV2CH5id+kzR48gVrBibOwYTPZ6DB9YcjLIWTPS4XB8zB2tMza7clpgtseANJtpGfIoHa0ptrQZMtK2Wl4mDlcnN5iyBme2dyWvFj/vh/2J8K8e3L8OlzEHz0Gb7Mic75374v9haBiZvXxYn5qF5YLX47qy9fbFvdlxqns/6F3YCZEk="
     },
     {
       type = "tilelayer",
@@ -63,8 +63,8 @@ return {
       name = "Decorative (BG)",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -72,7 +72,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFo4B4MA+I5wDxXCh7PhAvoIO9yPbNgbIX0sFeZLt2IrmD1mARkt0wf9PD3oEK51EwCkbBKBhuAADUQRKl"
+      data = "eAHtlEkKwCAQBP3/G7L/Ir9L92FgruaSJtRAox6EstQZg8LAfwxsOsqirIrnu3IoKdW5zGnGMwVOHJ3p1rp4UxCvxlj36zGlypffXXeZwgcHBr404L9Kf35/A72n0J/nPdKf552xAwMYwAAGMJBm4AFonyVJ"
     },
     {
       type = "tilelayer",
@@ -80,8 +80,8 @@ return {
       name = "Walls",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -89,7 +89,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJzt1FtOwkAYhuHZA8oWOEQUIxIV4crWggEXo4lywQY0kUXggYOwpK6Fd5I2+RnazsTijTjJk5mGtB8fM0Wp/RwhCjiwrOW1Ocef36esw5TcQxQta3ltzjfwMIhmufYzcvP2vcME7/gwnn/7i3117ie+Ep6fldtDF/1oluvAse804dkrS67LubD1Ncc3lg65+myY58JXm7nx7yIFCbkzzLFwyNX3DiMPeBb3yO/mGXzltk9ZuaPII54ScvV+tnCNNjrK/f0132OZ+4qXjFy9nyWUUUFVbZ73n+aO8Wbpe4Yj1HC8g756j8z9CdR23xPUcYqrHfR1uS/u28A5mjn7uvy/yr4XuMzZ93/8zbEGfQ6v4w=="
+      data = "eAHtlUlOAzEQRbkDw2WArJgRsMkBcgeQgAUXAAm2LCMxjwdgbKYjILHiLLzf5KOSlUbpTjaILunJZbdd9V2xnaGh2gZRgU+CDMMIrMA4NDq+xwfRErKSSd8ojIH0vcNHx0dni35boLvdT5+QlUz6XJ9UH5paaG0LtElj5X4lcSySvlg/dGToyKTV44No+9EX64e2+vyVKOZfOn/L379tfv7kD+Lc6V1QnKqm+i2A3j+fw9jq23yPLIV50df6qiZ9U+B9pu0M3zSnF3TnPS/6GqtqWtuEG7iFO5iASWjALDhnUav9TYPOhNroe38MVzLl9G8YfxP7c3wv0uVx7e8ADuEIonl/cayM7xyqQbp/791zitpF1h7DSZfE1le0tmjcofxdOTY7rNJuQK+xtfYUVL9o13S6xfB58FlQq1rEejhO1LfFoFiDdYixY8wYR+tdP9wfu8S7ghjDufQ+6H8qnnO9H8JzcHNzXzl2YBu66Wsy7v++NKfWRjujcw4XkM5VPr2H9/AAj5CB3g1hPbi5ua8ce7ALRfoahOKeZ2nOsvdL9XuCZ9iHF1DthPXg5ua+cvjO6j2VH++uNehbHPd6tfHNi36cI1/1ewXre8P/rX4+W+n99blN4xf1o6bop/PL1k9nq5/32fmjpuj7u9sy9UNabXUF6grUFfhXFfgCdAZaAw=="
     },
     {
       type = "tilelayer",
@@ -97,8 +97,8 @@ return {
       name = "Platforms",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -106,7 +106,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJzt080KQEAUhuGzZUM2lFyhf1fkahQRey7GW8bOguQsNF89ZTO9jZpNREpFMSoEWBEpqdGYrid6o91y79Z2bfcPXR+J6L+jUI53rN09Z7u2+8VSZHCU5SjgKrtahx4j5of/7835BQMm8/10d87v5fwuuQ=="
+      data = "eAHtV0kOwjAM7BUuLBeQEC9k50V9DWJfjiyPYXwYyUpTGiORFimWRnaNLU+mBtpXlmWLiBhh1hLQdlUXOpZ0H3gCw0hYYc4aoG0Q7IAjcGFSeeHXUde/DqFDjvuVc47otQdOgKud1NTNbwsOB+AM3ADX6uanNdMxedbNL+0f70SYd78faf/CdGOVq1/aPyoT5l39mrZ/XRxjDIT+58f+/RuAGzQMRmx+oBZk3IPEL0iuQlHSryCJKZH0M8lVKP4X/SZgPgVaDcMdfHrADJgD7QbiAU4+q3rm8fXonKXfUssZ8p7y6Z2PdWXe0m+p5byqZx7WlXlLv6WW8+RMNB0zV+V1j459ffpzHftqmftmJ9gr3tJvqeUMOUdT9u8NLmGWEg=="
     },
     {
       type = "tilelayer",
@@ -114,8 +114,8 @@ return {
       name = "Decorative (FG)",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -123,7 +123,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFo2AUjIJRMApGwUABXiT2eiDeAMUbcahBB1uRMCMQM0ExM5I4NnP4kNibgHgzFG/BoQYdbEPCLEDMCsVsSOLEmDNcAQBgpg0R"
+      data = "eAHtVUkOwjAMNOsNvgBfgRcBH2NfjnyC5TmMK7tKIxL11gjG0tTOeConk0NEGHSADqQceKDxTDUL4Lm/5iW8sHw3qaJW3F9R1/G3m7nh5IqTyP1oOCDPjFdjVvrpKK6Yq4hjDkL5NbABuoglhi4Sg3O9xC+kMw7wfcuY06JVun8tjkBJCwcmgWaLemfYB7xqzoaArkrnNfeAvmGA7D2U4nOci7Wq/xbTgMQ7I3hzKuD9qUM1F0NNWuG85iEwMoyRvYdSfI5zsVb1DDpAB37DgQ8OGC6i"
     },
     {
       type = "tilelayer",
@@ -131,8 +131,8 @@ return {
       name = "Foreground",
       x = 0,
       y = 0,
-      width = 30,
-      height = 20,
+      width = 40,
+      height = 30,
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -140,7 +140,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFo2AUjIJRMArIA6FAHAbE4UTgCCraGwfEUUAcjQPHINFJVLY3HogTCOBEKtubDMQpRKhLp7K9qUCcRoS6TCLVjSQAABrDEAw="
+      data = "eAHtkFkKgDAMBXtJF1TcF7z/BXwFfyX5MogTGApNaF4nJQoDGMAABjCAAQxgAAMY+JuBQh8uReWgDpDTa2cj2ge6+z6fs3i7cr5BjAaT+hH5Fu1dhVWHBiLybdq7W+HUP51zjqcYwQAGPm7gAj7pEAw="
     },
     {
       type = "objectgroup",
@@ -158,9 +158,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 16,
-          y = 256,
-          width = 464,
+          x = 32,
+          y = 352,
+          width = 576,
           height = 16,
           rotation = 0,
           visible = true,
@@ -172,9 +172,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 16,
-          y = 16,
+          y = 32,
           width = 16,
-          height = 240,
+          height = 320,
           rotation = 0,
           visible = true,
           properties = {}
@@ -198,9 +198,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 448,
-          y = 16,
+          y = 32,
           width = 16,
-          height = 144,
+          height = 192,
           rotation = 0,
           visible = true,
           properties = {}
@@ -211,74 +211,22 @@ return {
           type = "",
           shape = "rectangle",
           x = 464,
-          y = 144,
-          width = 16,
+          y = 208,
+          width = 144,
           height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      id = 8,
-      name = "Units",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      draworder = "topdown",
-      properties = {},
-      objects = {
-        {
-          id = 1,
-          name = "Doctor",
-          type = "",
-          shape = "rectangle",
-          x = 384,
-          y = 176,
-          width = 80,
-          height = 80,
           rotation = 0,
           visible = true,
           properties = {}
         },
         {
-          id = 2,
-          name = "Doctor",
+          id = 9,
+          name = "",
           type = "",
           shape = "rectangle",
-          x = 224,
-          y = 176,
-          width = 80,
-          height = 80,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      id = 10,
-      name = "Events",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      draworder = "topdown",
-      properties = {},
-      objects = {
-        {
-          id = 8,
-          name = "PlayerEnter",
-          type = "",
-          shape = "rectangle",
-          x = 64,
-          y = 128,
-          width = 80,
-          height = 80,
+          x = 608,
+          y = 224,
+          width = 16,
+          height = 128,
           rotation = 0,
           visible = true,
           properties = {}

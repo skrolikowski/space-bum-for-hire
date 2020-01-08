@@ -1,23 +1,23 @@
--- Event - Move Host
--- Shane Krolikowski
+-- Boomarang Event
+-- Moves target from point a -> b -> a
 --
 
-local Event = require 'src.world.events.event'
-local Move  = Event:extend()
+local Event     = require 'src.world.events.event'
+local Boomarang = Event:extend()
 
-function Move:new(data)
-	Event.new(self, 'Move', data)
+function Boomarang:new(data)
+	Event.new(self, 'Boomarang', data)
 	--
 	-- animation settings
 	self.replay = data.properties.replay or false
 	self.delay  = data.properties.delay  or 0
 	self.pause  = data.properties.pause  or 3
 	self.moveOut = {
-		delay = data.properties.delayOut or 10,
+		delay = data.properties.delayOut or 5,
 		tween = data.properties.tweenOut or 'linear'
 	}
 	self.moveIn = {
-		delay = data.properties.delayIn or 10,
+		delay = data.properties.delayIn or 5,
 		tween = data.properties.tweenIn or 'linear'
 	}
 
@@ -35,7 +35,7 @@ end
 
 -- Check for contacts
 --
-function Move:beginContact(other, col)
+function Boomarang:beginContact(other, col)
 	if col:isTouching() and not self.running then
 		self.bodies = self.bodies + 1
 		self:trigger()
@@ -44,13 +44,13 @@ end
 
 -- Check for separations
 --
-function Move:endContact(other, col)
+function Boomarang:endContact(other, col)
 	self.bodies = self.bodies - 1
 end
 
 -- Start movement animation
 --
-function Move:trigger()
+function Boomarang:trigger()
 	self.running = true
 	--
 	local delay    = self.delay
@@ -72,19 +72,19 @@ function Move:trigger()
 			function()
 				self.running = false
 
-				-- replay?
-				if self.replay and self.bodies > 0 then
-					self.timer:after(self.delay, function()
-						self:trigger()
-					end)
-				end
+				-- -- replay?
+				-- if self.replay and self.bodies > 0 then
+				-- 	self.timer:after(self.delay, function()
+				-- 		self:trigger()
+				-- 	end)
+				-- end
 			end)
 	end)
 end
 
 -- Update
 --
-function Move:update(dt)
+function Boomarang:update(dt)
 	self.timer:update(dt)
 
 	-- move target if running
@@ -93,4 +93,4 @@ function Move:update(dt)
 	end
 end
 
-return Move
+return Boomarang

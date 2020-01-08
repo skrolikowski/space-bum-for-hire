@@ -1,12 +1,12 @@
--- Event - Call Host
--- Shane Krolikowski
+-- Translate Event
+-- Translates target's position
 --
 
-local Event = require 'src.world.events.event'
-local Call  = Event:extend()
+local Event     = require 'src.world.events.event'
+local Translate = Event:extend()
 
-function Call:new(data)
-	Event.new(self, 'Call', data)
+function Translate:new(data)
+	Event.new(self, 'Translate', data)
 	--
 	-- properties
 	self.target  = _World:fetchEntityById(data.properties['Target'])
@@ -29,7 +29,7 @@ end
 
 -- Check for contacts
 --
-function Call:beginContact(other, col)
+function Translate:beginContact(other, col)
 	if col:isTouching() and not self.running then
 		self.hosting = self.hosting + 1
 		self:trigger()
@@ -38,13 +38,13 @@ end
 
 -- Check for separations
 --
-function Call:endContact(other, col)
+function Translate:endContact(other, col)
 	self.hosting = self.hosting - 1
 end
 
 -- Start movement animation
 --
-function Call:trigger()
+function Translate:trigger()
 	self.running = true
 	--
 	-- animation tween
@@ -57,7 +57,7 @@ end
 
 -- Update
 --
-function Call:update(dt)
+function Translate:update(dt)
 	self.timer:update(dt)
 
 	-- move target if running
@@ -66,4 +66,4 @@ function Call:update(dt)
 	end
 end
 
-return Call
+return Translate

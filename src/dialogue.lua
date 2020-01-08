@@ -3,22 +3,8 @@
 --
 
 Dialogue_ = {
-	script = {
-		story_1 = {
-			{
-				title = "Doctor",
-				text  = "Who are you?",
-			},
-			{
-				title = "Doctor",
-				text  = "Do you understand my words?",
-			},
-			{
-				title = "Doctor",
-				text  = "You are a simpleton afterall.",
-			}
-		}
-	},
+	-- quip remarks made when in sight
+	-- can be toggled on/off
 	comment = {
 		Doctor = {
 	        "I wish I was back at Harvard... watching a hospital drama.",

@@ -96,7 +96,9 @@ function Unit:endContact(other, col)
 	end
 end
 
-function Unit:setBehavior(name)
+-- Set behavior only if new behavior requested
+--
+function Unit:setBehavior(name, ...)
 	name = self.name .. '_' .. name
 	
 	if self.behavior then
@@ -104,11 +106,11 @@ function Unit:setBehavior(name)
 		if self.behavior.name ~= name then
 		-- Change in behavior
 			self.behavior:destroy()
-			self.behavior = Behaviors[name](self)
+			self.behavior = Behaviors[name](self, ...)
 		end
 	else
 	-- Init
-		self.behavior = Behaviors[name](self)
+		self.behavior = Behaviors[name](self, ...)
 	end
 end
 
@@ -127,7 +129,9 @@ end
 -- Draw
 --
 function Unit:draw()
-	self.behavior:draw()
+	if self.visible then
+		self.behavior:draw()
+	end
 	--
 	Entity.draw(self)
 end

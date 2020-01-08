@@ -4,25 +4,42 @@
 local Modern = require 'modern'
 local Emote  = Modern:extend()
 
-function Emote:new(host, style, name)
-	self.name  = 'emote_' .. name
-	self.host  = host
-	self.style = style
+-- New Emote
+--
+function Emote:new(host, style, emote)
+	self.host        = host
+	self.style       = style
+	self.spritesheet = Config.image.spritesheet.emote[style]
+
+	if _:isTable(emote) then
+		self.emote = Animator()
+		self.emote:addAnimation(style, {
+			image  = self.spritesheet:getImage(),
+			width  = 32,
+			height = 38,
+			fps    = 3,
+			frames = {}
+		})
+		-- Hack in some frames
+		for __, name in pairs(emote) do
+			table.insert(self.emote.current.frames, self.spritesheet:quad(name))
+		end
+		table.insert(self.emote.current.frames, self.spritesheet:quad('emote__'))
+	else
+		self.emote = emote
+	end
 
 	-- scaling
 	if style == 'free' then
-		self.sx  = 0.6
-		self.sy  = 0.6
+		self.sx  = 0.65
+		self.sy  = 0.65
 	else
-		self.sx  = 0.5
-		self.sy  = 0.5
+		self.sx  = 0.55
+		self.sy  = 0.55
 	end
 
 	-- oscillation
 	self.osc = 0
-
-	-- image
-	self.spritesheet = Config.image.spritesheet.emote[style]
 end
 
 -- Center position
@@ -32,17 +49,19 @@ function Emote:center()
 	local hw, hh = self.host:dimensions()
 	local w, h   = self:dimensions()
 
-	if self.style == 'free' then
-		return cx - w / 2, cy - hh / 2 - h / 2
-	else
-		return cx - w, cy - hh / 2 - h / 2
-	end
+	return cx - w / 2, cy - hh / 2 - h / 2
 end
 
 -- Emote width/height
 --
-function Emote:dimensions()
-	local w, h = self.spritesheet:dimensions(self.name)
+function Emote:dimensions()	
+	local w, h
+
+	if self.emote.dimensions then
+		w, h = self.emote:dimensions()
+	else
+		w, h = self.spritesheet:dimensions(self.emote)
+	end
 
 	w = w * self.sx
 	h = h * self.sy
@@ -51,8 +70,13 @@ function Emote:dimensions()
 end
 
 -- Apply movement
+--
 function Emote:update(dt)
-	self.osc = self.osc + dt * 10
+	self.osc = self.osc + dt * 15
+
+	if self.emote.update then
+		self.emote:update(dt)
+	end
 end
 
 -- Draw emote
@@ -61,10 +85,14 @@ function Emote:draw()
 	local cx, cy  = self:center()
 	local sx, sy  = self.sx, self.sy
 	local ox, oy  = 0, _.__sin(self.osc) * 5
-	local r, g, b = unpack(Config.color.white)
+	
+	lg.setColor(Config.color.white)
 
-	lg.setColor(r, g, b, 1)
-	self.spritesheet:draw(self.name, cx, cy, 0, sx, sy, ox, oy)
+	if self.emote.draw then
+		self.emote:draw(cx, cy, 0, sx, sy, ox, oy)
+	else
+		self.spritesheet:draw(self.emote, cx, cy, 0, sx, sy, ox, oy)
+	end
 end
 
 return Emote

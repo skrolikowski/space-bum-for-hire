@@ -15,10 +15,10 @@ function Idle:new(host)
 	--
 	Base.new(self, 'idle', host)
 
-	self.host.timer:after(2, function()
-		self.host.isMirrored = not self.host.isMirrored
-		self.host.walking = true
-	end)
+	-- self.host.timer:after(2, function()
+	-- 	self.host.isMirrored = not self.host.isMirrored
+	-- 	self.host.walking = true
+	-- end)
 end
 
 return Idle

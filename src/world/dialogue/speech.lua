@@ -1,17 +1,16 @@
--- Script Dialogue
+-- Speech Dialogue
+-- Title, Avatar & Text
 --
 
 local Modern = require 'modern'
-local Script = Modern:extend()
+local Speech  = Modern:extend()
 
--- New Script
---
-function Script:new(host, data)
+function Speech:new(host, text)
 	-- properties
 	self.host       = host
 	self.avatars    = Config.image.spritesheet.avatars
-	self.avatar     = _.__lower(data.title)
-	self.background = Config.ui.hud.script
+	self.avatar     = _.__lower(host.name)
+	self.background = Config.image.sprites.dialogue.speech
 
 	-- dimensions
 	self.width  = self.background:getWidth()
@@ -21,33 +20,31 @@ function Script:new(host, data)
 	self.sx = 0.4
 	self.sy = 0.4
 
-	-- flags
-	self.isMirrored = false
-
-	-- dialogue
+	-- dialogue - title
 	self.title = lg.newText(Config.ui.font.lg)
-	self.title:setf(data.title, Config.world.meter * 6, 'left')
+	self.title:setf(host.title, Config.tileSize * 8, 'left')
 
+	-- dialogue - text
 	self.text = lg.newText(Config.ui.font.lg)
-	self.text:setf(data.text, Config.world.meter * 16, 'center')
+	self.text:setf(text, Config.tileSize * 30, 'center')
 end
 
 -- Update
 --
-function Script:update(dt)
+function Speech:update(dt)
 	--
 end
 
-function Script:draw()
+function Speech:draw()
 	local cx, cy = self.host:getPosition()
 	local w, h   = self.width, self.height
 	local sx, sy = self.sx, self.sy
 	local tx     = cx - w * sx / 2
 	local ty     = cy - h * sy / 2 - h / 3
 
-	if self.isMirrored then
-		sx = -sx
-	end
+	-- if self.host.isMirrored then
+	-- 	sx = -sx
+	-- end
 
 	lg.push("all")
 	lg.translate(tx, ty)
@@ -59,16 +56,16 @@ function Script:draw()
 	lg.draw(self.background)
 
 	-- avatar
-	self.avatars:draw(self.avatar, Config.world.meter * 16.75, Config.world.meter, 0, 5, 5)
+	self.avatars:draw(self.avatar, Config.tileSize * 34, Config.tileSize * 2, 0, 5, 5)
 
 	-- title
-	lg.draw(self.title, Config.world.meter * 2, Config.world.meter * 0.75)
+	lg.draw(self.title, Config.tileSize * 3.5, Config.tileSize * 1.5)
 
 	-- dialogue
-	lg.draw(self.text, Config.world.meter, Config.world.meter * 3)
+	lg.draw(self.text, Config.tileSize * 4, Config.tileSize * 5)
 	
 	--
 	lg.pop()
 end
 
-return Script
+return Speech

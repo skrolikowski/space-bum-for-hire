@@ -2,53 +2,109 @@
 --
 
 local Cutscene = require 'src.gamestates.cutscenes.cutscene'
-local Cut01    = Cutscene:extend()
+local Scene01  = Cutscene:extend()
 
-function Cut01:init()
+function Scene01:init()
 	Cutscene.init(self, {
-		name    = 'Cutscene',
-		map     = Config.world.maps['cut01'],
-		onLeave = function() Gamestate.switch(Gamestates['space01']) end
+		name = 'Scene01',
+		map  = Config.world.maps['space00'],
 	})
 	--
-	-- set canvas
-	self.background = lg.newCanvas(self.width, self.height)
-	lg.setCanvas(self.background)
-	--
-	self.map:drawTileLayer('Background')
-	self.map:drawTileLayer('Decorative (BG)')
-	self.map:drawTileLayer('Walls')
-	self.map:drawTileLayer('Platforms')
-	self.map:drawTileLayer('Decorative (FG)')
-	--
-	lg.setCanvas()
+	
 end
 
--- Enter cutscene
+-- Enter Scene
 --
-function Cut01:enter(from, ...)
+function Scene01:enter(from, ...)
 	Cutscene.enter(self, from, ...)
 	--
-	-- cutscene
+	-- Casting Call ---------------
+	local Player, Roger, Clarence
+	
+	-- Player = Entities['Player']({
+	-- 	x       = Config.tileSize * 4,
+	-- 	y       = Config.tileSize * 17,
+	-- 	width   = 80,
+	-- 	height  = 80,
+	-- 	visible = false,
+	-- })
+	Roger = Entities['Doctor']({
+		name    = 'Roger',
+		x       = Config.tileSize * 17,
+		y       = Config.tileSize * 17,
+		width   = 80,
+		height  = 80,
+		visible = true,
+	})
+	Clarence = Entities['Doctor']({
+		name    = 'Clarence',
+		x       = Config.tileSize * 26,
+		y       = Config.tileSize * 17,
+		width   = 80,
+		height  = 80,
+		visible = true,
+	})
+
+	-- ACTION!!! ------------------
     self.timer:script(function(wait)
+    	-- Roger & Clarence enter room together
+		self.target = Roger
+		-- Roger:move('left', 350, 5)
+		-- Clarence:move('left', 350, 4)
+		-- wait(5)
+		-- --
+		-- Roger:say('right', 'It\'s going to work this time! I just know it!', 6)
+		-- wait(6)
+		-- --
+		-- self.target = Clarence
+		-- Clarence:say('left', 'Last time you nearly blew out our warp core!', 6)
+		-- wait(3)
+		-- Roger:blame('right', 3)
+		-- wait(3)
 		
+		-- Roger:say('right', 'That\'s because we didn\'t have enough power!.', 6)
+		-- wait(2)
+		-- Clarence:shock('left', 2)
+		-- wait(4)
+		-- --
+		-- Roger:say('right', 'Th', 6)
+		-- Clarence:worry('left', 4)
+		-- wait(6)
+		-- --
+		-- Roger:say('right', 'This time', 6)
+		-- Clarence:worry('left', 4)
+		-- wait(6)
 		--
-		--self:onLeave()
+		table.insert(self.effects, Effects['flame2']({
+			x = Config.tileSize * 10,
+			y = Config.tileSize * 10,
+			width  = Config.tileSize * 10,
+			height = Config.tileSize * 10,
+		}))
+		Roger:say('right', 'Here goes!!', 4)
+		wait(4)
+		Roger:fiddle('right', 2)
+		wait(2)
+		Roger:shock('right', 2)
+		Clarence:shock('left', 2)
+		wait(2)
+		--TODO: more shock and suspense!!
+		--
+
+
+		-- ~ fin ~
+		-- wait(3)
+		-- self:leave()
 	end)
+	-- CUT!!! ---------------------
 end
 
--- Draw
+-- Leave Scene
 --
-function Cut01:draw()
-    self.camera:draw(function()
-        lg.setColor(Config.color.white)
-        lg.draw(self.background)
-
-        _World:draw()
-
-        lg.setColor(Config.color.white)
-        self.map:drawTileLayer('Foreground')
-    end)
+function Scene01:leave()
+	Base.leave(self)
+	--
+	Gamestate.switch(Gamestates['space01'])
 end
 
-return Cut01
+return Scene01
