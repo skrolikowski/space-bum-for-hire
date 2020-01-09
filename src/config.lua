@@ -56,10 +56,11 @@ Config = {
         },
         filter = {
             group = {
-                environment = 1,
+                effect      = -2,
                 unit        = -1,
-                sensor      = 0,
+                environment = 1,
                 event       = 0,
+                sensor      = 0,
             },
             category = {
                 default     = 1,

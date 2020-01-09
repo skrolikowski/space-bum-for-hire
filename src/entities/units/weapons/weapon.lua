@@ -20,6 +20,8 @@ function Weapon:new(name, host)
 	-- flags
 	self.firing  = false
 	self.isReady = true
+
+	self:updateAimAngle()
 end
 
 -- Destroy weapon (...not really)

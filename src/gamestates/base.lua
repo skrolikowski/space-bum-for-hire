@@ -17,9 +17,6 @@ function Base:init(data)
 	self.control = 'none'
 	self.camera  = Camera(0, 0, Config.scale)
 
-	-- special effects
-	self.effects = {}
-
 	-- flags
 	self.comments = false
 	self.isPaused = false
@@ -28,7 +25,8 @@ end
 -- Enter screen
 --
 function Base:enter(from, ...)
-	self.from = from -- previous screen
+	self.from  = from -- previous screen
+	self.timer = Timer.new()
 
 	_World = World()   -- create world
     Spawner(self.map)  -- spawn entities
@@ -47,7 +45,8 @@ end
 --
 function Base:leave()
 	_World:destroy()
-	--
+	-- clear timer
+	self.timer:clear()
 	-- unregister game controls
 	self:unregisterControls()
 end
@@ -101,17 +100,8 @@ end
 --
 function Base:update(dt)
 	_World:update(dt)
-
-	-- update effects
-    for i = #self.effects, 1, -1 do
-    	if self.effects[i].remove then
-    	-- remove
-    		table.remove(self.effects, i)
-    	else
-    	-- update
-    		self.effects[i]:update(dt)
-    	end
-    end
+	--
+	self.timer:update(dt)
 end
 
 -- Draw
@@ -126,11 +116,6 @@ function Base:draw()
         lg.setColor(Config.color.white)
         lg.draw(self.foreground)
     end)
-
-    -- draw effects
-    for __, effect in pairs(self.effects) do
-    	effect:draw()
-    end
 end
 
 return Base

@@ -35,21 +35,12 @@ end
 function Cutscene:enter(from, ...)
 	Base.enter(self, from, ...)
 	--
-	self.timer = Timer.new()
-
 	-- default controls
 	self:setControl('cutscene')
 	self:lookAt(self.width/2, self.height/2)
 end
 
--- Leave cutscene
-function Cutscene:leave()
-	Base.leave(self)
-	--
-	self.timer:clear()
-end
-
--- Update timer
+-- Follow target
 --
 function Cutscene:update(dt)
 	Base.update(self, dt)
@@ -57,8 +48,6 @@ function Cutscene:update(dt)
 	if self.target then
 		self:lookAt(self.target:getPosition())
 	end
-
-	self.timer:update(dt)
 end
 
 return Cutscene

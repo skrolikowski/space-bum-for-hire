@@ -10,22 +10,22 @@ lg = love.graphics
 -- pixels please..
 lg.setDefaultFilter('nearest', 'nearest')
 
--- configurations
-require 'src.config'
-require 'src.dialogue'
-require 'src.control'
-
 -- Vendor packages
 Inspect   = require 'inspect'
 Camera    = require 'vendor.hump.camera'
 Gamestate = require 'vendor.hump.gamestate'
 Timer     = require 'vendor.hump.timer'
 
+-- configurations
+require 'src.config'
+require 'src.dialogue'
+require 'src.control'
+
 function love.load()
     _Keys = {}
 
     Gamestate.registerEvents()
-    Gamestate.switch(Gamestates['cut01'])
+    Gamestate.switch(Gamestates['mount01'])
 end
 
 -- -- Update

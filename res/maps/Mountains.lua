@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 24,
-  nextobjectid = 146,
+  nextobjectid = 147,
   properties = {},
   tilesets = {
     {
@@ -1272,10 +1272,10 @@ return {
           name = "Doctor",
           type = "",
           shape = "rectangle",
-          x = 240,
-          y = 1120,
-          width = 64,
-          height = 64,
+          x = 288,
+          y = 1104,
+          width = 80,
+          height = 80,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1340,21 +1340,8 @@ return {
       },
       objects = {
         {
-          id = 2,
-          name = "PlayerEnter",
-          type = "",
-          shape = "rectangle",
-          x = 96,
-          y = 1120,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 119,
-          name = "Move",
+          name = "Boomarang",
           type = "",
           shape = "rectangle",
           x = 480,
@@ -1372,7 +1359,7 @@ return {
         },
         {
           id = 122,
-          name = "Move",
+          name = "Boomarang",
           type = "",
           shape = "rectangle",
           x = 336,
@@ -1390,7 +1377,7 @@ return {
         },
         {
           id = 139,
-          name = "Move",
+          name = "Boomarang",
           type = "",
           shape = "rectangle",
           x = 240,
@@ -1412,8 +1399,8 @@ return {
           }
         },
         {
-          id = 140,
-          name = "Move",
+          id = 146,
+          name = "Boomarang",
           type = "",
           shape = "rectangle",
           x = 48,

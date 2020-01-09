@@ -21,7 +21,7 @@ function Scene01:enter(from, ...)
 	-- Casting Call ---------------
 	local Player, Roger, Clarence
 	
-	-- Player = Entities['Player']({
+	-- Player = Entities['Double']({
 	-- 	x       = Config.tileSize * 4,
 	-- 	y       = Config.tileSize * 17,
 	-- 	width   = 80,

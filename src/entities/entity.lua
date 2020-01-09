@@ -7,7 +7,7 @@ local Entity = Modern:extend()
 
 function Entity:new(data)
 	self.uuid        = Util:uuid()
-	self.visible     = data.visible
+	self.visible     = data.visible     or true
 	self.id          = data.id          or 0
 	self.category    = data.category    or nil
 	self.name        = data.name        or 'Entity'
@@ -23,8 +23,10 @@ function Entity:new(data)
 	self.canDestroy = false
 end
 
+-- Flag for removal
+--
 function Entity:destroy()
-	self.fixture:destroy()
+	self.remove = true
 	self.body:destroy()
 end
 

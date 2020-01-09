@@ -19,8 +19,8 @@ function AABB:area()
 end
 
 function AABB:center()
-    return _.__floor(self:width() / 2),
-           _.__floor(self:height() / 2)
+    return self.left + _.__floor(self:width() / 2),
+           self.top  + _.__floor(self:height() / 2)
 end
 
 function AABB:width()

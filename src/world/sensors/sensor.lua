@@ -13,10 +13,9 @@ function Sensor:new(name, host)
 	self.host     = host
 end
 
--- Destroy fixture
+-- Flag for removal
 --
 function Sensor:destroy()
-	-- set for removal
 	self.remove = true
 end
 

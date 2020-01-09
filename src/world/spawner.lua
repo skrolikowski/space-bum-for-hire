@@ -44,24 +44,24 @@ function Spawner:spawnEvents(events)
 	end
 end
 
--- Update events and remove expired events.
---
-function Spawner:update(dt)
-	for i = #self.events, 1, -1 do
-		if self.events[i].remove then
-			table.remove(self.events, i)
-		else
-			self.events[i]:update(dt)
-		end
-	end
-end
+-- -- Update events and remove expired events.
+-- --
+-- function Spawner:update(dt)
+-- 	for i = #self.events, 1, -1 do
+-- 		if self.events[i].remove then
+-- 			table.remove(self.events, i)
+-- 		else
+-- 			self.events[i]:update(dt)
+-- 		end
+-- 	end
+-- end
 
--- Draw events
---
-function Spawner:draw()
-	for __, event in pairs(self.events) do
-		event:draw()
-	end
-end
+-- -- Draw events
+-- --
+-- function Spawner:draw()
+-- 	for __, event in pairs(self.events) do
+-- 		event:draw()
+-- 	end
+-- end
 
 return Spawner
