@@ -21,7 +21,6 @@ function Walk:new(host)
 end
 
 function Walk:destroy()
-	self.sight:destroy()
 	self.leftEdge:destroy()
 	self.rightEdge:destroy()
 	--
@@ -38,11 +37,6 @@ function Walk:setSensors()
 	local reShape    = Shapes['edge']( hW, hH + 4,  hW, hH + 12)
 	local leftEdge, rightEdge
 
-	-- comment sensor
-	self.sight = Sensors['sight'](self.host, { 'Unit' })
-	self.sight:setShape(Shapes['circle'](0, 0, 100))
-	self.sight:setInFocus(function(other) self:inFocus(other) end)
-
 	-- left edge notification
 	self.leftEdge = Sensors['dispatcher'](self.host, { 'Environment' })
 	self.leftEdge:setShape(leShape)
@@ -56,25 +50,8 @@ function Walk:setSensors()
 	self.rightEdge:setOffContact(function(other, col) self.edgeOnRight = true  end)
 end
 
--- In Focus Event
--- Handle when entity comes into focus
+-- Update 
 --
-function Walk:inFocus(other)
-	if other.category == 'Enemy' then
-	-- Run from enemies
-		self.host.fleeing = true
-		self.host.target  = other
-	elseif other.name == 'Player' then
-	-- Comment to player
-		if Gamestate:current().comments then
-			if self.host.talking == false then
-				self.host.talking = true
-				self.host.target  = other
-			end
-		end
-	end
-end
-
 function Walk:update(dt)
 	local vx, vy = self.host:getLinearVelocity()
 	local ix, iy = 0, 0

@@ -15,65 +15,36 @@ function Doctor:new(data)
 	--
 end
 
--- Move in `direction` for `delay` seconds
+-- Pace
 --
-function Doctor:move(direction, speed, delay)
+function Doctor:pace(direction)
 	self.walking    = true
-	self.speed      = speed
 	self.isMirrored = direction == 'left' or false
+	--
+	self.pacing = self.timer:every(5, function()
+		self.isMirrored = not self.isMirrored
+	end)
 	
-	self.timer:after(delay, function()
+	-- sight detection
+	-- interact with entities
+	--
+	self.sight = Sensors['sight'](self, { 'Unit' })
+	self.sight:setShape(Shapes['circle'](0, 0, 100))
+	self.sight:setInFocus(function(other)
 		self.walking = false
-	end)
-end
-
--- Anger!
---
-function Doctor:blame(direction, delay)
-	self.attacking  = true
-	self.dialogue   = Dialogue['emote'](self, 'thought', 'emote_faceAngry')
-	self.isMirrored = direction == 'left' or false
-	
-	self.timer:after(delay, function()
-		self.attacking = false
-		self.dialogue  = nil
-	end)
-end
-
--- Talk
---
-function Doctor:say(direction, text, delay)
-	self.talking    = true
-	self.dialogue   = Dialogue['speech'](self, text)
-	self.isMirrored = direction == 'left' or false
-	
-	self.timer:after(delay, function()
-		self.talking  = false
-		self.dialogue = nil
-	end)
-end
-
--- Shock
---
-function Doctor:shock(direction, delay)
-	self.guarding   = true
-	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_exclamation')
-	self.isMirrored = direction == 'left' or false
-	
-	self.timer:after(delay, function()
-		self.guarding = false
-		self.dialogue = nil
-	end)
-end
-
--- Worry
---
-function Doctor:worry(direction, delay)
-	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_drop')
-	self.isMirrored = direction == 'left' or false
-	
-	self.timer:after(delay, function()
-		self.dialogue = nil
+		self.sight:destroy()
+		self.timer:cancel(self.pacing)
+		--
+		if other.name == 'Player' then
+			self:comment(other, 5, function()
+				self:pace()
+			end)
+		elseif other.category == 'Enemy' then
+			self.sight:destroy()
+			self:flee(other, 400, 3, function()
+				self:pace()
+			end)
+		end
 	end)
 end
 
@@ -88,17 +59,6 @@ function Doctor:fiddle(direction, delay)
 		self.attacking = false
 		self.dialogue  = nil
 	end)
-end
-
--- Stop current behavior
---
-function Doctor:stop()
-	self.dying     = false
-	self.attacking = false
-	self.fleeing   = false
-	self.talking   = false
-	self.guarding  = false
-	self.walking   = false
 end
 
 return Doctor

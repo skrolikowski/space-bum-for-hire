@@ -32,7 +32,8 @@ function Mount01:enter(from, ...)
 
     -- Player enters level..
     if transition == 'spawn' then
-        self.spawnPos    = Vec2(144,1104)
+        self.spawnPos = Vec2(Config.tileSize*9,Config.tileSize*69)
+        --self.spawnPos    = Vec2(144,1104)
         self.spawnWidth  = 80
         self.spawnHeight = 80
         -- focus camera

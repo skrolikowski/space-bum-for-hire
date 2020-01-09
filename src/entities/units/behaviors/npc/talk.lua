@@ -14,33 +14,17 @@ function Talk:new(host)
 	})
 	--
 	Base.new(self, 'talk', host)
-
-	-- -- start dialogue
-	-- self.dialogue = Dialogue['comment'](host, 5, function()
-	-- 	self.host.talking = false
-	-- 	self.host.target  = nil
-	-- end)
 end
 
--- -- Update facing/speech
--- --
--- function Talk:update(dt)
--- 	local hx, hy = self.host:getPosition()
--- 	local tx, ty = self.host.target:getPosition()
+-- Always facing target
+--
+function Talk:update(dt)
+	local hx, hy = self.host:getPosition()
+	local tx, ty = self.host.target:getPosition()
 	
--- 	self.host.isMirrored = tx < hx
-
--- 	self.dialogue:update(dt)
--- 	--
--- 	Base.update(self, dt)
--- end
-
--- -- Draw dialogue window
--- --
--- function Talk:draw()
--- 	self.dialogue:draw()
--- 	--
--- 	Base.draw(self)
--- end
+	self.host.isMirrored = tx < hx
+	--
+	Base.update(self, dt)
+end
 
 return Talk

@@ -12,6 +12,7 @@ function NPC:new(data)
 	-- properties
 	self.title  = data.title 
 	self.health = 100
+	self.speed  = 350
 
 	-- flags
 	self.canDestroy = false
@@ -22,13 +23,14 @@ function NPC:new(data)
 	-- behaviors
 	self.dying    = false
 	self.punching = false
-	self.fleeing  = false
+	self.running  = false
 	self.talking  = false
 	self.guarding = false
 	self.walking  = false
 
 	-- behavior/animation
 	self:setBehavior('fall')
+	self:pace()
 end
 
 -- Clear timer
@@ -58,9 +60,9 @@ function NPC:update(dt)
     	elseif self.talking then
         -- Talking
             self:setBehavior('talk')
-        elseif self.fleeing then
+        elseif self.running then
     	-- Chasing
-    		self:setBehavior('flee')
+    		self:setBehavior('run')
     	elseif self.walking then
     	-- Walking
     		self:setBehavior('walk')
@@ -78,6 +80,7 @@ function NPC:update(dt)
 		end
    	end
 
+   	-- update dialogue
    	if self.dialogue then
    		self.dialogue:update(dt)
    	end
@@ -88,9 +91,125 @@ end
 function NPC:draw()
 	Unit.draw(self)
 	--
+	-- draw dialogue
 	if self.visible and self.dialogue then
 		self.dialogue:draw()
 	end
 end
+
+----
+
+-- Move in `direction` for `delay` seconds
+--
+function NPC:move(direction, speed, delay)
+	self.walking    = true
+	self.speed      = speed
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.walking = false
+	end)
+end
+
+-- Flee from `other`
+--
+function NPC:flee(other, speed, delay, after)
+	local hx, hy = self.getPosition()
+	local tx, ty = other:getPosition()
+	--
+
+	self.target     = other
+	self.running    = true
+	self.speed      = speed
+	self.dialogue   = Dialogue['emote'](host, 'free', 'alert')
+	self.isMirrored = tx > hx
+	
+	self.timer:after(delay, function()
+		self.running  = false
+		self.dialogue = nil
+
+		if after then
+			after()
+		end
+	end)
+end
+
+-- Blame
+--
+function NPC:blame(direction, delay)
+	self.attacking  = true
+	self.dialogue   = Dialogue['emote'](self, 'thought', 'emote_faceAngry')
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.attacking = false
+		self.dialogue  = nil
+	end)
+end
+
+-- Worry
+--
+function NPC:worry(direction, delay)
+	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_drop')
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.dialogue = nil
+	end)
+end
+
+-- Shock
+--
+function NPC:shock(direction, delay)
+	self.guarding   = true
+	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_exclamation')
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.guarding = false
+		self.dialogue = nil
+	end)
+end
+
+-- Talk
+--
+function NPC:say(direction, text, delay)
+	self.talking    = true
+	self.dialogue   = Dialogue['speech'](self, text)
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.talking  = false
+		self.dialogue = nil
+	end)
+end
+
+-- Comment
+--
+function NPC:comment(other, delay, after)
+	local index  = _.__random(#Dialogue_.comment[self.name])
+	local text   = Dialogue_.comment[self.name][index]
+	local hx, hy = self:getPosition()
+	local tx, ty = other:getPosition()
+	--
+
+	self.target     = other
+	self.talking    = true
+	self.dialogue   = Dialogue['comment'](self, text)
+	self.isMirrored = tx < hx
+	
+	self.timer:after(delay, function()
+		self.target   = nil
+		self.talking  = false
+		self.dialogue = nil
+
+		-- callback
+		if after then
+			after()
+		end
+	end)
+end
+
+----
 
 return NPC
