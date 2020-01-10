@@ -18,14 +18,16 @@ function Spawner:new(map)
 			-- Spawn Unit
 				for __, object in ipairs(layer.objects) do
 					if object.name then
-						Entities[object.name](object)
+						-- Copy as to not overwrite
+						Entities[object.name](_:copy(object))
 					end
 				end
 			else
 			-- Spawn Entities
 				for __, object in ipairs(layer.objects) do
 					if layer.name then
-						Entities[layer.name](object)
+						-- Copy as to not overwrite
+						Entities[layer.name](_:copy(object))
 					end
 				end
 			end
@@ -43,25 +45,5 @@ function Spawner:spawnEvents(events)
 		end
 	end
 end
-
--- -- Update events and remove expired events.
--- --
--- function Spawner:update(dt)
--- 	for i = #self.events, 1, -1 do
--- 		if self.events[i].remove then
--- 			table.remove(self.events, i)
--- 		else
--- 			self.events[i]:update(dt)
--- 		end
--- 	end
--- end
-
--- -- Draw events
--- --
--- function Spawner:draw()
--- 	for __, event in pairs(self.events) do
--- 		event:draw()
--- 	end
--- end
 
 return Spawner

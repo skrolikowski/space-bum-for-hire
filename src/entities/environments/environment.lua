@@ -7,7 +7,7 @@ local Environment = Entity:extend()
 
 function Environment:new(data)
 	local shapeData = {}
-
+	
 	if data.shape == 'rectangle' then
 	-- Rectangle
 		data.x         = data.x + data.width / 2
@@ -43,10 +43,10 @@ end
 -- Draw entity
 --
 function Environment:draw()
-	-- if self.visible then
-	-- 	lg.setColor(Config.color.shape)
-	-- 	self.shape:draw()
-	-- end
+	if self.visible then
+		lg.setColor(Config.color.shape)
+		self.shape:draw()
+	end
 end
 
 return Environment

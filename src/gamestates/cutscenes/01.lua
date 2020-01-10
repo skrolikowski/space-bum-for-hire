@@ -48,7 +48,7 @@ function Scene01:enter(from, ...)
 	-- ACTION!!! ------------------
     self.timer:script(function(wait)
     	-- Roger & Clarence enter room together
-		self.target = Roger
+		self.filming = Roger
 		-- Roger:move('left', 350, 5)
 		-- Clarence:move('left', 350, 4)
 		-- wait(5)
@@ -56,7 +56,7 @@ function Scene01:enter(from, ...)
 		-- Roger:say('right', 'It\'s going to work this time! I just know it!', 6)
 		-- wait(6)
 		-- --
-		-- self.target = Clarence
+		-- self.filming = Clarence
 		-- Clarence:say('left', 'Last time you nearly blew out our warp core!', 6)
 		-- wait(3)
 		-- Roger:blame('right', 3)

@@ -8,8 +8,6 @@ local Cutscene = Base:extend()
 function Cutscene:init(data)
 	Base.init(self, data)
 	--
-	self.target = nil
-	
 	-- flags
 	self.comments = false
 
@@ -38,16 +36,6 @@ function Cutscene:enter(from, ...)
 	-- default controls
 	self:setControl('cutscene')
 	self:lookAt(self.width/2, self.height/2)
-end
-
--- Follow target
---
-function Cutscene:update(dt)
-	Base.update(self, dt)
-	--
-	if self.target then
-		self:lookAt(self.target:getPosition())
-	end
 end
 
 return Cutscene

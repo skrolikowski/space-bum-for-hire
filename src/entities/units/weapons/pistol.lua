@@ -29,7 +29,7 @@ end
 --
 function Pistol:trigger(dt, et)
 	if self.isReady then
-		if Config.world.player.weapon.rounds > 0 then
+		if Config.world.hud.weapon.ammo > 0 then
 			self:fire()
 			self.firing = true
 			self.sprite:restart()
@@ -38,8 +38,9 @@ function Pistol:trigger(dt, et)
 			self.isReady = false
 			self.timer:after(self.cooldown, function() self.isReady = true end)
 
-			-- update rounds
-			Config.world.player.weapon.rounds = Config.world.player.weapon.rounds - 1
+			-- update ammo
+			Config.world.hud.weapon.ammo = Config.world.hud.weapon.ammo - 1
+			Gamestate.current().hud.dirty  = true
 
 			-- play sound
 			Config.world.weapon.pistol.audio.fire:play()

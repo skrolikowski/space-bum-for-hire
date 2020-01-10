@@ -1,13 +1,21 @@
 -- Entity Behaviors
 return {
-	-- Doctor/NPC
-    Doctor_attack  = require 'src.entities.units.behaviors.npc.attack',
-    Doctor_fall    = require 'src.entities.units.behaviors.npc.fall',
-    Doctor_guard   = require 'src.entities.units.behaviors.npc.guard',
-    Doctor_idle    = require 'src.entities.units.behaviors.npc.idle',
-    Doctor_run     = require 'src.entities.units.behaviors.npc.run',
-    Doctor_talk    = require 'src.entities.units.behaviors.npc.talk',
-    Doctor_walk    = require 'src.entities.units.behaviors.npc.walk',
+	-- Doctor
+    Doctor_attack = require 'src.entities.units.behaviors.npc.attack',
+    Doctor_fall   = require 'src.entities.units.behaviors.npc.fall',
+    Doctor_guard  = require 'src.entities.units.behaviors.npc.guard',
+    Doctor_idle   = require 'src.entities.units.behaviors.npc.idle',
+    Doctor_run    = require 'src.entities.units.behaviors.npc.run',
+    Doctor_talk   = require 'src.entities.units.behaviors.npc.talk',
+    Doctor_walk   = require 'src.entities.units.behaviors.npc.walk',
+    -- Double
+    Double_attack = require 'src.entities.units.behaviors.npc.attack',
+    Double_fall   = require 'src.entities.units.behaviors.npc.fall',
+    Double_guard  = require 'src.entities.units.behaviors.npc.guard',
+    Double_idle   = require 'src.entities.units.behaviors.npc.idle',
+    Double_run    = require 'src.entities.units.behaviors.npc.run',
+    Double_talk   = require 'src.entities.units.behaviors.npc.talk',
+    Double_walk   = require 'src.entities.units.behaviors.npc.walk',
     -- player
     Player_idle    = require 'src.entities.units.behaviors.player.idle',
     Player_crouch  = require 'src.entities.units.behaviors.player.crouch',

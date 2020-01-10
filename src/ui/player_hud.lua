@@ -7,16 +7,16 @@ local HUD    = Modern:extend()
 
 function HUD:new()
 	self.spritesheet = Config.image.spritesheet.ui
-	self.background = Config.ui.hud.player
-	self.dirty      = true
+	self.background  = Config.world.hud.image
+	self.dirty       = true
 
 	-- dimensions
 	self.width  = self.background:getWidth()
 	self.height = self.background:getHeight()
 
 	-- scaling
-	self.sx = 0.75
-	self.sy = 0.75
+	self.sx = 0.8
+	self.sy = 0.8
 
 	-- translate
 	self.tx = Config.padding
@@ -29,12 +29,38 @@ end
 -- Set canvas w/ latest stats
 --
 function HUD:setCanvas()
+	-- prepare canvases
 	local hpImage = lg.newCanvas(1, 32)
 	local spImage = lg.newCanvas(1, 32)
 	local apImage = lg.newCanvas(1, 32)
-	local hpQuad  = lg.newQuad(0, 0, Config.world.meter * 3, Config.world.meter, hpImage:getDimensions())
-	local spQuad  = lg.newQuad(0, 0, Config.world.meter * 5, Config.world.meter, spImage:getDimensions())
-	local apQuad  = lg.newQuad(0, 0, Config.world.meter * 7, Config.world.meter, apImage:getDimensions())
+
+	-- max stat points
+	local hpMax   = Config.tileSize * 6
+	local spMax   = Config.tileSize * 10
+	local apMax   = Config.tileSize * 14
+
+	-- health
+	local health    = Config.world.hud.stat.health
+	local healthMax = Config.world.hud.stat.healthMax
+	local healthPct = (healthMax - health) / healthMax
+	local hpValue   = hpMax - hpMax * healthPct
+
+	-- shield
+	-- local shield    = Config.world.hud.stat.shield
+	-- local shieldMax = Config.world.hud.stat.shieldMax
+	-- local shieldPct = (shieldMax - shield) / shieldMax
+	-- local spValue   = spMax - spMax * shieldPct
+
+	-- weapon
+	local weapon  = Config.world.hud.weapon
+	local ammoMax = Config.world.weapon[weapon.name].ammoMax
+	local ammoPct = (ammoMax - weapon.ammo) / ammoMax
+	local apValue = apMax - apMax * ammoPct
+	-- 
+
+	local hpQuad  = lg.newQuad(0, 0, hpValue or 0, Config.tileSize * 2, hpImage:getDimensions())
+	local spQuad  = lg.newQuad(0, 0, spValue or 0, Config.tileSize * 2, spImage:getDimensions())
+	local apQuad  = lg.newQuad(0, 0, apValue or 0, Config.tileSize * 2, apImage:getDimensions())
 	local location
 
 	-- BEGIN SETUP -----------------
@@ -56,7 +82,7 @@ function HUD:setCanvas()
 	apImage:setWrap('clamp')
 	-- location
 	location = lg.newText(Config.ui.font.md)
-	location:setf(Config.world.player.location, self.width, 'center')
+	location:setf(Config.world.hud.location, self.width, 'center')
 	-- END SETUP -----------------------
 
 	-- BEGIN CANVAS ---------------
@@ -70,20 +96,31 @@ function HUD:setCanvas()
 
 	-- BEGIN DRAW ----------------------
 	-- health meters
-	lg.draw(hpImage, hpQuad, Config.world.meter * 8, Config.world.meter * 3)
-	lg.draw(spImage, spQuad, Config.world.meter * 7, Config.world.meter * 5)
-	lg.draw(apImage, apQuad, Config.world.meter * 6, Config.world.meter * 7)
+	lg.draw(hpImage, hpQuad, Config.tileSize * 16, Config.tileSize * 6)
+	lg.draw(spImage, spQuad, Config.tileSize * 14, Config.tileSize * 10)
+	lg.draw(apImage, apQuad, Config.tileSize * 12, Config.tileSize * 14)
 
 	-- shield active
-	if Config.world.player.shield > 0 then
-		self.spritesheet:draw('progress_blueBorderSmall', Config.world.meter * 5+8, Config.world.meter * 4+4, 0, 2, 2)
+	if Config.world.hud.stat.shield > 0 then
+		self.spritesheet:draw('progress_blueBorderSmall', Config.tileSize*10+8, Config.tileSize*8+4, 0, 2, 2)
 	end
 
 	-- location
-	lg.draw(location, Config.world.meter * 6 + Config.padding/2, Config.world.meter/2 + Config.padding/2)
+	lg.draw(location, Config.tileSize*12 + Config.padding/2, Config.world.meter/2 + Config.padding/2)
 
 	-- weapon
 	-- TODO:
+
+	-- ammo count
+	lg.setFont(Config.ui.font.md)
+	lg.printf(
+		Config.world.hud.weapon.ammo,
+		Config.tileSize * 11.5,
+		Config.tileSize * 12,
+		Config.tileSize * 3.5,
+		'center',
+		_.__pi / 2
+	)
 
 	-- objective
 	-- TODO:

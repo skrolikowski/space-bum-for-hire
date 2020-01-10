@@ -6,6 +6,7 @@
 Entities = {
 	Player         = require 'src.entities.units.player',
 	Doctor         = require 'src.entities.units.npcs.doctor',
+	Double         = require 'src.entities.units.npcs.double',
 	Executioner    = require 'src.entities.units.enemies.executioner',
     MovingPlatform = require 'src.entities.environments.moving_platform',
     Environment    = require 'src.entities.environments.environment',

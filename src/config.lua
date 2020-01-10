@@ -12,6 +12,10 @@ Config = {
         xOffset = 0,
         yOffset = 0,
     },
+    spawn = {
+        width  = 80,
+        height = 80,
+    },
     world = {
         meter   = 32,  -- Config.tileSize * Config.scale
         gravity = { x = 0, y = 40 },
@@ -26,26 +30,31 @@ Config = {
             space01 = 'res/maps/Spaceship.lua',
             mount01 = 'res/maps/Mountains.lua',
         },
+        hud = {
+            image    = lg.newImage('res/ui/HUD_health.png'),
+            location = '',
+            stat     = {
+                health    = 100,
+                healthMax = 100,
+                shield    = 0,
+                shieldMax = 35,
+            },
+            weapon = {
+                name = 'pistol',
+                ammo = 24,
+            },
+        },
         weapon = {
             pistol = {
-                maxRounds = 100,
-                cooldown  = 0.35,
-                damage    = 10,
-                speed     = 1000,
+                ammoMax  = 50,
+                cooldown = 0.35,
+                damage   = 10,
+                speed    = 1000,
                 audio = {
                     fire = la.newSource('res/sfx/pistol.ogg', 'static'),
                     -- empty = la.newSource('res/sfx/.ogg', 'static')
                 }
             }
-        },
-        player = {
-            location = '',
-            health = 100,
-            shield = 35,
-            weapon = {
-                name   = 'pistol',
-                rounds = 24,
-            },
         },
         filter = {
             group = {
@@ -92,9 +101,6 @@ Config = {
             md = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
             lg = lg.newFont('res/ui/fonts/Marksman.ttf', 48),
             xl = lg.newFont('res/ui/fonts/Marksman.ttf', 64),
-        },
-        hud = {
-            player = lg.newImage('res/ui/HUD_health.png'),
         }
     },
     image = {
@@ -113,6 +119,19 @@ Config = {
                     runAim    = lg.newImage('res/spritesheets/player/aimrun.png'),
                     talk      = lg.newImage('res/spritesheets/player/talking.png'),
                     walk      = lg.newImage('res/spritesheets/player/walk.png'),
+                }
+            },
+            double = {
+                {
+                    crouch = lg.newImage('res/spritesheets/player/crouch.png'),
+                    death  = lg.newImage('res/spritesheets/player/death.png'),
+                    guard  = lg.newImage('res/spritesheets/player/guard.png'),
+                    idle   = lg.newImage('res/spritesheets/player/idle.png'),
+                    melee  = lg.newImage('res/spritesheets/player/melee.png'),
+                    jump   = lg.newImage('res/spritesheets/player/jump.png'),
+                    run    = lg.newImage('res/spritesheets/player/run.png'),
+                    talk   = lg.newImage('res/spritesheets/player/talking.png'),
+                    walk   = lg.newImage('res/spritesheets/player/walk.png'),
                 }
             },
             doctor = {

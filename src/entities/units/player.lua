@@ -10,13 +10,14 @@ function Player:new(data)
 	self.axis     = Vec2()  -- controller axis
 	self.angle    = 0
 	self.cooldown = { now = 0, max = 1 }
+	self.health   = Config.world.hud.stat.health
 	self.speed    = 1000
 
 	-- flags
 	self.lockedIn = false
 
 	-- weapon animation
-	self.weapon = Weapons[Config.world.player.weapon.name](self)
+	self.weapon = Weapons[Config.world.hud.weapon.name](self)
 	--
 	Unit.new(self, _:merge(data, {
 		name  = 'Player',
@@ -32,6 +33,7 @@ end
 function Player:keyOn(key)
 	if key == 'w' then
 		self.axis.y = -1
+		_:dispatch('player_request')
 	elseif key == 'a' then
 		self.running    = true
 		self.isMirrored = true

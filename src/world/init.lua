@@ -28,6 +28,7 @@ Effects = {
 Events = {
 	PlayerEnter = require 'src.world.events.player_enter',
 	Boomarang   = require 'src.world.events.boomarang',
+	Teleport    = require 'src.world.events.teleport',
 	Translate   = require 'src.world.events.translate',
 }
 

@@ -8,8 +8,8 @@ return {
   height = 30,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 11,
-  nextobjectid = 10,
+  nextlayerid = 12,
+  nextobjectid = 11,
   properties = {},
   tilesets = {
     {
@@ -60,7 +60,7 @@ return {
     {
       type = "tilelayer",
       id = 3,
-      name = "Decorative (BG)",
+      name = "Decoratives (BG)",
       x = 0,
       y = 0,
       width = 40,
@@ -89,7 +89,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtlUlOAzEQRbkDw2WArJgRsMkBcgeQgAUXAAm2LCMxjwdgbKYjILHiLLzf5KOSlUbpTjaILunJZbdd9V2xnaGh2gZRgU+CDMMIrMA4NDq+xwfRErKSSd8ojIH0vcNHx0dni35boLvdT5+QlUz6XJ9UH5paaG0LtElj5X4lcSySvlg/dGToyKTV44No+9EX64e2+vyVKOZfOn/L379tfv7kD+Lc6V1QnKqm+i2A3j+fw9jq23yPLIV50df6qiZ9U+B9pu0M3zSnF3TnPS/6GqtqWtuEG7iFO5iASWjALDhnUav9TYPOhNroe38MVzLl9G8YfxP7c3wv0uVx7e8ADuEIonl/cayM7xyqQbp/791zitpF1h7DSZfE1le0tmjcofxdOTY7rNJuQK+xtfYUVL9o13S6xfB58FlQq1rEejhO1LfFoFiDdYixY8wYR+tdP9wfu8S7ghjDufQ+6H8qnnO9H8JzcHNzXzl2YBu66Wsy7v++NKfWRjujcw4XkM5VPr2H9/AAj5CB3g1hPbi5ua8ce7ALRfoahOKeZ2nOsvdL9XuCZ9iHF1DthPXg5ua+cvjO6j2VH++uNehbHPd6tfHNi36cI1/1ewXre8P/rX4+W+n99blN4xf1o6bop/PL1k9nq5/32fmjpuj7u9sy9UNabXUF6grUFfhXFfgCdAZaAw=="
+      data = "eAHtlUlOBDEMRfsODJcBesWMgA0H6DuABCy4AEiwZdkS83gAxmI6AhIrzsL70B9ZURV0VfcGUZa+7DiJ/eNyUo1GLf2owDtBBsAgWAQjoNmx7e+HJmQlEb8hMAzE7xW8dWx4thi3BXi3exkTspKIn+uT8oNTC65tAW7iWHlciRybxC/WDx4ZPDJxtb8fuhd+sX5wq/uvRDH/Uv8tfH3bz/6T3Y++07ugOFVF9ZsFev/ch1FrbqZLzId10db+qiJ+48DnTPUkc1rTDXTnvS7a8lUV7V0CV+Aa3IBRMAaaYAo4Z5HW+SaAekI62j4f7kqinP6G8ZvYnma+iJf9Ot8e2AcHIIrPF31lbOdQDdLz++xeU6Tn2HsIjnISm1/R3iK/Q3leOdY7WEavgW5ja+8xUP2iXDLIi+F+cC9Ip7VwnMhvA6ewAlZBjB1jprFcP7Z8yznWBYgxnEvvg/5Tsc/1fnhe2mKfcmyBTZDHTz3mf1+aU3ujnDA4BWcgXat8eg9vwR24BxnQu2Eu0hb7lGMHbIMifk1Ccc+zNGfZ+6X6PYBHsAuewG/1Uw7fWb2nsuPdNQfNRb/PJx3fvGjHNbJVv2dgfi/YP9XPvZXe37y+TXPFceQU7bhGdtn6qbd6eZ+dP3KKtuety9QParXUFagrUFfgX1XgA9QKX1E="
     },
     {
       type = "tilelayer",
@@ -106,12 +106,12 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtV0kOwjAM7BUuLBeQEC9k50V9DWJfjiyPYXwYyUpTGiORFimWRnaNLU+mBtpXlmWLiBhh1hLQdlUXOpZ0H3gCw0hYYc4aoG0Q7IAjcGFSeeHXUde/DqFDjvuVc47otQdOgKud1NTNbwsOB+AM3ADX6uanNdMxedbNL+0f70SYd78faf/CdGOVq1/aPyoT5l39mrZ/XRxjDIT+58f+/RuAGzQMRmx+oBZk3IPEL0iuQlHSryCJKZH0M8lVKP4X/SZgPgVaDcMdfHrADJgD7QbiAU4+q3rm8fXonKXfUssZ8p7y6Z2PdWXe0m+p5byqZx7WlXlLv6WW8+RMNB0zV+V1j459ffpzHftqmftmJ9gr3tJvqeUMOUdT9u8NLmGWEg=="
+      data = "eAHtWMsKAjEM3KtefFwUxC/07Rf5NeL7cfTxMU4PA6Hb2kawVmhgSIwTks5mdfVZVdUsIQboNQdoFwbwMma6i+AB9BNhgT5LgLZGsAUOwJlJ4c18LfH62yF0WOF6rdjHaLYDjoBPv1/Ot8Fce+AEXAHbctCPM+WoX9k/Xp04b98fZf/idCPL1q/sH5WJ87Z+ue1fG8cYAvgOiULqz+ce5oKG0Ug9H0aLMu5BmS9Krhqp6FeTRJUo+qnkqpH/Rb8RJh8DjcxwwzwdYAJMgWaGuGMml4WeeVw1Mqep13DZI/Sbjzyf19RruOwXeuYhz+c19Rou+5kz0WTMXMjLGhm76uT7MnZxmftkJ1hrvKZew2UPc453/zmQ5/Oa+hD3BTThlhI="
     },
     {
       type = "tilelayer",
       id = 6,
-      name = "Decorative (FG)",
+      name = "Decoratives (FG)",
       x = 0,
       y = 0,
       width = 40,
@@ -230,6 +230,36 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 11,
+      name = "Events",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 10,
+          name = "Teleport",
+          type = "",
+          shape = "rectangle",
+          x = 512,
+          y = 272,
+          width = 64,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["exit"] = "right",
+            ["map"] = "space01",
+            ["method"] = "door"
+          }
         }
       }
     }

@@ -42,6 +42,18 @@ function Entity:setPosition(x, y)
 	self.body:setPosition(x, y)
 end
 
+-- Get x-position of body
+--
+function Entity:getX()
+	return self.body:getX()
+end
+
+-- Get y-position of body
+--
+function Entity:getY()
+	return self.body:getY()
+end
+
 -- Get x,y-position of body
 --
 function Entity:getPosition()
@@ -238,12 +250,17 @@ end
 --
 function Entity:damage(other, attack)
 	if self.canDestroy then
-		self.health = self.health - attack
 		print('hit!', self.health)
+		self.health = self.health - attack
+
+		-- update stats
+		Config.world.hud.stat.health  = self.health
+		Gamestate:current().hud.dirty = true
 
 		if self.health <= 0 then
 			self:destroy()
 		end
+
 	end
 end
 

@@ -29,8 +29,8 @@ function NPC:new(data)
 	self.walking  = false
 
 	-- behavior/animation
-	self:setBehavior('fall')
-	self:pace()
+	self:setBehavior('idle')
+	-- self:pace()
 end
 
 -- Clear timer

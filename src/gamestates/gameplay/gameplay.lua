@@ -16,27 +16,30 @@ function Gameplay:init(data)
 	lg.setCanvas(self.foreground)
 		self.map:drawTileLayer('Foreground')
 	lg.setCanvas()
+
+	-- default background canvas
+	self.background = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.background)
+		self.map:drawTileLayer('Background')
+		self.map:drawTileLayer('Decoratives (BG)')
+		self.map:drawTileLayer('Walls')
+		self.map:drawTileLayer('Platforms')
+		self.map:drawTileLayer('Decoratives (FG)')
+	lg.setCanvas()
 end
 
 -- Enter cutscene
 --
 function Gameplay:enter(from, ...)
-	-- register custom events handlers
-	-- _:on('onNewPlayerEnter',   function(x, y)   self:onPlayerPreSpawn(x, y)    end)
-	-- _:on('onReadyPlayerEnter', function(player) self:onPlayerPostSpawn(player) end)
-
 	-- default controls
 	self:setControl('none')
+
+	-- update hud
+	Config.world.hud.location = self.name
+	self.hud.dirty = true
+
 	--
 	Base.enter(self, from, ...)
-end
-
-function Gameplay:leave()
-	-- register custom events handlers
-	-- _:off('onNewPlayerEnter')
-	-- _:off('onReadyPlayerEnter')
-	--
-	Base.leave(self)
 end
 
 -- -- Player is spawning...
@@ -57,10 +60,6 @@ end
 --
 function Gameplay:update(dt)
 	Base.update(self, dt)
-	--
-	if self.player then
-		self:lookAt(self.player:getPosition())
-	end
 	--
 	self.hud:update(dt)
 end

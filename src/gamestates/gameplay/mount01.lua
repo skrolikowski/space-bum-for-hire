@@ -9,6 +9,7 @@ local Mount01  = Gameplay:extend()
 function Mount01:init()
 	Gameplay.init(self, {
         name = 'Mountains',
+        id   = 'mount01',
         map  = Config.world.maps['mount01'],
     })
 	--
@@ -32,30 +33,27 @@ function Mount01:enter(from, ...)
 
     -- Player enters level..
     if transition == 'spawn' then
-        self.spawnPos = Vec2(Config.tileSize*9,Config.tileSize*69)
-        --self.spawnPos    = Vec2(144,1104)
-        self.spawnWidth  = 80
-        self.spawnHeight = 80
+        local spawnPos = Vec2(Config.tileSize*9,Config.tileSize*69)
         -- focus camera
         self:lookAt(
-            self.spawnPos.x + self.spawnWidth  / 2,
-            self.spawnPos.y + self.spawnHeight / 2
+            spawnPos.x + Config.spawn.width  / 2,
+            spawnPos.y + Config.spawn.height / 2
         )
         -- teleportation effect w/ adjustments
         Effects['warp']({
-            x      = self.spawnPos.x  - 15,
-            y      = self.spawnPos.y  - 25,
-            width  = self.spawnWidth  * 1.25,
-            height = self.spawnHeight * 1.25,
+            x      = spawnPos.x  - 15,
+            y      = spawnPos.y  - 25,
+            width  = Config.spawn.width  * 1.25,
+            height = Config.spawn.height * 1.25,
         })
 
         self.timer:after(0.85, function(wait)
             -- spawn player
             self.player = Entities['Player']({
-                x       = self.spawnPos.x,
-                y       = self.spawnPos.y,
-                width   = self.spawnWidth,
-                height  = self.spawnHeight,
+                x       = spawnPos.x,
+                y       = spawnPos.y,
+                width   = Config.spawn.width,
+                height  = Config.spawn.height,
             })
 
             -- give controls to player

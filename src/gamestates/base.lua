@@ -10,12 +10,14 @@ local Base   = Modern:extend()
 function Base:init(data)
 	local STI = require 'vendor.sti.sti'
 
+	self.id      = data.id
 	self.name    = data.name
 	self.map     = STI(data.map)
 	self.width   = self.map.width  * self.map.tilewidth
 	self.height  = self.map.height * self.map.tileheight
-	self.control = 'none'
+	self.control = nil
 	self.camera  = Camera(0, 0, Config.scale)
+	self.filming = nil
 
 	-- flags
 	self.comments = false
@@ -28,27 +30,32 @@ function Base:enter(from, ...)
 	self.from  = from -- previous screen
 	self.timer = Timer.new()
 
-	_World = World()   -- create world
-    Spawner(self.map)  -- spawn entities
+	-- create world
+	_World        = World()
+	_World.width  = self.width
+	_World.height = self.height
 
-    --
-    Config.world.player.location = self.name
+	-- spawn entities
+    Spawner(self.map)
 end
 
 -- Resume screen
 function Base:resume()
 	-- register game controls
-	self:registerControls()
+	-- self:registerControls()
 end
 
 -- Leave Base Screen
 --
 function Base:leave()
-	_World:destroy()
 	-- clear timer
 	self.timer:clear()
+	-- nobody to film
+	self.filming = nil
+	-- destroy world and all entities
+	_World:destroy()
 	-- unregister game controls
-	self:unregisterControls()
+	-- self:unregisterControls()
 end
 
 -- Set controls
@@ -77,16 +84,20 @@ end
 -- Register Base Controls
 --
 function Base:registerControls()
-	for code, func in pairs(Control_[self.control]) do
-		_:on(code, func)
+	if self.control then
+		for code, func in pairs(Control_[self.control]) do
+			_:on(code, func)
+		end
 	end
 end
 
 -- Unregister Base Controls
 --
 function Base:unregisterControls()
-	for code, __ in pairs(Control_[self.control]) do
-		_:off(code)
+	if self.control then
+		for code, __ in pairs(Control_[self.control]) do
+			_:off(code)
+		end
 	end
 end
 
@@ -102,6 +113,11 @@ function Base:update(dt)
 	_World:update(dt)
 	--
 	self.timer:update(dt)
+
+	-- follow target
+	if self.filming then
+		self:lookAt(self.filming:getPosition())
+	end
 end
 
 -- Draw
