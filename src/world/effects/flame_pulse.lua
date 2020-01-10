@@ -12,7 +12,7 @@ function Flame:new(data)
 
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.particles.flame2,
+		image  = Config.image.spritesheet.effect.flame2,
 		width  = 65,
 		height = 43,
 		total  = total,

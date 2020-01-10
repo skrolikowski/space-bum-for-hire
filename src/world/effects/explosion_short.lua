@@ -12,7 +12,7 @@ function Explosion:new(data)
 
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.particles.explosion2,
+		image  = Config.image.spritesheet.effect.explosion2,
 		width  = 57,
 		height = 56,
 		total  = total,

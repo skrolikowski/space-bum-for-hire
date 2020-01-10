@@ -12,7 +12,7 @@ function Warp:new(data)
 
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.particles.warp,
+		image  = Config.image.spritesheet.effect.warp,
 		width  = 102,
 		height = 135,
 		total  = total,

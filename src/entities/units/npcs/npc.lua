@@ -111,6 +111,19 @@ function NPC:move(direction, speed, delay)
 	end)
 end
 
+-- Fiddle
+--
+function NPC:fiddle(direction, delay)
+	self.attacking  = true
+	self.dialogue   = Dialogue['emote'](self, 'thought', { 'emote_dots1', 'emote_dots2', 'emote_dots3' })
+	self.isMirrored = direction == 'left' or false
+	
+	self.timer:after(delay, function()
+		self.attacking = false
+		self.dialogue  = nil
+	end)
+end
+
 -- Flee from `other`
 --
 function NPC:flee(other, speed, delay, after)

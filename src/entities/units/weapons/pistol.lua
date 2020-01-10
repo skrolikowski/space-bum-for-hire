@@ -9,7 +9,7 @@ function Pistol:new(host, x, y)
 	--
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.world.weapon.pistol.animation,
+		image  = Config.image.spritesheet.effect.pistol,
 		width  = 35,
 		height = 6,
 		total  = 1,

@@ -36,28 +36,16 @@ function Doctor:pace(direction)
 		self.timer:cancel(self.pacing)
 		--
 		if other.name == 'Player' then
+		-- Comment to Player
 			self:comment(other, 5, function()
 				self:pace()
 			end)
 		elseif other.category == 'Enemy' then
-			self.sight:destroy()
+		-- Flee from Enemy
 			self:flee(other, 400, 3, function()
 				self:pace()
 			end)
 		end
-	end)
-end
-
--- Fiddle
---
-function Doctor:fiddle(direction, delay)
-	self.attacking  = true
-	self.dialogue   = Dialogue['emote'](self, 'thought', { 'emote_dots1', 'emote_dots2', 'emote_dots3' })
-	self.isMirrored = direction == 'left' or false
-	
-	self.timer:after(delay, function()
-		self.attacking = false
-		self.dialogue  = nil
 	end)
 end
 

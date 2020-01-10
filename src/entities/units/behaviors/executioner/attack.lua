@@ -5,7 +5,6 @@ local Base   = require 'src.entities.units.behaviors.executioner.base'
 local Attack = Base:extend()
 
 function Attack:new(host)
-	self.strike = Sensors['strike'](host, 0, 0)
 	self.sprite = Animator()
 	self.sprite:addAnimation('attack', {
 		image  = Config.image.spritesheet.enemies.executioner,
@@ -22,6 +21,9 @@ function Attack:new(host)
 	})
 	--
 	Base.new(self, 'attack', host)
+
+	-- Attack!
+	self.strike = Sensors['strike'](host, 0, 0)
 end
 
 function Attack:destroy()

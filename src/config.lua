@@ -28,7 +28,6 @@ Config = {
         },
         weapon = {
             pistol = {
-                animation = lg.newImage('res/spritesheets/particles/handgun_35x6.png'),
                 maxRounds = 100,
                 cooldown  = 0.35,
                 damage    = 10,
@@ -37,13 +36,7 @@ Config = {
                     fire = la.newSource('res/sfx/pistol.ogg', 'static'),
                     -- empty = la.newSource('res/sfx/.ogg', 'static')
                 }
-            },
-            rifle = {
-                animation = lg.newImage('res/spritesheets/particles/gunshot_rifle_46x26.png'),
-            },
-            shotgun = {
-                animation = lg.newImage('res/spritesheets/particles/gunshot_60x8.png'),
-            },
+            }
         },
         player = {
             location = '',
@@ -160,14 +153,23 @@ Config = {
             -- undead_warrior = lg.newImage('res/spritesheets/enemies/undead-warrior.png'),
         },
         spritesheet = {
-            particles = {
-                explosion1             = lg.newImage('res/spritesheets/particles/explosion_47x57.png'),
-                explosion2             = lg.newImage('res/spritesheets/particles/explosion_short_57x56.png'),
-                flame1                 = lg.newImage('res/spritesheets/particles/flame_continously_66x47.png'),
-                flame2                 = lg.newImage('res/spritesheets/particles/flames_pulse_65x43.png'),
-                warp                   = lg.newImage('res/spritesheets/particles/level_up_102x135.png'),
-                imp_projectile         = lg.newImage('res/spritesheets/enemies/imp-projectile.png'),
-                necromancer_projectile = lg.newImage('res/spritesheets/enemies/necromancer-projectile.png'),
+            effect = {
+                attack      = lg.newImage('res/spritesheets/effects/attack100x100.png'),
+                explosion1  = lg.newImage('res/spritesheets/effects/explosion_47x57.png'),
+                explosion2  = lg.newImage('res/spritesheets/effects/explosion_short_57x56.png'),
+                fireball    = lg.newImage('res/spritesheets/effects/fireball_42x89.png'),
+                flame1      = lg.newImage('res/spritesheets/effects/flame_continously_66x47.png'),
+                flame2      = lg.newImage('res/spritesheets/effects/flames_pulse_65x43.png'),
+                flame3      = lg.newImage('res/spritesheets/effects/flame_small_blue14x54.png'),
+                flame4      = lg.newImage('res/spritesheets/effects/flame_small_16x58.png'),
+                imp_proj    = lg.newImage('res/spritesheets/effects/imp-projectile.png'),
+                pistol      = lg.newImage('res/spritesheets/effects/handgun_35x6.png'),
+                shotgun     = lg.newImage('res/spritesheets/effects/gunshot_60x8.png'),
+                rifle       = lg.newImage('res/spritesheets/effects/gunshot_rifle_46x26.png'),
+                laser       = lg.newImage('res/spritesheets/effects/laser_charge_129x38.png'),
+                scratch     = lg.newImage('res/spritesheets/effects/scratch_79x64.png'),
+                necro_proj  = lg.newImage('res/spritesheets/effects/necromancer-projectile.png'),
+                warp        = lg.newImage('res/spritesheets/effects/level_up_102x135.png'),
             },
             emote = {
                 speech  = Spritesheet('res/spritesheets/emotes/vector_style3.json'),
