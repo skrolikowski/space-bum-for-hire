@@ -30,6 +30,17 @@ Config = {
             space01 = 'res/maps/Spaceship.lua',
             mount01 = 'res/maps/Mountains.lua',
         },
+        pickups = {
+            health = {
+                sm = 10
+            },
+            shield = {
+
+            },
+            bullets = {
+                sm = 4, md = 8, lg = 20
+            }
+        },
         hud = {
             image    = lg.newImage('res/ui/HUD_health.png'),
             location = '',
@@ -41,12 +52,24 @@ Config = {
             },
             weapon = {
                 name = 'pistol',
-                ammo = 24,
+                clip = 'bullets',
             },
+            pack = {
+                ammo = {
+                    bullets = 24,
+                    rifile  = 0,
+                    shells  = 0,
+                },
+                ammoMax = {
+                    bullets = 100,
+                    rifile  = 0,
+                    shells  = 0,
+                },
+            }
         },
         weapon = {
             pistol = {
-                ammoMax  = 50,
+                clip     = 'bullets',
                 cooldown = 0.35,
                 damage   = 10,
                 speed    = 1000,
@@ -196,7 +219,9 @@ Config = {
                 free    = Spritesheet('res/spritesheets/emotes/vector_style8.json'),
             },
             avatars = Spritesheet('res/spritesheets/ui/avatars.json'),
-            ui = Spritesheet('res/spritesheets/ui/sheet.json'),
+            ui      = Spritesheet('res/spritesheets/ui/sheet.json'),
+            item    = Spritesheet('res/spritesheets/items/items.json'),
+            weapon  = Spritesheet('res/spritesheets/items/weapons.json'),
         },
         sprites = {
             arm = {

@@ -254,8 +254,7 @@ function Entity:damage(other, attack)
 		self.health = self.health - attack
 
 		-- update stats
-		Config.world.hud.stat.health  = self.health
-		Gamestate:current().hud.dirty = true
+		Gamestate:current().hud:set('health', self.health)
 
 		if self.health <= 0 then
 			self:destroy()

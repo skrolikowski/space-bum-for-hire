@@ -1,0 +1,1025 @@
+{
+	"TextureAtlas": {
+		"SubTexture": [
+			{
+				"name": "gun01.png",
+				"x": "0",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun02.png",
+				"x": "32",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun03.png",
+				"x": "64",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun04.png",
+				"x": "96",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun05.png",
+				"x": "128",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun06.png",
+				"x": "160",
+				"y": "0",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "gun07.png",
+				"x": "0",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun08.png",
+				"x": "32",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun09.png",
+				"x": "64",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun10.png",
+				"x": "96",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun11.png",
+				"x": "128",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun12.png",
+				"x": "160",
+				"y": "32",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "gun13.png",
+				"x": "0",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun14.png",
+				"x": "32",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun15.png",
+				"x": "64",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun16.png",
+				"x": "96",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun17.png",
+				"x": "128",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun18.png",
+				"x": "160",
+				"y": "64",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "gun19.png",
+				"x": "0",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun20.png",
+				"x": "32",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun21.png",
+				"x": "64",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "gun22.png",
+				"x": "96",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "screen01.png",
+				"x": "128",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "screen02.png",
+				"x": "160",
+				"y": "96",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "comm01.png",
+				"x": "0",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses01.png",
+				"x": "32",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses02.png",
+				"x": "64",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses03.png",
+				"x": "96",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses04.png",
+				"x": "128",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses05.png",
+				"x": "160",
+				"y": "128",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "helm01.png",
+				"x": "0",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm02.png",
+				"x": "32",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm03.png",
+				"x": "64",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm04.png",
+				"x": "96",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm05.png",
+				"x": "128",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm06.png",
+				"x": "160",
+				"y": "160",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "helm07.png",
+				"x": "0",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm08.png",
+				"x": "32",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm09.png",
+				"x": "64",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm10.png",
+				"x": "96",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm11.png",
+				"x": "128",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "helm12.png",
+				"x": "160",
+				"y": "192",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "armor01.png",
+				"x": "0",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "armor02.png",
+				"x": "32",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "armor03.png",
+				"x": "64",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "armor04.png",
+				"x": "96",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "armor05.png",
+				"x": "128",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "armor06.png",
+				"x": "160",
+				"y": "224",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "mask01.png",
+				"x": "0",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "mask02.png",
+				"x": "32",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses06.png",
+				"x": "64",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses07.png",
+				"x": "96",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "glasses08.png",
+				"x": "128",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "necklace.png",
+				"x": "160",
+				"y": "256",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "chip01.png",
+				"x": "0",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "chip02.png",
+				"x": "32",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "chip03.png",
+				"x": "64",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "chip04.png",
+				"x": "96",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "tool01.png",
+				"x": "128",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "tool02.png",
+				"x": "160",
+				"y": "288",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "health.png",
+				"x": "0",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "shield.png",
+				"x": "32",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "comm02.png",
+				"x": "64",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "syringe.png",
+				"x": "96",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "tool03.png",
+				"x": "128",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "tool04.png",
+				"x": "160",
+				"y": "320",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "bullets_sm.png",
+				"x": "0",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "shells_sm.png",
+				"x": "32",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "shells_md.png",
+				"x": "64",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo04.png",
+				"x": "96",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo04.png",
+				"x": "128",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo05.png",
+				"x": "160",
+				"y": "352",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "bullets_md.png",
+				"x": "0",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo07.png",
+				"x": "32",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo08.png",
+				"x": "64",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo09.png",
+				"x": "96",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo10.png",
+				"x": "128",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo11.png",
+				"x": "160",
+				"y": "384",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "bullets_lg.png",
+				"x": "0",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo13.png",
+				"x": "32",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo14.png",
+				"x": "64",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo15.png",
+				"x": "96",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo16.png",
+				"x": "128",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "ammo17.png",
+				"x": "160",
+				"y": "416",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "rocket01.png",
+				"x": "0",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "rocket02.png",
+				"x": "32",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "rocket03.png",
+				"x": "64",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "rocket04.png",
+				"x": "96",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "rocket05.png",
+				"x": "128",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "rocket06.png",
+				"x": "160",
+				"y": "448",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "grenade01.png",
+				"x": "0",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "grenade02.png",
+				"x": "32",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "grenade03.png",
+				"x": "64",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "grenade04.png",
+				"x": "96",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "mine01.png",
+				"x": "128",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "mine02.png",
+				"x": "160",
+				"y": "480",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "blade01.png",
+				"x": "0",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade02.png",
+				"x": "32",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade03.png",
+				"x": "64",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade04.png",
+				"x": "96",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade05.png",
+				"x": "128",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade06.png",
+				"x": "160",
+				"y": "512",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "blade07.png",
+				"x": "0",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade08.png",
+				"x": "32",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade09.png",
+				"x": "64",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade10.png",
+				"x": "96",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade11.png",
+				"x": "128",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade12.png",
+				"x": "160",
+				"y": "544",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "blade13.png",
+				"x": "0",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "blade14.png",
+				"x": "32",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "particles01.png",
+				"x": "64",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "particles02.png",
+				"x": "96",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "particles03.png",
+				"x": "128",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "mine03.png",
+				"x": "160",
+				"y": "576",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "coin01.png",
+				"x": "0",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin02.png",
+				"x": "32",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin03.png",
+				"x": "64",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin04.png",
+				"x": "96",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin05.png",
+				"x": "128",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin06.png",
+				"x": "160",
+				"y": "608",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "dollar01.png",
+				"x": "0",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar02.png",
+				"x": "32",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar03.png",
+				"x": "64",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar04.png",
+				"x": "96",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar05.png",
+				"x": "128",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar06.png",
+				"x": "160",
+				"y": "640",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "coin07.png",
+				"x": "0",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin08.png",
+				"x": "32",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin09.png",
+				"x": "64",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin10.png",
+				"x": "96",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin11.png",
+				"x": "128",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "coin12.png",
+				"x": "160",
+				"y": "672",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "dollar07.png",
+				"x": "0",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar08.png",
+				"x": "32",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar09.png",
+				"x": "64",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar10.png",
+				"x": "96",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar11.png",
+				"x": "128",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "dollar12.png",
+				"x": "160",
+				"y": "704",
+				"width": "32",
+				"height": "32"
+			},
+
+			{
+				"name": "id01.png",
+				"x": "0",
+				"y": "736",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "id02.png",
+				"x": "32",
+				"y": "736",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "currency.png",
+				"x": "64",
+				"y": "736",
+				"width": "32",
+				"height": "32"
+			},
+			{
+				"name": "creditcard.png",
+				"x": "96",
+				"y": "736",
+				"width": "32",
+				"height": "32"
+			}
+
+		],
+		"imagePath": "Cpunk_32x32_sheet_blue_shadow.png"
+	}
+}

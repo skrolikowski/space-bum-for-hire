@@ -26,6 +26,83 @@ function HUD:new()
 	self:setCanvas()
 end
 
+-- Decrease value of player stat
+-- and update display
+--
+function HUD:decrease(name, value)
+	if name == 'health' then
+	-- Health Decrease
+		Config.world.hud.stat.health = _.__max(Config.world.hud.stat.health - value)
+		self.dirty = true
+	elseif name == 'shield' then
+	-- Shield Decrease
+		Config.world.hud.stat.shield = _.__max(0, Config.world.hud.stat.shield - value)
+		self.dirty = true
+	elseif name == 'ammo' then
+	-- Ammo Decrease
+		local clip = Config.world.hud.weapon.clip
+		local ammo = Config.world.hud.pack.ammo[clip]
+
+		Config.world.hud.pack.ammo[clip] = _.__max(0, ammo - value)
+		self.dirty = true
+	end
+end
+
+-- Increase value of player stat
+-- and update display
+--
+function HUD:increase(name, value)
+	if name == 'health' then
+	-- Health Increase
+		local health    = Config.world.hud.stat.health
+		local healthMax = Config.world.hud.stat.healthMax
+
+		Config.world.hud.stat.health = _.__min(health + value, healthMax)
+		self.dirty = true
+	elseif name == 'shield' then
+	-- Shield Increase
+		local shield    = Config.world.hud.stat.shield
+		local shieldMax = Config.world.hud.stat.shieldMax
+
+		Config.world.hud.stat.shield = _.__min(shield + value, shieldMax)
+		self.dirty = true
+	elseif name == 'ammo' then
+	-- Ammo Increase
+		local clip    = Config.world.hud.weapon.clip
+		local ammo    = Config.world.hud.pack.ammo[clip]
+		local ammoMax = Config.world.hud.pack.ammoMax[clip]
+
+		Config.world.hud.pack.ammo[clip] = _.__min(ammo + value, ammoMax)
+		self.dirty = true
+	end
+end
+
+-- Set value of player stat
+-- and update display
+--
+function HUD:set(name, value)
+	if name == 'location' then
+	-- Set Location
+		Config.world.hud.location = value
+		self.dirty = true
+	elseif name == 'health' then
+	-- Set Health
+		Config.world.hud.stat.health = Util:clamp(value, 0, Config.world.hud.stat.healthMax)
+		self.dirty = true
+	elseif name == 'shield' then
+	-- Set Shield
+		Config.world.hud.stat.shield = Util:clamp(value, 0, Config.world.hud.stat.shieldMax)
+		self.dirty = true
+	elseif name == 'ammo' then
+	-- Set Ammo
+		local clip    = Config.world.hud.weapon.clip
+		local ammoMax = Config.world.hud.pack.ammoMax[clip]
+		
+		Config.world.hud.pack.ammo[clip] = Util:clamp(value, 0, ammoMax)
+		self.dirty = true
+	end
+end
+
 -- Set canvas w/ latest stats
 --
 function HUD:setCanvas()
@@ -53,8 +130,10 @@ function HUD:setCanvas()
 
 	-- weapon
 	local weapon  = Config.world.hud.weapon
-	local ammoMax = Config.world.weapon[weapon.name].ammoMax
-	local ammoPct = (ammoMax - weapon.ammo) / ammoMax
+	local clip    = Config.world.hud.weapon.clip
+	local ammo    = Config.world.hud.pack.ammo[clip]
+	local ammoMax = Config.world.hud.pack.ammoMax[clip]
+	local ammoPct = (ammoMax - ammo) / ammoMax
 	local apValue = apMax - apMax * ammoPct
 	-- 
 
@@ -114,7 +193,7 @@ function HUD:setCanvas()
 	-- ammo count
 	lg.setFont(Config.ui.font.md)
 	lg.printf(
-		Config.world.hud.weapon.ammo,
+		Config.world.hud.pack.ammo[clip],
 		Config.tileSize * 11.5,
 		Config.tileSize * 12,
 		Config.tileSize * 3.5,

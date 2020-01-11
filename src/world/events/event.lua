@@ -36,6 +36,12 @@ function Event:getPosition()
 	return self.body:getPosition()
 end
 
+-- Body dimensions
+--
+function Event:dimensions()
+	return self.shape:dimensions()
+end
+
 -- Shape bounds
 --
 function Event:bounds()

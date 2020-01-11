@@ -35,26 +35,23 @@ function Gameplay:enter(from, ...)
 	self:setControl('none')
 
 	-- update hud
-	Config.world.hud.location = self.name
-	self.hud.dirty = true
+	self.hud:set('location', self.name)
 
 	--
 	Base.enter(self, from, ...)
 end
 
--- -- Player is spawning...
--- --
--- function Gameplay:onPlayerPreSpawn(x, y)
--- 	self:lookAt(x, y)
--- end
-
--- -- Player is ready to control
--- --
--- function Gameplay:onPlayerPostSpawn(player)
--- 	self.player = player
--- 	--
--- 	self:setControl('player')
--- end
+-- Reward Player and item
+--
+function Gameplay:rewardPlayer(name, value)
+	if name == 'health' or name == 'shield' or name == 'ammo' then
+	-- Let HUD handle it
+		self.hud:increase(name, value)
+	else
+	-- Error!
+		error('Unidentifiable Player Reward!!')
+	end
+end
 
 -- Update HUD
 --

@@ -21,6 +21,14 @@ Shapes = {
 
 --
 
+-- Clamp `value` between `min/max` values
+--
+function Util:clamp(value, min, max)
+	return _.__max(min, _.__min(value, max))
+end
+
+-- Create boolean hash table for convenience
+--
 function Util:toBoolean(value)
 	local t = {}
 

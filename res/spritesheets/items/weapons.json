@@ -1,0 +1,211 @@
+{
+	"TextureAtlas": {
+		"SubTexture": [
+			{
+				"name": "gun01.png",
+				"x": "0",
+				"y": "0",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun02.png",
+				"x": "64",
+				"y": "0",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun03.png",
+				"x": "128",
+				"y": "0",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun04.png",
+				"x": "192",
+				"y": "0",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun05.png",
+				"x": "0",
+				"y": "32",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun06.png",
+				"x": "64",
+				"y": "32",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun07.png",
+				"x": "128",
+				"y": "32",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun08.png",
+				"x": "192",
+				"y": "32",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun09.png",
+				"x": "0",
+				"y": "64",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun10.png",
+				"x": "64",
+				"y": "64",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun11.png",
+				"x": "128",
+				"y": "64",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun12.png",
+				"x": "192",
+				"y": "64",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun13.png",
+				"x": "0",
+				"y": "96",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun14.png",
+				"x": "64",
+				"y": "96",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun15.png",
+				"x": "128",
+				"y": "96",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun16.png",
+				"x": "192",
+				"y": "96",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun17.png",
+				"x": "0",
+				"y": "128",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun18.png",
+				"x": "64",
+				"y": "128",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun19.png",
+				"x": "128",
+				"y": "128",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun20.png",
+				"x": "192",
+				"y": "128",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun21.png",
+				"x": "0",
+				"y": "160",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun22.png",
+				"x": "64",
+				"y": "160",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun23.png",
+				"x": "128",
+				"y": "160",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun24.png",
+				"x": "192",
+				"y": "160",
+				"width": "64",
+				"height": "32"
+			},
+
+			{
+				"name": "gun25.png",
+				"x": "0",
+				"y": "192",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun26.png",
+				"x": "64",
+				"y": "192",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun27.png",
+				"x": "128",
+				"y": "192",
+				"width": "64",
+				"height": "32"
+			},
+			{
+				"name": "gun28.png",
+				"x": "192",
+				"y": "192",
+				"width": "64",
+				"height": "32"
+			}
+
+		],
+		"imagePath": "Cpunk_64x32_sheet_grey_shadow.png"
+	}
+}

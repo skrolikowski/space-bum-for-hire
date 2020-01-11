@@ -8,8 +8,8 @@ return {
   height = 30,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 12,
-  nextobjectid = 11,
+  nextlayerid = 13,
+  nextobjectid = 12,
   properties = {},
   tilesets = {
     {
@@ -259,6 +259,22 @@ return {
             ["exit"] = "right",
             ["map"] = "space01",
             ["method"] = "door"
+          }
+        },
+        {
+          id = 11,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 160,
+          y = 272,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "bullets_sm",
+            ["value"] = 10
           }
         }
       }

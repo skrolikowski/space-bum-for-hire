@@ -19,7 +19,7 @@ function Pistol:new(host, x, y)
 	})
 
 	-- properties
-	--TODO: power-ups? update stats
+	self.clip     = Config.world.weapon.pistol.clip
 	self.cooldown = Config.world.weapon.pistol.cooldown
 	self.damage   = Config.world.weapon.pistol.damage
 	self.speed    = Config.world.weapon.pistol.speed
@@ -29,7 +29,7 @@ end
 --
 function Pistol:trigger(dt, et)
 	if self.isReady then
-		if Config.world.hud.weapon.ammo > 0 then
+		if Config.world.hud.pack.ammo[self.clip] > 0 then
 			self:fire()
 			self.firing = true
 			self.sprite:restart()
@@ -39,8 +39,7 @@ function Pistol:trigger(dt, et)
 			self.timer:after(self.cooldown, function() self.isReady = true end)
 
 			-- update ammo
-			Config.world.hud.weapon.ammo = Config.world.hud.weapon.ammo - 1
-			Gamestate.current().hud.dirty  = true
+			Gamestate.current().hud:decrease('ammo', 1)
 
 			-- play sound
 			Config.world.weapon.pistol.audio.fire:play()

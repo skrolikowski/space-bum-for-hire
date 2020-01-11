@@ -26,6 +26,7 @@ Effects = {
 -- Events
 -- Actions that shape the world and it's entities (e.g. moving platforms)
 Events = {
+	Pickup      = require 'src.world.events.pickup',
 	PlayerEnter = require 'src.world.events.player_enter',
 	Boomarang   = require 'src.world.events.boomarang',
 	Teleport    = require 'src.world.events.teleport',
