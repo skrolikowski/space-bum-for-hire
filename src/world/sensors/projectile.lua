@@ -13,6 +13,7 @@ function Projectile:new(host, data)
 	self.uuid     = Util:uuid()
 	self.category = 'Projectile'
 	self.host     = host
+	self.radius   = host.weapon.radius or 1
 	self.damage   = host.weapon.damage or 0
 
 	-- -- lifetime
@@ -30,7 +31,7 @@ function Projectile:new(host, data)
 	self.body:applyLinearImpulse(impulse:unpack())
 
 	-- shape
-	self.shape = Shapes['circle'](host.radius or 1)
+	self.shape = Shapes['circle'](self.radius)
 	self.shape:setBody(self.body)
 
 	-- fixture

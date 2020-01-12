@@ -67,12 +67,9 @@ function HUD:set(payload)
 	if payload.name == 'weapon' then
 	-- Set Weapon
 		-- update weapon properties
-		local weapon      = Config.world.hud.weapon
-		local spritesheet = Config.world.weapon[weapon].spritesheet
-
 		Config.world.hud.weapon = payload.value
 
-		self.spriteWeapon = Config.image.spritesheet[spritesheet]
+		self.spriteWeapon = Config.image.spritesheet[Config.world.weapon[payload.value].spritesheet]
 		self.dirty        = true
 	elseif payload.name == 'location' then
 	-- Set Location
@@ -170,17 +167,17 @@ function HUD:setCanvas()
 	weaponText:setf(_.__upper(weapon.name), Config.tileSize*7.5, 'left')
 
 	-- ammo count
-	ammoText = lg.newText(Config.ui.font.sm)
+	ammoText = lg.newText(Config.ui.munitions.md)
 	ammoText:setf(ammo[weapon.clip].now, Config.tileSize*3.5, 'center')
 
 	-- munitions text
-	bulletsText = lg.newText(Config.ui.font.sm)
-	shellsText  = lg.newText(Config.ui.font.sm)
-	plasmaText  = lg.newText(Config.ui.font.sm)
+	bulletsText = lg.newText(Config.ui.munitions.sm)
+	shellsText  = lg.newText(Config.ui.munitions.sm)
+	plasmaText  = lg.newText(Config.ui.munitions.sm)
 
-	bulletsText:setf(ammo['bullets'].now .. '/' .. ammo['bullets'].max, Config.tileSize*7.5, 'left')
-	shellsText:setf(ammo['shells'].now .. '/' .. ammo['shells'].max,    Config.tileSize*7.5, 'left')
-	plasmaText:setf(ammo['plasma'].now .. '/' .. ammo['plasma'].max,    Config.tileSize*7.5, 'left')
+	bulletsText:setf(ammo['bullets'].now .. ' / ' .. ammo['bullets'].max, Config.tileSize*5.5, 'right')
+	shellsText:setf(ammo['shells'].now   .. ' / ' .. ammo['shells'].max,  Config.tileSize*5.5, 'right')
+	plasmaText:setf(ammo['plasma'].now   .. ' / ' .. ammo['plasma'].max,  Config.tileSize*5.5, 'right')
 	--
 	-- END SETUP -----------------------
 
@@ -218,15 +215,15 @@ function HUD:setCanvas()
 	self.spriteWeapon:draw(weapon.name, Config.tileSize*1.5, Config.tileSize*8, 0, 2, 2)
 
 	-- ammo count
-	lg.draw(ammoText, Config.tileSize * 11.5, Config.tileSize * 12, _.__pi / 2)
+	lg.draw(ammoText, Config.tileSize * 11.25, Config.tileSize * 12, _.__pi / 2)
 
 	-- munitions
-	lg.draw(bulletsText, Config.tileSize * 1.5, Config.tileSize * 11.5)
-	lg.draw(shellsText,  Config.tileSize * 1.5, Config.tileSize * 13)
-	lg.draw(plasmaText,  Config.tileSize * 1.5, Config.tileSize * 14.5)
+	lg.draw(bulletsText, Config.tileSize * 1, Config.tileSize * 12)
+	lg.draw(shellsText,  Config.tileSize * 1, Config.tileSize * 13.5)
+	lg.draw(plasmaText,  Config.tileSize * 1, Config.tileSize * 15)
 
-	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*11, 0, 1.5, 1.5)
-	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*13)
+	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*10.75, 0, 1.5, 1.5)
+	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*12.5)
 	self.spriteItem:draw('plasma_md',  Config.tileSize*7, Config.tileSize*14)
 
 	--TODO:

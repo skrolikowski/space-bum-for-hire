@@ -83,7 +83,7 @@ end
 -- Draw weapon
 --
 function Weapon:draw()
-	if self.host.shooting then
+	if self.host.locking or self.host.shooting then
 	-- Draw arm starting from host center
 		local cx, cy = self.host:getPosition()
 		local w, h   = self.weaponSprite:getDimensions()

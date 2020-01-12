@@ -1,31 +1,31 @@
--- Pistol Weapon
+-- Raygun Weapon
 --
 
 local Weapon = require 'src.entities.units.weapons.weapon'
-local Pistol = Weapon:extend()
+local Raygun = Weapon:extend()
 
-function Pistol:new(host)
+function Raygun:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.effect.pistol,
-		width  = 35,
-		height = 6,
+		image  = Config.image.spritesheet.effect.laser,
+		width  = 129,
+		height = 38,
 		total  = 1,
-		fps    = 35,
-		frames = { { 1, 1, 14, 1 } },
+		fps    = 25,
+		frames = { { 1, 1, 15, 1 } },
 		after  = function() self.blast = false end
 	})
 
-	-- scaling
+	-- weapon scaling
 	self.sx = 0.85
 	self.sy = 0.85
 	--
-	Weapon.new(self, 'pistol', host)
+	Weapon.new(self, 'raygun', host)
 end
 
 -- Trigger weapon
 --
-function Pistol:trigger(dt, et)
+function Raygun:trigger(dt, et)
 	Weapon.trigger(self, dt, et)
 	--
 
@@ -46,8 +46,8 @@ function Pistol:trigger(dt, et)
 			})
 
 			-- play sound
-			Config.audio.pistol:play()
-			Config.audio.pistol:seek(0)
+			Config.audio.raygun:play()
+			Config.audio.raygun:seek(0)
 		else
 			-- dry fire
 			Config.audio.dryfire:play()
@@ -55,9 +55,9 @@ function Pistol:trigger(dt, et)
 	end
 end
 
--- Pistol shot
+-- Raygun shot
 --
-function Pistol:fire()
+function Raygun:fire()
 	local w, h  = self.weaponSprite:getDimensions()
 	local angle = self.host.aimAngle
 	local speed = self.weapon.speed
@@ -76,20 +76,17 @@ function Pistol:fire()
 	self.blast = Vec2(tx, ty)
 
 	-- New Projectile
-	Sensors['projectile'](self, {
-		x       = tx,
-		y       = ty,
-		impulse = Vec2(0, 0):polar(angle, speed),
-	})
+	Sensors['projectile'](self, { x = tx, y = ty })
 end
 
--- Draw pistol blast
+-- Draw shotgun blast
 --
-function Pistol:draw()
+function Raygun:draw()
 	Weapon.draw(self)
 	--
 	if self.blast then
 		local tx, ty = self.blast:unpack()
+		local w, h   = self.weaponSprite:getDimensions()
 		local angle  = self.host.aimAngle
 		local sx, sy = 1, 1
 
@@ -99,8 +96,8 @@ function Pistol:draw()
 		end
 
 		lg.setColor(Config.color.white)
-		self.sprite:draw(tx, ty, angle, sx, sy, 0, 2)
+		self.sprite:draw(tx, ty, angle, sx, sy, 0, 20)
 	end
 end
 
-return Pistol
+return Raygun

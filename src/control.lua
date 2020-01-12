@@ -10,8 +10,9 @@ Control_ = {
 		key_escape_on = function() Gamestate:current():quit() end,
 	},
 	player = {
-		key_1_on      = function()       Gamestate:current().player:setWeapon('pistol')   end,
-		key_2_on      = function()       Gamestate:current().player:setWeapon('shotgun')  end,
+		key_1_on      = function()       Gamestate:current().player:setWeapon('pistol')    end,
+		key_2_on      = function()       Gamestate:current().player:setWeapon('shotgun')   end,
+		key_3_on      = function()       Gamestate:current().player:setWeapon('raygun')    end,
 		key_escape_on = function()       Gamestate:current():quit()                        end,
 		key_w_on      = function()       Gamestate:current().player:keyOn('w')             end,
 		key_a_on      = function()       Gamestate:current().player:keyOn('a')             end,

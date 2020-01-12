@@ -11,7 +11,7 @@ function Shotgun:new(host)
 		width  = 60,
 		height = 8,
 		total  = 1,
-		fps    = 30,
+		fps    = 50,
 		frames = { { 1, 1, 17, 1 } },
 		after  = function() self.blast = false end
 	})
@@ -46,10 +46,11 @@ function Shotgun:trigger(dt, et)
 			})
 
 			-- play sound
-			-- Config.audio.weapon.pistol.fire:play()
+			Config.audio.shotgun:play()
+			Config.audio.shotgun:seek(0)
 		else
-			--TODO: play empty round sound
-			-- Config.audio.weapon.pistol.empty:play()
+			-- dry fire
+			Config.audio.dryfire:play()
 		end
 	end
 end
@@ -78,10 +79,10 @@ function Shotgun:fire()
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle })
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/16 })
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/16 })
-	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/8 })
-	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/8 })
-	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/4 })
-	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/4 })
+	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/14 })
+	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/14 })
+	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/12 })
+	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/12 })
 end
 
 -- Draw shotgun blast
@@ -90,34 +91,34 @@ function Shotgun:draw()
 	Weapon.draw(self)
 	--
 	if self.blast then
-		local tx, ty = self.blast:unpack()
-		local w, h   = self.sprite:dimensions()
-		local angle  = self.host.aimAngle
-		local sx, sy = 1, 1
+		local tx, ty  = self.blast:unpack()
+		local w, h    = self.sprite:dimensions()
+		local angle   = self.host.aimAngle
+		local sx, sy  = 1, 1
 
 		lg.push()
 		lg.translate(tx, ty)
 		lg.rotate(angle)
 
-		lg.setColor(Config.color.white)
+		lg.setColor(1,1,1,0.25)
 
 		-- adjust arm angle for shooting animation
 		if self.host.isMirrored then
-			self.sprite:draw(0, 0, angle, -1, -1)
-			self.sprite:draw(0, 0, angle - _.__pi/16, -1, -1)
-			self.sprite:draw(0, 0, angle + _.__pi/16, -1, -1)
-			self.sprite:draw(0, 0, angle - _.__pi/8, -0.75, -0.75)
-			self.sprite:draw(0, 0, angle + _.__pi/8, -0.75, -0.75)
-			self.sprite:draw(0, 0, angle - _.__pi/4, -0.55, -0.55)
-			self.sprite:draw(0, 0, angle + _.__pi/4, -0.55, -0.55)
+			self.sprite:draw(0, 0, angle, -1, 1)
+			self.sprite:draw(0, 0, angle - _.__pi/16, -1, 1)
+			self.sprite:draw(0, 0, angle + _.__pi/16, -1, 1)
+			self.sprite:draw(0, 0, angle - _.__pi/14, -0.75, 0.75)
+			self.sprite:draw(0, 0, angle + _.__pi/14, -0.75, 0.75)
+			self.sprite:draw(0, 0, angle - _.__pi/12, -0.5, 0.5)
+			self.sprite:draw(0, 0, angle + _.__pi/12, -0.5, 0.5)
 		else
 			self.sprite:draw(0, 0, angle)
 			self.sprite:draw(0, 0, angle - _.__pi/16)
 			self.sprite:draw(0, 0, angle + _.__pi/16)
-			self.sprite:draw(0, 0, angle - _.__pi/8, 0.75, 0.75)
-			self.sprite:draw(0, 0, angle + _.__pi/8, 0.75, 0.75)
-			self.sprite:draw(0, 0, angle - _.__pi/4, 0.55, 0.55)
-			self.sprite:draw(0, 0, angle + _.__pi/4, 0.55, 0.55)
+			self.sprite:draw(0, 0, angle - _.__pi/14, 0.75, 0.75)
+			self.sprite:draw(0, 0, angle + _.__pi/14, 0.75, 0.75)
+			self.sprite:draw(0, 0, angle - _.__pi/12, 0.5, 0.5)
+			self.sprite:draw(0, 0, angle + _.__pi/12, 0.5, 0.5)
 		end
 
 		lg.pop()

@@ -168,6 +168,11 @@ function Player:setWeapon(name)
 		-- Reassignment
 			self.weapon:destroy()
 			self.weapon = Weapons[name](self)
+
+			Gamestate:current().hud:set({
+				name  = 'weapon',
+				value = name
+			})
 		end
 	else
 	-- Init

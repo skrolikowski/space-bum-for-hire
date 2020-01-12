@@ -25,7 +25,7 @@ end
 -- Update animation
 --
 function Idle:update(dt)
-	local isAiming = self.host.lockedIn == self.name or
+	local isAiming = self.host.locking or
 	                 self.host.shooting
 
 	if isAiming then

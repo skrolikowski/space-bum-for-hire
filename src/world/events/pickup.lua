@@ -51,12 +51,12 @@ function Pickup:trigger()
 	-- reward host
 	Gamestate:current():rewardPlayer(self)
 
-	-- -- audio queue
-	-- if Config.audio.pickup[self.name] then
-	-- 	Config.audio.pickup[self.name]:play()
-	-- elseif Config.audio.pickup[self.category] then
-	-- 	Config.audio.pickup[self.category]:play()
-	-- end
+	-- audio queue
+	if Config.audio[self.name .. 'Pickup'] then
+		Config.audio[self.name]:play()
+	elseif Config.audio[self.category .. 'Pickup'] then
+		Config.audio[self.category .. 'Pickup']:play()
+	end
 
 	-- clean up
 	self:destroy()

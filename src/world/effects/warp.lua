@@ -28,6 +28,8 @@ function Warp:new(data)
 	})
 	--
 	Base.new(self, 'warp', data)
+
+	Config.audio.warp:play()
 end
 
 return Warp

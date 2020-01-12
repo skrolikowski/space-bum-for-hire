@@ -49,7 +49,7 @@ Config = {
             ammo = {
                 bullets = { now = 100, max = 100 },
                 shells  = { now = 24,  max = 24  },
-                plasma  = { now = 0,   max = 100 },
+                plasma  = { now = 6,   max = 6 },
             },
         },
         weapon = {
@@ -65,12 +65,22 @@ Config = {
             shotgun = {
                 name        = 'shotgun',
                 clip        = 'shells',
-                cooldown    = 1,
+                cooldown    = 1.25,
                 damage      = 30,
                 decay       = 10,
                 speed       = 800,
                 spritesheet = 'weapon',
-            }
+            },
+            raygun = {
+                name        = 'raygun',
+                clip        = 'plasma',
+                cooldown    = 2,
+                radius      = 8,
+                damage      = 50,
+                decay       = 10,
+                speed       = 300,
+                spritesheet = 'weapon',
+            },
         },
         filter = {
             group    = { effect = -2, unit = -1, environment = 1, event = 0, sensor = 0 },
@@ -105,22 +115,20 @@ Config = {
             md = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
             lg = lg.newFont('res/ui/fonts/Marksman.ttf', 48),
             xl = lg.newFont('res/ui/fonts/Marksman.ttf', 64),
+        },
+        munitions = {
+            sm = lg.newFont('res/ui/fonts/Improbable.ttf', 16),
+            md = lg.newFont('res/ui/fonts/Improbable.ttf', 24),
         }
     },
     audio = {
-        weapon = {
-            pistol = {
-                fire  = la.newSource('res/sfx/pistol.ogg', 'static'),
-                -- empty = la.newSource('res/sfx/.ogg', 'static'),
-            }
-        },
-        pickup = {
-            -- health  = la.newSource('res/sfx/pickup/health.ogg', 'static'),
-            -- shield  = la.newSource('res/sfx/pickup/shield.ogg', 'static'),
-            -- bullets = la.newSource('res/sfx/pickup/bullets.ogg', 'static'),
-            -- shells  = la.newSource('res/sfx/pickup/shells.ogg', 'static'),
-            -- plasma  = la.newSource('res/sfx/pickup/plasma.ogg', 'static'),
-        }
+        pistol     = la.newSource('res/sfx/GUN_FIRE-GoodSoundForYou-820112263.wav', 'static'),
+        shotgun    = la.newSource('res/sfx/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
+        raygun     = la.newSource('res/sfx/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
+        warp       = la.newSource('res/sfx/shooting_star-Mike_Koenig-1132888100.wav', 'static'),
+        dryfire    = la.newSource('res/sfx/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
+        ammoPickup = la.newSource('res/sfx/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
+        itemPickup = la.newSource('res/sfx/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
     },
     image = {
         cast = {
