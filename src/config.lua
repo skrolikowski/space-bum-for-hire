@@ -30,71 +30,52 @@ Config = {
             space01 = 'res/maps/Spaceship.lua',
             mount01 = 'res/maps/Mountains.lua',
         },
-        pickups = {
-            health = {
-                sm = 10
-            },
-            shield = {
-
-            },
-            bullets = {
-                sm = 4, md = 8, lg = 20
-            }
+        pickup = {
+            health  = { sm = 10 },
+            shield  = {},
+            bullets = { sm = 12, md = 24, lg = 50 },
         },
+        -- Player HUD
+        --
         hud = {
-            image    = lg.newImage('res/ui/HUD_health.png'),
-            location = '',
-            stat     = {
-                health    = 100,
-                healthMax = 100,
-                shield    = 0,
-                shieldMax = 35,
+            image     = lg.newImage('res/ui/HUD_health.png'),
+            location  = 'Warp Room',
+            objective = false,
+            weapon    = 'pistol',
+            stat      = {
+                health = { now = 100, max = 100 },
+                shield = { now = 0,   max = 35  },
             },
-            weapon = {
-                name = 'pistol',
-                clip = 'bullets',
+            ammo = {
+                bullets = { now = 100, max = 100 },
+                shells  = { now = 24,  max = 24  },
+                plasma  = { now = 0,   max = 100 },
             },
-            pack = {
-                ammo = {
-                    bullets = 24,
-                    rifile  = 0,
-                    shells  = 0,
-                },
-                ammoMax = {
-                    bullets = 100,
-                    rifile  = 0,
-                    shells  = 0,
-                },
-            }
         },
         weapon = {
             pistol = {
-                clip     = 'bullets',
-                cooldown = 0.35,
-                damage   = 10,
-                speed    = 1000,
-                audio = {
-                    fire = la.newSource('res/sfx/pistol.ogg', 'static'),
-                    -- empty = la.newSource('res/sfx/.ogg', 'static')
-                }
+                name        = 'pistol',
+                clip        = 'bullets',
+                cooldown    = 0.35,
+                damage      = 10,
+                decay       = 1,
+                speed       = 1000,
+                spritesheet = 'item',
+            },
+            shotgun = {
+                name        = 'shotgun',
+                clip        = 'shells',
+                cooldown    = 1,
+                damage      = 30,
+                decay       = 10,
+                speed       = 800,
+                spritesheet = 'weapon',
             }
         },
         filter = {
-            group = {
-                effect      = -2,
-                unit        = -1,
-                environment = 1,
-                event       = 0,
-                sensor      = 0,
-            },
-            category = {
-                default     = 1,
-                environment = 2,
-                unit        = 3,
-                sensor      = 4,
-                event       = 5,
-            },
-            mask = {
+            group    = { effect = -2, unit = -1, environment = 1, event = 0, sensor = 0 },
+            category = { default = 1, environment = 2, unit = 3, sensor = 4, event = 5 },
+            mask     = {
                 environment = { },
                 unit        = { },
                 sensor      = { 5 },
@@ -119,11 +100,26 @@ Config = {
     ui = {
         -- cursor = lm.newCursor('res/ui/cursors/.png'),
         font = {
-            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 16),
-            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
+            xs = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
+            sm = lg.newFont('res/ui/fonts/Marksman.ttf', 24),
             md = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
             lg = lg.newFont('res/ui/fonts/Marksman.ttf', 48),
             xl = lg.newFont('res/ui/fonts/Marksman.ttf', 64),
+        }
+    },
+    audio = {
+        weapon = {
+            pistol = {
+                fire  = la.newSource('res/sfx/pistol.ogg', 'static'),
+                -- empty = la.newSource('res/sfx/.ogg', 'static'),
+            }
+        },
+        pickup = {
+            -- health  = la.newSource('res/sfx/pickup/health.ogg', 'static'),
+            -- shield  = la.newSource('res/sfx/pickup/shield.ogg', 'static'),
+            -- bullets = la.newSource('res/sfx/pickup/bullets.ogg', 'static'),
+            -- shells  = la.newSource('res/sfx/pickup/shells.ogg', 'static'),
+            -- plasma  = la.newSource('res/sfx/pickup/plasma.ogg', 'static'),
         }
     },
     image = {
@@ -225,7 +221,7 @@ Config = {
         },
         sprites = {
             arm = {
-                player_aim = lg.newImage('res/sprites/arms/player_aim.png'),
+                player = lg.newImage('res/sprites/arms/player_aim.png'),
             },
             comment  = lg.newImage('res/sprites/comment.png'),
             spikes   = lg.newImage('res/sprites/spikes.png'),

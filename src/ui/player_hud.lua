@@ -6,9 +6,13 @@ local Modern = require 'modern'
 local HUD    = Modern:extend()
 
 function HUD:new()
-	self.spritesheet = Config.image.spritesheet.ui
-	self.background  = Config.world.hud.image
-	self.dirty       = true
+	self.background = Config.world.hud.image
+	self.dirty      = true
+	--
+	self.spriteUI        = Config.image.spritesheet.ui
+	self.spriteItem      = Config.image.spritesheet.item
+	self.spriteWeapon    = Config.image.spritesheet.item
+	self.spriteObjective = Config.image.spritesheet.avatars
 
 	-- dimensions
 	self.width  = self.background:getWidth()
@@ -26,80 +30,71 @@ function HUD:new()
 	self:setCanvas()
 end
 
--- Decrease value of player stat
+-- Decrease value of player profile
 -- and update display
 --
-function HUD:decrease(name, value)
-	if name == 'health' then
-	-- Health Decrease
-		Config.world.hud.stat.health = _.__max(Config.world.hud.stat.health - value)
-		self.dirty = true
-	elseif name == 'shield' then
-	-- Shield Decrease
-		Config.world.hud.stat.shield = _.__max(0, Config.world.hud.stat.shield - value)
-		self.dirty = true
-	elseif name == 'ammo' then
-	-- Ammo Decrease
-		local clip = Config.world.hud.weapon.clip
-		local ammo = Config.world.hud.pack.ammo[clip]
+function HUD:decrease(payload)
+	return pcall(function()
+		local currValue = Config.world.hud[payload.category][payload.name].now
+		local minValue  = 0
+		local newValue  = currValue - payload.value
 
-		Config.world.hud.pack.ammo[clip] = _.__max(0, ammo - value)
+		Config.world.hud[payload.category][payload.name].now = _.__max(minValue, newValue)
+
 		self.dirty = true
-	end
+	end)
 end
 
--- Increase value of player stat
+-- Increase value of player profile
 -- and update display
 --
-function HUD:increase(name, value)
-	if name == 'health' then
-	-- Health Increase
-		local health    = Config.world.hud.stat.health
-		local healthMax = Config.world.hud.stat.healthMax
+function HUD:increase(payload)
+	return pcall(function()
+		local currValue = Config.world.hud[payload.category][payload.name].now
+		local maxValue  = Config.world.hud[payload.category][payload.name].max
+		local newValue  = currValue + payload.value
 
-		Config.world.hud.stat.health = _.__min(health + value, healthMax)
-		self.dirty = true
-	elseif name == 'shield' then
-	-- Shield Increase
-		local shield    = Config.world.hud.stat.shield
-		local shieldMax = Config.world.hud.stat.shieldMax
+		Config.world.hud[payload.category][payload.name].now = _.__min(newValue, maxValue)
 
-		Config.world.hud.stat.shield = _.__min(shield + value, shieldMax)
 		self.dirty = true
-	elseif name == 'ammo' then
-	-- Ammo Increase
-		local clip    = Config.world.hud.weapon.clip
-		local ammo    = Config.world.hud.pack.ammo[clip]
-		local ammoMax = Config.world.hud.pack.ammoMax[clip]
-
-		Config.world.hud.pack.ammo[clip] = _.__min(ammo + value, ammoMax)
-		self.dirty = true
-	end
+	end)
 end
 
 -- Set value of player stat
 -- and update display
 --
-function HUD:set(name, value)
-	if name == 'location' then
+function HUD:set(payload)
+	if payload.name == 'weapon' then
+	-- Set Weapon
+		-- update weapon properties
+		local weapon      = Config.world.hud.weapon
+		local spritesheet = Config.world.weapon[weapon].spritesheet
+
+		Config.world.hud.weapon = payload.value
+
+		self.spriteWeapon = Config.image.spritesheet[spritesheet]
+		self.dirty        = true
+	elseif payload.name == 'location' then
 	-- Set Location
-		Config.world.hud.location = value
+		Config.world.hud.location = payload.value
 		self.dirty = true
-	elseif name == 'health' then
-	-- Set Health
-		Config.world.hud.stat.health = Util:clamp(value, 0, Config.world.hud.stat.healthMax)
+	elseif payload.name == 'objective' then
+	-- Set Objective
+		Config.world.hud.objective = payload.value
 		self.dirty = true
-	elseif name == 'shield' then
-	-- Set Shield
-		Config.world.hud.stat.shield = Util:clamp(value, 0, Config.world.hud.stat.shieldMax)
-		self.dirty = true
-	elseif name == 'ammo' then
-	-- Set Ammo
-		local clip    = Config.world.hud.weapon.clip
-		local ammoMax = Config.world.hud.pack.ammoMax[clip]
-		
-		Config.world.hud.pack.ammo[clip] = Util:clamp(value, 0, ammoMax)
-		self.dirty = true
+	else
+	-- Set Stat/Ammo
+		return pcall(function()
+			local currValue = Config.world.hud[payload.category][payload.name].now
+			local minValue  = 0
+			local maxValue  = Config.world.hud[payload.category][payload.name].max
+			local newValue  = currValue - payload.value
+
+			Config.world.hud[payload.category][payload.name].now
+				= Util:clamp(payload.value, minValue, maxValue)
+
+			self.dirty = true
+		end)
 	end
 end
 
@@ -117,57 +112,85 @@ function HUD:setCanvas()
 	local apMax   = Config.tileSize * 14
 
 	-- health
-	local health    = Config.world.hud.stat.health
-	local healthMax = Config.world.hud.stat.healthMax
-	local healthPct = (healthMax - health) / healthMax
+	local healthNow = Config.world.hud.stat.health.now
+	local healthMax = Config.world.hud.stat.health.max
+	local healthPct = (healthMax - healthNow) / healthMax
 	local hpValue   = hpMax - hpMax * healthPct
 
 	-- shield
-	-- local shield    = Config.world.hud.stat.shield
-	-- local shieldMax = Config.world.hud.stat.shieldMax
-	-- local shieldPct = (shieldMax - shield) / shieldMax
-	-- local spValue   = spMax - spMax * shieldPct
+	local shieldNow = Config.world.hud.stat.shield.now
+	local shieldMax = Config.world.hud.stat.shield.max
+	local shieldPct = (shieldMax - shieldNow) / shieldMax
+	local spValue   = spMax - spMax * shieldPct
 
 	-- weapon
-	local weapon  = Config.world.hud.weapon
-	local clip    = Config.world.hud.weapon.clip
-	local ammo    = Config.world.hud.pack.ammo[clip]
-	local ammoMax = Config.world.hud.pack.ammoMax[clip]
-	local ammoPct = (ammoMax - ammo) / ammoMax
+	local weapon = Config.world.weapon[Config.world.hud.weapon]
+
+	-- ammo
+	local ammo = {
+		bullets = Config.world.hud.ammo['bullets'],
+		shells  = Config.world.hud.ammo['shells'],
+		plasma  = Config.world.hud.ammo['plasma'],
+	}
+	local ammoNow = ammo[weapon.clip].now
+	local ammoMax = ammo[weapon.clip].max
+	local ammoPct = (ammoMax - ammoNow) / ammoMax
 	local apValue = apMax - apMax * ammoPct
-	-- 
+	--
 
 	local hpQuad  = lg.newQuad(0, 0, hpValue or 0, Config.tileSize * 2, hpImage:getDimensions())
 	local spQuad  = lg.newQuad(0, 0, spValue or 0, Config.tileSize * 2, spImage:getDimensions())
 	local apQuad  = lg.newQuad(0, 0, apValue or 0, Config.tileSize * 2, apImage:getDimensions())
-	local location
+	local locationText, weaponText
 
 	-- BEGIN SETUP -----------------
 	-- health meter
 	lg.setCanvas(hpImage)  -- 16x34
-	self.spritesheet:drawQuad('progress_redBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
+	self.spriteUI:drawQuad('progress_redBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
 	lg.setCanvas()
 	-- shield meter
 	lg.setCanvas(spImage)  -- 16x34
-	self.spritesheet:drawQuad('progress_blueBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
+	self.spriteUI:drawQuad('progress_blueBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
 	lg.setCanvas()
 	-- ammo meter
 	lg.setCanvas(apImage)  -- 16x34
-	self.spritesheet:drawQuad('progress_greenBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
+	self.spriteUI:drawQuad('progress_greenBorder', { y = 4, h = 1 }, 1, 0, _.__pi/2, 2, 2)
 	lg.setCanvas()
 
 	hpImage:setWrap('clamp')
 	spImage:setWrap('clamp')
 	apImage:setWrap('clamp')
+
 	-- location
-	location = lg.newText(Config.ui.font.md)
-	location:setf(Config.world.hud.location, self.width, 'center')
+	locationText = lg.newText(Config.ui.font.md)
+	locationText:setf(_.__upper(Config.world.hud.location), Config.tileSize*12, 'center')
+
+	-- weapon
+	weaponText = lg.newText(Config.ui.font.sm)
+	weaponText:setf(_.__upper(weapon.name), Config.tileSize*7.5, 'left')
+
+	-- ammo count
+	ammoText = lg.newText(Config.ui.font.sm)
+	ammoText:setf(ammo[weapon.clip].now, Config.tileSize*3.5, 'center')
+
+	-- munitions text
+	bulletsText = lg.newText(Config.ui.font.sm)
+	shellsText  = lg.newText(Config.ui.font.sm)
+	plasmaText  = lg.newText(Config.ui.font.sm)
+
+	bulletsText:setf(ammo['bullets'].now .. '/' .. ammo['bullets'].max, Config.tileSize*7.5, 'left')
+	shellsText:setf(ammo['shells'].now .. '/' .. ammo['shells'].max,    Config.tileSize*7.5, 'left')
+	plasmaText:setf(ammo['plasma'].now .. '/' .. ammo['plasma'].max,    Config.tileSize*7.5, 'left')
+	--
 	-- END SETUP -----------------------
 
 	-- BEGIN CANVAS ---------------
 	self.canvas = lg.newCanvas(self.width, self.height)
 	lg.setCanvas(self.canvas)
-	
+
+	-- font
+	lg.setFont(Config.ui.font.md)
+
 	-- background
 	lg.setColor(Config.color.white)
 	lg.draw(self.background)
@@ -179,33 +202,40 @@ function HUD:setCanvas()
 	lg.draw(spImage, spQuad, Config.tileSize * 14, Config.tileSize * 10)
 	lg.draw(apImage, apQuad, Config.tileSize * 12, Config.tileSize * 14)
 
-	-- shield active
-	if Config.world.hud.stat.shield > 0 then
-		self.spritesheet:draw('progress_blueBorderSmall', Config.tileSize*10+8, Config.tileSize*8+4, 0, 2, 2)
-	end
+	--TODO:
+	-- -- shield active
+	-- if Config.world.hud.stat.shield.now > 0 then
+	-- 	self.spriteUI:draw('progress_blueBorderSmall', Config.tileSize*10+8, Config.tileSize*8+4, 0, 2, 2)
+	-- end
 
 	-- location
-	lg.draw(location, Config.tileSize*12 + Config.padding/2, Config.world.meter/2 + Config.padding/2)
+	lg.draw(locationText, Config.tileSize*26, Config.tileSize*2)
 
-	-- weapon
-	-- TODO:
+	-- weapon name
+	lg.draw(weaponText, Config.tileSize*1.5, Config.tileSize*7.5)
+
+	-- weapon image
+	self.spriteWeapon:draw(weapon.name, Config.tileSize*1.5, Config.tileSize*8, 0, 2, 2)
 
 	-- ammo count
-	lg.setFont(Config.ui.font.md)
-	lg.printf(
-		Config.world.hud.pack.ammo[clip],
-		Config.tileSize * 11.5,
-		Config.tileSize * 12,
-		Config.tileSize * 3.5,
-		'center',
-		_.__pi / 2
-	)
+	lg.draw(ammoText, Config.tileSize * 11.5, Config.tileSize * 12, _.__pi / 2)
 
-	-- objective
-	-- TODO:
+	-- munitions
+	lg.draw(bulletsText, Config.tileSize * 1.5, Config.tileSize * 11.5)
+	lg.draw(shellsText,  Config.tileSize * 1.5, Config.tileSize * 13)
+	lg.draw(plasmaText,  Config.tileSize * 1.5, Config.tileSize * 14.5)
+
+	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*11, 0, 1.5, 1.5)
+	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*13)
+	self.spriteItem:draw('plasma_md',  Config.tileSize*7, Config.tileSize*14)
+
+	--TODO:
+	-- -- objective
+	-- if Config.world.hud.objective then
+	-- 	self.spriteObjective:draw(Config.world.hud.objective, Config.tileSize*10, Config.tileSize*10, 0, 5, 5)
+	-- end
 
 	-- END DRAW ------------------------
-
 
 	-- END CANVAS ----------------------
 	lg.setCanvas()
@@ -234,7 +264,7 @@ function HUD:draw()
 
 	lg.setColor(r, g, b, 0.95)
 	lg.draw(self.canvas)
-	
+
 	--
 	lg.pop()
 end

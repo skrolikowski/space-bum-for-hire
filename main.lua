@@ -1,4 +1,3 @@
--- Tower Defense
 -- Shane Krolikowski
 --
 la = love.audio
@@ -11,7 +10,7 @@ lg = love.graphics
 lg.setDefaultFilter('nearest', 'nearest')
 
 -- Vendor packages
-Inspect   = require 'inspect'
+Inspect   = require 'vendor.inspect.inspect'
 Camera    = require 'vendor.hump.camera'
 Gamestate = require 'vendor.hump.gamestate'
 Timer     = require 'vendor.hump.timer'
@@ -45,7 +44,7 @@ end
 --
 function love.keypressed(key)
     _:dispatch('key_' .. key .. '_on')
-    
+
     _Keys[key] = 0
 end
 

@@ -273,8 +273,9 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["item"] = "bullets_sm",
-            ["value"] = 10
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "sm"
           }
         }
       }

@@ -88,7 +88,7 @@
 			},
 
 			{
-				"name": "gun13.png",
+				"name": "pistol.png",
 				"x": "0",
 				"y": "64",
 				"width": "32",
@@ -546,7 +546,7 @@
 				"height": "32"
 			},
 			{
-				"name": "ammo10.png",
+				"name": "plasma_sm.png",
 				"x": "128",
 				"y": "384",
 				"width": "32",
@@ -582,14 +582,14 @@
 				"height": "32"
 			},
 			{
-				"name": "ammo15.png",
+				"name": "plasma_lg.png",
 				"x": "96",
 				"y": "416",
 				"width": "32",
 				"height": "32"
 			},
 			{
-				"name": "ammo16.png",
+				"name": "plasma_md.png",
 				"x": "128",
 				"y": "416",
 				"width": "32",

@@ -8,15 +8,24 @@ local Projectile = Modern:extend()
 -- New Projectile
 -- Host is firing weapon
 --
-function Projectile:new(host, x, y, impulse, damage)
+function Projectile:new(host, data)
 	self.name     = 'Projectile'
 	self.uuid     = Util:uuid()
 	self.category = 'Projectile'
 	self.host     = host
-	self.damage   = damage or 0
+	self.damage   = host.weapon.damage or 0
 
-	-- body	
-	self.body  = lp.newBody(_World.world, x, y, 'dynamic')
+	-- -- lifetime
+	self.timer = Timer.new()
+	self.timer:every(0.25, function() self:decay() end)
+
+	-- calculate impulse
+	local angle = data.angle or host.host.aimAngle
+	local mag   = host.weapon.speed
+	local impulse = Vec2(0, 0):polar(angle, mag)
+
+	-- body
+	self.body  = lp.newBody(_World.world, data.x, data.y, 'dynamic')
 	self.body:setGravityScale(0)
 	self.body:applyLinearImpulse(impulse:unpack())
 
@@ -33,15 +42,28 @@ function Projectile:new(host, x, y, impulse, damage)
 	self.fixture:setSensor(true)
 end
 
+-- Decay damage for specified amount
+--
+function Projectile:decreaseDamage()
+	self.damage = self.damage - (host.weapon.decay or 1)
+
+	-- destroy
+	if self.damage <= 0 then
+		self:destroy()
+	end
+end
+
 -- Update
 --
 function Projectile:update(dt)
 	--
 end
 
--- Destroy fixture
+-- Flag for removal
 --
 function Projectile:destroy()
+	self.timer:clear()
+	--
 	self.remove = true
 	self.body:destroy()
 end

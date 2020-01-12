@@ -41,16 +41,15 @@ function Gameplay:enter(from, ...)
 	Base.enter(self, from, ...)
 end
 
--- Reward Player and item
+-- Reward Player a payload
 --
-function Gameplay:rewardPlayer(name, value)
-	if name == 'health' or name == 'shield' or name == 'ammo' then
+function Gameplay:rewardPlayer(payload)
+	-- if payload.name == '' then
+	-- 	-- TODO: key items?
+	-- else
 	-- Let HUD handle it
-		self.hud:increase(name, value)
-	else
-	-- Error!
-		error('Unidentifiable Player Reward!!')
-	end
+		self.hud:increase(payload)
+	-- end
 end
 
 -- Update HUD

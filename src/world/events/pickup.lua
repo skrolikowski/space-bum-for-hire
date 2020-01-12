@@ -10,10 +10,22 @@ local Pickup = Event:extend()
 function Pickup:new(data)
 	Event.new(self, 'Pickup', data)
 	--
-	self.type   = data.properties.type  or 'item'
-	self.item   = data.properties.item  or 'bullets'
-	self.value  = data.properties.value or 'sm'
-	self.sprite = Config.image.spritesheet[self.type]
+	-- properties
+	self.name     = data.properties.name     or 'bullets'
+	self.category = data.properties.category or 'ammo'
+	self.value    = data.properties.value    or 1
+
+	-- image
+	self.image  = self.name
+	self.sprite = Config.image.spritesheet[data.properties.spritesheet or 'item']
+
+	-- NOTE: some pickups will have sizes
+	-- that will need to be translated
+	-- into a numerical value.
+	if _:isString(self.value) then
+		self.image = self.name .. '_' .. self.value
+		self.value = Config.world.pickup[self.name][self.value]
+	end
 
 	-- scaling
 	self.sx = 1
@@ -37,7 +49,14 @@ end
 --
 function Pickup:trigger()
 	-- reward host
-	Gamestate:current():rewardPlayer(self.item, self.value)
+	Gamestate:current():rewardPlayer(self)
+
+	-- -- audio queue
+	-- if Config.audio.pickup[self.name] then
+	-- 	Config.audio.pickup[self.name]:play()
+	-- elseif Config.audio.pickup[self.category] then
+	-- 	Config.audio.pickup[self.category]:play()
+	-- end
 
 	-- clean up
 	self:destroy()
@@ -53,13 +72,13 @@ end
 --
 function Pickup:draw()
 	local cx, cy = self:getPosition()
-	local w, h   = self.sprite:dimensions(self.item)
+	local w, h   = self.sprite:dimensions(self.image)
 	local sx, sy = self.sx * _.__cos(self.osc), self.sx
 	local ox, oy = w/2, h/2 + _.__sin(self.osc) * 5
 
 	lg.setColor(Config.color.white)
 
-	self.sprite:draw(self.item, cx, cy, 0, sx, sy, ox, oy)
+	self.sprite:draw(self.image, cx, cy, 0, sx, sy, ox, oy)
 	--
 	Event.draw(self)
 end

@@ -10,64 +10,55 @@ local Weapon = Modern:extend()
 function Weapon:new(name, host)
 	self.name  = name
 	self.host  = host
-	self.blast = Vec2(0, 0)
 	self.timer = Timer.new()
 
-	-- sprite scaling
-	self.sx = 1
-	self.sy = 1
+	-- weapon
+	self.weapon       = Config.world.weapon[name]
+	self.weaponSprite = self:setWeaponCanvas()
+end
 
-	-- flags
-	self.firing  = false
-	self.isReady = true
+-- Tear down
+--
+function Weapon:destroy()
+	self.timer:clear()
+end
 
-	self:updateAimAngle()
+--
+--
+function Weapon:setWeaponCanvas()
+	local armImage    = Config.image.sprites.arm[_.__lower(self.host.name)]
+	local weaponImage = Config.image.spritesheet[self.weapon.spritesheet]
+
+	-- dimensions
+	local aw, ah = armImage:getDimensions()
+	local ww, wh = weaponImage:dimensions(self.weapon.name)
+
+	local canvas = lg.newCanvas(aw + ww/2, ah + wh/2)
+	local width, height = canvas:getDimensions()
+
+	lg.setCanvas(canvas)
+	--
+	-- player arm
+	lg.setColor(Config.color.white)
+	lg.draw(armImage, 0, ah/2, 0, self.host.behavior.sx, self.host.behavior.sy)
+
+	-- weapon
+	weaponImage:draw(self.weapon.name, aw/2, -ah/4, 0, self.sx, self.sy, self.ox, self.oy)
+
+	-- -- debug
+	-- lg.setColor(Config.color.black)
+	-- lg.rectangle('line', 0, 0, width, height)
+
+	--
+	lg.setCanvas()
+
+	return canvas
 end
 
 -- Destroy weapon (...not really)
 --
 function Weapon:destroy()
 	self.timer:clear()
-end
-
--- Get aiming angle of Unit Entity
--- TODO: re-factor
---
-function Weapon:updateAimAngle()
-	local isMirrored = self.host.isMirrored
-	local isLocked   = self.host.locking
-	local ax, ay     = self.host.axis:unpack()
-	local angle
-
-	-- can only aim downward if locked in position
-	--
-	if not isLocked then
-		ay = _.__min(0, ay)
-	end
-
-	angle = Vec2(ax, ay):normalize():heading()
-
-	-- adjust aiming angle
-	--
-	if angle == 0 and isMirrored then
-		angle = _.__pi
-	end
-
-
-	self.angle = angle
-end
-
-function Weapon:fire()
-	local w, h = self.host:dimensions()
-
-	-- line up with host entity shot
-	self.blast = Vec2(0, -h/5):polar(self.angle, w)
-
-	-- New Projectile
-	local wx, wy  = self.host.body:getWorldPoints(self.blast:unpack())
-	local impulse = self.blast:polar(self.angle, self.speed)
-
-	Sensors['projectile'](self, wx, wy, impulse, self.damage)
 end
 
 -- Trigger weapon
@@ -85,8 +76,6 @@ end
 -- Update weapon
 --
 function Weapon:update(dt)
-	self:updateAimAngle()
-	--
 	self.timer:update(dt)
 	self.sprite:update(dt)
 end
@@ -94,23 +83,20 @@ end
 -- Draw weapon
 --
 function Weapon:draw()
-	-- draw weapon blast
-	if self.firing then
-		local cx, cy = self.host.body:getWorldPoints(self.blast:unpack())
-		local sx, sy = self.sx, self.sy
-
-		lg.setColor(Config.color.white)
-		self.sprite:draw(cx, cy, self.angle, sx, sy)
-	end
-
-	-- draw player arm
-	-- TODO: re-factor
 	if self.host.shooting then
-		local image  = Config.image.sprites.arm.player_aim
+	-- Draw arm starting from host center
 		local cx, cy = self.host:getPosition()
-		local w, h   = image:getDimensions()
-		local angle  = self.angle
+		local w, h   = self.weaponSprite:getDimensions()
+		local angle  = self.host.aimAngle
+		local tx, ty = cx, cy - h/2
 		local sx, sy = 1, 1
+		local ox, oy = 0, h/4
+
+		-- adjust arm placement for crouch animation
+		--
+		if self.host.behavior.name == 'Player_crouch' then
+			ty = ty + ty * 0.05
+		end
 
 		-- adjust arm angle for shooting animation
 		if self.host.isMirrored then
@@ -118,14 +104,7 @@ function Weapon:draw()
 			angle = angle + _.__pi
 		end
 
-		-- adjust arm placement for crouch animation
-		--
-		if self.host.behavior.name == 'Player_crouch' then
-			h = -h/4
-		end
-
-		lg.setColor(Config.color.white)
-		lg.draw(image, cx, cy-h, angle, sx, sy)
+		lg.draw(self.weaponSprite, tx, ty, angle, sx, sy, ox, oy)
 	end
 end
 

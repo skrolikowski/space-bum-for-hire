@@ -10,22 +10,21 @@ function Player:new(data)
 	self.axis     = Vec2()  -- controller axis
 	self.angle    = 0
 	self.cooldown = { now = 0, max = 1 }
-	self.health   = Config.world.hud.stat.health
+	self.health   = Config.world.hud.stat.health.now
 	self.speed    = 1000
 
 	-- flags
 	self.lockedIn = false
 
-	-- weapon animation
-	self.weapon = Weapons[Config.world.hud.weapon.name](self)
 	--
 	Unit.new(self, _:merge(data, {
 		name  = 'Player',
 		shape = 'rectangle',
 	}))
 
-	-- behavior/animation
+	-- bootstrap
 	self:setBehavior('idle')
+	self:setWeapon(Config.world.hud.weapon)
 end
 
 -- Convienence keyOn method
@@ -128,9 +127,51 @@ function Player:terminateJump()
 	local vx, vy = self:getLinearVelocity()
 
 	self.jumping = false
-	
+
 	if vy < 0 then
 		self:setLinearVelocity(vx, 0)
+	end
+end
+
+-- Aiming angle for weapon sprite completion
+--
+function Player:getAimAngle()
+	-- if self.shooting then
+	-- only update if necessary
+	-- costly math below
+		local ax, ay = self.axis:unpack()
+		local angle
+
+		-- can only aim downward if locked in position
+		--
+		if not self.locking then
+			ay = _.__min(0, ay)
+		end
+
+		angle = Vec2(ax, ay):normalize():heading()
+
+		-- adjust aiming angle
+		--
+		if angle == 0 and self.isMirrored then
+			angle = _.__pi
+		end
+
+		return angle
+	-- end
+end
+
+-- Switch weapon
+--
+function Player:setWeapon(name)
+	if self.weapon then
+		if self.weapon.name ~= name then
+		-- Reassignment
+			self.weapon:destroy()
+			self.weapon = Weapons[name](self)
+		end
+	else
+	-- Init
+		self.weapon = Weapons[name](self)
 	end
 end
 
@@ -172,6 +213,8 @@ function Player:update(dt)
     end
 	----------------------------------
 
+	-- update aiming & weapon
+	self.aimAngle = self:getAimAngle()
 	self.weapon:update(dt)
 	--
 	Unit.update(self, dt)

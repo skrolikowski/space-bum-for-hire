@@ -4,9 +4,7 @@
 local Weapon = require 'src.entities.units.weapons.weapon'
 local Pistol = Weapon:extend()
 
-function Pistol:new(host, x, y)
-	Weapon.new(self, 'Pistol', host)
-	--
+function Pistol:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('default', {
 		image  = Config.image.spritesheet.effect.pistol,
@@ -15,41 +13,87 @@ function Pistol:new(host, x, y)
 		total  = 1,
 		fps    = 35,
 		frames = { { 1, 1, 14, 1 } },
-		after  = function() self.firing = false end
+		after  = function() self.blast = false end
 	})
 
-	-- properties
-	self.clip     = Config.world.weapon.pistol.clip
-	self.cooldown = Config.world.weapon.pistol.cooldown
-	self.damage   = Config.world.weapon.pistol.damage
-	self.speed    = Config.world.weapon.pistol.speed
+	-- scaling
+	self.sx = 0.85
+	self.sy = 0.85
+	--
+	Weapon.new(self, 'pistol', host)
 end
 
 -- Trigger weapon
 --
 function Pistol:trigger(dt, et)
-	if self.isReady then
-		if Config.world.hud.pack.ammo[self.clip] > 0 then
+	Weapon.trigger(self, dt, et)
+	--
+
+	if not self.jammed then
+		if Config.world.hud.ammo[self.weapon.clip].now > 0 then
 			self:fire()
-			self.firing = true
 			self.sprite:restart()
 
 			-- cooldown
-			self.isReady = false
-			self.timer:after(self.cooldown, function() self.isReady = true end)
+			self.jammed = true
+			self.timer:after(self.weapon.cooldown, function() self.jammed = false end)
 
 			-- update ammo
-			Gamestate.current().hud:decrease('ammo', 1)
+			Gamestate.current().hud:decrease({
+				category = 'ammo',
+				name     = self.weapon.clip,
+				value    = 1
+			})
 
 			-- play sound
-			Config.world.weapon.pistol.audio.fire:play()
+			-- Config.audio.weapon.pistol.fire:play()
 		else
 			--TODO: play empty round sound
-			-- Config.world.weapon.pistol.audio.empty:play()
+			-- Config.audio.weapon.pistol.empty:play()
 		end
 	end
+end
+
+-- Pistol shot
+--
+function Pistol:fire()
+	local w, h  = self.weaponSprite:getDimensions()
+	local angle = self.host.aimAngle
+	local speed = self.weapon.speed
+
+	-- blast coordinates
+	local bx, by = Vec2(0, -h/2):polar(angle, w):unpack()
+	local tx, ty = self.host.body:getWorldPoints(bx, by)
+
+	-- adjust arm placement for crouch animation
 	--
-	Weapon.trigger(self, dt, et)
+	if self.host.behavior.name == 'Player_crouch' then
+		ty = ty + ty * 0.05
+	end
+
+	-- line up with host entity shot
+	self.blast = Vec2(tx, ty)
+
+	-- New Projectile
+	Sensors['projectile'](self, {
+		x       = tx,
+		y       = ty,
+		impulse = Vec2(0, 0):polar(angle, speed),
+	})
+end
+
+-- Draw pistol blast
+--
+function Pistol:draw()
+	Weapon.draw(self)
+	--
+	if self.blast then
+		local tx, ty = self.blast:unpack()
+		local angle  = self.host.aimAngle
+
+		lg.setColor(Config.color.white)
+		self.sprite:draw(tx, ty, angle)
+	end
 end
 
 return Pistol
