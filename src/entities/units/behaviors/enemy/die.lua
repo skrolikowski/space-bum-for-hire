@@ -1,18 +1,17 @@
 -- Die Behavior
 --
 
-local Behavior = require 'src.entities.units.behaviors.behavior'
-local Base     = require 'src.entities.units.behaviors.executioner.base'
-local Die      = Base:extend()
+local Base = require 'src.entities.units.behaviors.enemy.base'
+local Die  = Base:extend()
 
 function Die:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('die', {
-		image  = Config.image.spritesheet.enemies.executioner,
+		image  = host.sprite,
 		width  = 87,
 		height = 59,
 		total  = 1,
-		fps    = 5,
+		fps    = 10,
 		frames = {
 			{ 5, 1, 5, 5 },
 			{ 6, 1, 6, 3 }
@@ -21,6 +20,9 @@ function Die:new(host)
 	})
 	--
 	Base.new(self, 'die', host)
+
+	--
+	
 end
 
 return Die

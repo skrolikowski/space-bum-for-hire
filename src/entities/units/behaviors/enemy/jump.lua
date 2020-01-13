@@ -1,7 +1,7 @@
 -- Jump Behavior
 --
 
-local Base = require 'src.entities.units.behaviors.executioner.base'
+local Base = require 'src.entities.units.behaviors.enemy.base'
 local Jump = Base:extend()
 
 function Jump:new(host)
@@ -9,7 +9,7 @@ function Jump:new(host)
 	--
 	self.sprite = Animator()
 	self.sprite:addAnimation('jump', {
-		image  = Config.image.spritesheet.enemies.executioner,
+		image  = host.sprite,
 		width  = 87,
 		height = 59,
 		total  = 1,
@@ -21,20 +21,6 @@ function Jump:new(host)
 	})
 	--
 	Base.new(self, 'jump', host)
-end
-
--- Handle collision detection
---
-function Jump:beginContact(other, col)
-	--
-end
-
--- Handle collision detection
---
-function Jump:endContact(other, col)
-	if other.name == 'Environment' then
-		self.onGround = false
-	end
 end
 
 return Jump

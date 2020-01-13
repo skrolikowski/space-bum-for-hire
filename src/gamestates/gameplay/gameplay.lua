@@ -16,16 +16,6 @@ function Gameplay:init(data)
 	lg.setCanvas(self.foreground)
 		self.map:drawTileLayer('Foreground')
 	lg.setCanvas()
-
-	-- default background canvas
-	self.background = lg.newCanvas(self.width, self.height)
-	lg.setCanvas(self.background)
-		self.map:drawTileLayer('Background')
-		self.map:drawTileLayer('Decoratives (BG)')
-		self.map:drawTileLayer('Walls')
-		self.map:drawTileLayer('Platforms')
-		self.map:drawTileLayer('Decoratives (FG)')
-	lg.setCanvas()
 end
 
 -- Enter cutscene

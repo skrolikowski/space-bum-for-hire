@@ -1269,13 +1269,13 @@ return {
       objects = {
         {
           id = 145,
-          name = "Doctor",
+          name = "Executioner",
           type = "",
           shape = "rectangle",
-          x = 288,
-          y = 1104,
-          width = 80,
-          height = 80,
+          x = 304,
+          y = 1088,
+          width = 119,
+          height = 91,
           rotation = 0,
           visible = true,
           properties = {}

@@ -18,11 +18,7 @@ function Unit:new(data)
 	-- properties
 	self.health     = 100
 	self.jumpHeight = 4500
-
-	-- sprite, for behaviors
-	self.sprite = Config.image.cast[_.__lower(self.name)]
-	self.sprite = self.sprite[_.__random(#self.sprite)]
-
+	
 	-- flags
 	self.isMirrored = false
 	self.isFlipped  = false
@@ -104,6 +100,7 @@ function Unit:setBehavior(name, ...)
 	if self.behavior then
 	-- Reassignment
 		if self.behavior.name ~= name then
+			print(self.behavior.name, name)
 		-- Change in behavior
 			self.behavior:destroy()
 			self.behavior = Behaviors[name](self, ...)

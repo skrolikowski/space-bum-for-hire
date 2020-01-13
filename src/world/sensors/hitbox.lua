@@ -14,25 +14,33 @@ end
 
 -- Set damage multipler
 --
-function HitBox:setMultiplier(multiplier)
-	self.multiplier = multiplier
+function HitBox:setMultiplier(multipler)
+	self.multipler = multipler
 end
 
 -- Event - beginContact
 --
 function HitBox:beginContact(other, col)
 	if other.name == 'Spikes' then
-		self.host:damage(other, other.attack * self.multiplier)
+		-- print(self.host.name, other.name)
+		self.host:damage(other, other.attack)
+	-- Spike damage
+	elseif other.name == 'Projectile' then
+	-- Projectile damage
+		-- print(self.host.name, other.name)
+		self.host:damage(other, other.attack * self.multipler)
 	elseif other.name == 'Strike' then
-		self.host:damage(other, other.attack * self.multiplier)
+	-- Strike attack damage
+		-- print(self.host.name, other.name)
+		self.host:damage(other, other.attack)
 	end
 end
 
 -- Draw HitBox
 --
 function HitBox:draw()
-	-- lg.setColor(Config.color.sensor.hitbox)
-	-- self.shape:draw()
+	lg.setColor(Config.color.sensor.hitbox)
+	self.shape:draw()
 end
 
 return HitBox

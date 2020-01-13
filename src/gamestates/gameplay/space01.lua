@@ -12,6 +12,16 @@ function Space01:init()
         id   = 'space01',
         map  = Config.world.maps['space01'],
     })
+	--
+    -- background canvas
+	self.background = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.background)
+		self.map:drawTileLayer('Background')
+		self.map:drawTileLayer('Decoratives (BG)')
+		self.map:drawTileLayer('Walls')
+		self.map:drawTileLayer('Platforms')
+		self.map:drawTileLayer('Decoratives (FG)')
+	lg.setCanvas()
 end
 
 function Space01:enter(from, ...)

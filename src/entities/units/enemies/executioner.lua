@@ -17,41 +17,8 @@ function Executioner:new(data)
 	self.jumping    = false
 	self.running    = false
 
-    -- behavior/animation
-    self:setBehavior('fall')
-end
-
-function Executioner:update(dt)
-    local vx, vy = self:getLinearVelocity()
-
-	-- Mini State Machine ------------
-    if self.onGround then
-    -- on Ground
-    	if self.health <= 0 then
-    	-- Dying
-    		self:setBehavior('die')
-        elseif self.attacking then
-        -- Attacking
-            self:setBehavior('attack')
-    	elseif self.jumping then
-    	-- Jumping
-    		self:setBehavior('jump')
-    	elseif self.target then
-    	-- Chasing
-    		self:setBehavior('chase')
-    	else
-    	-- Idle
-    		self:setBehavior('idle')
-    	end
-    else
-    -- In Air
-    	if vy > 0 then
-    		self:setBehavior('fall')
-		end
-    end
-
-	--
-	Enemy.update(self, dt)
+    -- default behavior
+    self:patrol()
 end
 
 return Executioner

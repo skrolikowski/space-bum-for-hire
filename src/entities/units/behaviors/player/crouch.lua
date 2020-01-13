@@ -1,9 +1,8 @@
 -- Crouch Behavior
 --
 
-local Behavior = require 'src.entities.units.behaviors.behavior'
-local Base     = require 'src.entities.units.behaviors.player.base'
-local Crouch   = Base:extend()
+local Base   = require 'src.entities.units.behaviors.player.base'
+local Crouch = Base:extend()
 
 function Crouch:new(host)
 	self.sprite = Animator()
@@ -44,17 +43,24 @@ function Crouch:setBounds()
 	self.bounds = AABB:fromContainer(x, y + h/4, w/3, h/2)
 end
 
--- Set up Hit Boxes for base
--- Player sprite
+-- Set sensors for: Player
+--   - Hit Boxes (crouch)
 --
-function Crouch:setHitBoxes()
-	self:addHitBox('body', Shapes['rectangle'](self.bounds:scale(0.75, 0.75):container()))
+function Crouch:setSensors()
+	local x, y, w, h = self.bounds:scale(0.75, 0.75):container()
+	local bodyShape  = Shapes['rectangle'](x, y, w, h)
+
+	bodySensor = Sensors['hitbox'](self.host)
+	bodySensor:setShape(bodyShape)
+
+	-- add sensors
+	table.insert(self.sensors, bodySensor)
 end
 
 -- Update animation
 --
 function Crouch:update(dt)
-	local isAiming = self.host.lockedIn == self.name or
+	local isAiming = self.host.locking or
 	                 self.host.shooting
 
 	if isAiming then

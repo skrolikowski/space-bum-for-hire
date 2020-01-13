@@ -249,17 +249,20 @@ end
 -- Take damage
 --
 function Entity:damage(other, attack)
-	if self.canDestroy then
+	if self.canDestroy and not self.dying then
 		print('hit!', self.health)
 		self.health = self.health - attack
 
 		-- update stats
-		Gamestate:current().hud:set('health', self.health)
+		Gamestate:current().hud:set({
+			name     = 'health',
+			category = 'item',
+			value    = self.health
+		})
 
 		if self.health <= 0 then
-			self:destroy()
+			self.dying = true
 		end
-
 	end
 end
 

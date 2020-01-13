@@ -14,7 +14,7 @@ function Projectile:new(host, data)
 	self.category = 'Projectile'
 	self.host     = host
 	self.radius   = host.weapon.radius or 1
-	self.damage   = host.weapon.damage or 0
+	self.attack   = host.weapon.attack or 0
 
 	-- -- lifetime
 	self.timer = Timer.new()
@@ -46,10 +46,10 @@ end
 -- Decay damage for specified amount
 --
 function Projectile:decreaseDamage()
-	self.damage = self.damage - (host.weapon.decay or 1)
+	self.attack = self.attack - (host.weapon.decay or 1)
 
 	-- destroy
-	if self.damage <= 0 then
+	if self.attack <= 0 then
 		self:destroy()
 	end
 end

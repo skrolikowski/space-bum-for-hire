@@ -22,6 +22,9 @@ function Player:new(data)
 		shape = 'rectangle',
 	}))
 
+	-- sprite, for behaviors
+	self.sprite = Config.image.cast['player']
+
 	-- bootstrap
 	self:setBehavior('idle')
 	self:setWeapon(Config.world.hud.weapon)
@@ -186,9 +189,15 @@ function Player:update(dt)
     local vx, vy = self:getLinearVelocity()
 
     -- Mini State Machine ------------
-    if self.onGround then
+    if self.dying then
+	-- Dying
+		self:setBehavior('die')
+    elseif self.onGround then
     -- on Ground
-    	if self.jumping then
+    	if self.dying then
+    	-- Dying
+    		self:setBehavior('die')
+    	elseif self.jumping then
     	-- Jumping
     		self:setBehavior('jump')
     	elseif self.lockedIn then

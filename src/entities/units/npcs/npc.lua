@@ -20,13 +20,17 @@ function NPC:new(data)
 	-- AI
 	self.timer = Timer.new()
 
+	-- sprite, for behaviors
+	self.sprite = Config.image.cast[_.__lower(self.name)]
+	self.sprite = self.sprite[_.__random(#self.sprite)]
+
 	-- behaviors
-	self.dying    = false
-	self.punching = false
-	self.running  = false
-	self.talking  = false
-	self.guarding = false
-	self.walking  = false
+	self.dying     = false
+	self.attacking = false
+	self.running   = false
+	self.talking   = false
+	self.guarding  = false
+	self.walking   = false
 
 	-- behavior/animation
 	self:setBehavior('idle')
@@ -49,12 +53,12 @@ function NPC:update(dt)
 	local vx, vy = self:getLinearVelocity()
 
 	-- Mini State Machine ------------
-    if self.onGround then
+	if self.dying then
+	-- Dying
+		self:setBehavior('die')
+    elseif self.onGround then
     -- on Ground
-    	if self.dying then
-    	-- Dying
-    		self:setBehavior('die')
-    	elseif self.attacking then
+    	if self.attacking then
         -- Attacking
             self:setBehavior('attack')
     	elseif self.talking then
