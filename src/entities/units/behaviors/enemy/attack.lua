@@ -14,7 +14,8 @@ function Attack:new(host)
 		frames = {
 			{ 3, 1, 3, 5 },
 			{ 4, 1, 4, 1 }
-		}
+		},
+		after = function() host.attacking = false end
 	})
 	--
 	Base.new(self, 'attack', host)

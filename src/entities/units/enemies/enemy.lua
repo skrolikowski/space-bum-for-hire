@@ -10,9 +10,15 @@ function Enemy:new(data)
 	}))
 	--
 	-- properties
-	self.title  = data.title 
-	self.health = 100
-	self.speed  = 400
+	self.title  = data.title  or 'Enemy'
+	self.health = data.health or 100
+	self.speed  = data.speed  or 400
+	self.unrest = data.unrest or 3
+
+	-- sensors/events
+	self._timing = data.timing
+	self._attack = data.attack
+	self._sight  = data.sight
 
 	-- AI
 	self.timer  = Timer.new()
@@ -20,25 +26,30 @@ function Enemy:new(data)
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast[_.__lower(self.name)]
 
-	-- behaviors
+	-- bootstrap
+	self:resetFlags()
+	self:setBehavior('fall')
+end
+
+-- -- Destroy
+-- --
+-- function Enemy:destroy()
+-- 	-- delay cleanup
+-- 	self.timer:after(3, function()
+-- 		self.timer:clear()
+-- 		--
+-- 		Unit.destroy(self)
+-- 	end)
+-- end
+
+-- Reset flags
+--
+function Enemy:resetFlags()
 	self.dying     = false
+	self.hurting   = false
 	self.attacking = false
 	self.running   = false
 	self.guarding  = false
-
-	-- behavior/animation
-	self:setBehavior('idle')
-end
-
--- Destroy
---
-function Enemy:destroy()
-	-- delay cleanup
-	self.timer:after(3, function()
-		self.timer:clear()
-		--
-		Unit.destroy(self)
-	end)
 end
 
 -- Update
@@ -60,9 +71,12 @@ function Enemy:update(dt)
     	elseif self.running then
     	-- Walking/Running
     		self:setBehavior('run')
-    	elseif self.guarding then
-    	-- Guarding
-    		self:setBehavior('guard')
+    	elseif self.hurting then
+    	-- Hurting
+    		self:setBehavior('hurt')
+		elseif _.__abs(vx) > 100 then
+		-- Sliding
+			self:setBehavior('slide')
     	else
     	-- Idle
     		self:setBehavior('idle')
@@ -75,89 +89,6 @@ function Enemy:update(dt)
    	end
    	--
 	Unit.update(self, dt)
-end
-
-----
-
-function Enemy:default()
-	self:patrol()
-end
-
--- Patrol
---
-function Enemy:patrol(direction)
-	self.walking    = true
-	self.isMirrored = direction == 'left' or false
-	--
-	self.pacing = self.timer:every(3, function()
-		self.isMirrored = not self.isMirrored
-	end)
-	
-	-- sight detection
-	-- interact with entities
-	--
-	self.sight = Sensors['sight'](self, { 'Player' })
-	self.sight:setShape(Shapes['circle'](100))
-	self.sight:setInFocus(function(other)
-		self.walking = false
-		self.sight:destroy()
-		self.timer:cancel(self.pacing)
-		--
-		if other.name == 'Player' then
-		-- Hunt Player
-			self:hunt(other, 5, function()
-				self:patrol()
-			end)
-		end
-	end)
-end
-
--- Hunt
---
-function Enemy:hunt(other, delay)
-	local hx, hy = self:getPosition()
-	local tx, ty = other:getPosition()
-
-	self.target     = other
-	self.running    = true
-	self.isMirrored = tx < hx
-
-	-- attack if player in range
-	self.sight = Sensors['sight'](self, { 'Player' })
-	self.sight:setShape(Shapes['circle'](50))
-	self.sight:setInFocus(function(other)
-		self.target  = nil
-		self.running = false
-		self.sight:destroy()
-		--
-		if other.name == 'Player' then
-		-- Hunt Player
-			self:attack(1, function()
-				self:patrol()
-			end)
-		end
-	end)
-
-	-- give up after `delay`
-	self.timer:after(delay, function()
-		self.target  = nil
-		self.running = false
-	end)
-end
-
--- Attack
---
-function Enemy:attack(delay, after)
-	self.attacking = true
-
-	self.timer:after(delay, function()
-		self.attacking = false
-
-		-- callback
-		if after then
-			after()
-		end
-	end)
 end
 
 return Enemy

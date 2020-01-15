@@ -5,20 +5,87 @@ local Enemy       = require 'src.entities.units.enemies.enemy'
 local Executioner = Enemy:extend()
 
 function Executioner:new(data)
-	Enemy.new(self, data)
-    --
-	-- properties
-	self.health     = 300
-	self.speed      = 500
-	self.jumpHeight = 3000
+	Enemy.new(self, _:merge(data,
+		Config.world.enemies['executioner']
+	))
+	--
+end
 
-	-- flags
-	self.attacking  = false
-	self.jumping    = false
-	self.running    = false
+-- Bored action
+--
+function Executioner:bored()
+	self:interrupt():patrol(self.isMirrored and 'right' or 'left', 3)
+	--
+	Config.audio.enemy.executioner.bored:play()
+end
 
-    -- default behavior
-    self:patrol()
+-- Interrupt current action
+-- TEST
+--
+function Executioner:interrupt()
+	self:resetFlags()
+	self.target = nil
+	--
+	if self.handle then
+		self.timer:cancel(self.handle)
+	end
+	--
+	if self.sightSensor then
+		self.sightSensor:destroy()
+	end
+
+	return self
+end
+
+-- Patrol
+--
+function Executioner:patrol(direction, delay)
+	self.running    = true
+	self.isMirrored = direction == 'left' or false
+	--
+	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
+	self.sightSensor:setShape(Shapes['circle'](self._sight.distance))
+	self.sightSensor:setInFocus(function(other)
+		self:interrupt():hunt(other)
+	end)
+	--
+	self.handle = self.timer:every(delay, function()
+		self.running = false
+	end)
+end
+
+-- Hunt
+--
+function Executioner:hunt(other)
+	local hx, hy = self:getPosition()
+	local tx, ty = other:getPosition()
+
+	self.target     = other
+	self.running    = true
+	self.isMirrored = tx < hx
+	--
+	-- attack if target in range
+	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
+	self.sightSensor:setShape(Shapes['circle'](self._attack.distance))
+	self.sightSensor:setInFocus(function(other)
+		self:interrupt():strike()
+	end)
+	-- give up after delay
+	self.handle = self.timer:after(self._attack.forget, function()
+		self.target  = nil
+		self.running = false
+	end)
+	--
+	Config.audio.enemy.executioner.hunt:play()
+end
+
+-- Strike attack
+--
+function Executioner:strike()
+	self.attacking    = true
+	self.strikeSensor = Sensors['strike'](self)
+	--
+	Config.audio.enemy.executioner.attack:play()
 end
 
 return Executioner

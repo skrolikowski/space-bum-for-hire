@@ -14,12 +14,10 @@ function Walk:new(host)
 	})
 	--
 	Base.new(self, 'walk', host)
-
-	-- flags
-	self.edgeOnLeft  = false
-	self.edgeOnRight = false
 end
 
+-- Tear down
+--
 function Walk:destroy()
 	self.leftEdge:destroy()
 	self.rightEdge:destroy()
@@ -40,14 +38,22 @@ function Walk:setSensors()
 	-- left edge notification
 	self.leftEdge = Sensors['dispatcher'](self.host, { 'Environment' })
 	self.leftEdge:setShape(leShape)
-	self.leftEdge:setOnContact(function(other, col)  self.edgeOnLeft = false end)
-	self.leftEdge:setOffContact(function(other, col) self.edgeOnLeft = true  end)
+	self.leftEdge:setOffContact(function(other, col) self.host.walking = false end)
 	
 	-- right edge notification
 	self.rightEdge = Sensors['dispatcher'](self.host, { 'Environment' })
 	self.rightEdge:setShape(reShape)
-	self.rightEdge:setOnContact(function(other, col)  self.edgeOnRight = false end)
-	self.rightEdge:setOffContact(function(other, col) self.edgeOnRight = true  end)
+	self.rightEdge:setOffContact(function(other, col) self.host.walking = false end)
+end
+
+-- Handle collision detection
+-- Stop on wall
+--
+function Walk:beginContact(other, col)
+	if select(1, col:getNormal()) ~= 0 then
+	-- wall contact
+		self.host.walking = false
+	end
 end
 
 -- Update 
@@ -57,13 +63,9 @@ function Walk:update(dt)
 	local ix, iy = 0, 0
 
 	if self.host.isMirrored then
-		if not self.edgeOnLeft then
-			ix = self.host:mass() * (-self.host.speed - vx)
-		end
+		ix = self.host:mass() * (-self.host.speed - vx)
 	else
-		if not self.edgeOnRight then
-			ix = self.host:mass() * ( self.host.speed - vx)
-		end
+		ix = self.host:mass() * ( self.host.speed - vx)
 	end
 
 	self.host:applyForce(ix, iy)

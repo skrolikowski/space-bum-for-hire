@@ -33,5 +33,6 @@ return {
     Executioner_idle   = require 'src.entities.units.behaviors.enemy.idle',
     Executioner_jump   = require 'src.entities.units.behaviors.enemy.jump',
     Executioner_run    = require 'src.entities.units.behaviors.enemy.run',
+    Executioner_slide  = require 'src.entities.units.behaviors.enemy.slide',
 
 }

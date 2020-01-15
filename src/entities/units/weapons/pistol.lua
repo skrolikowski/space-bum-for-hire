@@ -46,11 +46,11 @@ function Pistol:trigger(dt, et)
 			})
 
 			-- play sound
-			Config.audio.pistol:play()
-			Config.audio.pistol:seek(0)
+			Config.audio.weapon.pistol:play()
+			Config.audio.weapon.pistol:seek(0)
 		else
 			-- dry fire
-			Config.audio.dryfire:play()
+			Config.audio.weapon.dryfire:play()
 		end
 	end
 end

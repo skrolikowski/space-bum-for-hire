@@ -46,11 +46,11 @@ function Shotgun:trigger(dt, et)
 			})
 
 			-- play sound
-			Config.audio.shotgun:play()
-			Config.audio.shotgun:seek(0)
+			Config.audio.weapon.shotgun:play()
+			Config.audio.weapon.shotgun:seek(0)
 		else
 			-- dry fire
-			Config.audio.dryfire:play()
+			Config.audio.weapon.dryfire:play()
 		end
 	end
 end

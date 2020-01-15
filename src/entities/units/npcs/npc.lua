@@ -108,7 +108,7 @@ end
 function NPC:move(direction, speed, delay)
 	self.walking    = true
 	self.speed      = speed
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.walking = false
@@ -120,7 +120,7 @@ end
 function NPC:fiddle(direction, delay)
 	self.attacking  = true
 	self.dialogue   = Dialogue['emote'](self, 'thought', { 'emote_dots1', 'emote_dots2', 'emote_dots3' })
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.attacking = false
@@ -156,7 +156,7 @@ end
 function NPC:blame(direction, delay)
 	self.attacking  = true
 	self.dialogue   = Dialogue['emote'](self, 'thought', 'emote_faceAngry')
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.attacking = false
@@ -168,7 +168,7 @@ end
 --
 function NPC:worry(direction, delay)
 	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_drop')
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.dialogue = nil
@@ -180,7 +180,7 @@ end
 function NPC:shock(direction, delay)
 	self.guarding   = true
 	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_exclamation')
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.guarding = false
@@ -193,7 +193,7 @@ end
 function NPC:say(direction, text, delay)
 	self.talking    = true
 	self.dialogue   = Dialogue['speech'](self, text)
-	self.isMirrored = direction == 'left' or false
+	self.isMirrored = direction == 'left' or self.isMirrored
 	
 	self.timer:after(delay, function()
 		self.talking  = false

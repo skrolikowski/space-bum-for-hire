@@ -35,6 +35,28 @@ Config = {
             shield  = {},
             bullets = { sm = 12, md = 24, lg = 50 },
         },
+        -- Enemy Settings
+        --
+        enemies = {
+            executioner = {
+                health     = 300,
+                speed      = 500,
+                jumpHeight = 3000,
+                timing = {
+                    unrest = 1,
+                },
+                attack = {
+                    damage   = 0,
+                    distance = 80,
+                    forget   = 2,
+
+                },
+                sight  = {
+                    distance  = 250,
+                    periphery = _.__pi / 16
+                },
+            },
+        },
         -- Player HUD
         --
         hud = {
@@ -84,7 +106,14 @@ Config = {
         },
         filter = {
             group    = { effect = -2, unit = -1, environment = 1, event = 0, sensor = 0 },
-            category = { default = 1, environment = 2, unit = 3, sensor = 4, event = 5 },
+            category = {
+                default = 1,
+                environment = 2,
+                unit = 3,
+                sensor = 4,
+                event = 5,
+                projectiles = 6
+            },
             mask     = {
                 environment = { },
                 unit        = { },
@@ -122,11 +151,26 @@ Config = {
         }
     },
     audio = {
-        pistol     = la.newSource('res/sfx/GUN_FIRE-GoodSoundForYou-820112263.wav', 'static'),
-        shotgun    = la.newSource('res/sfx/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
-        raygun     = la.newSource('res/sfx/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
+        enemy = {
+            executioner = {
+                hunt   = la.newSource('res/sfx/Monster_Raw Growl 5.wav', 'static'),
+                bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
+                attack = la.newSource('res/sfx/Monster Hit 4.wav', 'static'),
+            }
+        },
+        weapon = {
+            pistol  = la.newSource('res/sfx/GUN_FIRE-GoodSoundForYou-820112263.wav', 'static'),
+            shotgun = la.newSource('res/sfx/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
+            raygun  = la.newSource('res/sfx/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
+            dryfire = la.newSource('res/sfx/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
+            impact  = {
+                la.newSource('res/sfx/Bullet rock Impact 1.wav', 'static'),
+                -- la.newSource('res/sfx/Bullet rock Impact 2.wav', 'static'),
+                la.newSource('res/sfx/Bullet rock Impact 3.wav', 'static'),
+                la.newSource('res/sfx/Bullet rock Impact 4.wav', 'static'),
+            },
+        },
         warp       = la.newSource('res/sfx/shooting_star-Mike_Koenig-1132888100.wav', 'static'),
-        dryfire    = la.newSource('res/sfx/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
         ammoPickup = la.newSource('res/sfx/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
         itemPickup = la.newSource('res/sfx/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
     },
@@ -212,6 +256,8 @@ Config = {
                 scratch     = lg.newImage('res/spritesheets/effects/scratch_79x64.png'),
                 necro_proj  = lg.newImage('res/spritesheets/effects/necromancer-projectile.png'),
                 warp        = lg.newImage('res/spritesheets/effects/level_up_102x135.png'),
+                slash1      = lg.newImage('res/spritesheets/effects/slash_83x81.png'),
+                slash2      = lg.newImage('res/spritesheets/effects/slash2_83x81.png'),
             },
             emote = {
                 speech  = Spritesheet('res/spritesheets/emotes/vector_style3.json'),

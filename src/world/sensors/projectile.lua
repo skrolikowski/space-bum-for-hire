@@ -72,10 +72,20 @@ end
 -- Check for collisions
 --
 function Projectile:beginContact(other, col)
-	if other.name == 'Environment' then
-		--TODO: audio?
-		--TODO: animation?
-		self:destroy()
+	if col:isTouching() then
+		if other.name == 'Environment' then
+			local clip     = _.__random(#Config.audio.weapon.impact)
+			local cx, cy   = self.body:getPosition()
+			local px, py   = Gamestate:current().player:getPosition()
+			local distance = _.__sqrt((cx - px)^2 + (cy - py)^2)
+			local volume   = _.__max(0, 1 - distance / Config.width)
+
+			Config.audio.weapon.impact[clip]:setVolume(volume)
+			Config.audio.weapon.impact[clip]:play()
+			Config.audio.weapon.impact[clip]:seek(0)
+			--
+			self:destroy()
+		end
 	end
 end
 

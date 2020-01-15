@@ -33,6 +33,11 @@ function Unit:new(data)
 	self:setSleepingAllowed(false)
 end
 
+-- Default action
+function Unit:bored()
+	--
+end
+
 -- Define shape sprite needs to interact with environment
 --
 function Unit:setFixture(shape, ...)
@@ -100,7 +105,7 @@ function Unit:setBehavior(name, ...)
 	if self.behavior then
 	-- Reassignment
 		if self.behavior.name ~= name then
-			print(self.behavior.name, name)
+-- print(self.behavior.name, name)
 		-- Change in behavior
 			self.behavior:destroy()
 			self.behavior = Behaviors[name](self, ...)

@@ -21,18 +21,16 @@ end
 --   - Hit Boxes
 --
 function Base:setSensors()
-	local x, y, w, h = self.bounds:container()
-	local bodyShape = Shapes['rectangle'](self.bounds:translate(0, h/4):scale(0.35, 0.35):container())
-	local headShape = Shapes['circle'](0, 0, 10)
+	local x, y, w, h = self.bounds:scale(0.35, 0.40):container()
+	local bodyShape  = Shapes['rectangle'](x, y+h*0.4, w, h)
+	local bodySensor
 
 	-- body hitbox
-	self.sensors['body'] = Sensors['hitbox'](self.host)
-	self.sensors['body']:setShape(bodyShape)
+	bodySensor = Sensors['hitbox'](self.host)
+	bodySensor:setShape(bodyShape)
 
-	-- head hitbox
-	self.sensors['head'] = Sensors['hitbox'](self.host)
-	self.sensors['head']:setShape(headShape)
-	self.sensors['head']:setMultiplier(2)
+	-- add sensors
+	table.insert(self.sensors, bodySensor)
 end
 
 return Base

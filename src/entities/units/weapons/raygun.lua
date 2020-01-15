@@ -46,11 +46,11 @@ function Raygun:trigger(dt, et)
 			})
 
 			-- play sound
-			Config.audio.raygun:play()
-			Config.audio.raygun:seek(0)
+			Config.audio.weapon.raygun:play()
+			Config.audio.weapon.raygun:seek(0)
 		else
 			-- dry fire
-			Config.audio.dryfire:play()
+			Config.audio.weapon.dryfire:play()
 		end
 	end
 end

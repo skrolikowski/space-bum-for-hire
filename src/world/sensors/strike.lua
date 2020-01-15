@@ -5,62 +5,63 @@
 local Sensor = require 'src.world.sensors.sensor'
 local Strike = Sensor:extend()
 
-function Strike:new(host, ox, oy, range, arc)
+function Strike:new(host)
 	Sensor.new(self, 'Strike', host)
 	--
 	self.affects = Util:toBoolean({ 'HitBox' })
-	self.arc     = arc or _.__pi / 8
-	self.attack  = 10
+	self.attack  = host._attack.damage
+
+	-- animation
+	self.sprite = Animator()
+	self.sprite:addAnimation('strike', {
+		image  = Config.image.spritesheet.effect.slash2,
+		width  = 83,
+		height = 81,
+		total  = 1,
+		frames = { { 1, 1, 11, 2 } },
+		after  = function() self:destroy() end
+	})
+
+	--
+	local hw, hh = host:dimensions()
+	local sw, sh = self.sprite:dimensions()
+
+	-- sprite scaling
+	self.sx = 0.5
+	self.sy = 0.8
 
 	-- shape
-	self:setShape(Shapes['circle'](ox, oy, range or 100))
-end
-
--- Is target within strike arc?
---
-function Strike:isInStrike(x, y)
-	local cx, cy     = self:getPosition()
-	local radius     = self.shape:getRadius()
-	local heading    = self.host.isMirrored and _.__pi or 0
-	local range      = self.shape:getRadius()
-	local toTarget   = Vec2(x, y) - Vec2(cx, cy)
-	local strikeLine = Vec2(
-		_.__cos(heading) * radius,
-		_.__sin(heading) * radius
-	)
-	local angleBetween = toTarget:angleBetween(strikeLine)
-	
-	return angleBetween < self.arc
-end
-
--- Check for contacts
---
-function Strike:beginContact(other, col)
-	if col:isTouching() then
-		if self.affects[other.name] then
-			if self:isInStrike(other:getPosition()) then
-				--other:beginContact(self, col)
-			end
-		end
+	if host.isMirrored then
+		self:setShape(Shapes['rectangle'](-hw*0.75, hh*0.1, sw * self.sx, sw * self.sy))
+	else
+		self:setShape(Shapes['rectangle']( hw*0.75, hh*0.1, sw * self.sx, sw * self.sy))
 	end
+
 end
 
--- Draw strike arc
+-- Update
+--
+function Strike:update(dt)
+	self.sprite:update(dt)
+end
+
+-- Draw strike
 --
 function Strike:draw()
 	-- lg.setColor(Config.color.sensor.strike)
 	-- self.shape:draw()
+	--
+	local cx, cy = self:getPosition()
+	local w, h   = self.sprite:dimensions()
+	local sx, sy = self.sx, self.sy
+	local ox, oy = w/2, h/2
 
-	local cx, cy  = self:getPosition()
-	local radius  = self.shape:getRadius()
-	local heading = self.host.isMirrored and _.__pi or 0
-	local r, g, b = unpack(Config.color.sensor.strike)
+	if not self.host.isMirrored then
+		sx = -sx
+	end
 
-	lg.setColor(r, g, b, 0.25)
-	lg.arc('fill', cx, cy, radius, heading - self.arc, heading + self.arc)
-	lg.setColor(r, g, b, 0.75)
-	lg.setLineWidth(1)
-	lg.arc('line', cx, cy, radius, heading - self.arc, heading + self.arc)
+	lg.setColor(Config.color.white)
+	self.sprite:draw(cx, cy, 0, sx, sy, ox, oy)
 end
 
 return Strike

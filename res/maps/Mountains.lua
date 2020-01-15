@@ -1272,10 +1272,10 @@ return {
           name = "Executioner",
           type = "",
           shape = "rectangle",
-          x = 304,
+          x = 288,
           y = 1088,
-          width = 119,
-          height = 91,
+          width = 130.5,
+          height = 88.5,
           rotation = 0,
           visible = true,
           properties = {}

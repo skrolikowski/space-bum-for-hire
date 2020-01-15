@@ -57,6 +57,7 @@ function Mount01:enter(from, ...)
             })
 
             -- give controls to player
+            self.filming = self.player
             self:setControl('player')
         end)
     end

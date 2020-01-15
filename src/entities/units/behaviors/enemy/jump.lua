@@ -5,8 +5,6 @@ local Base = require 'src.entities.units.behaviors.enemy.base'
 local Jump = Base:extend()
 
 function Jump:new(host)
-	host:applyLinearImpulse(0, -host.initImpulse)
-	--
 	self.sprite = Animator()
 	self.sprite:addAnimation('jump', {
 		image  = host.sprite,
@@ -21,6 +19,12 @@ function Jump:new(host)
 	})
 	--
 	Base.new(self, 'jump', host)
+
+	-- jump!
+	local initJumpVel = _.__sqrt(2 * Config.world.gravity.y * self.host.jumpHeight)
+	local initImpulse = self.host:mass() * initJumpVel
+	
+	host:applyLinearImpulse(0, -initImpulse)
 end
 
 return Jump

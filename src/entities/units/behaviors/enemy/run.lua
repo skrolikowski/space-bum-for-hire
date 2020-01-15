@@ -20,11 +20,48 @@ function Run:new(host)
 	Base.new(self, 'run', host)
 end
 
+-- Tear down
+--
+function Run:destroy()
+	self.edge:destroy()
+	--
+	Base.destroy(self)
+end
+
+-- Set sensors for: NPC
+--   - Environmental dispatcher
+--
+function Run:setSensors()
+	Base.setSensors(self)
+	--
+	local x, y, w, h  = self.bounds:container()
+	local hW, hH, pad = w/2, h/2, Config.tileSize
+	local shape, edge
+
+	if self.host.isMirrored then
+		shape = Shapes['edge'](-hW-pad, hH+8, -hW-pad, hH)
+	else
+		shape = Shapes['edge']( hW+pad, hH+8,  hW+pad, hH)
+	end
+
+	self.edge = Sensors['dispatcher'](self.host, { 'Environment' })
+	self.edge:setShape(shape)
+	self.edge:setOffContact(function(other, col) self.host.running = false end)
+end
+
+-- Handle collision detection
+-- Stop on wall
+--
+function Run:beginContact(other, col)
+	if select(1, col:getNormal()) ~= 0 then
+	-- wall contact
+		self.host.running = false
+	end
+end
+
 -- Update
 --
 function Run:update(dt)
-	local hx, hy = self.host:getPosition()
-	local tx, ty = self.host.target:getPosition()
 	local vx, vy = self.host:getLinearVelocity()
 	local ix, iy = 0, 0
 

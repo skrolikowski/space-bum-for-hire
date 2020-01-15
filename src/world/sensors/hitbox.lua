@@ -9,13 +9,6 @@ local HitBox = Sensor:extend()
 function HitBox:new(host)
 	Sensor.new(self, 'HitBox', host)
 	--
-	self.multipler = 1
-end
-
--- Set damage multipler
---
-function HitBox:setMultiplier(multipler)
-	self.multipler = multipler
 end
 
 -- Event - beginContact
@@ -28,7 +21,7 @@ function HitBox:beginContact(other, col)
 	elseif other.name == 'Projectile' then
 	-- Projectile damage
 		-- print(self.host.name, other.name)
-		self.host:damage(other, other.attack * self.multipler)
+		self.host:damage(other, other.attack)
 	elseif other.name == 'Strike' then
 	-- Strike attack damage
 		-- print(self.host.name, other.name)
