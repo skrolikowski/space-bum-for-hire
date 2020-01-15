@@ -9,10 +9,10 @@ function Idle:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('idle', {
 		image  = host.sprite,
-		width  = 87,
-		height = 59,
+		width  = Config.world.enemies[host.name].sprite.width,
+		height = Config.world.enemies[host.name].sprite.height,
 		fps    = 4,
-		frames = { { 1, 1, 1, 4 } }
+		frames = Config.world.enemies[host.name].sprite.frames.idle
 	})
 	--
 	Base.new(self, 'idle', host)

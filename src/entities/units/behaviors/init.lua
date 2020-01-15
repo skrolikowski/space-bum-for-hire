@@ -34,5 +34,13 @@ return {
     Executioner_jump   = require 'src.entities.units.behaviors.enemy.jump',
     Executioner_run    = require 'src.entities.units.behaviors.enemy.run',
     Executioner_slide  = require 'src.entities.units.behaviors.enemy.slide',
-
+    -- ghoul
+    Ghoul_attack = require 'src.entities.units.behaviors.enemy.attack',
+    Ghoul_die    = require 'src.entities.units.behaviors.enemy.die',
+    Ghoul_fall   = require 'src.entities.units.behaviors.enemy.fall',
+    Ghoul_hurt   = require 'src.entities.units.behaviors.enemy.hurt',
+    Ghoul_idle   = require 'src.entities.units.behaviors.enemy.idle',
+    Ghoul_jump   = require 'src.entities.units.behaviors.enemy.jump',
+    Ghoul_run    = require 'src.entities.units.behaviors.enemy.run',
+    Ghoul_slide  = require 'src.entities.units.behaviors.enemy.slide',
 }

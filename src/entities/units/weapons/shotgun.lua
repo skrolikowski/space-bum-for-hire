@@ -69,7 +69,7 @@ function Shotgun:fire()
 	-- adjust arm placement for crouch animation
 	--
 	if self.host.behavior.name == 'Player_crouch' then
-		ty = ty + ty * 0.05
+		ty = ty + h * 0.65
 	end
 
 	-- line up with host entity shot
@@ -96,30 +96,25 @@ function Shotgun:draw()
 		local angle   = self.host.aimAngle
 		local sx, sy  = 1, 1
 
+		if self.host.isMirrored then
+			sx    = -sx
+			angle = angle + _.__pi
+		end
+
 		lg.push()
 		lg.translate(tx, ty)
 		lg.rotate(angle)
+		lg.scale(sx, sy)
 
 		lg.setColor(1,1,1,0.25)
 
-		-- adjust arm angle for shooting animation
-		if self.host.isMirrored then
-			self.sprite:draw(0, 0, angle, -1, 1)
-			self.sprite:draw(0, 0, angle - _.__pi/16, -1, 1)
-			self.sprite:draw(0, 0, angle + _.__pi/16, -1, 1)
-			self.sprite:draw(0, 0, angle - _.__pi/14, -0.75, 0.75)
-			self.sprite:draw(0, 0, angle + _.__pi/14, -0.75, 0.75)
-			self.sprite:draw(0, 0, angle - _.__pi/12, -0.5, 0.5)
-			self.sprite:draw(0, 0, angle + _.__pi/12, -0.5, 0.5)
-		else
-			self.sprite:draw(0, 0, angle)
-			self.sprite:draw(0, 0, angle - _.__pi/16)
-			self.sprite:draw(0, 0, angle + _.__pi/16)
-			self.sprite:draw(0, 0, angle - _.__pi/14, 0.75, 0.75)
-			self.sprite:draw(0, 0, angle + _.__pi/14, 0.75, 0.75)
-			self.sprite:draw(0, 0, angle - _.__pi/12, 0.5, 0.5)
-			self.sprite:draw(0, 0, angle + _.__pi/12, 0.5, 0.5)
-		end
+		self.sprite:draw(0, 0)
+		self.sprite:draw(0, 0, -_.__pi/16)
+		self.sprite:draw(0, 0,  _.__pi/16)
+		self.sprite:draw(0, 0, -_.__pi/14, 0.75, 0.75)
+		self.sprite:draw(0, 0,  _.__pi/14, 0.75, 0.75)
+		self.sprite:draw(0, 0, -_.__pi/12, 0.5, 0.5)
+		self.sprite:draw(0, 0,  _.__pi/12, 0.5, 0.5)
 
 		lg.pop()
 

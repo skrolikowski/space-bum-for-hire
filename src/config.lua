@@ -55,6 +55,52 @@ Config = {
                     distance  = 250,
                     periphery = _.__pi / 16
                 },
+                sprite = {
+                    width  = 87,
+                    height = 59,
+                    frames = {
+                        attack = { { 3, 1, 3, 5 }, { 4, 1, 4, 1 } },
+                        die    = { { 5, 1, 5, 5 }, { 6, 1, 6, 3 } },
+                        fall   = { { 7, 3, 7, 4 } },
+                        hurt   = { { 4, 2, 4, 5 } },
+                        jump   = { { 7, 1, 7, 2 }, { 6, 4, 6, 5 } },
+                        idle   = { { 1, 1, 1, 4 } },
+                        run    = { { 1, 5, 1, 5 }, { 2, 1, 2, 5 } },
+                        slide  = { { 4, 2, 4, 5 } },
+                    },
+                },
+            },
+            Ghoul = {
+                health     = 50,
+                speed      = 800,
+                jumpHeight = 5000,
+                timing = {
+                    unrest = 2,
+                },
+                attack = {
+                    damage   = 0,
+                    distance = 80,
+                    forget   = 2,
+
+                },
+                sight  = {
+                    distance  = 300,
+                    periphery = _.__pi / 12
+                },
+                sprite = {
+                    width  = 51,
+                    height = 20,
+                    frames = {
+                        attack = { { 3, 3, 3, 4 }, { 4, 1, 4, 3 } },
+                        die    = { { 5, 3, 5, 4 }, { 6, 1, 6, 2 } },
+                        fall   = { { 8, 3, 8, 4 } },
+                        hurt   = { { 4, 4, 4, 4 }, { 5, 1, 5, 2 } },
+                        jump   = { { 7, 3, 7, 4 }, { 8, 1, 8, 2 } },
+                        idle   = { { 1, 1, 1, 4 } },
+                        run    = { { 2, 1, 2, 4 }, { 3, 1, 3, 2 } },
+                        slide  = { { 4, 4, 4, 4 }, { 5, 1, 5, 2 } },
+                    },
+                },
             },
         },
         -- Player HUD
@@ -157,6 +203,12 @@ Config = {
                 bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
                 attack = la.newSource('res/sfx/Monster Hit 4.wav', 'static'),
                 die    = la.newSource('res/sfx/Monster In Pain_3.wav', 'static'),
+            },
+            ghoul = {
+                hunt   = la.newSource('res/sfx/Cute Creature_8.wav', 'static'),
+                bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
+                attack = la.newSource('res/sfx/Cute Creature_11 - Growl.wav', 'static'),
+                die    = la.newSource('res/sfx/Cute Creature_9 - Dying.wav', 'static'),
             }
         },
         weapon = {
@@ -236,7 +288,7 @@ Config = {
             },
             executioner = lg.newImage('res/spritesheets/enemies/executioner.png'),
             -- fire_golem     = lg.newImage('res/spritesheets/enemies/fire-golem.png'),
-            -- ghoul          = lg.newImage('res/spritesheets/enemies/ghoul.png'),
+            ghoul          = lg.newImage('res/spritesheets/enemies/ghoul.png'),
             -- ice_golem      = lg.newImage('res/spritesheets/enemies/ice-golem.png'),
             -- imp            = lg.newImage('res/spritesheets/enemies/imp.png'),
             -- necromancer    = lg.newImage('res/spritesheets/enemies/necromancer.png'),

@@ -8,14 +8,11 @@ function Jump:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('jump', {
 		image  = host.sprite,
-		width  = 87,
-		height = 59,
+		width  = Config.world.enemies[host.name].sprite.width,
+		height = Config.world.enemies[host.name].sprite.height,
 		total  = 1,
-		frames = {
-			{ 7, 1, 7, 2 },
-			{ 6, 4, 6, 5 }
-		},
-		after = function() self.host.jumping = false end
+		frames = Config.world.enemies[host.name].sprite.frames.jump,
+		after  = function() self.host.jumping = false end
 	})
 	--
 	Base.new(self, 'jump', host)

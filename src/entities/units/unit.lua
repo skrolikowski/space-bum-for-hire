@@ -70,7 +70,7 @@ function Unit:beginContact(other, col)
 	if col:isTouching() then
 		self.behavior:beginContact(other, col)
 		--
-		if other.name == 'Environment' then
+		if other.category == 'Environment' then
 		-- on wall/ground
 			if select(2, col:getNormal()) == -1 then
 			-- ground contact
@@ -98,7 +98,7 @@ end
 function Unit:endContact(other, col)
 	self.behavior:endContact(other, col)
 	--
-	if other.name == 'Environment' then
+	if other.category == 'Environment' then
 	-- off wall/ground
 		
 		if self.grounds[other.uuid] then

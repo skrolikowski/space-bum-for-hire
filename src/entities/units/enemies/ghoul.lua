@@ -1,27 +1,27 @@
--- Executioner Enemy Unit
+-- Ghoul Enemy Unit
 -- 
 
-local Enemy       = require 'src.entities.units.enemies.enemy'
-local Executioner = Enemy:extend()
+local Enemy = require 'src.entities.units.enemies.enemy'
+local Ghoul = Enemy:extend()
 
-function Executioner:new(data)
+function Ghoul:new(data)
 	Enemy.new(self, _:merge(data,
-		Config.world.enemies['Executioner']
+		Config.world.enemies['Ghoul']
 	))
 	--
 end
 
 -- Bored action
 --
-function Executioner:bored()
-	self:interrupt():patrol(self.isMirrored and 'right' or 'left', 3)
+function Ghoul:bored()
+	self:interrupt():patrol(self.isMirrored and 'right' or 'left')
 	--
-	Config.audio.enemy.executioner.bored:play()
+	Config.audio.enemy.ghoul.bored:play()
 end
 
 -- Die action
 --
-function Executioner:die()
+function Ghoul:die()
 	self:interrupt()
 	self.dying = true
 	--
@@ -29,12 +29,12 @@ function Executioner:die()
 		self:destroy()
 	end)
 	--
-	Config.audio.enemy.executioner.die:play()
+	Config.audio.enemy.ghoul.die:play()
 end
 
 -- Interrupt current action
 --
-function Executioner:interrupt()
+function Ghoul:interrupt()
 	self:resetFlags()
 	self.target = nil
 	--
@@ -51,24 +51,20 @@ end
 
 -- Patrol
 --
-function Executioner:patrol(direction, delay)
-	self.running    = true
+function Ghoul:patrol(direction, delay)
 	self.isMirrored = direction == 'left' or false
 	--
 	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
 	self.sightSensor:setShape(Shapes['circle'](self._sight.distance))
 	self.sightSensor:setInFocus(function(other)
-		self:interrupt():hunt(other)
-	end)
-	--
-	self.handle = self.timer:every(delay, function()
-		self.running = false
+		print('spotted!')
+		-- self:interrupt():hunt(other)
 	end)
 end
 
 -- Hunt
 --
-function Executioner:hunt(other)
+function Ghoul:hunt(other)
 	local hx, hy = self:getPosition()
 	local tx, ty = other:getPosition()
 
@@ -88,16 +84,16 @@ function Executioner:hunt(other)
 		self.running = false
 	end)
 	--
-	Config.audio.enemy.executioner.hunt:play()
+	Config.audio.enemy.ghoul.hunt:play()
 end
 
 -- Strike attack
 --
-function Executioner:strike()
+function Ghoul:strike()
 	self.attacking    = true
 	self.strikeSensor = Sensors['strike'](self)
 	--
-	Config.audio.enemy.executioner.attack:play()
+	Config.audio.enemy.ghoul.attack:play()
 end
 
-return Executioner
+return Ghoul

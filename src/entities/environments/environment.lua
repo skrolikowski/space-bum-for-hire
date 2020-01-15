@@ -24,7 +24,8 @@ function Environment:new(data)
 	end	
 	--
 	Entity.new(self, _:merge(data, {
-		name = data.name ~= '' and data.name or 'Environment'
+		name     = data.name ~= '' and data.name or 'Environment',
+		category = 'Environment'
 	}))
 
 	-- set entity fixture/shape

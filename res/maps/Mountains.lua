@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 24,
-  nextobjectid = 147,
+  nextobjectid = 150,
   properties = {},
   tilesets = {
     {
@@ -1272,10 +1272,23 @@ return {
           name = "Executioner",
           type = "",
           shape = "rectangle",
-          x = 288,
+          x = 256,
           y = 1088,
           width = 130.5,
           height = 88.5,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 149,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 416,
+          y = 1152,
+          width = 76.5,
+          height = 30,
           rotation = 0,
           visible = true,
           properties = {}

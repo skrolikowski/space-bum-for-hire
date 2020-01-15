@@ -6,7 +6,10 @@ local Environment    = require 'src.entities.environments.environment'
 local MovingPlatform = Environment:extend()
 
 function MovingPlatform:new(data)
-	Environment.new(self, data)
+	Environment.new(self, _:merge(data, {
+		--@overrides
+		name = 'MovingPlatform',
+	}))
 	--
 	self.color   = Config.color.white
 	self.area    = data.properties.area or 'spaceship'

@@ -8,16 +8,19 @@ function Die:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('die', {
 		image  = host.sprite,
-		width  = 87,
-		height = 59,
+		width  = Config.world.enemies[host.name].sprite.width,
+		height = Config.world.enemies[host.name].sprite.height,
 		total  = 1,
-		frames = {
-			{ 5, 1, 5, 5 },
-			{ 6, 1, 6, 3 }
-		}
+		frames = Config.world.enemies[host.name].sprite.frames.die
 	})
 	--
 	Base.new(self, 'die', host)
+end
+
+-- No sensors
+--
+function Die:setSensors()
+	--
 end
 
 return Die
