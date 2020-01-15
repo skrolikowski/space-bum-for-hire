@@ -15,11 +15,15 @@ function Projectile:new(host, data)
 	self.category = 'Projectile'
 	self.host     = host
 	self.radius   = host.weapon.radius or 1
-	self.attack   = host.weapon.attack or 0
+	self.damage   = host.weapon.damage or 0
+
+	if _:isTable(self.damage) then
+		self.damage = _.__random(self.damage.min, self.damage.max)
+	end
 
 	-- -- lifetime
 	self.timer = Timer.new()
-	self.timer:every(0.25, function() self:decay() end)
+	self.timer:every(0.1, function() self:decay() end)
 
 	-- calculate impulse
 	local angle = data.angle or host.host.aimAngle
@@ -46,11 +50,11 @@ end
 
 -- Decay damage for specified amount
 --
-function Projectile:decreaseDamage()
-	self.attack = self.attack - (host.weapon.decay or 1)
+function Projectile:decay()
+	self.damage = self.damage - (self.host.weapon.decay or 1)
 
 	-- destroy
-	if self.attack <= 0 then
+	if self.damage <= 0 then
 		self:destroy()
 	end
 end
@@ -58,7 +62,7 @@ end
 -- Update
 --
 function Projectile:update(dt)
-	--
+	self.timer:update(dt)
 end
 
 -- Flag for removal

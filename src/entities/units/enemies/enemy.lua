@@ -78,16 +78,20 @@ end
 -- Draw some stats
 --
 function Enemy:draw()
+	Unit.draw(self)
+	--
 	if self.health > 0 then
 		local cx, cy    = self:getPosition()
 		local w, h      = self:dimensions()
-		local barHeight = 3
+		local barHeight = 4
 		local health    = self.health
 		local healthMax = Config.world.enemies[self.name].health
 		local value     = _.__max(0, w * (health/healthMax))
 
 		lg.push()
-		lg.translate(cx-w/2, cy-h/2)
+		lg.translate(cx, cy-h/4)
+		--lg.rotate(-_.__pi/2)
+		lg.scale(0.35)
 
 		-- health meter
 		lg.setColor(Config.color.health)
@@ -96,8 +100,6 @@ function Enemy:draw()
 
 		lg.pop()
 	end
-	--
-	Unit.draw(self)
 end
 
 return Enemy

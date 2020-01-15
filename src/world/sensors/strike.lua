@@ -9,7 +9,7 @@ function Strike:new(host)
 	Sensor.new(self, 'Strike', host)
 	--
 	self.affects = Util:toBoolean({ 'HitBox' })
-	self.attack  = host._attack.damage
+	self.damage  = host._attack.damage
 
 	-- animation
 	self.sprite = Animator()

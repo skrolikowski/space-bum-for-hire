@@ -22,11 +22,12 @@ end
 -- Die action
 --
 function Executioner:die()
+	self:interrupt()
 	self.dying = true
 	--
-	self.timer:after(2, function()
-		self:destroy()
-	end)
+	-- self.timer:after(3, function()
+	-- 	self:destroy()
+	-- end)
 	--
 	Config.audio.enemy.executioner.die:play()
 end

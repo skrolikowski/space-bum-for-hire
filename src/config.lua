@@ -39,7 +39,7 @@ Config = {
         --
         enemies = {
             Executioner = {
-                health     = 150,
+                health     = 100,
                 speed      = 500,
                 jumpHeight = 3000,
                 timing = {
@@ -79,8 +79,8 @@ Config = {
                 name        = 'pistol',
                 clip        = 'bullets',
                 cooldown    = 0.35,
-                attack      = { min = 25, max = 30 },
-                decay       = 1,
+                damage      = { min = 25, max = 35 },
+                decay       = 5,
                 speed       = 1000,
                 spritesheet = 'item',
             },
@@ -88,8 +88,8 @@ Config = {
                 name        = 'shotgun',
                 clip        = 'shells',
                 cooldown    = 1.25,
-                attack      = { min = 15, max = 25 },
-                decay       = 10,
+                damage      = { min = 30, max = 35 },
+                decay       = 15,
                 speed       = 800,
                 spritesheet = 'weapon',
             },
@@ -98,9 +98,9 @@ Config = {
                 clip        = 'plasma',
                 cooldown    = 2,
                 radius      = 8,
-                attack      = 50,
+                damage      = 100,
                 decay       = 10,
-                speed       = 300,
+                speed       = 250,
                 spritesheet = 'weapon',
             },
         },

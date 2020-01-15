@@ -248,13 +248,10 @@ end
 
 -- Take damage
 --
-function Entity:damage(other, attack)
+function Entity:damage(other, damage)
 	if self.canDestroy and not self.dying then
-		if _:isTable(attack) then
-			attack = _.__random(attack.min, attack.max)
-		end
-		print('hit!', attack, self.health)
-		self.health = self.health - attack
+		print('hit!', damage, self.health)
+		self.health = self.health - damage
 
 		-- update stats
 		Gamestate:current().hud:set({
