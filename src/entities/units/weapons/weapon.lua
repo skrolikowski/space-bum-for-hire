@@ -95,7 +95,7 @@ function Weapon:draw()
 		-- adjust arm placement for crouch animation
 		--
 		if self.host.behavior.name == 'Player_crouch' then
-			ty = ty + ty * 0.05
+			ty = ty + h * 0.65
 		end
 
 		-- adjust arm angle for shooting animation

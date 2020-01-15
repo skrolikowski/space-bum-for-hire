@@ -250,7 +250,10 @@ end
 --
 function Entity:damage(other, attack)
 	if self.canDestroy and not self.dying then
-		print('hit!', self.health)
+		if _:isTable(attack) then
+			attack = _.__random(attack.min, attack.max)
+		end
+		print('hit!', attack, self.health)
 		self.health = self.health - attack
 
 		-- update stats
@@ -261,7 +264,7 @@ function Entity:damage(other, attack)
 		})
 
 		if self.health <= 0 then
-			self.dying = true
+			self:die()
 		end
 	end
 end

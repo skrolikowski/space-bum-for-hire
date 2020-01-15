@@ -11,6 +11,7 @@ local Projectile = Modern:extend()
 function Projectile:new(host, data)
 	self.name     = 'Projectile'
 	self.uuid     = Util:uuid()
+	self.affects  = Util:toBoolean({ 'Environment', 'HitBox' })
 	self.category = 'Projectile'
 	self.host     = host
 	self.radius   = host.weapon.radius or 1
@@ -73,16 +74,28 @@ end
 --
 function Projectile:beginContact(other, col)
 	if col:isTouching() then
-		if other.name == 'Environment' then
-			local clip     = _.__random(#Config.audio.weapon.impact)
+		if self.affects[other.name] or self.affects[other.category] then
 			local cx, cy   = self.body:getPosition()
 			local px, py   = Gamestate:current().player:getPosition()
-			local distance = _.__sqrt((cx - px)^2 + (cy - py)^2)
+			local distance = Vec2(cx, cy):distance(Vec2(px, py))
 			local volume   = _.__max(0, 1 - distance / Config.width)
+			local clip
 
-			Config.audio.weapon.impact[clip]:setVolume(volume)
-			Config.audio.weapon.impact[clip]:play()
-			Config.audio.weapon.impact[clip]:seek(0)
+			if other.name == 'Environment' then
+			-- Impact w/ Environment
+				clip = _.__random(#Config.audio.weapon.impact)
+
+				Config.audio.weapon.impact[clip]:setVolume(volume)
+				Config.audio.weapon.impact[clip]:play()
+				Config.audio.weapon.impact[clip]:seek(0)
+			elseif other.name == 'HitBox' then
+			-- Impact w/ Unit
+				clip = _.__random(#Config.audio.weapon.pierce)
+
+				Config.audio.weapon.pierce[clip]:setVolume(volume)
+				Config.audio.weapon.pierce[clip]:play()
+				Config.audio.weapon.pierce[clip]:seek(0)
+			end
 			--
 			self:destroy()
 		end

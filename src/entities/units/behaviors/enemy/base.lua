@@ -21,8 +21,8 @@ end
 --   - Hit Boxes
 --
 function Base:setSensors()
-	local x, y, w, h = self.bounds:scale(0.35, 0.40):container()
-	local bodyShape  = Shapes['rectangle'](x, y+h*0.4, w, h)
+	local x, y, w, h = self.bounds:scale(0.35, 0.75):container()
+	local bodyShape  = Shapes['rectangle'](x, h/4, w, h)
 	local bodySensor
 
 	-- body hitbox

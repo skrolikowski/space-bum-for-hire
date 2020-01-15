@@ -17,9 +17,6 @@ function NPC:new(data)
 	-- flags
 	self.canDestroy = false
 
-	-- AI
-	self.timer = Timer.new()
-
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast[_.__lower(self.name)]
 	self.sprite = self.sprite[_.__random(#self.sprite)]
@@ -37,19 +34,9 @@ function NPC:new(data)
 	-- self:pace()
 end
 
--- Clear timer
---
-function NPC:destroy()
-	self.timer:clear()
-	--
-	Unit.destroy(self)
-end
-
 -- Update
 --
 function NPC:update(dt)
-	self.timer:update(dt)
-	--
 	local vx, vy = self:getLinearVelocity()
 
 	-- Mini State Machine ------------

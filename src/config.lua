@@ -38,8 +38,8 @@ Config = {
         -- Enemy Settings
         --
         enemies = {
-            executioner = {
-                health     = 300,
+            Executioner = {
+                health     = 150,
                 speed      = 500,
                 jumpHeight = 3000,
                 timing = {
@@ -79,7 +79,7 @@ Config = {
                 name        = 'pistol',
                 clip        = 'bullets',
                 cooldown    = 0.35,
-                attack      = 10,
+                attack      = { min = 25, max = 30 },
                 decay       = 1,
                 speed       = 1000,
                 spritesheet = 'item',
@@ -88,7 +88,7 @@ Config = {
                 name        = 'shotgun',
                 clip        = 'shells',
                 cooldown    = 1.25,
-                attack      = 30,
+                attack      = { min = 15, max = 25 },
                 decay       = 10,
                 speed       = 800,
                 spritesheet = 'weapon',
@@ -112,7 +112,6 @@ Config = {
                 unit = 3,
                 sensor = 4,
                 event = 5,
-                projectiles = 6
             },
             mask     = {
                 environment = { },
@@ -124,6 +123,7 @@ Config = {
     },
     color = {
         debug  = { _:color('red-800') },
+        health = { _:color('red-600') },
     	white  = { _:color('white') },
     	black  = { _:color('black') },
     	shape  = { _:color('green-300') },
@@ -156,6 +156,7 @@ Config = {
                 hunt   = la.newSource('res/sfx/Monster_Raw Growl 5.wav', 'static'),
                 bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
                 attack = la.newSource('res/sfx/Monster Hit 4.wav', 'static'),
+                die    = la.newSource('res/sfx/Monster In Pain_3.wav', 'static'),
             }
         },
         weapon = {
@@ -163,12 +164,18 @@ Config = {
             shotgun = la.newSource('res/sfx/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
             raygun  = la.newSource('res/sfx/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
             dryfire = la.newSource('res/sfx/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
+            shelldrop = la.newSource('res/sfx/Bullet Shell drop 3.wav', 'static'),
             impact  = {
                 la.newSource('res/sfx/Bullet rock Impact 1.wav', 'static'),
-                -- la.newSource('res/sfx/Bullet rock Impact 2.wav', 'static'),
+                la.newSource('res/sfx/Bullet rock Impact 2.wav', 'static'),
                 la.newSource('res/sfx/Bullet rock Impact 3.wav', 'static'),
                 la.newSource('res/sfx/Bullet rock Impact 4.wav', 'static'),
             },
+            pierce = {
+                la.newSource('res/sfx/Punch in the face 2.wav', 'static'),
+                la.newSource('res/sfx/Punch in the face 12 - Bloody Punch.wav', 'static'),
+                la.newSource('res/sfx/Punch in the face 20 - Bloody Impact.wav', 'static'),
+            }
         },
         warp       = la.newSource('res/sfx/shooting_star-Mike_Koenig-1132888100.wav', 'static'),
         ammoPickup = la.newSource('res/sfx/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),

@@ -26,6 +26,9 @@ function Unit:new(data)
 	self.onWall     = false
 	self.canDestroy = true
 
+	-- AI
+	self.timer = Timer.new()
+
 	-- physics
 	self.walls   = {}
 	self.grounds = {}
@@ -33,9 +36,22 @@ function Unit:new(data)
 	self:setSleepingAllowed(false)
 end
 
+-- Tear down
+--
+function Unit:destroy()
+	self.timer:clear()
+	--
+	Entity.destroy(self)
+end
+
 -- Default action
 function Unit:bored()
 	--
+end
+
+-- Death action
+function Unit:die()
+	self.dying = true
 end
 
 -- Define shape sprite needs to interact with environment
@@ -119,6 +135,7 @@ end
 -- Update
 --
 function Unit:update(dt)
+	self.timer:update(dt)
 	self.behavior:update(dt)
 
 	-- set flags

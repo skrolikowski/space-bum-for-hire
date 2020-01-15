@@ -6,7 +6,7 @@ local Executioner = Enemy:extend()
 
 function Executioner:new(data)
 	Enemy.new(self, _:merge(data,
-		Config.world.enemies['executioner']
+		Config.world.enemies['Executioner']
 	))
 	--
 end
@@ -19,8 +19,19 @@ function Executioner:bored()
 	Config.audio.enemy.executioner.bored:play()
 end
 
+-- Die action
+--
+function Executioner:die()
+	self.dying = true
+	--
+	self.timer:after(2, function()
+		self:destroy()
+	end)
+	--
+	Config.audio.enemy.executioner.die:play()
+end
+
 -- Interrupt current action
--- TEST
 --
 function Executioner:interrupt()
 	self:resetFlags()

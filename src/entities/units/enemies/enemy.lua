@@ -20,9 +20,6 @@ function Enemy:new(data)
 	self._attack = data.attack
 	self._sight  = data.sight
 
-	-- AI
-	self.timer  = Timer.new()
-
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast[_.__lower(self.name)]
 
@@ -30,17 +27,6 @@ function Enemy:new(data)
 	self:resetFlags()
 	self:setBehavior('fall')
 end
-
--- -- Destroy
--- --
--- function Enemy:destroy()
--- 	-- delay cleanup
--- 	self.timer:after(3, function()
--- 		self.timer:clear()
--- 		--
--- 		Unit.destroy(self)
--- 	end)
--- end
 
 -- Reset flags
 --
@@ -55,8 +41,6 @@ end
 -- Update
 --
 function Enemy:update(dt)
-	self.timer:update(dt)
-	--
 	local vx, vy = self:getLinearVelocity()
 
 	-- Mini State Machine ------------
@@ -89,6 +73,31 @@ function Enemy:update(dt)
    	end
    	--
 	Unit.update(self, dt)
+end
+
+-- Draw some stats
+--
+function Enemy:draw()
+	if self.health > 0 then
+		local cx, cy    = self:getPosition()
+		local w, h      = self:dimensions()
+		local barHeight = 3
+		local health    = self.health
+		local healthMax = Config.world.enemies[self.name].health
+		local value     = _.__max(0, w * (health/healthMax))
+
+		lg.push()
+		lg.translate(cx-w/2, cy-h/2)
+
+		-- health meter
+		lg.setColor(Config.color.health)
+		lg.rectangle('line', 0, 0, w, barHeight)
+		lg.rectangle('fill', 0, 0, value, barHeight)
+
+		lg.pop()
+	end
+	--
+	Unit.draw(self)
 end
 
 return Enemy
