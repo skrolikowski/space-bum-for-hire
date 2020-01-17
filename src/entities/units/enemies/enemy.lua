@@ -147,19 +147,6 @@ function Enemy:hunt(other)
 	Config.audio.enemy[_.__lower(self.name)].hunt:play()
 end
 
--- Fallback Action
--- 
---
-function Enemy:fallback()
-	self.running = true
-
-	self.handle = self.timer:after(2, function()
-		self.isMirrored = not self.isMirrored
-		self.running    = false
-		self:patrol()
-	end)
-end
-
 -- Die action
 --
 function Enemy:die()
@@ -167,7 +154,7 @@ function Enemy:die()
 	self.hitbox:destroy()
 	self.dying = true
 	--
-	self.timer:after(3, function()
+	self.timer:after(2, function()
 		self:destroy()
 	end)
 	--

@@ -39,7 +39,7 @@ function Run:setSensors()
 		shape = Shapes['circle'](-w/2 - pad, h/2 + pad/2, 3)
 		--shape = Shapes['edge'](-hW-pad, hH+8, -hW-pad, hH)
 	else
-		shape = Shapes['circle']( w/2 - pad, h/2 + pad/2, 3)
+		shape = Shapes['circle']( w/2 + pad, h/2 + pad/2, 3)
 		--shape = Shapes['edge']( hW+pad, hH+8,  hW+pad, hH)
 	end
 
