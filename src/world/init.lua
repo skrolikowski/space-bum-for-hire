@@ -39,9 +39,10 @@ Events = {
 -- Interact with world entities in various ways (e.g. cause/receive damage)
 -- May or may not be fixture of Entity (e.g. projectile)
 Sensors = {
+	bounds     = require 'src.world.sensors.bounds',
+	dispatcher = require 'src.world.sensors.dispatcher',	
 	hitbox     = require 'src.world.sensors.hitbox',
+	projectile = require 'src.world.sensors.projectile',
 	sight      = require 'src.world.sensors.sight',
 	strike     = require 'src.world.sensors.strike',
-	dispatcher = require 'src.world.sensors.dispatcher',	
-	projectile = require 'src.world.sensors.projectile',
 }

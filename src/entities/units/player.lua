@@ -6,21 +6,22 @@ local Unit   = require 'src.entities.units.unit'
 local Player = Unit:extend()
 
 function Player:new(data)
+	Unit.new(self, _:merge(data, {
+		title      = 'Punk',
+		name       = 'Player',
+		shape      = 'rectangle',
+		speed      = 1000,
+		jumpHeight = 4500,
+		health     = Config.world.hud.stat.health.now,
+	}))
+	--
 	-- properties
 	self.axis     = Vec2()  -- controller axis
 	self.angle    = 0
 	self.cooldown = { now = 0, max = 1 }
-	self.health   = Config.world.hud.stat.health.now
-	self.speed    = 1000
 
 	-- flags
 	self.lockedIn = false
-
-	--
-	Unit.new(self, _:merge(data, {
-		name  = 'Player',
-		shape = 'rectangle',
-	}))
 
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast['player']

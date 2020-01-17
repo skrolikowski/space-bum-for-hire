@@ -16,15 +16,24 @@ function Unit:new(data)
 	}))
 
 	-- properties
-	self.health     = 100
-	self.jumpHeight = 4500
+	self.title      = data.title or 'Unit'
+	self.speed      = data.speed  or 500
+	self.health     = data.health or 100
+	self.initHealth = self.health
+	self.jumpHeight = data.jumpHeight or 4500
+
+	-- variants
+	if _:isTable(self.health) then
+		self.health     = _.__random(self.health.min, self.health.max)
+		self.initHealth = self.health
+	end
 	
 	-- flags
 	self.isMirrored = false
 	self.isFlipped  = false
 	self.onGround   = false
 	self.onWall     = false
-	self.canDestroy = true
+	self.canDestroy = data.canDestroy or true
 
 	-- AI
 	self.timer = Timer.new()

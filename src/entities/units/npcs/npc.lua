@@ -6,17 +6,13 @@ local NPC  = Unit:extend()
 
 function NPC:new(data)
 	Unit.new(self, _:merge(data, {
-		name = data.name or 'NPC'
+		title      = data.title or 'NPC',
+		name       = data.name  or 'NPC',
+		speed      = 350,
+		health     = 100,
+		canDestroy = false
 	}))
 	--
-	-- properties
-	self.title  = data.title 
-	self.health = 100
-	self.speed  = 350
-
-	-- flags
-	self.canDestroy = false
-
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast[_.__lower(self.name)]
 	self.sprite = self.sprite[_.__random(#self.sprite)]
@@ -30,7 +26,7 @@ function NPC:new(data)
 	self.walking   = false
 
 	-- behavior/animation
-	self:setBehavior('idle')
+	self:setBehavior('fall')
 	-- self:pace()
 end
 

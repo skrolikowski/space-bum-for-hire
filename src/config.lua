@@ -39,14 +39,14 @@ Config = {
         --
         enemies = {
             Executioner = {
-                health     = _.__random(100, 125),
+                health     = { min = 100, max = 125 },
                 speed      = 500,
                 jumpHeight = 3000,
                 timing = {
                     unrest = 1,
                 },
                 attack = {
-                    damage = 0,
+                    damage = { min = 15, max = 25 },
                     sx     = 0.5,
                     sy     = 0.8,
                 },
@@ -70,14 +70,14 @@ Config = {
                 },
             },
             Ghoul = {
-                health     = _.__random(35, 50),
+                health     = { min = 35, max = 50 },
                 speed      = 600,
                 jumpHeight = 3000,
                 timing = {
                     unrest = 1,
                 },
                 attack = {
-                    damage   = 0,
+                    damage   = { min = 5, max = 10 },
                     distance = 100,
                     sx       = 0.3,
                     sy       = 0.5,

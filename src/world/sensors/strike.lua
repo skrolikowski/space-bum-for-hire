@@ -11,6 +11,11 @@ function Strike:new(host)
 	self.affects = Util:toBoolean({ 'HitBox' })
 	self.damage  = host._attack.damage
 
+	-- variants
+	if _:isTable(self.damage) then
+		self.damage = _.__random(self.damage.min, self.damage.max)
+	end
+
 	-- animation
 	self.sprite = Animator()
 	self.sprite:addAnimation('strike', {

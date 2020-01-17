@@ -6,15 +6,12 @@ local Enemy = Unit:extend()
 
 function Enemy:new(data)
 	Unit.new(self, _:merge(data, {
-		name = data.name or 'Enemy'
+		name   = data.name   or 'Enemy',
+		title  = data.title  or 'Enemy',
+		health = data.health or 100,
+		speed  = data.speed  or 400,
 	}))
 	--
-	-- properties
-	self.title  = data.title  or 'Enemy'
-	self.health = data.health or 100
-	self.speed  = data.speed  or 400
-	self.unrest = data.unrest or 3
-
 	-- sensors/events
 	self._timing = data.timing
 	self._attack = data.attack
@@ -88,7 +85,7 @@ function Enemy:draw()
 		local w, h      = self:dimensions()
 		local barHeight = 4
 		local health    = self.health
-		local healthMax = Config.world.enemies[self.name].health
+		local healthMax = self.initHealth
 		local value     = _.__max(0, w * (health/healthMax))
 
 		lg.push()

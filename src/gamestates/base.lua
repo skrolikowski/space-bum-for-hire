@@ -35,6 +35,15 @@ function Base:enter(from, ...)
 	_World.width  = self.width
 	_World.height = self.height
 
+	--
+	-- register world sensor
+	-- remove bodies outside of bounds
+	self.sensor = Sensors['bounds'](_World)
+	self.sensor:outOfBounds(function(other, col)
+	-- Handle `out of bounds`
+		other:destroy()
+	end)
+
 	-- spawn entities
     Spawner(self.map)
 end
@@ -115,7 +124,7 @@ function Base:update(dt)
 	self.timer:update(dt)
 
 	-- follow target
-	if self.filming then
+	if self.filming and not self.filming.remove then
 		self:lookAt(self.filming:getPosition())
 	end
 end
