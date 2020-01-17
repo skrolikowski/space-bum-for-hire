@@ -29,7 +29,6 @@ function Boomarang:new(data)
 
 	-- animation/tween
 	self.running = false
-	self.bodies  = 0
 	self.timer   = Timer.new()
 end
 
@@ -37,7 +36,6 @@ end
 --
 function Boomarang:beginContact(other, col)
 	if col:isTouching() and not self.running then
-		self.bodies = self.bodies + 1
 		self:trigger()
 	end
 end
@@ -45,7 +43,7 @@ end
 -- Check for separations
 --
 function Boomarang:endContact(other, col)
-	self.bodies = self.bodies - 1
+	--
 end
 
 -- Start movement animation
@@ -71,13 +69,6 @@ function Boomarang:trigger()
 		self.timer:tween(delayIn, self.pos, {x = self.firstPos.x, y = self.firstPos.y}, tweenIn,
 			function()
 				self.running = false
-
-				-- -- replay?
-				-- if self.replay and self.bodies > 0 then
-				-- 	self.timer:after(self.delay, function()
-				-- 		self:trigger()
-				-- 	end)
-				-- end
 			end)
 	end)
 end

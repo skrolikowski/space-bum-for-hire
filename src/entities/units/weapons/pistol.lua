@@ -6,15 +6,6 @@ local Pistol = Weapon:extend()
 
 function Pistol:new(host)
 	self.sprite = Animator()
-	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.effect.pistol,
-		width  = 35,
-		height = 6,
-		total  = 1,
-		fps    = 35,
-		frames = { { 1, 1, 14, 1 } },
-		after  = function() self.blast = false end
-	})
 
 	-- scaling
 	self.sx = 0.85
@@ -44,10 +35,6 @@ function Pistol:trigger(dt, et)
 				name     = self.weapon.clip,
 				value    = 1
 			})
-
-			-- play sound
-			Config.audio.weapon.pistol:play()
-			Config.audio.weapon.pistol:seek(0)
 		else
 			-- dry fire
 			Config.audio.weapon.dryfire:play()
@@ -72,8 +59,13 @@ function Pistol:fire()
 		ty = ty + h * 0.65
 	end
 
-	-- line up with host entity shot
-	self.blast = Vec2(tx, ty)
+	-- Blast effect
+	Effects['pistol']({
+		x          = tx,
+		y          = ty,
+		angle      = self.host.aimAngle,
+		isMirrored = self.host.isMirrored,
+	})
 
 	-- New Projectile
 	Sensors['projectile'](self, {
@@ -87,20 +79,6 @@ end
 --
 function Pistol:draw()
 	Weapon.draw(self)
-	--
-	if self.blast then
-		local tx, ty = self.blast:unpack()
-		local angle  = self.host.aimAngle
-		local sx, sy = 1, 1
-
-		if self.host.isMirrored then
-			sx    = -sx
-			angle = angle + _.__pi
-		end
-
-		lg.setColor(Config.color.white)
-		self.sprite:draw(tx, ty, angle, sx, sy, 0, 2)
-	end
 end
 
 return Pistol

@@ -72,20 +72,20 @@ Config = {
             },
             Ghoul = {
                 health     = 50,
-                speed      = 800,
-                jumpHeight = 5000,
+                speed      = 600,
+                jumpHeight = 3000,
                 timing = {
-                    unrest = 2,
+                    unrest = 1,
                 },
                 attack = {
                     damage   = 0,
-                    distance = 80,
-                    forget   = 2,
-
+                    distance = 100,
+                    sx       = 0.3,
+                    sy       = 0.5,
                 },
                 sight  = {
-                    distance  = 300,
-                    periphery = _.__pi / 12
+                    distance  = 350,
+                    periphery = _.__pi / 20
                 },
                 sprite = {
                     width  = 51,
@@ -115,9 +115,9 @@ Config = {
                 shield = { now = 0,   max = 35  },
             },
             ammo = {
-                bullets = { now = 100, max = 100 },
-                shells  = { now = 24,  max = 24  },
-                plasma  = { now = 6,   max = 6 },
+                bullets = { now = 24, max = 50 },
+                shells  = { now = 8,  max = 20 },
+                plasma  = { now = 6,  max = 6 },
             },
         },
         weapon = {
@@ -126,7 +126,8 @@ Config = {
                 clip        = 'bullets',
                 cooldown    = 0.35,
                 damage      = { min = 25, max = 35 },
-                decay       = 5,
+                radius      = 1,
+                decay       = 1,
                 speed       = 1000,
                 spritesheet = 'item',
             },
@@ -135,7 +136,8 @@ Config = {
                 clip        = 'shells',
                 cooldown    = 1.25,
                 damage      = { min = 30, max = 35 },
-                decay       = 15,
+                radius      = 3,
+                decay       = 12,
                 speed       = 800,
                 spritesheet = 'weapon',
             },
@@ -206,7 +208,7 @@ Config = {
             },
             ghoul = {
                 hunt   = la.newSource('res/sfx/Cute Creature_8.wav', 'static'),
-                bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
+                bored  = la.newSource('res/sfx/Cute Creature_1.wav', 'static'),
                 attack = la.newSource('res/sfx/Cute Creature_11 - Growl.wav', 'static'),
                 die    = la.newSource('res/sfx/Cute Creature_9 - Dying.wav', 'static'),
             }

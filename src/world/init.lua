@@ -21,6 +21,8 @@ Effects = {
 	flame1     = require 'src.world.effects.flame_continously',
 	flame2     = require 'src.world.effects.flame_pulse',
 	warp       = require 'src.world.effects.warp',
+	pistol     = require 'src.world.effects.pistol',
+	shotgun    = require 'src.world.effects.shotgun',
 }
 
 -- Events

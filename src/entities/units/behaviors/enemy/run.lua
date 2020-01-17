@@ -25,20 +25,22 @@ function Run:destroy()
 	Base.destroy(self)
 end
 
--- Set sensors for: NPC
+-- Set sensors for:
 --   - Environmental dispatcher
 --
 function Run:setSensors()
 	Base.setSensors(self)
 	--
-	local x, y, w, h  = self.bounds:container()
-	local hW, hH, pad = w/2, h/2, Config.tileSize
-	local shape, edge
+	local x, y, w, h = self.bounds:container()
+	local pad = Config.tileSize
+	local shape
 
 	if self.host.isMirrored then
-		shape = Shapes['edge'](-hW-pad, hH+8, -hW-pad, hH)
+		shape = Shapes['circle'](-w/2 - pad, h/2 + pad/2, 3)
+		--shape = Shapes['edge'](-hW-pad, hH+8, -hW-pad, hH)
 	else
-		shape = Shapes['edge']( hW+pad, hH+8,  hW+pad, hH)
+		shape = Shapes['circle']( w/2 - pad, h/2 + pad/2, 3)
+		--shape = Shapes['edge']( hW+pad, hH+8,  hW+pad, hH)
 	end
 
 	self.edge = Sensors['dispatcher'](self.host, { 'Environment' })
@@ -50,9 +52,11 @@ end
 -- Stop on wall
 --
 function Run:beginContact(other, col)
-	if select(1, col:getNormal()) ~= 0 then
-	-- wall contact
-		self.host.running = false
+	if other.category == 'Environment' then
+		if select(1, col:getNormal()) ~= 0 then
+		-- wall contact
+			self.host.running = false
+		end
 	end
 end
 

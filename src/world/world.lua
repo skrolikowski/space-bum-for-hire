@@ -207,7 +207,7 @@ end
 function World:update(dt)
 	self.world:update(dt)
 
-	self:queryScreen(
+	self:queryWorld(
 		function(fix)
 			if fix:getUserData().remove then
 				fix:destroy()

@@ -49,7 +49,10 @@ function Enemy:update(dt)
 		self:setBehavior('die')
     elseif self.onGround then
     -- on Ground
-    	if self.attacking then
+    	if self.jumping then
+    	-- Jumping
+    		self:setBehavior('jump')
+    	elseif self.attacking then
         -- Attacking
             self:setBehavior('attack')
     	elseif self.running then
@@ -100,6 +103,75 @@ function Enemy:draw()
 
 		lg.pop()
 	end
+end
+
+----
+----
+
+-- Interrupt current action
+--
+function Enemy:interrupt()
+	self:resetFlags()
+	--
+	if self.handle then
+		self.timer:cancel(self.handle)
+	end
+	--
+	if self.sightSensor then
+		self.sightSensor:destroy()
+	end
+
+	return self
+end
+
+-- Enemy Hunt
+-- Run in direction of `target`.
+-- If target in range, perform attack!
+-- --
+-- Also, forget about `target` after delay.
+--
+function Enemy:hunt(other)
+	local hx, hy = self:getPosition()
+	local tx, ty = other:getPosition()
+
+	self.running    = true
+	self.isMirrored = tx < hx
+	--
+	-- attack if target in range
+	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
+	self.sightSensor:setShape(Shapes['circle'](self._attack.distance))
+	self.sightSensor:setInFocus(function(other)
+		self:interrupt():attack(other)
+	end)
+	--
+	Config.audio.enemy[_.__lower(self.name)].hunt:play()
+end
+
+-- Fallback Action
+-- 
+--
+function Enemy:fallback()
+	self.running = true
+
+	self.handle = self.timer:after(2, function()
+		self.isMirrored = not self.isMirrored
+		self.running    = false
+		self:patrol()
+	end)
+end
+
+-- Die action
+--
+function Enemy:die()
+	self:interrupt()
+	self.hitbox:destroy()
+	self.dying = true
+	--
+	self.timer:after(3, function()
+		self:destroy()
+	end)
+	--
+	Config.audio.enemy[_.__lower(self.name)].die:play()
 end
 
 return Enemy

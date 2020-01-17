@@ -71,13 +71,11 @@ function Unit:beginContact(other, col)
 		self.behavior:beginContact(other, col)
 		--
 		if other.category == 'Environment' then
-		-- on wall/ground
-			if select(2, col:getNormal()) == -1 then
+		-- Environmental Contact
+			if select(2, col:getNormal()) < 0 then
 			-- ground contact
 				if not self.grounds[other.uuid] then
 					self.grounds[other.uuid] = other
-					-- self.onGround = true
-					-- print(self.name, 'onGround')
 				end
 			end
 			
@@ -85,8 +83,6 @@ function Unit:beginContact(other, col)
 			-- wall contact
 				if not self.walls[other.uuid] then
 					self.walls[other.uuid] = other
-					-- self.onWall = true
-					-- print(self.name, 'onWall')
 				end
 			end
 		end

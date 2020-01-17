@@ -86,7 +86,6 @@ function Behavior:draw()
 	local sx, sy     = (self.sx or 1), (self.sy or 1)
 	local isMirrored = self.host.isMirrored
 	local isFlipped  = self.host.isFlipped
-	-- local stateName  = self.name .. '\n'
 
 	local ox = w/2 + (self.ox or 0)
 	local oy = h/2 + (self.oy or 0)
@@ -98,6 +97,7 @@ function Behavior:draw()
 	self.sprite:draw(cx, cy, 0, sx, sy, ox, oy)
 
 	-- -- display state
+	-- local stateName  = self.name .. '\n'
 	-- if self.host.locking  then stateName = stateName .. 'L' end
 	-- if self.host.shooting then stateName = stateName .. 'S' end
 

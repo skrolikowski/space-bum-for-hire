@@ -16,12 +16,6 @@ function Jump:new(host)
 	})
 	--
 	Base.new(self, 'jump', host)
-
-	-- jump!
-	local initJumpVel = _.__sqrt(2 * Config.world.gravity.y * self.host.jumpHeight)
-	local initImpulse = self.host:mass() * initJumpVel
-	
-	host:applyLinearImpulse(0, -initImpulse)
 end
 
 return Jump

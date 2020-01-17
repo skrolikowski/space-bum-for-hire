@@ -6,15 +6,6 @@ local Shotgun = Weapon:extend()
 
 function Shotgun:new(host)
 	self.sprite = Animator()
-	self.sprite:addAnimation('default', {
-		image  = Config.image.spritesheet.effect.shotgun,
-		width  = 60,
-		height = 8,
-		total  = 1,
-		fps    = 50,
-		frames = { { 1, 1, 17, 1 } },
-		after  = function() self.blast = false end
-	})
 
 	-- weapon scaling
 	self.sx = 0.75
@@ -44,10 +35,6 @@ function Shotgun:trigger(dt, et)
 				name     = self.weapon.clip,
 				value    = 1
 			})
-
-			-- play sound
-			Config.audio.weapon.shotgun:play()
-			Config.audio.weapon.shotgun:seek(0)
 		else
 			-- dry fire
 			Config.audio.weapon.dryfire:play()
@@ -72,8 +59,13 @@ function Shotgun:fire()
 		ty = ty + h * 0.65
 	end
 
-	-- line up with host entity shot
-	self.blast = Vec2(tx, ty)
+	-- Blast effect
+	Effects['shotgun']({
+		x          = tx,
+		y          = ty,
+		angle      = self.host.aimAngle,
+		isMirrored = self.host.isMirrored,
+	})
 
 	-- New Projectile
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle })
@@ -83,42 +75,6 @@ function Shotgun:fire()
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/14 })
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle - _.__pi/12 })
 	Sensors['projectile'](self, { x = tx, y = ty, angle = angle + _.__pi/12 })
-end
-
--- Draw shotgun blast
---
-function Shotgun:draw()
-	Weapon.draw(self)
-	--
-	if self.blast then
-		local tx, ty  = self.blast:unpack()
-		local w, h    = self.sprite:dimensions()
-		local angle   = self.host.aimAngle
-		local sx, sy  = 1, 1
-
-		if self.host.isMirrored then
-			sx    = -sx
-			angle = angle + _.__pi
-		end
-
-		lg.push()
-		lg.translate(tx, ty)
-		lg.rotate(angle)
-		lg.scale(sx, sy)
-
-		lg.setColor(1,1,1,0.25)
-
-		self.sprite:draw(0, 0)
-		self.sprite:draw(0, 0, -_.__pi/16)
-		self.sprite:draw(0, 0,  _.__pi/16)
-		self.sprite:draw(0, 0, -_.__pi/14, 0.75, 0.75)
-		self.sprite:draw(0, 0,  _.__pi/14, 0.75, 0.75)
-		self.sprite:draw(0, 0, -_.__pi/12, 0.5, 0.5)
-		self.sprite:draw(0, 0,  _.__pi/12, 0.5, 0.5)
-
-		lg.pop()
-
-	end
 end
 
 return Shotgun

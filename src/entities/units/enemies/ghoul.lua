@@ -9,91 +9,100 @@ function Ghoul:new(data)
 		Config.world.enemies['Ghoul']
 	))
 	--
+	-- hitbox
+	local w, h = self:dimensions()
+
+	self.hitbox = Sensors['hitbox'](self)
+	self.hitbox:setShape(Shapes['circle'](h*0.7))
 end
 
 -- Bored action
+-- Start patrol w/ sound
 --
 function Ghoul:bored()
 	self:interrupt():patrol(self.isMirrored and 'right' or 'left')
 	--
-	Config.audio.enemy.ghoul.bored:play()
+	-- Config.audio.enemy.ghoul.bored:play()
 end
 
--- Die action
---
-function Ghoul:die()
-	self:interrupt()
-	self.dying = true
-	--
-	self.timer:after(2, function()
-		self:destroy()
-	end)
-	--
-	Config.audio.enemy.ghoul.die:play()
-end
-
--- Interrupt current action
---
-function Ghoul:interrupt()
-	self:resetFlags()
-	self.target = nil
-	--
-	if self.handle then
-		self.timer:cancel(self.handle)
-	end
-	--
-	if self.sightSensor then
-		self.sightSensor:destroy()
-	end
-
-	return self
-end
-
--- Patrol
+-- Enemy Patrol
+-- Choose direction to patrol for `delay`.
+-- If target found, interrupt to Hunt.
 --
 function Ghoul:patrol(direction, delay)
 	self.isMirrored = direction == 'left' or false
 	--
-	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
+	self.sightSensor = Sensors['sight'](self, { 'Player' })
 	self.sightSensor:setShape(Shapes['circle'](self._sight.distance))
 	self.sightSensor:setInFocus(function(other)
-		print('spotted!')
-		-- self:interrupt():hunt(other)
+		self:interrupt():attack(other)
 	end)
-end
-
--- Hunt
---
-function Ghoul:hunt(other)
-	local hx, hy = self:getPosition()
-	local tx, ty = other:getPosition()
-
-	self.target     = other
-	self.running    = true
-	self.isMirrored = tx < hx
-	--
-	-- attack if target in range
-	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
-	self.sightSensor:setShape(Shapes['circle'](self._attack.distance))
-	self.sightSensor:setInFocus(function(other)
-		self:interrupt():strike()
-	end)
-	-- give up after delay
-	self.handle = self.timer:after(self._attack.forget, function()
-		self.target  = nil
-		self.running = false
-	end)
-	--
-	Config.audio.enemy.ghoul.hunt:play()
 end
 
 -- Strike attack
 --
-function Ghoul:strike()
-	self.attacking    = true
-	self.strikeSensor = Sensors['strike'](self)
-	--
-	Config.audio.enemy.ghoul.attack:play()
+function Ghoul:attack(other)
+	local cx, cy = self:getPosition()
+	local tx, ty = other:getPosition()
+	local distance = Vec2(cx, cy):distance(Vec2(tx, ty))
+
+	if distance < self._attack.distance then
+		self:runningAttack(other, distance)
+	else
+		self:jumpingAttack(other, distance)
+	end
+end
+
+-- Running attack
+--
+function Ghoul:runningAttack(other, distance)
+	local cx, cy = self:getPosition()
+	local tx, ty = other:getPosition()
+
+	self.running    = true
+	self.isMirrored = tx < cx
+
+	self.sightSensor = Sensors['sight'](self, { 'Player' }, _.__pi / 2)
+	self.sightSensor:setShape(Shapes['circle'](75))
+	self.sightSensor:setInFocus(function(other)
+		self.timer:script(function(wait)
+			self.attacking    = true
+			self.strikeSensor = Sensors['strike'](self)
+			wait(0.5)
+			self.running = true
+		end)
+		--
+		Config.audio.enemy.ghoul.attack:play()
+	end)
+end
+
+-- Jumping attack
+--
+function Ghoul:jumpingAttack(other, distance)
+	local cx, cy = self:getPosition()
+	local tx, ty = other:getPosition()
+
+	self.jumping   = true
+	self.isMirrored = tx < cx
+
+	-- jump!
+	if self.isMirrored then
+		self:setLinearVelocity(-distance, -600)
+	else
+		self:setLinearVelocity( distance, -600)
+	end
+	
+	-- attack in air
+	self.handle = self.timer:after(1, function()
+		self.timer:script(function(wait)
+			self.attacking    = true
+			self.strikeSensor = Sensors['strike'](self)
+			wait(0.5)
+			self.running = true
+		end)
+		--
+		Config.audio.enemy.ghoul.attack:play()
+	end)
 end
 
 return Ghoul

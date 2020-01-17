@@ -16,9 +16,6 @@ function Idle:new(host)
 	})
 	--
 	Base.new(self, 'idle', host)
-
-	-- unrest
-	-- host.timer:after(host._timing.unrest, function() host:bored() end)
 end
 
 return Idle

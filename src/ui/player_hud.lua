@@ -127,7 +127,6 @@ function HUD:setCanvas()
 	local ammo = {
 		bullets = Config.world.hud.ammo['bullets'],
 		shells  = Config.world.hud.ammo['shells'],
-		plasma  = Config.world.hud.ammo['plasma'],
 	}
 	local ammoNow = ammo[weapon.clip].now
 	local ammoMax = ammo[weapon.clip].max
@@ -173,11 +172,9 @@ function HUD:setCanvas()
 	-- munitions text
 	bulletsText = lg.newText(Config.ui.munitions.sm)
 	shellsText  = lg.newText(Config.ui.munitions.sm)
-	plasmaText  = lg.newText(Config.ui.munitions.sm)
 
 	bulletsText:setf(ammo['bullets'].now .. ' / ' .. ammo['bullets'].max, Config.tileSize*5.5, 'right')
 	shellsText:setf(ammo['shells'].now   .. ' / ' .. ammo['shells'].max,  Config.tileSize*5.5, 'right')
-	plasmaText:setf(ammo['plasma'].now   .. ' / ' .. ammo['plasma'].max,  Config.tileSize*5.5, 'right')
 	--
 	-- END SETUP -----------------------
 
@@ -218,13 +215,11 @@ function HUD:setCanvas()
 	lg.draw(ammoText, Config.tileSize * 11.25, Config.tileSize * 12, _.__pi / 2)
 
 	-- munitions
-	lg.draw(bulletsText, Config.tileSize * 1, Config.tileSize * 12)
-	lg.draw(shellsText,  Config.tileSize * 1, Config.tileSize * 13.5)
-	lg.draw(plasmaText,  Config.tileSize * 1, Config.tileSize * 15)
+	lg.draw(bulletsText, Config.tileSize * 1, Config.tileSize * 13)
+	lg.draw(shellsText,  Config.tileSize * 1, Config.tileSize * 14.5)
 
-	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*10.75, 0, 1.5, 1.5)
-	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*12.5)
-	self.spriteItem:draw('plasma_md',  Config.tileSize*7, Config.tileSize*14)
+	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*12, 0, 1.5, 1.5)
+	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*14)
 
 	--TODO:
 	-- -- objective

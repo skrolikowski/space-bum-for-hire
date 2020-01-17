@@ -11,11 +11,17 @@ function Effect:new(name, data)
 	--
 	-- properties
 	self.name   = name
+	self.pos    = Vec2(data.x, data.y)
 	self.bounds = AABB:fromContainer(data.x, data.y, sw, sh)
+	self.angle  = data.angle or 0
+
+	-- offset
+	self.ox = data.ox or 0
+	self.oy = data.oy or 0
 
 	-- scaling
-	self.sx = data.width  / sw
-	self.sy = data.height / sh
+	self.sx = (data.width  or sw) / sw
+	self.sy = (data.height or sh) / sh
 
 	-- flags
 	self.isMirrored = data.isMirrored == true or false
@@ -79,20 +85,18 @@ end
 -- Draw effect
 --
 function Effect:draw()
-	local cx, cy     = self:getPosition()
-	local w, h       = self:dimensions()
-	local sx, sy     = (self.sx or 1), (self.sy or 1)
-	local isMirrored = self.isMirrored
-	local isFlipped  = self.isFlipped
+	local cx, cy = self:getPosition()
+	local w, h   = self:dimensions()
+	local sx, sy = (self.sx or 1), (self.sy or 1)
+	local angle  = self.angle
+	local ox     = w/2 + (self.ox or 0)
+	local oy     = h/2 + (self.oy or 0)
 
-	local ox = w/2 + (self.ox or 0)
-	local oy = h/2 + (self.oy or 0)
-
-	if isMirrored then sx = -sx end
-	if isFlipped  then sy = -sy end
+	if self.isMirrored then sx = -sx end
+	if self.isFlipped  then sy = -sy end
 
 	lg.setColor(Config.color.white)
-	self.sprite:draw(cx, cy, 0, sx, sy, ox, oy)
+	self.sprite:draw(cx, cy, angle, sx, sy, ox, oy)
 end
 
 return Effect

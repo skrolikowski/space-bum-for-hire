@@ -18,17 +18,18 @@ function Strike:new(host)
 		width  = 83,
 		height = 81,
 		total  = 1,
+		fps    = 40,
 		frames = { { 1, 1, 11, 2 } },
 		after  = function() self:destroy() end
 	})
 
+	-- sprite scaling
+	self.sx = host._attack.sx or 0.5
+	self.sy = host._attack.sy or 0.8
+
 	--
 	local hw, hh = host:dimensions()
 	local sw, sh = self.sprite:dimensions()
-
-	-- sprite scaling
-	self.sx = 0.5
-	self.sy = 0.8
 
 	-- shape
 	if host.isMirrored then
@@ -48,8 +49,8 @@ end
 -- Draw strike
 --
 function Strike:draw()
-	-- lg.setColor(Config.color.sensor.strike)
-	-- self.shape:draw()
+	lg.setColor(Config.color.sensor.strike)
+	self.shape:draw()
 	--
 	local cx, cy = self:getPosition()
 	local w, h   = self.sprite:dimensions()

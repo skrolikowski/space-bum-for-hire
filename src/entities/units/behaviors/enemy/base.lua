@@ -16,20 +16,20 @@ function Base:setBounds()
 	self.bounds = AABB:fromContainer(x, y, w/2, h)
 end
 
--- Set sensors for:
---   - Hit Boxes
---
-function Base:setSensors()
-	local x, y, w, h = self.bounds:scale(0.65,0.65):container()
-	local bodyShape  = Shapes['rectangle'](x, y, w, h)
-	local bodySensor
+-- -- Set sensors for:
+-- --   - Hit Boxes
+-- --
+-- function Base:setSensors()
+-- 	local x, y, w, h = self.bounds:scale(0.65,0.65):container()
+-- 	local bodyShape  = Shapes['rectangle'](x, y, w, h)
+-- 	local bodySensor
 
-	-- body hitbox
-	bodySensor = Sensors['hitbox'](self.host)
-	bodySensor:setShape(bodyShape)
+-- 	-- body hitbox
+-- 	bodySensor = Sensors['hitbox'](self.host)
+-- 	bodySensor:setShape(bodyShape)
 
-	-- add sensors
-	table.insert(self.sensors, bodySensor)
-end
+-- 	-- add sensors
+-- 	table.insert(self.sensors, bodySensor)
+-- end
 
 return Base

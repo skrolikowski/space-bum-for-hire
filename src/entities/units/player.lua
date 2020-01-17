@@ -194,10 +194,7 @@ function Player:update(dt)
 		self:setBehavior('die')
     elseif self.onGround then
     -- on Ground
-    	if self.dying then
-    	-- Dying
-    		self:setBehavior('die')
-    	elseif self.jumping then
+    	if self.jumping then
     	-- Jumping
     		self:setBehavior('jump')
     	elseif self.lockedIn then
