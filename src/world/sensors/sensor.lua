@@ -25,6 +25,18 @@ function Sensor:getPosition()
 	return self.shape:center()
 end
 
+-- Get bounding box
+--
+function Sensor:bounds()
+	return self.shape:bounds()
+end
+
+-- Get shape dimensions
+--
+function Sensor:dimensions()
+	return self.shape:dimensions()
+end
+
 -- Set shape of sensor and attach to host entity
 --
 function Sensor:setShape(shape)

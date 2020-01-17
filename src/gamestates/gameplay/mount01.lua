@@ -40,14 +40,14 @@ function Mount01:enter(from, ...)
             spawnPos.y + Config.spawn.height / 2
         )
         -- teleportation effect w/ adjustments
-        -- Effects['warp']({
-        --     x      = spawnPos.x  - 15,
-        --     y      = spawnPos.y  - 25,
-        --     width  = Config.spawn.width  * 1.25,
-        --     height = Config.spawn.height * 1.25,
-        -- })
+        Effects['warp']({
+            x      = spawnPos.x  - 15,
+            y      = spawnPos.y  - 25,
+            width  = Config.spawn.width  * 1.25,
+            height = Config.spawn.height * 1.25,
+        })
 
-        -- self.timer:after(0.85, function(wait)
+        self.timer:after(0.85, function(wait)
             -- spawn player
             self.player = Entities['Player']({
                 x       = spawnPos.x,
@@ -59,7 +59,7 @@ function Mount01:enter(from, ...)
             -- give controls to player
             self.filming = self.player
             self:setControl('player')
-        -- end)
+        end)
     end
 end
 

@@ -36,16 +36,22 @@ function Run:setSensors()
 	local shape
 
 	if self.host.isMirrored then
-		shape = Shapes['circle'](-w/2 - pad, h/2 + pad/2, 3)
-		--shape = Shapes['edge'](-hW-pad, hH+8, -hW-pad, hH)
+		shape = Shapes['circle'](-w/2 - pad, h/2 + pad/2, 2)
 	else
-		shape = Shapes['circle']( w/2 + pad, h/2 + pad/2, 3)
-		--shape = Shapes['edge']( hW+pad, hH+8,  hW+pad, hH)
+		shape = Shapes['circle']( w/2 + pad, h/2 + pad/2, 2)
 	end
 
 	self.edge = Sensors['dispatcher'](self.host, { 'Environment' })
 	self.edge:setShape(shape)
 	self.edge:setOffContact(function(other, col) self.host.running = false end)
+
+	--
+	-- check for immediate contact
+	self.edge:checkForContacts(function(isContact)
+		if not isContact then
+			self.host.running = false
+		end
+	end)
 end
 
 -- Handle collision detection

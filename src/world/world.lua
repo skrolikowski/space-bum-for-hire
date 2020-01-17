@@ -61,7 +61,7 @@ function World:queryPoint(x, y, callback)
 	if callback then
 		self.world:queryBoundingBox(x, y, x, y, callback)
 	else
-		return self.world:fetchInBounds(AABB(x, y, x, y))
+		return self:fetchInBounds(x, y, x, y)
 	end
 end
 
@@ -71,7 +71,7 @@ function World:queryRect(x, y, w, h, callback)
 	if callback then
 		self.world:queryBoundingBox(x, y, x+w, y+h, callback)
 	else
-		return self.world:fetchInBounds(AABB(x, y, x+w, y+h))
+		return self:fetchInBounds(x, y, x+w, y+h)
 	end
 end
 
@@ -88,7 +88,7 @@ function World:queryScreen(callback)
 	if callback then
 		self.world:queryBoundingBox(left, top, right, bottom, callback)
 	else
-		return self.world:fetchInBounds(left, top, right, bottom)
+		return self:fetchInBounds(left, top, right, bottom)
 	end
 end
 
@@ -98,7 +98,7 @@ function World:queryWorld(callback)
 	if callback then
 		self.world:queryBoundingBox(0, 0, self.width, self.height, callback)
 	else
-		return self.world:fetchInBounds(0, 0, self.width, self.height)
+		return self:fetchInBounds(0, 0, self.width, self.height)
 	end
 end
 

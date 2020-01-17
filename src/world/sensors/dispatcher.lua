@@ -22,6 +22,27 @@ function Dispatcher:setOffContact(callback)
 	self.offContact = callback
 end
 
+-- Check for immediate contacts and return results
+-- 
+function Dispatcher:checkForContacts(callback)
+	local bounds    = self:bounds()
+	local contacts  = _World:queryRect(bounds:container())
+	local isContact = false
+	local other
+
+	for __, fix in pairs(contacts) do
+		other = fix:getUserData()
+
+		if self.name ~= other.name then
+			if self.cause[other.name] or self.cause[other.category] then
+				isContact = true
+			end
+		end
+	end
+
+	return callback(isContact)
+end
+
 -- Check for contacts
 --
 function Dispatcher:beginContact(other, col)

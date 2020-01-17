@@ -32,7 +32,8 @@ end
 -- Switch out animation
 --
 function Jump:update(dt)
-	local isAiming = self.host.shooting
+	local isAiming = self.host.locking or
+	                 self.host.shooting
 
 	-- update animation
 	if isAiming then

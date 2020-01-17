@@ -24,8 +24,8 @@ function Strike:new(host)
 	})
 
 	-- sprite scaling
-	self.sx = host._attack.sx or 0.5
-	self.sy = host._attack.sy or 0.8
+	self.sx = host._attack.sx or 1
+	self.sy = host._attack.sy or 1
 
 	--
 	local hw, hh = host:dimensions()

@@ -39,17 +39,16 @@ Config = {
         --
         enemies = {
             Executioner = {
-                health     = 100,
+                health     = _.__random(100, 125),
                 speed      = 500,
                 jumpHeight = 3000,
                 timing = {
                     unrest = 1,
                 },
                 attack = {
-                    damage   = 0,
-                    distance = 80,
-                    forget   = 2,
-
+                    damage = 0,
+                    sx     = 0.5,
+                    sy     = 0.8,
                 },
                 sight  = {
                     distance  = 250,
@@ -71,7 +70,7 @@ Config = {
                 },
             },
             Ghoul = {
-                health     = 50,
+                health     = _.__random(35, 50),
                 speed      = 600,
                 jumpHeight = 3000,
                 timing = {
@@ -201,39 +200,37 @@ Config = {
     audio = {
         enemy = {
             executioner = {
-                hunt   = la.newSource('res/sfx/Monster_Raw Growl 5.wav', 'static'),
-                bored  = la.newSource('res/sfx/Beast Growl_9.wav', 'static'),
-                attack = la.newSource('res/sfx/Monster Hit 4.wav', 'static'),
-                die    = la.newSource('res/sfx/Monster In Pain_3.wav', 'static'),
+                hunt   = la.newSource('res/sfx/enemies/Monster_Raw Growl 5.wav', 'static'),
+                attack = la.newSource('res/sfx/enemies/Monster Hit 4.wav', 'static'),
+                die    = la.newSource('res/sfx/enemies/Monster In Pain_3.wav', 'static'),
             },
             ghoul = {
-                hunt   = la.newSource('res/sfx/Cute Creature_8.wav', 'static'),
-                bored  = la.newSource('res/sfx/Cute Creature_1.wav', 'static'),
-                attack = la.newSource('res/sfx/Cute Creature_11 - Growl.wav', 'static'),
-                die    = la.newSource('res/sfx/Cute Creature_9 - Dying.wav', 'static'),
+                hunt   = la.newSource('res/sfx/enemies/Cute Creature_8.wav', 'static'),
+                attack = la.newSource('res/sfx/enemies/Cute Creature_11 - Growl.wav', 'static'),
+                die    = la.newSource('res/sfx/enemies/Cute Creature_9 - Dying.wav', 'static'),
             }
         },
         weapon = {
-            pistol  = la.newSource('res/sfx/GUN_FIRE-GoodSoundForYou-820112263.wav', 'static'),
-            shotgun = la.newSource('res/sfx/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
-            raygun  = la.newSource('res/sfx/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
-            dryfire = la.newSource('res/sfx/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
-            shelldrop = la.newSource('res/sfx/Bullet Shell drop 3.wav', 'static'),
+            pistol  = la.newSource('res/sfx/weapon/GUN_FIRE-GoodSoundForYou-820112263.wav', 'static'),
+            shotgun = la.newSource('res/sfx/weapon/shotgun-mossberg590-RA_The_Sun_God-451502290.wav', 'static'),
+            raygun  = la.newSource('res/sfx/weapon/ray_gun-Mike_Koenig-1169060422.wav', 'static'),
+            dryfire = la.newSource('res/sfx/weapon/Dry Fire Gun-SoundBible.com-2053652037.wav', 'static'),
+            shelldrop = la.newSource('res/sfx/weapon/Bullet Shell drop 3.wav', 'static'),
             impact  = {
-                la.newSource('res/sfx/Bullet rock Impact 1.wav', 'static'),
-                la.newSource('res/sfx/Bullet rock Impact 2.wav', 'static'),
-                la.newSource('res/sfx/Bullet rock Impact 3.wav', 'static'),
-                la.newSource('res/sfx/Bullet rock Impact 4.wav', 'static'),
+                la.newSource('res/sfx/effects/Bullet rock Impact 1.wav', 'static'),
+                la.newSource('res/sfx/effects/Bullet rock Impact 2.wav', 'static'),
+                la.newSource('res/sfx/effects/Bullet rock Impact 3.wav', 'static'),
+                la.newSource('res/sfx/effects/Bullet rock Impact 4.wav', 'static'),
             },
             pierce = {
-                la.newSource('res/sfx/Punch in the face 2.wav', 'static'),
-                la.newSource('res/sfx/Punch in the face 12 - Bloody Punch.wav', 'static'),
-                la.newSource('res/sfx/Punch in the face 20 - Bloody Impact.wav', 'static'),
+                la.newSource('res/sfx/effects/Punch in the face 2.wav', 'static'),
+                la.newSource('res/sfx/effects/Punch in the face 12 - Bloody Punch.wav', 'static'),
+                la.newSource('res/sfx/effects/Punch in the face 20 - Bloody Impact.wav', 'static'),
             }
         },
-        warp       = la.newSource('res/sfx/shooting_star-Mike_Koenig-1132888100.wav', 'static'),
-        ammoPickup = la.newSource('res/sfx/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
-        itemPickup = la.newSource('res/sfx/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
+        warp       = la.newSource('res/sfx/effects/shooting_star-Mike_Koenig-1132888100.wav', 'static'),
+        ammoPickup = la.newSource('res/sfx/effects/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
+        itemPickup = la.newSource('res/sfx/effects/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
     },
     image = {
         cast = {

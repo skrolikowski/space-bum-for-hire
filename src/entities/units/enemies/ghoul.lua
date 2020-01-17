@@ -19,7 +19,10 @@ function Ghoul:new(data)
 	self:patrol()
 end
 
--- Ghoul Patrol
+-- Patrol Action
+-- Sensor:  Detect Player
+-- InFocus: Interrupted to attack target
+-- Audio:   None
 --
 function Ghoul:patrol()
 	-- Detect Player
@@ -61,11 +64,13 @@ function Ghoul:runningAttack(other, distance)
 
 	self.running    = true
 	self.isMirrored = tx < cx
-
+	--
+	-- Detect Player
+	-- InFocus: Interrupted to strike target
 	self.sightSensor = Sensors['sight'](self, { 'Player' }, _.__pi / 2)
-	self.sightSensor:setShape(Shapes['circle'](self._attack.distance / 2))
+	self.sightSensor:setShape(Shapes['circle'](distance / 2))
 	self.sightSensor:setInFocus(function(other)
-		self:strike()
+		self:interrupt():strike(other)
 	end)
 end
 
@@ -87,13 +92,13 @@ function Ghoul:jumpingAttack(other, distance)
 	
 	-- attack in air
 	self.handle = self.timer:after(1, function()
-		self:strike()
+		self:interrupt():strike(other)
 	end)
 end
 
 -- Strike attack
 --
-function Ghoul:strike()
+function Ghoul:strike(other)
 	self.attacking    = true
 	self.running      = true
 	self.strikeSensor = Sensors['strike'](self)

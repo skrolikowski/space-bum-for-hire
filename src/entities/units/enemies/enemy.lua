@@ -124,30 +124,10 @@ function Enemy:interrupt()
 	return self
 end
 
--- Enemy Hunt
--- Run in direction of `target`.
--- If target in range, perform attack!
--- --
--- Also, forget about `target` after delay.
---
-function Enemy:hunt(other)
-	local hx, hy = self:getPosition()
-	local tx, ty = other:getPosition()
-
-	self.running    = true
-	self.isMirrored = tx < hx
-	--
-	-- attack if target in range
-	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
-	self.sightSensor:setShape(Shapes['circle'](self._attack.distance))
-	self.sightSensor:setInFocus(function(other)
-		self:interrupt():attack(other)
-	end)
-	--
-	Config.audio.enemy[_.__lower(self.name)].hunt:play()
-end
-
--- Die action
+-- Die Action
+-- -----------
+-- Sensor:  None
+-- Audio:   Die
 --
 function Enemy:die()
 	self:interrupt()

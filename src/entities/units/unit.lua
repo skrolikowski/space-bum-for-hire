@@ -72,7 +72,7 @@ function Unit:beginContact(other, col)
 		--
 		if other.category == 'Environment' then
 		-- Environmental Contact
-			if select(2, col:getNormal()) < 0 then
+			if select(2, col:getNormal()) ~= 0 then
 			-- ground contact
 				if not self.grounds[other.uuid] then
 					self.grounds[other.uuid] = other
