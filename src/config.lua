@@ -31,7 +31,7 @@ Config = {
             mount01 = 'res/maps/Mountains.lua',
         },
         pickup = {
-            health  = { sm = 10 },
+            health  = { sm = 25 },
             shield  = {},
             bullets = { sm = 12, md = 24, lg = 50 },
         },

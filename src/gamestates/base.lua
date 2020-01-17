@@ -38,10 +38,12 @@ function Base:enter(from, ...)
 	--
 	-- register world sensor
 	-- remove bodies outside of bounds
-	self.sensor = Sensors['bounds'](_World)
+	self.sensor = Sensors['bounds'](_World, 0, _World.height/2, _World.width, Config.padding)
 	self.sensor:outOfBounds(function(other, col)
 	-- Handle `out of bounds`
-		other:destroy()
+		if other.remove == nil then
+			other:destroy()
+		end
 	end)
 
 	-- spawn entities

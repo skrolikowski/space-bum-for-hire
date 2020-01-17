@@ -78,6 +78,7 @@ end
 -- Clean up
 --
 function Player:destroy(dt, et)
+	Gamestate:current():playerDeath()
 	self.weapon:destroy()
 	--
 	Unit.destroy(self)

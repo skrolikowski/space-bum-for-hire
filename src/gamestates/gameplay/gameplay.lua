@@ -42,6 +42,13 @@ function Gameplay:rewardPlayer(payload)
 	-- end
 end
 
+-- Player has died
+--
+function Gameplay:playerDeath()
+	--TODO: reboot
+	print('Player Death')
+end
+
 -- Update HUD
 --
 function Gameplay:update(dt)

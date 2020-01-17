@@ -16,7 +16,7 @@ function Executioner:new(data)
 	self.hitbox:setShape(Shapes['circle'](0, h/4, w/2))
 
 	--
-	-- self:patrol()
+	self:patrol()
 end
 
 -- Patrol Action
@@ -26,6 +26,8 @@ end
 -- Audio:   None
 --
 function Executioner:patrol()
+	self.running = true
+	--
 	-- Detect Player
 	-- InFocus: Interrupt to hunt target
 	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)

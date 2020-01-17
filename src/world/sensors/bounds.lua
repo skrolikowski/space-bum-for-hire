@@ -4,19 +4,17 @@
 local Modern = require 'modern'
 local Bounds = Modern:extend()
 
-function Bounds:new(host)
+function Bounds:new(host, x, y, w, h)
 	self.name     = 'Bounds'
 	self.uuid     = Util:uuid()
 	self.category = 'Sensor'
 	self.host     = host
 
 	-- body
-	local w, h = host:dimensions()
-
-	self.body = lp.newBody(host.world, w/2, h/2, 'static')
+	self.body = lp.newBody(host.world, x+w/2, y+h/2, 'static')
 
 	-- shape
-	self.shape = Shapes['rectangle'](0, 0, host:dimensions())
+	self.shape = Shapes['rectangle'](x, y, w, h)
 	self.shape:setBody(self.body)
 
 	-- fixture
@@ -71,8 +69,8 @@ end
 -- Draw sensor
 --
 function Bounds:draw()
-	-- lg.setColor(Config.color.sensor.dispatcher)
-	-- self.shape:draw()
+	lg.setColor(Config.color.sensor.dispatcher)
+	self.shape:draw()
 end
 
 return Bounds
