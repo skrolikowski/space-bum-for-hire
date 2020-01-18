@@ -8,28 +8,21 @@ local Base     = Behavior:extend()
 --
 function Base:setBounds()
 	local x, y, w, h = unpack(self.host.shapeData)
+	local name       = self.host.name
 
-	self.ox = w/10
-	self.oy = 0
 	self.sx = self.sx * -1  -- default facing ==>
 
-	self.bounds = AABB:fromContainer(x, y, w/2, h)
+	if name == 'DarkMage' then
+		self.ox     = w/6
+		self.bounds = AABB:fromContainer(x, y+h*0.15, w/2, h*0.7)
+	elseif name == 'Ghoul' then
+		self.ox     = w/10
+		self.bounds = AABB:fromContainer(x, y, w/2, h)
+	elseif name == 'Executioner' then
+		self.ox     = w/12
+		self.bounds = AABB:fromContainer(x, y, w/2, h)
+	end
 end
 
--- -- Set sensors for:
--- --   - Hit Boxes
--- --
--- function Base:setSensors()
--- 	local x, y, w, h = self.bounds:scale(0.65,0.65):container()
--- 	local bodyShape  = Shapes['rectangle'](x, y, w, h)
--- 	local bodySensor
-
--- 	-- body hitbox
--- 	bodySensor = Sensors['hitbox'](self.host)
--- 	bodySensor:setShape(bodyShape)
-
--- 	-- add sensors
--- 	table.insert(self.sensors, bodySensor)
--- end
 
 return Base

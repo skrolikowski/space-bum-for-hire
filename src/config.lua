@@ -40,15 +40,13 @@ Config = {
         enemies = {
             Executioner = {
                 health     = { min = 100, max = 125 },
-                speed      = 500,
+                speed      = 450,
                 jumpHeight = 3000,
                 timing = {
                     unrest = 1,
                 },
                 attack = {
-                    damage = { min = 15, max = 25 },
-                    sx     = 0.5,
-                    sy     = 0.8,
+                    damage = { min = 15, max = 25 }, sx = 0.5, sy = 0.8,
                 },
                 sight  = {
                     distance  = 250,
@@ -98,6 +96,40 @@ Config = {
                         idle   = { { 1, 1, 1, 4 } },
                         run    = { { 2, 1, 2, 4 }, { 3, 1, 3, 2 } },
                         slide  = { { 4, 4, 4, 4 }, { 5, 1, 5, 2 } },
+                    },
+                },
+            },
+            DarkMage = {
+                health = { min = 75, max = 100 },
+                speed  = 500,
+                timing = {
+                    unrest   = 1,
+                    cooldown = 2,
+                },
+                attack = {
+                    damage   = { min = 15, max = 20 },
+                    distance = 350,
+                    decay    = 1,
+                    speed    = 150,
+                    radius   = 5,
+                },
+                sight  = {
+                    distance  = 400,
+                    periphery = _.__pi / 4
+                },
+                sprite = {
+                    width  = 60,
+                    height = 61,
+                    frames = {
+                        attack = { { 2, 5, 2, 6 }, { 3, 1, 3, 3 } },
+                        die    = { { 5, 1, 5, 6 }, { 6, 1, 6, 4 } },
+                        fall   = { { 7, 3, 7, 4 } },
+                        hurt   = { { 4, 4, 4, 6 } },
+                        jump   = { { 6, 5, 6, 6 }, { 7, 1, 7, 2 } },
+                        idle   = { { 1, 1, 1, 4 } },
+                        run    = { { 1, 5, 1, 6 }, { 2, 1, 2, 4 } },
+                        slide  = { { 4, 4, 4, 6 } },
+                        summon = { { 3, 4, 3, 6 }, { 4, 1, 4, 3 } },
                     },
                 },
             },
@@ -208,6 +240,11 @@ Config = {
                 hunt   = la.newSource('res/sfx/enemies/Cute Creature_8.wav', 'static'),
                 attack = la.newSource('res/sfx/enemies/Cute Creature_11 - Growl.wav', 'static'),
                 die    = la.newSource('res/sfx/enemies/Cute Creature_9 - Dying.wav', 'static'),
+            },
+            darkmage = {
+                hunt   = la.newSource('res/sfx/enemies/Zombie_6.wav', 'static'),
+                -- attack = la.newSource('res/sfx/enemies/.wav', 'static'),
+                die    = la.newSource('res/sfx/enemies/Zombie_5.wav', 'static'),
             }
         },
         weapon = {
@@ -287,10 +324,10 @@ Config = {
             },
             executioner = lg.newImage('res/spritesheets/enemies/executioner.png'),
             -- fire_golem     = lg.newImage('res/spritesheets/enemies/fire-golem.png'),
-            ghoul          = lg.newImage('res/spritesheets/enemies/ghoul.png'),
+            ghoul = lg.newImage('res/spritesheets/enemies/ghoul.png'),
             -- ice_golem      = lg.newImage('res/spritesheets/enemies/ice-golem.png'),
             -- imp            = lg.newImage('res/spritesheets/enemies/imp.png'),
-            -- necromancer    = lg.newImage('res/spritesheets/enemies/necromancer.png'),
+            darkmage = lg.newImage('res/spritesheets/enemies/necromancer.png'),
             -- phantom_knight = lg.newImage('res/spritesheets/enemies/phantom-knight.png'),
             -- reaper         = lg.newImage('res/spritesheets/enemies/reaper.png'),
             -- slug           = lg.newImage('res/spritesheets/enemies/slug.png'),

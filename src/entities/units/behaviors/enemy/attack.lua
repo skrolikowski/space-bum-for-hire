@@ -5,7 +5,6 @@ local Base   = require 'src.entities.units.behaviors.enemy.base'
 local Attack = Base:extend()
 
 function Attack:new(host)
-	print('attack')
 	self.sprite = Animator()
 	self.sprite:addAnimation('attack', {
 		image  = host.sprite,

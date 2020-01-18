@@ -4,6 +4,8 @@
 local Enemy = require 'src.entities.units.enemies.enemy'
 local Ghoul = Enemy:extend()
 
+-- New ghoul entity
+--
 function Ghoul:new(data)
 	Enemy.new(self, _:merge(data,
 		Config.world.enemies['Ghoul']
@@ -16,7 +18,7 @@ function Ghoul:new(data)
 	self.hitbox:setShape(Shapes['circle'](h*0.7))
 
 	--
-	self:patrol()
+	-- self:patrol()
 end
 
 -- Patrol Action

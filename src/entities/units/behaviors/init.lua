@@ -43,4 +43,13 @@ return {
     Ghoul_jump   = require 'src.entities.units.behaviors.enemy.jump',
     Ghoul_run    = require 'src.entities.units.behaviors.enemy.run',
     Ghoul_slide  = require 'src.entities.units.behaviors.enemy.slide',
+    -- dark mage
+    DarkMage_attack = require 'src.entities.units.behaviors.enemy.attack',
+    DarkMage_die    = require 'src.entities.units.behaviors.enemy.die',
+    DarkMage_fall   = require 'src.entities.units.behaviors.enemy.fall',
+    DarkMage_hurt   = require 'src.entities.units.behaviors.enemy.hurt',
+    DarkMage_idle   = require 'src.entities.units.behaviors.enemy.idle',
+    DarkMage_jump   = require 'src.entities.units.behaviors.enemy.jump',
+    DarkMage_run    = require 'src.entities.units.behaviors.enemy.run',
+    DarkMage_slide  = require 'src.entities.units.behaviors.enemy.slide',
 }

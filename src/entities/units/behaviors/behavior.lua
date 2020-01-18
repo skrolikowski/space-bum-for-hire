@@ -51,7 +51,7 @@ end
 -- Set bounding box for behavior
 --
 function Behavior:setBounds()
-	self.bounds = AABB:fromContainer(unpack(host.shapeData))
+	self.bounds = AABB:fromContainer(unpack(self.host.shapeData))
 end
 
 -- Set sensors for behavior

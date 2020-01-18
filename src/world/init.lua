@@ -43,6 +43,7 @@ Sensors = {
 	dispatcher = require 'src.world.sensors.dispatcher',	
 	hitbox     = require 'src.world.sensors.hitbox',
 	projectile = require 'src.world.sensors.projectile',
+	fireball   = require 'src.world.sensors.fireball',
 	sight      = require 'src.world.sensors.sight',
 	strike     = require 'src.world.sensors.strike',
 }

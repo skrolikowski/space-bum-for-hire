@@ -89,9 +89,13 @@ function Enemy:draw()
 		local value     = _.__max(0, w * (health/healthMax))
 
 		lg.push()
-		lg.translate(cx, cy-h/4)
-		--lg.rotate(-_.__pi/2)
+		lg.translate(cx, cy-h/3)
+		-- lg.rotate(-_.__pi/2)
 		lg.scale(0.35)
+
+		lg.setColor(Config.color.white)
+		lg.setFont(Config.ui.font.sm)
+		lg.printf(health..'/'..healthMax, 0, 0, w, 'center')
 
 		-- health meter
 		lg.setColor(Config.color.health)
