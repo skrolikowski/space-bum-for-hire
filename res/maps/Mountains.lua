@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 24,
-  nextobjectid = 167,
+  nextobjectid = 171,
   properties = {},
   tilesets = {
     {
@@ -222,7 +222,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtnUmTFEUUxytEcTsisoQRwqEVDjILw4DIMt/B3YtyaB0OMgvDYLAa4UcA14twaIWDsjWDskf4EcD15KUVDsri4AFZ/JVOwpuK2quyqrrnZcQ/6lVu7+X/31WTnZ1V4zialAFlQBlQBpQBZUAZUAaUAWVAGVAGlAFlQBlQBpQBZUAZUAaUAWVAGVAGlAFloJMZ2POA4+wFmjqTgQtoe1H1tSLusgcdpwuUmebMcpwnQJI05zHagLngSTAPzAcLgKb7DGxC26GS9b0fTXzrRXR8CbwMXgGvgtfA60BT+zOwBx33gg/BR+Bj8An4FGgql4H3uF+sAs+D1SnvHRfQ8SL4HvwAfgQ/gZ+BpvIYcLX9xqPpNs95nOjmPM7fXzAXPAnmgflgAdBUHgNG2x407Z3S9WQKfcsbQXt67oPjFaC/IK5H8DM65SvN9dueLJcX9RhcbwHjU5xHRbJytuP0gRWgH8hzN98vBX2G9Pr1YyvfvCa6HgcTMfXdioZjYAsYB/LczfdLQZ8hvX792Mo3bxJdb4C/Y+p7Ag2b4DiYAPLczfdLQZ8hvX792Mo3r+8h7rWgH9hKST9DtuLQfh2nO+A6zpJfxGdItZvOwLaHHWc72OG5pw5P6dvHUc6rTf70XhzH5Met722v53YYOImup8Bpj77G2xj6JplXB9VfQz9rwTqwHmgqhoGb6PoPuBWgbxMtksyrg+rvoJ+dYBfYDTQVw8Bq7s0vgDXAL02iRZJ5dVD90/RzBpwF54BJH+jvvoYKK8d7f38D9E06JwqqfwtNb4M74K7Qd1bC332tkKCdWmPgO71+rXFbhY71+q2CChpDJzKQx96srSH333HK3PITYCKkXidyW/SYvuX7kfe7cB57s5oV0q0l1l6lXTTXZfnz6ltWHLb81sR3fGnb8le1fqPWOqoWb9J46kJfaSftp13r+6119PFdVa4/h41N7rkJq1dWWUPoK+2y4inar99axxj6xl1/lntu3Nir9rt9S+gr7aJ5LsvfSdawToHTYi2rib5J1p9l7FX73b4u9JW2jHmm2UHryVE8nIHLs+AcOC94jWpns1xqKm2bPqved9B6clTca7kHrAPrwYC4H0S1s1neEJ8zadv0ORP79s7ZipqX1YS+0p6JGmQd8xbWNVaBG8C7huWds3nnZVl9B7WvC32lHVS/0/OD9lqZcYeVu/oGrTlmmbMZ32mODaGvtNP01QltzJ6qoLFElQe1k3O2Dfz+u2jqN2Db36daQl9pB8Wp+dMZiKuPnLMtRltX431c77a/T9WFvtKePgo9C2IgjT770dbV+Ff0jfv5CPIflS81lXZUOy3/n4GbYt9NXE7MvTlu/Sz1GuL6lXaWPju1rfeZMnNe5fG2hL7SrnLMaWIb5X7oIkvyPlNmzrP0abttTayzSNu233bp/5j4/E9gy2fKzHnUWMLWMtLc36P8yfLabGfAnEvb5OkxOwNFrWX4RcqejQGTL22Tp0c7DOgedzu8Zu3Vu46ctj/dI5uWuXzbefdTeteR03rTPe5pmcvWbhtzqO3APDvq3U+Z1zpyla5fua9S2tmYrGbrqP2Uch25miNIHhXz6ntJ2vcyO8iI2k8p15FtD9vvPaILA95V9zT5i8DigPKwWOtCX2mHtWnXMr/9lGWNxe89om8E6Pcm+W+BDQHlYWNoCH2lHdamXcv89lOWNRa/94h+FqDf5+TvA/sDysPG0BL6SjusjZZlZ8DvPaK/pNAvKpK60FfaUe20PBsDfu8RXWjhXaJSU2lni75zW+e1BlIUQw1x/Uq7KP/t5ievNZCixl0T+kq7KP/t5ievNZCixl0X+kq7KP9F+1nCM7NLgTkm9Z91DaT2lOM8A54FS8BSYDM1hL7StumzzL7RdQB9B8wxaSxZ10Dq6Pk2eAcMgo3AZmoJfaVt02eZfQ9y7W4E5lh0LA30/AJ8CQ6Ag8Bmqgt9pW3TZ5l9H0Dbg8Ac847lDnzedTkVe2ekjxZ6/gZ+B5fAZWAzSU2lbdNnmX0vibg/Bz3DECe/is8YNsT1K+0yNbDpG31D51dBzzDEya+ivjWhr7Rtclxm34Poa+vv7224jLo/Fz32utBX2kXHUZQ/83fXHPP0q88I58lmur64P2f6fhTmdSdzql1gN3hfzK/K/F+xLXH9SjtsHFrmz8AZND0LzoHzQt8y/1es3Pcubf8RdE6u+6x2USnp/4rNM666+JxJO08fM72vMq9fOaeS9kzXJM/xl3n9NsTfX2nnOb4i+rrEs5yXUzzPWURsZfqoCX2lXWZMaXwzL/5v3SJN205uUxf6Srvdxjw4tW6RJu64ezLi1ksTg602DaGvtG35s9VvlvWKMe7rcd5JGbeerTGm6bcl9JV2mr7atU0TfeO8kzJuvSrxIL/zSrtKMdqOZRJ9b4Co/zUat57teJP0L+/J0k7SR7vXjbsnI269KvFRE/dnaVcpRo0lPQNoOmBaS9vk6bG9GZDvbZB2e49Ko1cGsjFwhfnYVXANXAeaOouBLtZTukEP6AWaOouBITQdBiNgVPW1Ku7VR7hPguvgLzAJbKdDaHoYHAFHO1Tf5fx23AdWgH6w0udc8uytK9uZet46pl9Tbo7PPeo4y0AXKEPfK2h6FVwD1ztU383oOQa2gHGw1efc6OEevXVlO1PPW8f0a8rN8V103QSGQDfoAb1gOegDtlMX6wbdoAf0ijUE236L7r+JpsfBBDgBvOcyHm+ZbGfqeeuYfk25OX6Fhl+DQ2AYjIBRsBmMAdtpCE2HwQgYjamvOzbv+LznLocuZnr6Aw3/BFfAYXAEHAXHQBPYTofQ9DA4Ao6G6Psvd5icLA=="
+      data = "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"
     },
     {
       type = "tilelayer",
@@ -836,7 +836,7 @@ return {
           x = 1808,
           y = 0,
           width = 112,
-          height = 176,
+          height = 96,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1181,6 +1181,19 @@ return {
           y = 976,
           width = 16,
           height = 224,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 170,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1904,
+          y = 96,
+          width = 16,
+          height = 176,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1629,6 +1642,63 @@ return {
             ["category"] = "ammo",
             ["name"] = "bullets",
             ["value"] = "sm"
+          }
+        },
+        {
+          id = 167,
+          name = "Teleport",
+          type = "",
+          shape = "rectangle",
+          x = 1872,
+          y = 880,
+          width = 16,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["exit"] = "right",
+            ["map"] = "mount02",
+            ["method"] = "door",
+            ["onTouch"] = true,
+            ["section"] = "C"
+          }
+        },
+        {
+          id = 168,
+          name = "Teleport",
+          type = "",
+          shape = "rectangle",
+          x = 1856,
+          y = 480,
+          width = 16,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["exit"] = "right",
+            ["map"] = "mount02",
+            ["method"] = "door",
+            ["onTouch"] = true,
+            ["section"] = "B"
+          }
+        },
+        {
+          id = 169,
+          name = "Teleport",
+          type = "",
+          shape = "rectangle",
+          x = 1888,
+          y = 192,
+          width = 16,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["exit"] = "right",
+            ["map"] = "mount02",
+            ["method"] = "door",
+            ["onTouch"] = true,
+            ["section"] = "A"
           }
         }
       }

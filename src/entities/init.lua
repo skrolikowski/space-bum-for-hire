@@ -11,6 +11,7 @@ Entities = {
 	Ghoul          = require 'src.entities.units.enemies.ghoul',
 	DarkMage       = require 'src.entities.units.enemies.darkmage',
     MovingPlatform = require 'src.entities.environments.moving_platform',
+    MovingPillar   = require 'src.entities.environments.moving_pillar',
     Environment    = require 'src.entities.environments.environment',
     Spikes         = require 'src.entities.environments.spikes',
 }

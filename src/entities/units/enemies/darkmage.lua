@@ -16,7 +16,7 @@ function DarkMage:new(data)
 	self.hitbox:setShape(Shapes['rectangle'](-w*0.1,h*0.25,w*0.4,h))
 
 	--
-	--self:patrol()
+	self:patrol()
 end
 
 -- Patrol Action

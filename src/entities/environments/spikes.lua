@@ -13,8 +13,7 @@ function Spikes:new(data)
 		isSensor = true
 	}))
 	--
-	-- self.delay  = data.delay or 1
-	self.attack = data.attack or 5
+	self.damage = data.damage or 5
 	self.facing = data.properties.facing or 'N'
 	self.color  = Config.color.white
 

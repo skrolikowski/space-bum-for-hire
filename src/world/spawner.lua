@@ -6,14 +6,16 @@ local Modern  = require 'modern'
 local Spawner = Modern:extend()
 
 function Spawner:new(map)
-	self.events = {}
-	--
 	for __, layer in ipairs(map.layers) do
 		if layer.type == 'objectgroup' then
 			if layer.name == 'Events' then
 			-- Spawn Events
-			-- Events are sensors, which cause things to happen. 
+			-- Events are sensors, which cause things to happen.
+			-- MUST ALWAYS BE CALLED LAST
 				self:spawnEvents(layer.objects)
+				for __, event in ipairs(layer.objects) do
+					Events[event.name](event)
+				end
 			elseif layer.name == 'Units' then
 			-- Spawn Unit
 				for __, object in ipairs(layer.objects) do
@@ -31,17 +33,6 @@ function Spawner:new(map)
 					end
 				end
 			end
-		end
-	end
-end
-
--- Spawn Events
--- MUST ALWAYS BE CALLED LAST
---
-function Spawner:spawnEvents(events)
-	for __, event in ipairs(events) do
-		if event.name then
-			table.insert(self.events, Events[event.name](event))
 		end
 	end
 end

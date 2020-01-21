@@ -19,12 +19,21 @@ function Translate:new(data)
 	self.pause = data.properties.pause or 3
 	self.delay = data.properties.delay or 10
 	self.tween = data.properties.tween or 'linear'
+	self.once  = data.properties.once  or false
 
 	-- animation/tween
 	self.timer = Timer.new()
 
 	-- flags
 	self.running = nil
+end
+
+-- Teardown
+--
+function Translate:destroy()
+	self.timer:clear()
+	--
+	Event.destroy(self)
 end
 
 -- Check for contacts
@@ -52,7 +61,12 @@ function Translate:trigger()
 	self.timer:tween(self.delay, self.pos, {
 		x = self.goalPos.x,
 		y = self.goalPos.y
-	}, self.tween)
+	}, self.tween,
+	function()
+		if self.once then
+			self:destroy()
+		end
+	end)
 end
 
 -- Update

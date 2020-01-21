@@ -18,7 +18,7 @@ function Executioner:new(data)
 	self.hitbox:setShape(Shapes['circle'](0, h/4, w/2))
 
 	--
-	-- self:patrol()
+	self:patrol()
 end
 
 -- Patrol Action

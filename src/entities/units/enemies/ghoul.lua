@@ -18,7 +18,7 @@ function Ghoul:new(data)
 	self.hitbox:setShape(Shapes['circle'](h*0.7))
 
 	--
-	-- self:patrol()
+	self:patrol()
 end
 
 -- Patrol Action

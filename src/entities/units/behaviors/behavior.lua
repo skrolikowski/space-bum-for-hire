@@ -12,6 +12,7 @@ function Behavior:new(name, host)
 	self.name    = host.name .. '_' .. name
 	self.host    = host
 	self.sensors = {}
+	self.color   = Config.color.white
 
 	-- scale to fit bounds
 	self.sx = w / sw
@@ -93,7 +94,7 @@ function Behavior:draw()
 	if isMirrored then sx = -sx end
 	if isFlipped  then sy = -sy end
 
-	lg.setColor(Config.color.white)
+	lg.setColor(self.color)
 	self.sprite:draw(cx, cy, 0, sx, sy, ox, oy)
 
 	-- -- display state

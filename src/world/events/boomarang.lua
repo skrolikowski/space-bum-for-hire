@@ -9,7 +9,7 @@ function Boomarang:new(data)
 	Event.new(self, 'Boomarang', data)
 	--
 	-- animation settings
-	self.replay = data.properties.replay or false
+	self.auto   = data.properties.auto   or false
 	self.delay  = data.properties.delay  or 0
 	self.pause  = data.properties.pause  or 3
 	self.moveOut = {
@@ -30,6 +30,10 @@ function Boomarang:new(data)
 	-- animation/tween
 	self.running = false
 	self.timer   = Timer.new()
+
+	if self.auto then
+		self:trigger()
+	end
 end
 
 -- Check for contacts
@@ -69,6 +73,10 @@ function Boomarang:trigger()
 		self.timer:tween(delayIn, self.pos, {x = self.firstPos.x, y = self.firstPos.y}, tweenIn,
 			function()
 				self.running = false
+				
+				if self.auto then
+					self:trigger()
+				end
 			end)
 	end)
 end

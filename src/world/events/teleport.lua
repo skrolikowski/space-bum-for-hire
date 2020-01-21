@@ -5,42 +5,53 @@
 local Event    = require 'src.world.events.event'
 local Teleport = Event:extend()
 
+--
+--
 function Teleport:new(data)
 	Event.new(self, 'Teleport', data)
 	--
 	self.hosting = nil
+
+	-- properties
 	self.map     = data.properties.map
 	self.exit    = data.properties.exit
 	self.method  = data.properties.method
+	self.section = data.properties.section
+
+	-- flags
+	self.isActive = false
+	self.onTouch  = data.properties.onTouch or false
 
 	_:on('player_request', function() self:request() end)
 end
 
--- Attempt event trigger!
+-- Teardown
+--
+function Teleport:destroy()
+	_:off('player_request')
+end
+
+-- Some events require a request
 --
 function Teleport:request()
-	if self.hosting then
+	if not self.isActive and self.hosting then
+		self.isActive = true
+		--
+		local cx, cy = self.hosting:getPosition()
+
 		if self.method == 'door' then
 		-- Exit into doorway
-			Gamestate:current().timer:script(function(wait)
-				-- remove player controls
-				Gamestate:current():setControl('none')
-				_:off('player_request')
-				--
-				-- enter cutscene double..
-			    Double = Entities['Double']({
-			        x      = self.hosting:getX() - Config.spawn.width/2,
-			        y      = self.hosting:getY() - Config.spawn.height/2,
-			        width  = Config.spawn.width,
-			        height = Config.spawn.height,
-			    })
-				Gamestate:current().player:destroy()
-			    Gamestate:current().filming = Double
-			    --
-			    Double:move(self.exit, 350, 1.5)
-				wait(1.5)
-				--
-				self:teleport()
+			Gamestate:current():playerExitDoor(cx, cy, self.exit, function()
+				self:teleport({
+					section = self.section
+				})
+			end)
+		elseif self.method == 'beam' then
+		-- Exit into doorway
+			Gamestate:current():playerExitBeam(cx, cy, function()
+				self:teleport({
+					section = self.section
+				})
 			end)
 		end
 	end
@@ -48,8 +59,8 @@ end
 
 -- Teleport guest
 --
-function Teleport:teleport()
-	Gamestate.switch(Gamestates[self.map])
+function Teleport:teleport(...)
+	Gamestate.switch(Gamestates[self.map], ...)
 end
 
 -- Check for contacts
@@ -58,11 +69,6 @@ function Teleport:beginContact(other, col)
 	if col:isTouching() then
 		if other.name == 'Player' then
 			self.hosting = other
-
-			if self.method == 'contact' then
-			-- Teleport on contact
-				self:teleport()
-			end
 		end
 	end
 end
@@ -73,6 +79,12 @@ function Teleport:endContact(other, col)
 	if other.name == 'Player' then
 		self.hosting = nil
 	end
+end
+
+-- Update
+--
+function Teleport:update(dt)
+	if self.onTouch then self:request() end
 end
 
 return Teleport

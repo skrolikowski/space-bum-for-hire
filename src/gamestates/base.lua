@@ -27,6 +27,8 @@ end
 -- Enter screen
 --
 function Base:enter(from, ...)
+	self.settings = ...
+	--
 	self.from  = from -- previous screen
 	self.timer = Timer.new()
 

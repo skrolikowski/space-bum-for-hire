@@ -29,11 +29,13 @@ Config = {
             space00 = 'res/maps/WarpRoom.lua',
             space01 = 'res/maps/Spaceship.lua',
             mount01 = 'res/maps/Mountains.lua',
+            mount02 = 'res/maps/mount02.lua',
         },
         pickup = {
             health  = { sm = 25 },
             shield  = {},
             bullets = { sm = 12, md = 24, lg = 50 },
+            shells  = { sm = 4, md  = 8,  lg = 20 },
         },
         -- Enemy Settings
         --
@@ -372,7 +374,11 @@ Config = {
             spikes   = lg.newImage('res/sprites/spikes.png'),
             platform = {
                 mountains = lg.newImage('res/sprites/platforms/mountains.png'),
+                castle    = lg.newImage('res/sprites/platforms/castle.png'),
                 spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
+            },
+            pillar = {
+                castle = lg.newImage('res/sprites/pillars/castle.png'),
             },
             dialogue = {
                 speech = lg.newImage('res/sprites/speech.png'),
