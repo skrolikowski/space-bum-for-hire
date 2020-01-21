@@ -22,8 +22,6 @@ function Mount02:init()
     self.map:drawTileLayer('Decoratives (MG)')
     self.map:drawTileLayer('Platforms')
     lg.setCanvas()
-
-    --TODO: keep state of level
 end
 
 function Mount02:enter(from, ...)
@@ -38,21 +36,21 @@ function Mount02:enter(from, ...)
         elseif self.settings['section'] == 'B' then
             self:playerEnterDoor(0, Config.tileSize*26, 'right')
         elseif self.settings['section'] == 'C' then
-            -- self:playerEnterDoor(0, Config.tileSize*26, 'right')
+            self:playerEnterDoor(0, Config.tileSize*32, 'right')
         else
         -- Error!
             error('Missing map section!')
         end
     elseif map == 'space00' then
         self:playerEnterBeam(
-            Config.tileSize * self.col,
-            Config.tileSize * self.row
+            Config.tileSize * self.settings['col'],
+            Config.tileSize * self.settings['row']
         )
     else
     -- Default Spawn
         self:playerEnterBeam(
-            Config.tileSize * 40,
-            Config.tileSize * 45
+            Config.tileSize * 2,
+            Config.tileSize * 5
         )
     end
 end

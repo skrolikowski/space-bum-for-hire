@@ -23,7 +23,7 @@ function Sight:rayCast(target)
 	local hits   = {}
 
 	-- cast ray and gather collisions..
-	_World:querySegment(cx, cy, tx, ty,
+	Gamestate:current().world:querySegment(cx, cy, tx, ty,
 		function(fix, x, y, xn, yn, fraction)
 			if self:isInSight(x, y) and (
 				fix:getCategory() == Config.world.filter.category.environment or

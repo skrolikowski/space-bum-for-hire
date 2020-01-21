@@ -39,7 +39,7 @@ function Raygun:trigger(dt, et)
 			self.timer:after(self.weapon.cooldown, function() self.jammed = false end)
 
 			-- update ammo
-			Gamestate.current().hud:decrease({
+			Gamestate:current().hud:decrease({
 				category = 'ammo',
 				name     = self.weapon.clip,
 				value    = 1

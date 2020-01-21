@@ -26,7 +26,7 @@ end
 -- 
 function Dispatcher:checkForContacts(callback)
 	local bounds    = self:bounds()
-	local contacts  = _World:queryRect(bounds:container())
+	local contacts  = Gamestate:current().world:queryRect(bounds:container())
 	local isContact = false
 	local other
 

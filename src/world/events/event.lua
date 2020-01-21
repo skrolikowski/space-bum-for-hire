@@ -17,7 +17,7 @@ function Event:new(name, data)
 	self.height   = data.height
 
 	-- body & shape	
-	self.body  = lp.newBody(_World.world, self.cx, self.cy, 'static')
+	self.body  = lp.newBody(Gamestate:current():getWorld(), self.cx, self.cy, 'static')
 	self.shape = Shapes['rectangle'](self.width, self.height)
 	self.shape:setBody(self.body)
 

@@ -12,7 +12,6 @@ function Spawner:new(map)
 			-- Spawn Events
 			-- Events are sensors, which cause things to happen.
 			-- MUST ALWAYS BE CALLED LAST
-				self:spawnEvents(layer.objects)
 				for __, event in ipairs(layer.objects) do
 					Events[event.name](event)
 				end

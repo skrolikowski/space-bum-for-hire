@@ -29,7 +29,7 @@ function Fireball:new(host, data)
 	self.timer:every(0.1, function() self:decay() end)
 
 	-- body
-	self.body  = lp.newBody(_World.world, data.x, data.y, 'dynamic')
+	self.body  = lp.newBody(Gamestate:current():getWorld(), data.x, data.y, 'dynamic')
 	self.body:setGravityScale(0)
 	self.body:applyLinearImpulse(data.impulse:unpack())
 

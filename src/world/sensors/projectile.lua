@@ -31,7 +31,7 @@ function Projectile:new(host, data)
 	local impulse = Vec2(0, 0):polar(angle, mag)
 
 	-- body
-	self.body  = lp.newBody(_World.world, data.x, data.y, 'dynamic')
+	self.body  = lp.newBody(Gamestate:current():getWorld(), data.x, data.y, 'dynamic')
 	self.body:setGravityScale(0)
 	self.body:applyLinearImpulse(impulse:unpack())
 

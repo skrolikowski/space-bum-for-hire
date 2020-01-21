@@ -9,7 +9,7 @@ function Translate:new(data)
 	Event.new(self, 'Translate', data)
 	--
 	-- properties
-	self.target  = _World:fetchEntityById(data.properties['Target'])
+	self.target  = Gamestate:current().world:fetchEntityById(data.properties['Target'])
 	self.pos     = Vec2(self.target:getPosition())
 	self.goalPos = Vec2(data.properties['Goal.x'], data.properties['Goal.y'])
 	self.hosting = 0

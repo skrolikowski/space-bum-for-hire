@@ -31,7 +31,7 @@ function Effect:new(name, data)
 	local cx, cy = self.bounds:center()
 
 	-- body & shape	
-	self.body  = lp.newBody(_World.world, cx, cy, 'static')
+	self.body  = lp.newBody(Gamestate:current():getWorld(), cx, cy, 'static')
 	self.shape = Shapes['rectangle'](sw, sh)
 	self.shape:setBody(self.body)
 

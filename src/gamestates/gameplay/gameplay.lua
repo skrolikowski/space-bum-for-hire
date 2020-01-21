@@ -111,6 +111,7 @@ function Gameplay:playerExitDoor(x, y, direction, after)
 		--
 		Double:move(direction, 350, 1)
 		wait(1)
+		Double:destroy()
 		--
 		if after then after() end
 	end)
@@ -166,6 +167,8 @@ function Gameplay:playerExitBeam(x, y, after)
     -- effects
     self.player.behavior.color = { 1, 1, 1, 1 }
 	self.timer:tween(1, self.player.behavior.color, {1,1,1,0}, 'linear', function()
+		self.player:destroy()
+		
 		if after then after() end
 	end)
 end

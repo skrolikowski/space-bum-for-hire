@@ -18,7 +18,8 @@ function Entity:new(data)
 	self.friction    = data.friction    or 0.25
 	self.restitution = data.restitution or 0.0
 	self.isSensor    = data.isSensor    or false
-	self.body        = lp.newBody(_World.world, data.x, data.y, self.bodyType)
+	self.body        = lp.newBody(Gamestate:current():getWorld(), data.x, data.y, self.bodyType)
+
 	-- flags
 	self.canDestroy = false
 end

@@ -27,11 +27,9 @@ function love.load()
     Gamestate.switch(Gamestates['mount02'])
 end
 
--- -- Update
--- --
+-- Update
+--
 function love.update(dt)
-    Timer.update(dt)
-    --
     -- Controls - Key Down
     for key, time in pairs(_Keys) do
         _Keys[key] = time + dt

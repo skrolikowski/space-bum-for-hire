@@ -47,8 +47,8 @@ function Mount01:enter(from, ...)
     elseif map == 'space00' then
     -- Spaceship - Warp Room
         self:playerEnterBeam(
-            Config.tileSize * self.col,
-            Config.tileSize * self.row
+            Config.tileSize * self.settings['col'],
+            Config.tileSize * self.settings['row']
         )
     else
     -- Default Spawn

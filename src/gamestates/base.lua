@@ -20,36 +20,39 @@ function Base:init(data)
 	self.filming = nil
 
 	-- flags
-	self.comments = false
-	self.isPaused = false
+	self.comments  = false
+	self.isPaused  = false
+	self.populated = false
+	
+	self.timer = Timer.new()
+
+	-- world
+	self.world        = World()
+	self.world.width  = self.width
+	self.world.height = self.height
 end
 
 -- Enter screen
 --
 function Base:enter(from, ...)
+	self.from     = from -- previous screen
 	self.settings = ...
 	--
-	self.from  = from -- previous screen
-	self.timer = Timer.new()
-
-	-- create world
-	_World        = World()
-	_World.width  = self.width
-	_World.height = self.height
-
-	--
-	-- register world sensor
-	-- remove bodies outside of bounds
-	self.sensor = Sensors['bounds'](_World, 0, _World.height/2, _World.width, Config.padding)
-	self.sensor:outOfBounds(function(other, col)
-	-- Handle `out of bounds`
-		if other.remove == nil then
-			other:destroy()
-		end
-	end)
-
-	-- spawn entities
-    Spawner(self.map)
+	if not self.populated then
+    	self.populated = true
+		-- spawn entities
+    	Spawner(self.map)
+		--
+		-- register world sensor
+		-- remove bodies outside of bounds
+		self.sensor = Sensors['bounds'](self.world, 0, self.height/2, self.width, Config.padding)
+		self.sensor:outOfBounds(function(other, col)
+		-- Handle `out of bounds`
+			if other.remove == nil then
+				other:destroy()
+			end
+		end)
+	end
 end
 
 -- Resume screen
@@ -62,13 +65,19 @@ end
 --
 function Base:leave()
 	-- clear timer
-	self.timer:clear()
+	-- self.timer:clear()
 	-- nobody to film
 	self.filming = nil
 	-- destroy world and all entities
-	_World:destroy()
+	-- self.world:destroy()
 	-- unregister game controls
-	-- self:unregisterControls()
+	self:unregisterControls()
+end
+
+-- Gamestate World
+--
+function Base:getWorld()
+	return self.world.world
 end
 
 -- Set controls
@@ -123,7 +132,7 @@ end
 -- Update
 --
 function Base:update(dt)
-	_World:update(dt)
+	self.world:update(dt)
 	--
 	self.timer:update(dt)
 
@@ -140,7 +149,7 @@ function Base:draw()
         lg.setColor(Config.color.white)
         lg.draw(self.background)
 
-        _World:draw()
+        self.world:draw()
 
         lg.setColor(Config.color.white)
         lg.draw(self.foreground)

@@ -22,7 +22,7 @@ function Boomarang:new(data)
 	}
 
 	-- properties
-	self.target   = _World:fetchEntityById(data.properties['Target'])
+	self.target   = Gamestate:current().world:fetchEntityById(data.properties['Target'])
 	self.pos      = Vec2(self.target:getPosition())
 	self.firstPos = Vec2(self.target:getPosition())
 	self.lastPos  = Vec2(data.properties['Goal.x'], data.properties['Goal.y'])
