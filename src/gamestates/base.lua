@@ -39,7 +39,8 @@ end
 
 -- Resume screen
 function Base:resume()
-	self:setControl(self.control)
+	--
+	self:registerControls()
 end
 
 -- Leave Base Screen
@@ -47,6 +48,8 @@ end
 function Base:leave()
 	-- nobody to film
 	self.filming = nil
+	--
+	self:unregisterControls()
 end
 
 -- Set World
@@ -70,7 +73,9 @@ function Base:setWorld()
 	self.sensor = Sensors['bounds'](self.world, 0, self.height/2, self.width, Config.padding)
 	self.sensor:outOfBounds(function(other, col)
 	-- Handle `out of bounds`
-		if other.remove == nil then
+		if other.name == 'Player' then
+			self.player:die()
+		elseif other.remove == nil then
 			other:destroy()
 		end
 	end)

@@ -19,7 +19,7 @@ Control_ = {
 		key_s_on      = function()       Gamestate:current().player:keyOn('s')             end,
 		key_d_on      = function()       Gamestate:current().player:keyOn('d')             end,
 		key_l_on      = function()       Gamestate:current().player:setLock()              end,
-		key_p_on      = function()       Gamestate:current():pause()                       end,
+		key_p_on      = function()       Gamestate.push(Gamestates['pause'])                       end,
 		key_space_on  = function()       Gamestate:current().player:keyOn('space_on')      end,
 		key_a_down    = function(dt, et) Gamestate:current().player:move(dt, et)           end,
 		key_d_down    = function(dt, et) Gamestate:current().player:move(dt, et)           end,
@@ -31,5 +31,15 @@ Control_ = {
 		key_l_off     = function()       Gamestate:current().player:setLock()              end,
 		key_k_off     = function()       Gamestate:current().player.weapon:holster()       end,
 		key_space_off = function()       Gamestate:current().player:keyOff('space_off')    end,
+	
+		key_x_on = function() Gamestate:current().player:die() end,
 	},
+	pause = {
+		key_escape_on = function() Gamestate:current():quit() end,
+		key_p_on      = function() Gamestate.pop() end,
+	},
+	death = {
+		key_escape_on = function() Gamestate:current():quit()     end,
+		key_c_on      = function() Gamestate:current():continue() end,
+	}
 }

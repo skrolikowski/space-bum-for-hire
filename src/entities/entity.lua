@@ -257,7 +257,7 @@ function Entity:damage(other, damage)
 		-- update stats
 		Gamestate:current().hud:set({
 			name     = 'health',
-			category = 'item',
+			category = 'stat',
 			value    = self.health
 		})
 

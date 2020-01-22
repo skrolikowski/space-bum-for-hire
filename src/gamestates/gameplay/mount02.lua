@@ -27,10 +27,8 @@ end
 function Mount02:enter(from, ...)
     Gameplay.enter(self, from, ...)
     --
-    local ok, map = pcall(function() return from.id end)
-
     -- Player will enter from..
-    if map == 'mount01' then
+    if self.settings.from == 'mount01' then
         if self.settings['section'] == 'A' then
             self:playerEnterDoor(0, Config.tileSize*5, 'right')
         elseif self.settings['section'] == 'B' then
@@ -41,17 +39,6 @@ function Mount02:enter(from, ...)
         -- Error!
             error('Missing map section!')
         end
-    elseif map == 'space00' then
-        self:playerEnterBeam(
-            Config.tileSize * self.settings['col'],
-            Config.tileSize * self.settings['row']
-        )
-    else
-    -- Default Spawn
-        self:playerEnterBeam(
-            Config.tileSize * 2,
-            Config.tileSize * 5
-        )
     end
 end
 

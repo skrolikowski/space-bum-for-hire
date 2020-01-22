@@ -27,13 +27,18 @@ function Gameplay:enter(from, ...)
 	self:setControl('none')
 
 	-- update hud
-	self.hud:set('location', self.name)
-end
+	self.hud:set({
+		name  = 'location',
+		value = self.name
+	})
 
--- Pause/unpause game
---
-function Gameplay:pause()
-	Gamestate.push(Gamestates['pause'])
+	-- Spawn Player
+	if self.settings.from == 'beam' then
+		self:playerEnterBeam(
+			Config.tileSize * self.settings['col'],
+			Config.tileSize * self.settings['row']
+		)
+	end
 end
 
 -- Reward Player a payload
@@ -47,11 +52,24 @@ function Gameplay:rewardPlayer(payload)
 	-- end
 end
 
--- Player has died
+-- Player has died :(
+-- Reboot
 --
 function Gameplay:playerDeath()
-	--TODO: reboot
-	print('Player Death')
+	self:setControl('none')
+	--
+	Gamestate.push(Gamestates['death'])
+end
+
+-- Set Player Checkpoint
+--
+function Gameplay:setCheckpoint(data)
+	Config.world.checkpoint = {
+		map = self.id,
+		id  = data.id,
+		row = data.row,
+		col = data.col,
+	}
 end
 
 -- Update HUD
@@ -63,6 +81,7 @@ function Gameplay:update(dt)
 end
 
 -- Draw HUD
+--
 function Gameplay:draw()
 	Base.draw(self)
 	--
@@ -91,8 +110,9 @@ function Gameplay:playerEnterDoor(x, y, direction)
 	        width  = Config.spawn.width,
 	        height = Config.spawn.height,
 	    })
-	    self.filming = self.player
 	    self.player.isMirrored = (direction == 'left')
+	    self.filming           = self.player
+	    --
 	    -- give controls to player
 	    self:setControl('gameplay')
 	    Double:destroy()

@@ -136,6 +136,14 @@ Config = {
                 },
             },
         },
+        -- Player Checkpoint
+        --
+        checkpoint = {
+            id  = 171,
+            map = 'mount01',
+            row = 69,
+            col = 8,
+        },
         -- Player HUD
         --
         hud = {
@@ -233,6 +241,9 @@ Config = {
         }
     },
     audio = {
+        -- player = {
+        --     die = la.newSource('res/sfx/player/', 'static'),
+        -- },
         enemy = {
             executioner = {
                 hunt   = la.newSource('res/sfx/enemies/Monster_Raw Growl 5.wav', 'static'),

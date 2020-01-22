@@ -159,7 +159,7 @@ function HUD:setCanvas()
 
 	-- location
 	locationText = lg.newText(Config.ui.font.md)
-	locationText:setf(_.__upper(Config.world.hud.location), Config.tileSize*12, 'center')
+	locationText:setf(_.__upper(Config.world.hud.location), Config.tileSize*14, 'center')
 
 	-- weapon
 	weaponText = lg.newText(Config.ui.font.sm)

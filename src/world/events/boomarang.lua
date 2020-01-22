@@ -10,6 +10,7 @@ function Boomarang:new(data)
 	--
 	-- animation settings
 	self.auto   = data.properties.auto   or false
+	self.replay = data.properties.replay or false
 	self.delay  = data.properties.delay  or 0
 	self.pause  = data.properties.pause  or 3
 	self.moveOut = {
@@ -26,6 +27,7 @@ function Boomarang:new(data)
 	self.pos      = Vec2(self.target:getPosition())
 	self.firstPos = Vec2(self.target:getPosition())
 	self.lastPos  = Vec2(data.properties['Goal.x'], data.properties['Goal.y'])
+	self.bodies   = 0
 
 	-- animation/tween
 	self.running = false
@@ -39,15 +41,19 @@ end
 -- Check for contacts
 --
 function Boomarang:beginContact(other, col)
-	if col:isTouching() and not self.running then
-		self:trigger()
+	if col:isTouching() then
+		if not self.running then
+			self:trigger()
+		end
+
+		self.bodies = self.bodies + 1
 	end
 end
 
 -- Check for separations
 --
 function Boomarang:endContact(other, col)
-	--
+	self.bodies = self.bodies - 1
 end
 
 -- Start movement animation
@@ -75,6 +81,8 @@ function Boomarang:trigger()
 				self.running = false
 				
 				if self.auto then
+					self:trigger()
+				elseif self.replay and self.bodies > 0 then
 					self:trigger()
 				end
 			end)

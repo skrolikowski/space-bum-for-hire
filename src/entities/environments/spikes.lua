@@ -1,10 +1,8 @@
--- Spikes entity
--- Shane Krolikowski
+-- Spikes
 --
 
-local Entity = require 'src.entities.entity'
-local Environment    = require 'src.entities.environments.environment'
-local Spikes = Environment:extend()
+local Environment = require 'src.entities.environments.environment'
+local Spikes      = Environment:extend()
 
 function Spikes:new(data)
 	Environment.new(self, _:merge(data, {
@@ -13,7 +11,7 @@ function Spikes:new(data)
 		isSensor = true
 	}))
 	--
-	self.damage = data.damage or 5
+	self.damage = data.damage or 3
 	self.facing = data.properties.facing or 'N'
 	self.color  = Config.color.white
 

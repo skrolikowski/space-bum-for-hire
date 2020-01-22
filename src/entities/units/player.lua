@@ -78,7 +78,6 @@ end
 -- Clean up
 --
 function Player:destroy(dt, et)
-	Gamestate:current():playerDeath()
 	self.weapon:destroy()
 	--
 	Unit.destroy(self)
@@ -99,6 +98,18 @@ function Player:setLock()
 			self.lockedIn = 'idle'
 		end
 	end
+end
+
+-- Player has died :(
+function Player:die()
+	Gamestate:current():playerDeath()
+	self.dying = true
+	--
+	self.timer:after(2, function()
+		self:destroy()
+	end)
+	--
+	-- Config.audio.player.die:play()
 end
 
 -- Move right/left

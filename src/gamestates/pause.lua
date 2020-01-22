@@ -14,13 +14,11 @@ end
 -- Enter Pause Screen
 --
 function Pause:enter(from, ...)
-	self.from = from -- previous screen
-end
-
--- Unpause game
---
-function Pause:pause()
-	return Gamestate.pop()
+	self.from    = from -- previous screen
+	self.world   = from.world
+	self.control = from.control
+	--
+	self:setControl('pause')
 end
 
 -- Update

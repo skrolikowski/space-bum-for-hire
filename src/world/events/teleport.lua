@@ -43,13 +43,15 @@ function Teleport:request()
 		-- Exit into doorway
 			Gamestate:current():playerExitDoor(cx, cy, self.exit, function()
 				self:teleport({
+					from    = Gamestate:current().id,
 					section = self.section
 				})
 			end)
 		elseif self.method == 'beam' then
-		-- Exit into doorway
+		-- Beam me up!
 			Gamestate:current():playerExitBeam(cx, cy, function()
 				self:teleport({
+					from    = Gamestate:current().id,
 					section = self.section
 				})
 			end)

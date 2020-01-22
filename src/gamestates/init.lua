@@ -8,4 +8,5 @@ Gamestates = {
 	mount02 = require 'src.gamestates.gameplay.mount02',
 	-- misc
 	pause   = require 'src.gamestates.pause',
+	death   = require 'src.gamestates.death',
 }

@@ -14,6 +14,7 @@ Entities = {
     MovingPillar   = require 'src.entities.environments.moving_pillar',
     Environment    = require 'src.entities.environments.environment',
     Spikes         = require 'src.entities.environments.spikes',
+    Checkpoint     = require 'src.entities.environments.checkpoint',
 }
 
 -- Unit Behaviors
