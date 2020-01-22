@@ -207,6 +207,7 @@ Config = {
         health = { _:color('red-600') },
     	white  = { _:color('white') },
     	black  = { _:color('black') },
+        overlay = { 0, 0, 0, 0.65 },
     	shape  = { _:color('green-300') },
         sensor = {
             event  = { _:color('blue-400') },

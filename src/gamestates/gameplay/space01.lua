@@ -48,7 +48,7 @@ function Space01:enter(from, ...)
 		    })
 		    self.filming = self.player
 			-- give controls to player
-			self:setControl('player')
+			self:setControl('gameplay')
 			Double:destroy()
 		end
 	else

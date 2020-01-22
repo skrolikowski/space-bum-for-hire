@@ -6,4 +6,6 @@ Gamestates = {
 	space01 = require 'src.gamestates.gameplay.space01',
 	mount01 = require 'src.gamestates.gameplay.mount01',
 	mount02 = require 'src.gamestates.gameplay.mount02',
+	-- misc
+	pause   = require 'src.gamestates.pause',
 }

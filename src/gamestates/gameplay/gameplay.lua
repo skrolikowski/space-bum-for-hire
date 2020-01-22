@@ -21,14 +21,19 @@ end
 -- Enter cutscene
 --
 function Gameplay:enter(from, ...)
+	Base.enter(self, from, ...)
+	--
 	-- default controls
 	self:setControl('none')
 
 	-- update hud
 	self.hud:set('location', self.name)
+end
 
-	--
-	Base.enter(self, from, ...)
+-- Pause/unpause game
+--
+function Gameplay:pause()
+	Gamestate.push(Gamestates['pause'])
 end
 
 -- Reward Player a payload
@@ -89,7 +94,7 @@ function Gameplay:playerEnterDoor(x, y, direction)
 	    self.filming = self.player
 	    self.player.isMirrored = (direction == 'left')
 	    -- give controls to player
-	    self:setControl('player')
+	    self:setControl('gameplay')
 	    Double:destroy()
 	end)
 end
@@ -146,7 +151,7 @@ function Gameplay:playerEnterBeam(x, y)
     self.player.behavior.color = { 1, 1, 1, 0 }
 	self.timer:tween(1, self.player.behavior.color, { 1,1,1,1}, 'linear', function()
 		-- give controls to player
-		self:setControl('player')
+		self:setControl('gameplay')
 	end)
 end
 
@@ -168,7 +173,7 @@ function Gameplay:playerExitBeam(x, y, after)
     self.player.behavior.color = { 1, 1, 1, 1 }
 	self.timer:tween(1, self.player.behavior.color, {1,1,1,0}, 'linear', function()
 		self.player:destroy()
-		
+
 		if after then after() end
 	end)
 end

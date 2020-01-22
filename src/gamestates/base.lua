@@ -18,18 +18,12 @@ function Base:init(data)
 	self.control = nil
 	self.camera  = Camera(0, 0, Config.scale)
 	self.filming = nil
+	self.world   = nil
 
 	-- flags
-	self.comments  = false
-	self.isPaused  = false
-	self.populated = false
+	self.comments = false
 	
 	self.timer = Timer.new()
-
-	-- world
-	self.world        = World()
-	self.world.width  = self.width
-	self.world.height = self.height
 end
 
 -- Enter screen
@@ -38,40 +32,48 @@ function Base:enter(from, ...)
 	self.from     = from -- previous screen
 	self.settings = ...
 	--
-	if not self.populated then
-    	self.populated = true
-		-- spawn entities
-    	Spawner(self.map)
-		--
-		-- register world sensor
-		-- remove bodies outside of bounds
-		self.sensor = Sensors['bounds'](self.world, 0, self.height/2, self.width, Config.padding)
-		self.sensor:outOfBounds(function(other, col)
-		-- Handle `out of bounds`
-			if other.remove == nil then
-				other:destroy()
-			end
-		end)
+	if not self.world then
+    	self:setWorld()
 	end
 end
 
 -- Resume screen
 function Base:resume()
-	-- register game controls
-	-- self:registerControls()
+	self:setControl(self.control)
 end
 
 -- Leave Base Screen
 --
 function Base:leave()
-	-- clear timer
-	-- self.timer:clear()
 	-- nobody to film
 	self.filming = nil
-	-- destroy world and all entities
-	-- self.world:destroy()
-	-- unregister game controls
-	self:unregisterControls()
+end
+
+-- Set World
+-- Spawn Entities
+--
+function Base:setWorld()
+	if self.world ~= nil then
+		self.world:destroy()
+	end
+
+	-- world
+	self.world        = World(self.camera)
+	self.world.width  = self.width
+	self.world.height = self.height
+
+	-- spawn entities
+	Spawner(self.map)
+	--
+	-- register world sensor
+	-- remove bodies outside of bounds
+	self.sensor = Sensors['bounds'](self.world, 0, self.height/2, self.width, Config.padding)
+	self.sensor:outOfBounds(function(other, col)
+	-- Handle `out of bounds`
+		if other.remove == nil then
+			other:destroy()
+		end
+	end)
 end
 
 -- Gamestate World
@@ -132,10 +134,9 @@ end
 -- Update
 --
 function Base:update(dt)
+	self.timer:update(dt)
 	self.world:update(dt)
 	--
-	self.timer:update(dt)
-
 	-- follow target
 	if self.filming and not self.filming.remove then
 		self:lookAt(self.filming:getPosition())

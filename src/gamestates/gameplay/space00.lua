@@ -57,7 +57,7 @@ function Space00:enter(from, ...)
             self.filming = self.player
             self.player.isMirrored = true
 			-- give controls to player
-            self:setControl('player')
+            self:setControl('gameplay')
             Double:destroy()
     	end)
     else
@@ -73,7 +73,7 @@ function Space00:enter(from, ...)
                 height = Config.spawn.height,
             })
             self.filming = self.player
-            self:setControl('player')
+            self:setControl('gameplay')
     	end)
 	end
 end

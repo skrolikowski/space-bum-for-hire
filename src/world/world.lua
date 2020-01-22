@@ -7,7 +7,7 @@ local World  = Modern:extend()
 
 -- Create new world
 --
-function World:new()
+function World:new(camera)
 	lp.setMeter(Config.world.meter)
 
 	self.world = love.physics.newWorld(
@@ -17,6 +17,9 @@ function World:new()
 	)
 	self.width  = Config.width
 	self.height = Config.height
+
+	-- camera
+	self.camera = camera
 
 	self:bootstrap()
 end
@@ -78,8 +81,7 @@ end
 -- Query - entire screen
 --
 function World:queryScreen(callback)
-	local camera = Gamestate:current():getCamera()
-	local cx, cy = camera.x, camera.y
+	local cx, cy = self.camera.x, self.camera.y
 	local left   = cx - Config.width / 2
 	local top    = cy - Config.height / 2
 	local right  = cx + Config.width / 2
