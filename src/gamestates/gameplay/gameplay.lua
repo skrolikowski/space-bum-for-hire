@@ -11,6 +11,9 @@ function Gameplay:init(data)
 	-- UI/HUD
     self.hud = UI['player_hud']()
 
+    -- flags
+    self.isPaused = false
+
     -- default foreground canvas
 	self.foreground = lg.newCanvas(self.width, self.height)
 	lg.setCanvas(self.foreground)
@@ -18,11 +21,15 @@ function Gameplay:init(data)
 	lg.setCanvas()
 end
 
--- Enter cutscene
+-- Enter Gameplay Screen
+-- * Player Hud
+-- * Spawn Player
 --
 function Gameplay:enter(from, ...)
 	Base.enter(self, from, ...)
 	--
+	pcall(function() self.isPaused = from.isPaused end)
+
 	-- default controls
 	self:setControl('none')
 
@@ -32,12 +39,15 @@ function Gameplay:enter(from, ...)
 		value = self.name
 	})
 
-	-- Spawn Player
+	-- Attempt Player Spawn
 	if self.settings.from == 'beam' then
 		self:playerEnterBeam(
 			Config.tileSize * self.settings['col'],
 			Config.tileSize * self.settings['row']
 		)
+	else
+		-- Continue to sub-class
+		-- ...
 	end
 end
 
@@ -64,12 +74,55 @@ end
 -- Set Player Checkpoint
 --
 function Gameplay:setCheckpoint(data)
-	Config.world.checkpoint = {
+	Config.world.checkpoint.player = {
 		map = self.id,
 		id  = data.id,
 		row = data.row,
 		col = data.col,
 	}
+end
+
+-- Pause Game
+-- Beam Player to Spaceship
+--
+function Gameplay:pause()
+	local cx, cy = self.player:getPosition()
+	local w, h   = Config.spawn.width, Config.spawn.height
+	local x, y   = (cx-w/2), (cy-h/2)
+	local col    = _.__floor(x / Config.tileSize)
+	local row    = _.__floor(y / Config.tileSize)
+	local checkpoint
+
+	if self.isPaused then
+		checkpoint = Config.world.checkpoint.unpause
+
+		-- update pause checkpoint
+		Config.world.checkpoint.pause = {
+			map = self.id,
+			col = col,
+			row = row,
+		}
+	else
+		checkpoint = Config.world.checkpoint.pause
+
+		-- update unpause checkpoint
+		Config.world.checkpoint.unpause = {
+			map = self.id,
+			col = col,
+			row = row,
+		}
+	end
+
+	--
+	self:playerExitBeam(x, y, function()
+		Gamestate.switch(Gamestates[checkpoint.map], {
+			from = 'beam',
+			col  = checkpoint.col,
+			row  = checkpoint.row,
+		})
+	end)
+	--
+	self.isPaused = not self.isPaused
 end
 
 -- Update HUD
@@ -88,8 +141,9 @@ function Gameplay:draw()
 	self.hud:draw()
 end
 
+------------------------
 --
---
+-- Enter through Doorway
 function Gameplay:playerEnterDoor(x, y, direction)
 	self.timer:script(function(wait)
 	    -- spawn double and film
@@ -119,6 +173,7 @@ function Gameplay:playerEnterDoor(x, y, direction)
 	end)
 end
 
+-- Exit through Doorway
 function Gameplay:playerExitDoor(x, y, direction, after)
 	self.timer:script(function(wait)
 		-- remove player & controls
@@ -167,10 +222,14 @@ function Gameplay:playerEnterBeam(x, y)
 		height  = Config.spawn.height,
 	})
 	self.filming = self.player
-	--
+	
+	-- update player properties
+	self.player.body:setAwake(false)
     self.player.behavior.color = { 1, 1, 1, 0 }
-	self.timer:tween(1, self.player.behavior.color, { 1,1,1,1}, 'linear', function()
-		-- give controls to player
+
+	-- phase in
+	self.timer:tween(1, self.player.behavior.color, {1,1,1,1}, 'linear', function()
+		self.player.body:setAwake(true)
 		self:setControl('gameplay')
 	end)
 end
@@ -180,7 +239,11 @@ end
 function Gameplay:playerExitBeam(x, y, after)
 	-- remove player control
 	self:setControl('none')
-	--
+
+	-- update player properties
+	self.player.body:setAwake(false)
+	self.player.behavior.color = { 1, 1, 1, 1 }
+	
     -- teleportation effect w/ adjustments
     Effects['warp']({
         x      = x - 15,
@@ -188,9 +251,8 @@ function Gameplay:playerExitBeam(x, y, after)
         width  = Config.spawn.width  * 1.25,
         height = Config.spawn.height * 1.25,
     })
-    --
-    -- effects
-    self.player.behavior.color = { 1, 1, 1, 1 }
+    
+    -- phase out
 	self.timer:tween(1, self.player.behavior.color, {1,1,1,0}, 'linear', function()
 		self.player:destroy()
 
@@ -198,7 +260,7 @@ function Gameplay:playerExitBeam(x, y, after)
 	end)
 end
 
-----
-
+--
+------------------------
 
 return Gameplay

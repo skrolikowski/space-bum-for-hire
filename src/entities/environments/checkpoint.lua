@@ -34,8 +34,8 @@ function Checkpoint:new(data)
 	})
 
 	-- scaling
-	self.sx = 1
-	self.sy = 1
+	self.sx = 0.5
+	self.sy = 0.5
 end
 
 -- Set Player Checkpoint
@@ -61,7 +61,7 @@ end
 -- Update
 --
 function Checkpoint:update(dt)
-	self:setState(Config.world.checkpoint.id == self.id and 'active' or 'inactive')
+	self:setState(Config.world.checkpoint.player.id == self.id and 'active' or 'inactive')
 	--
 	self.sprite:update(dt)
 end

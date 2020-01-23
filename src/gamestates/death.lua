@@ -36,7 +36,7 @@ end
 -- Load last checkpoint
 --
 function Death:continue()
-	local checkpoint = Config.world.checkpoint
+	local checkpoint = Config.world.checkpoint.player
 
 	if checkpoint then
 		Gamestate.switch(Gamestates[checkpoint.map], {

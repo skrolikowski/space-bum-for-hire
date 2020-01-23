@@ -8,23 +8,10 @@ Config = {
     scale    = 2,
     tileSize = 16,
     padding  = 15,
-    map = {
-        xOffset = 0,
-        yOffset = 0,
-    },
-    spawn = {
-        width  = 80,
-        height = 80,
-    },
+    spawn = { width = 80, height = 80 },
     world = {
-        meter   = 32,  -- Config.tileSize * Config.scale
+        meter = 32,
         gravity = { x = 0, y = 40 },
-        categories = {
-            civilians = 1,
-            enemies   = 2,
-            platforms = 3,
-            walls     = 4,
-        },
         maps = {
             space00 = 'res/maps/WarpRoom.lua',
             space01 = 'res/maps/Spaceship.lua',
@@ -44,16 +31,9 @@ Config = {
                 health     = { min = 100, max = 125 },
                 speed      = 450,
                 jumpHeight = 3000,
-                timing = {
-                    unrest = 1,
-                },
-                attack = {
-                    damage = { min = 15, max = 25 }, sx = 0.5, sy = 0.8,
-                },
-                sight  = {
-                    distance  = 250,
-                    periphery = _.__pi / 16
-                },
+                timing = { unrest = 1 },
+                attack = { damage = { min = 15, max = 25 }, sx = 0.5, sy = 0.8 },
+                sight  = { distance = 250, periphery = _.__pi / 16 },
                 sprite = {
                     width  = 87,
                     height = 59,
@@ -73,19 +53,14 @@ Config = {
                 health     = { min = 35, max = 50 },
                 speed      = 600,
                 jumpHeight = 3000,
-                timing = {
-                    unrest = 1,
-                },
+                timing = { unrest = 1 },
                 attack = {
                     damage   = { min = 5, max = 10 },
                     distance = 100,
                     sx       = 0.3,
                     sy       = 0.5,
                 },
-                sight  = {
-                    distance  = 350,
-                    periphery = _.__pi / 20
-                },
+                sight = {distance = 350, periphery = _.__pi / 20 },
                 sprite = {
                     width  = 51,
                     height = 20,
@@ -104,10 +79,7 @@ Config = {
             DarkMage = {
                 health = { min = 75, max = 100 },
                 speed  = 500,
-                timing = {
-                    unrest   = 1,
-                    cooldown = 2,
-                },
+                timing = { unrest = 1, cooldown = 2 },
                 attack = {
                     damage   = { min = 15, max = 20 },
                     distance = 350,
@@ -115,10 +87,7 @@ Config = {
                     speed    = 150,
                     radius   = 5,
                 },
-                sight  = {
-                    distance  = 400,
-                    periphery = _.__pi / 4
-                },
+                sight  = { distance = 400, periphery = _.__pi / 4 },
                 sprite = {
                     width  = 60,
                     height = 61,
@@ -139,10 +108,8 @@ Config = {
         -- Player Checkpoint
         --
         checkpoint = {
-            id  = 171,
-            map = 'mount01',
-            row = 69,
-            col = 8,
+            player = { id = 171, map = 'mount01', col = 8, row = 69 },
+            pause  = {           map = 'space00', col = 5, row = 17 },
         },
         -- Player HUD
         --

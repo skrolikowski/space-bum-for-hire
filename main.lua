@@ -23,20 +23,19 @@ require 'src.control'
 function love.load()
     _Keys = {}
 
+    -- Here's where it begins...
     Gamestate.registerEvents()
-    -- Gamestate.switch(Gamestates['mount02'], {
-    --     from = 'beam',
-    --     col  = 2,
-    --     row  = 5,
-    -- })
+    -- Gamestate.switch(Gamestates['cut01'])
 
-    local checkpoint = Config.world.checkpoint
+    --
+    local checkpoint = Config.world.checkpoint.player
     
     Gamestate.switch(Gamestates[checkpoint.map], {
         from = 'beam',
         col  = checkpoint.col,
         row  = checkpoint.row
     })
+    --
 end
 
 -- Update

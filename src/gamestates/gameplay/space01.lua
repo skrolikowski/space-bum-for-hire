@@ -26,10 +26,9 @@ end
 
 function Space01:enter(from, ...)
 	Gameplay.enter(self, from, ...)
-
 	--
 	-- Player will enter from..
-    if self.settings.from == 'space01' then
+    if self.settings.from == 'space00' then
     -- Spaceship - Main Room
         self:playerEnterDoor(Config.tileSize*12, Config.tileSize*45, 'right')
     end

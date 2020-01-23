@@ -12,14 +12,13 @@ Control_ = {
 	gameplay = {
 		key_1_on      = function()       Gamestate:current().player:setWeapon('pistol')    end,
 		key_2_on      = function()       Gamestate:current().player:setWeapon('shotgun')   end,
-		-- key_3_on      = function()       Gamestate:current().player:setWeapon('raygun')    end,
 		key_escape_on = function()       Gamestate:current():quit()                        end,
 		key_w_on      = function()       Gamestate:current().player:keyOn('w')             end,
 		key_a_on      = function()       Gamestate:current().player:keyOn('a')             end,
 		key_s_on      = function()       Gamestate:current().player:keyOn('s')             end,
 		key_d_on      = function()       Gamestate:current().player:keyOn('d')             end,
 		key_l_on      = function()       Gamestate:current().player:setLock()              end,
-		key_p_on      = function()       Gamestate.push(Gamestates['pause'])                       end,
+		key_p_on      = function()       Gamestate:current():pause()                       end,
 		key_space_on  = function()       Gamestate:current().player:keyOn('space_on')      end,
 		key_a_down    = function(dt, et) Gamestate:current().player:move(dt, et)           end,
 		key_d_down    = function(dt, et) Gamestate:current().player:move(dt, et)           end,
@@ -32,7 +31,7 @@ Control_ = {
 		key_k_off     = function()       Gamestate:current().player.weapon:holster()       end,
 		key_space_off = function()       Gamestate:current().player:keyOff('space_off')    end,
 	
-		key_x_on = function() Gamestate:current().player:die() end,
+		-- key_x_on = function() Gamestate:current().player:die() end,
 	},
 	pause = {
 		key_escape_on = function() Gamestate:current():quit() end,
