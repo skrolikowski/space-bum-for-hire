@@ -8,7 +8,7 @@ local Executioner = Enemy:extend()
 --
 function Executioner:new(data)
 	Enemy.new(self, _:merge(data,
-		Config.world.enemies['Executioner']
+		Config.world.enemy['Executioner']
 	))
 	--
 	-- hitbox

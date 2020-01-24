@@ -8,9 +8,9 @@ function Hurt:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('hurt', {
 		image  = host.sprite,
-		width  = Config.world.enemies[host.name].sprite.width,
-		height = Config.world.enemies[host.name].sprite.height,
-		frames = Config.world.enemies[host.name].sprite.frames.hurt,
+		width  = Config.world.enemy[host.name].sprite.width,
+		height = Config.world.enemy[host.name].sprite.height,
+		frames = Config.world.enemy[host.name].sprite.frames.hurt,
 	})
 	--
 	Base.new(self, 'hurt', host)

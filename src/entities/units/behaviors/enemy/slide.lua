@@ -8,9 +8,9 @@ function Slide:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('slide', {
 		image  = host.sprite,
-		width  = Config.world.enemies[host.name].sprite.width,
-		height = Config.world.enemies[host.name].sprite.height,
-		frames = Config.world.enemies[host.name].sprite.frames.slide
+		width  = Config.world.enemy[host.name].sprite.width,
+		height = Config.world.enemy[host.name].sprite.height,
+		frames = Config.world.enemy[host.name].sprite.frames.slide
 	})
 	--
 	Base.new(self, 'slide', host)

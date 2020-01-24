@@ -6,7 +6,7 @@ local DarkMage = Enemy:extend()
 
 function DarkMage:new(data)
 	Enemy.new(self, _:merge(data,
-		Config.world.enemies['DarkMage']
+		Config.world.enemy['DarkMage']
 	))
 	--
 	-- hitbox

@@ -8,9 +8,9 @@ function Fall:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('fall', {
 		image  = host.sprite,
-		width  = Config.world.enemies[host.name].sprite.width,
-		height = Config.world.enemies[host.name].sprite.height,
-		frames = Config.world.enemies[host.name].sprite.frames.fall
+		width  = Config.world.enemy[host.name].sprite.width,
+		height = Config.world.enemy[host.name].sprite.height,
+		frames = Config.world.enemy[host.name].sprite.frames.fall
 	})
 	--
 	Base.new(self, 'fall', host)

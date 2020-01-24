@@ -136,8 +136,13 @@ function Enemy:die()
 	self.dying = true
 	--
 	self.timer:after(2, function()
-		self:destroy()
+		self.body:setActive(false)
+		self.dying = false
 	end)
+	-- 	-- respawn
+	-- 	Config.world.enemy[self.name].health.now = Config.world.enemy[self.name].health.max
+	-- 	self.body:setActive(true)
+	-- end)
 	--
 	Config.audio.enemy[_.__lower(self.name)].die:play()
 end

@@ -251,7 +251,6 @@ end
 --
 function Entity:damage(other, damage)
 	if self.canDestroy and not self.dying then
-		print('hit!', damage, self.health)
 		self.health = self.health - damage
 
 		-- update stats

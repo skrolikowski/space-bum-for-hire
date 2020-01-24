@@ -8,10 +8,10 @@ function Attack:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('attack', {
 		image  = host.sprite,
-		width  = Config.world.enemies[host.name].sprite.width,
-		height = Config.world.enemies[host.name].sprite.height,
+		width  = Config.world.enemy[host.name].sprite.width,
+		height = Config.world.enemy[host.name].sprite.height,
 		total  = 1,
-		frames = Config.world.enemies[host.name].sprite.frames.attack,
+		frames = Config.world.enemy[host.name].sprite.frames.attack,
 		after  = function() host.attacking = false end
 	})
 	--

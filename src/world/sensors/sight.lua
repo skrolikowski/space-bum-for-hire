@@ -161,16 +161,16 @@ function Sight:draw()
 	-- lg.setColor(Config.color.sensor.sight)
 	-- self.shape:draw()
 
-	local cx, cy  = self.host:getPosition()
-	local radius  = self.shape:getRadius()
-	local heading = self.host.isMirrored and _.__pi or 0
-	local r, g, b = unpack(Config.color.sensor.sight)
+	-- local cx, cy  = self.host:getPosition()
+	-- local radius  = self.shape:getRadius()
+	-- local heading = self.host.isMirrored and _.__pi or 0
+	-- local r, g, b = unpack(Config.color.sensor.sight)
 
-	lg.setColor(r, g, b, 0.25)
-	lg.arc('fill', cx, cy, radius, heading - self.periphery, heading + self.periphery)
-	lg.setColor(r, g, b, 0.75)
-	lg.setLineWidth(1)
-	lg.arc('line', cx, cy, radius, heading - self.periphery, heading + self.periphery)
+	-- lg.setColor(r, g, b, 0.25)
+	-- lg.arc('fill', cx, cy, radius, heading - self.periphery, heading + self.periphery)
+	-- lg.setColor(r, g, b, 0.75)
+	-- lg.setLineWidth(1)
+	-- lg.arc('line', cx, cy, radius, heading - self.periphery, heading + self.periphery)
 
 	-- for __, focus in pairs(self.inFocus) do
 	-- 	lg.setColor(r, g, b, 0.75)

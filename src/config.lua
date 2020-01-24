@@ -26,12 +26,12 @@ Config = {
         },
         -- Enemy Settings
         --
-        enemies = {
+        enemy = {
             Executioner = {
                 health     = { min = 100, max = 125 },
                 speed      = 450,
                 jumpHeight = 3000,
-                timing = { unrest = 1 },
+                timing = { unrest = 2 },
                 attack = { damage = { min = 15, max = 25 }, sx = 0.5, sy = 0.8 },
                 sight  = { distance = 250, periphery = _.__pi / 16 },
                 sprite = {

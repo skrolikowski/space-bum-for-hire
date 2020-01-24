@@ -8,10 +8,10 @@ function Run:new(host)
 	self.sprite = Animator()
 	self.sprite:addAnimation('run', {
 		image  = host.sprite,
-		width  = Config.world.enemies[host.name].sprite.width,
-		height = Config.world.enemies[host.name].sprite.height,
+		width  = Config.world.enemy[host.name].sprite.width,
+		height = Config.world.enemy[host.name].sprite.height,
 		fps    = 8,
-		frames = Config.world.enemies[host.name].sprite.frames.run
+		frames = Config.world.enemy[host.name].sprite.frames.run
 	})
 	--
 	Base.new(self, 'run', host)

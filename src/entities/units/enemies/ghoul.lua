@@ -8,7 +8,7 @@ local Ghoul = Enemy:extend()
 --
 function Ghoul:new(data)
 	Enemy.new(self, _:merge(data,
-		Config.world.enemies['Ghoul']
+		Config.world.enemy['Ghoul']
 	))
 	--
 	-- hitbox
