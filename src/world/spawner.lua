@@ -8,6 +8,7 @@ local Spawner = Modern:extend()
 function Spawner:new(map)
 	for __, layer in ipairs(map.layers) do
 		if layer.type == 'objectgroup' then
+
 			if layer.name == 'Events' then
 			-- Spawn Events
 			-- Events are sensors, which cause things to happen.
@@ -15,6 +16,13 @@ function Spawner:new(map)
 				for __, event in ipairs(layer.objects) do
 					Events[event.name](event)
 				end
+
+			elseif layer.name == 'Text' then
+			-- Spawn UI Text
+				for __, object in ipairs(layer.objects) do
+					UI['text'](object)
+				end
+
 			elseif layer.name == 'Units' then
 			-- Spawn Unit
 				for __, object in ipairs(layer.objects) do
@@ -23,6 +31,7 @@ function Spawner:new(map)
 						Entities[object.name](_:copy(object))
 					end
 				end
+
 			else
 			-- Spawn Entities
 				for __, object in ipairs(layer.objects) do

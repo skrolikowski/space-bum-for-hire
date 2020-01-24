@@ -88,7 +88,7 @@ function Executioner:strike()
 	self.strikeSensor = Sensors['strike'](self)
 
 	-- unrest
-	self.handle = self.timer:after(2, function()
+	self.handle = self.timer:after(1.5, function()
 		self:interrupt():patrol()
 	end)
 

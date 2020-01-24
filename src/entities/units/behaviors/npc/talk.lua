@@ -16,15 +16,15 @@ function Talk:new(host)
 	Base.new(self, 'talk', host)
 end
 
--- Always facing target
---
-function Talk:update(dt)
-	local hx, hy = self.host:getPosition()
-	local tx, ty = self.host.target:getPosition()
+-- -- Always facing target
+-- --
+-- function Talk:update(dt)
+-- 	local hx, hy = self.host:getPosition()
+-- 	local tx, ty = self.host.target:getPosition()
 	
-	self.host.isMirrored = tx < hx
-	--
-	Base.update(self, dt)
-end
+-- 	self.host.isMirrored = tx < hx
+-- 	--
+-- 	Base.update(self, dt)
+-- end
 
 return Talk

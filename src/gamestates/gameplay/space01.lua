@@ -20,7 +20,8 @@ function Space01:init()
 		self.map:drawTileLayer('Decoratives (BG)')
 		self.map:drawTileLayer('Walls')
 		self.map:drawTileLayer('Platforms')
-		self.map:drawTileLayer('Decoratives (FG)')
+		self.map:drawTileLayer('Decoratives (MG)')
+		self.map:drawTileLayer('UI')
 	lg.setCanvas()
 end
 
@@ -30,7 +31,7 @@ function Space01:enter(from, ...)
 	-- Player will enter from..
     if self.settings.from == 'space00' then
     -- Spaceship - Main Room
-        self:playerEnterDoor(Config.tileSize*12, Config.tileSize*45, 'right')
+        self:playerEnterDoor(Config.tileSize*5, Config.tileSize*50, 'right')
     end
 end
 

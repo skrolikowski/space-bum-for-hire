@@ -260,23 +260,6 @@ return {
             ["map"] = "space01",
             ["method"] = "door"
           }
-        },
-        {
-          id = 11,
-          name = "Pickup",
-          type = "",
-          shape = "rectangle",
-          x = 160,
-          y = 272,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["category"] = "ammo",
-            ["name"] = "bullets",
-            ["value"] = "sm"
-          }
         }
       }
     }

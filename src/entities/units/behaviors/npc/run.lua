@@ -19,8 +19,6 @@ end
 -- Update
 --
 function Run:update(dt)
-	local hx, hy = self.host:getPosition()
-	local tx, ty = self.host.target:getPosition()
 	local vx, vy = self.host:getLinearVelocity()
 	local ix, iy = 0, 0
 

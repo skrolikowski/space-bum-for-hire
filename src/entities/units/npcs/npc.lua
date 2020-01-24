@@ -17,17 +17,20 @@ function NPC:new(data)
 	self.sprite = Config.image.cast[_.__lower(self.name)]
 	self.sprite = self.sprite[_.__random(#self.sprite)]
 
-	-- behaviors
+	-- bootstrap
+	self:resetFlags()
+	self:setBehavior('fall')
+end
+
+-- Reset flags
+--
+function NPC:resetFlags()
 	self.dying     = false
 	self.attacking = false
 	self.running   = false
 	self.talking   = false
 	self.guarding  = false
 	self.walking   = false
-
-	-- behavior/animation
-	self:setBehavior('fall')
-	-- self:pace()
 end
 
 -- Update
@@ -84,7 +87,43 @@ function NPC:draw()
 	end
 end
 
+
 ----
+----
+
+-- Interrupt current action
+--
+function NPC:interrupt()
+	self:resetFlags()
+	-- self.target   = nil
+	self.dialogue = nil
+	--
+	if self.handle then
+		self.timer:cancel(self.handle)
+	end
+	--
+	if self.sightSensor then
+		self.sightSensor:destroy()
+	end
+
+	return self
+end
+
+-- Die Action
+-- -----------
+-- Sensor:  None
+-- Audio:   Die
+--
+function NPC:die()
+	self:interrupt()
+	self.dying = true
+	--
+	self.timer:after(2, function()
+		self:destroy()
+	end)
+	--
+	-- Config.audio.npc.die:play()
+end
 
 -- Move in `direction` for `delay` seconds
 --
@@ -113,25 +152,14 @@ end
 
 -- Flee from `other`
 --
-function NPC:flee(other, speed, delay, after)
-	local hx, hy = self.getPosition()
+function NPC:flee(other)
+	local hx, hy = self:getPosition()
 	local tx, ty = other:getPosition()
-	--
 
 	self.target     = other
 	self.running    = true
-	self.speed      = speed
-	self.dialogue   = Dialogue['emote'](host, 'free', 'alert')
+	self.dialogue   = Dialogue['emote'](self, 'free', 'emote_alert')
 	self.isMirrored = tx > hx
-	
-	self.timer:after(delay, function()
-		self.running  = false
-		self.dialogue = nil
-
-		if after then
-			after()
-		end
-	end)
 end
 
 -- Blame
@@ -186,28 +214,16 @@ end
 
 -- Comment
 --
-function NPC:comment(other, delay, after)
+function NPC:comment(other)
 	local index  = _.__random(#Dialogue_.comment[self.name])
 	local text   = Dialogue_.comment[self.name][index]
 	local hx, hy = self:getPosition()
 	local tx, ty = other:getPosition()
-	--
 
 	self.target     = other
 	self.talking    = true
 	self.dialogue   = Dialogue['comment'](self, text)
 	self.isMirrored = tx < hx
-	
-	self.timer:after(delay, function()
-		self.target   = nil
-		self.talking  = false
-		self.dialogue = nil
-
-		-- callback
-		if after then
-			after()
-		end
-	end)
 end
 
 ----

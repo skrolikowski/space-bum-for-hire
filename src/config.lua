@@ -13,9 +13,9 @@ Config = {
         meter = 32,
         gravity = { x = 0, y = 40 },
         maps = {
-            space00 = 'res/maps/WarpRoom.lua',
-            space01 = 'res/maps/Spaceship.lua',
-            mount01 = 'res/maps/Mountains.lua',
+            space00 = 'res/maps/space00.lua',
+            space01 = 'res/maps/space01.lua',
+            mount01 = 'res/maps/mount01.lua',
             mount02 = 'res/maps/mount02.lua',
         },
         pickup = {
@@ -161,7 +161,7 @@ Config = {
             },
         },
         filter = {
-            group    = { effect = -2, unit = -1, environment = 1, event = 0, sensor = 0 },
+            group    = { text = -3, effect = -2, unit = -1, environment = 1, event = 0, sensor = 0 },
             category = {
                 default = 1,
                 environment = 2,
