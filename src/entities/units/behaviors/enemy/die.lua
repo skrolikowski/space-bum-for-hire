@@ -11,6 +11,7 @@ function Die:new(host)
 		width  = Config.world.enemy[host.name].sprite.width,
 		height = Config.world.enemy[host.name].sprite.height,
 		total  = 1,
+		fps    = 8,
 		frames = Config.world.enemy[host.name].sprite.frames.die
 	})
 	--

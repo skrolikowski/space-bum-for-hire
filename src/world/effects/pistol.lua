@@ -29,9 +29,34 @@ function Pistol:new(data)
 	--
 	Base.new(self, 'pistol', data)
 
+	-- raycast effect
+	self.timer = Timer.new()
+	self.ray   = {
+		x     = self.pos.x + _.__cos(self.angle) * 300,
+		y     = self.pos.y + _.__sin(self.angle) * 300,
+		color = {1,0,0,0.15}
+	}
+	self.timer:tween(0.5, self.ray.color, {1,1,1,0}, 'linear')
+
 	-- play sound
 	Config.audio.weapon.pistol:play()
 	Config.audio.weapon.pistol:seek(0)
+end
+
+-- Teardown
+--
+function Pistol:destroy()
+	self.timer:clear()
+	--
+	Base.destroy(self)
+end
+
+-- Update
+--
+function Pistol:update(dt)
+	self.timer:update(dt)
+	--
+	Base.update(self, dt)
 end
 
 -- Draw effect
@@ -48,6 +73,10 @@ function Pistol:draw()
 
 	lg.setColor(Config.color.white)
 	self.sprite:draw(tx, ty, angle, sx, sy, 0, 2)
+
+	-- bullet ray
+	lg.setColor(self.ray.color)
+	lg.line(tx, ty, self.ray.x, self.ray.y)
 end
 
 return Pistol

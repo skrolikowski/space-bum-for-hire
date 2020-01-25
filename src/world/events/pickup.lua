@@ -28,8 +28,8 @@ function Pickup:new(data)
 	end
 
 	-- scaling
-	self.sx = 1
-	self.sy = 1
+	self.sx = 0.75
+	self.sy = 0.75
 
 	-- oscillation
 	self.osc = 0
@@ -53,7 +53,7 @@ function Pickup:trigger()
 
 	-- audio queue
 	if Config.audio[self.name .. 'Pickup'] then
-		Config.audio[self.name]:play()
+		Config.audio[self.name .. 'Pickup']:play()
 	elseif Config.audio[self.category .. 'Pickup'] then
 		Config.audio[self.category .. 'Pickup']:play()
 	end

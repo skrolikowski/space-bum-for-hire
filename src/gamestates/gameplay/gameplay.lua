@@ -28,6 +28,7 @@ end
 function Gameplay:enter(from, ...)
 	Base.enter(self, from, ...)
 	--
+	-- Keep pause status from previous screen
 	pcall(function() self.isPaused = from.isPaused end)
 
 	-- default controls
@@ -43,7 +44,8 @@ function Gameplay:enter(from, ...)
 	if self.settings.from == 'beam' then
 		self:playerEnterBeam(
 			Config.tileSize * self.settings['col'],
-			Config.tileSize * self.settings['row']
+			Config.tileSize * self.settings['row'],
+			self.settings.refill or false
 		)
 	else
 		-- Continue to sub-class
@@ -199,7 +201,7 @@ end
 
 -- Beam In Player
 --
-function Gameplay:playerEnterBeam(x, y)
+function Gameplay:playerEnterBeam(x, y, healthRefill)
     -- focus camera
     self:lookAt(
         x + Config.spawn.width  / 2,
@@ -222,6 +224,16 @@ function Gameplay:playerEnterBeam(x, y)
 		height  = Config.spawn.height,
 	})
 	self.filming = self.player
+
+	if healthRefill then
+		self.player.health = Config.world.hud.stat.health.max
+		
+		self.hud:set({
+			category = 'stat',
+			name     = 'health',
+			value    = Config.world.hud.stat.health.max
+		})
+	end
 	
 	-- update player properties
 	self.player.body:setAwake(false)

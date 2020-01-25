@@ -22,6 +22,9 @@ function HitBox:beginContact(other, col)
 	-- Projectile damage
 		-- print(self.host.name, other.name)
 		self.host:damage(other, other.damage)
+	elseif other.name == 'Fireball' then
+	-- Fireball damage
+		self.host:damage(other, other.damage)
 	elseif other.name == 'Strike' then
 	-- Strike attack damage
 		-- print(self.host.name, other.name)

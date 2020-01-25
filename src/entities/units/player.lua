@@ -85,19 +85,31 @@ end
 
 -- Toggle lock position
 --
-function Player:setLock()
-	if self.locking then
-		self.locking  = false
+function Player:setLock(value)
+	self.locking = value
+
+	if not self.locking then
 		self.lockedIn = false
 	else
-		self.locking = true
-		--
 		if self.crouching then
 			self.lockedIn = 'crouch'
 		else
 			self.lockedIn = 'idle'
 		end
 	end
+end
+
+-- Update HUD
+--
+function Player:damage(other, damage)
+	Unit.damage(self, other, damage)
+	--
+	-- update stats
+	Gamestate:current().hud:set({
+		name     = 'health',
+		category = 'stat',
+		value    = _.__max(0, self.health)
+	})
 end
 
 -- Player has died :(

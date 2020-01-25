@@ -57,9 +57,6 @@ function Executioner:hunt(other)
 	local cx, cy   = self:getPosition()
 	local tx, ty   = other:getPosition()
 	local distance = Vec2(cx, cy):distance(Vec2(tx, ty))
-
-	self.running    = true
-	self.isMirrored = tx < cx
 	--
 	-- attack if target in range
 	self.sightSensor = Sensors['sight'](self, { 'Player' },  _.__pi / 2)
@@ -67,6 +64,9 @@ function Executioner:hunt(other)
 	self.sightSensor:setInFocus(function(other)
 		self:interrupt():strike(other)
 	end)
+
+	self.running    = true
+	self.isMirrored = tx < cx
 
 	-- unrest
 	self.handle = self.timer:after(3, function()
@@ -89,6 +89,8 @@ function Executioner:strike()
 
 	-- unrest
 	self.handle = self.timer:after(1.5, function()
+		self.isMirrored = not self.isMirrored
+		--
 		self:interrupt():patrol()
 	end)
 

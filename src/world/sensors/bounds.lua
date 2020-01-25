@@ -69,8 +69,8 @@ end
 -- Draw sensor
 --
 function Bounds:draw()
-	lg.setColor(Config.color.sensor.dispatcher)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.dispatcher)
+	-- self.shape:draw()
 end
 
 return Bounds

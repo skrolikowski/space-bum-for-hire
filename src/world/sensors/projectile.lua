@@ -115,8 +115,8 @@ end
 -- Draw Projectile
 --
 function Projectile:draw()
-	lg.setColor(Config.color.sensor.projectile)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.projectile)
+	-- self.shape:draw()
 end
 
 return Projectile

@@ -41,11 +41,17 @@ function love.load()
         row  = checkpoint.row
     })
     --
+
+    Soundtrack:new(0.33)
+    Soundtrack:addFolder('res/music/DOS-88')
+    Soundtrack:shuffle():play()
 end
 
 -- Update
 --
 function love.update(dt)
+    Soundtrack:update(dt)
+    --
     -- Controls - Key Down
     for key, time in pairs(_Keys) do
         _Keys[key] = time + dt

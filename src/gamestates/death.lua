@@ -21,6 +21,8 @@ end
 function Death:enter(from, ...)
 	self.from    = from -- previous screen
 	self.world   = from.world
+	self.hud     = from.hud
+	self.player  = from.player
 	self.control = from.control
 	--
 	self.timer = Timer.new()
@@ -38,13 +40,13 @@ end
 function Death:continue()
 	local checkpoint = Config.world.checkpoint.player
 
-	if checkpoint then
-		Gamestate.switch(Gamestates[checkpoint.map], {
-			from = 'beam',
-			col  = checkpoint.col,
-			row  = checkpoint.row
-		})
-	end
+	-- respawn w/ fresh health
+	Gamestate.switch(Gamestates[checkpoint.map], {
+		from   = 'beam',
+		col    = checkpoint.col,
+		row    = checkpoint.row,
+		refill = true
+	})
 end
 
 -- Update

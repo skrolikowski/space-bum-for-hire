@@ -17,7 +17,7 @@ Control_ = {
 		key_a_on      = function()       Gamestate:current().player:keyOn('a')             end,
 		key_s_on      = function()       Gamestate:current().player:keyOn('s')             end,
 		key_d_on      = function()       Gamestate:current().player:keyOn('d')             end,
-		key_l_on      = function()       Gamestate:current().player:setLock()              end,
+		key_l_on      = function()       Gamestate:current().player:setLock(true)              end,
 		key_p_on      = function()       Gamestate:current():pause()                       end,
 		key_space_on  = function()       Gamestate:current().player:keyOn('space_on')      end,
 		key_a_down    = function(dt, et) Gamestate:current().player:move(dt, et)           end,
@@ -27,7 +27,7 @@ Control_ = {
 		key_a_off     = function()       Gamestate:current().player:keyOff('a')            end,
 		key_d_off     = function()       Gamestate:current().player:keyOff('d')            end,
 		key_s_off     = function()       Gamestate:current().player:keyOff('s')            end,
-		key_l_off     = function()       Gamestate:current().player:setLock()              end,
+		key_l_off     = function()       Gamestate:current().player:setLock(false)              end,
 		key_k_off     = function()       Gamestate:current().player.weapon:holster()       end,
 		key_space_off = function()       Gamestate:current().player:keyOff('space_off')    end,
 	

@@ -253,13 +253,6 @@ function Entity:damage(other, damage)
 	if self.canDestroy and not self.dying then
 		self.health = self.health - damage
 
-		-- update stats
-		Gamestate:current().hud:set({
-			name     = 'health',
-			category = 'stat',
-			value    = self.health
-		})
-
 		if self.health <= 0 then
 			self:die()
 		end

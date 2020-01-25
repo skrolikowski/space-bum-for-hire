@@ -45,17 +45,14 @@ end
 -- Attack Action
 --
 function DarkMage:attack(other)
-	-- Detect Player
-	-- OutOfFocus: Interrupt to return to patrol
-	self.sightSensor = Sensors['sight'](self, { 'Player' }, self._sight.periphery)
-	self.sightSensor:setShape(Shapes['circle'](self._sight.distance))
-	self.sightSensor:setOutOfFocus(function(other)
-		self:interrupt():patrol()
-	end)
-
 	-- repeat fire until player out of sight
 	self.handle = self.timer:every(self._timing.cooldown, function()
 		self:projectile(other)
+	end)
+
+	-- unrest
+	self.timer:after(self._timing.cooldown * 3, function()
+		self:interrupt():patrol()
 	end)
 end
 
@@ -83,7 +80,7 @@ function DarkMage:projectile(other)
 		impulse = Vec2(0, 0):polar(angle, speed),
 	})
 	--
-	-- Config.audio.enemy.ghoul.attack:play()
+	Config.audio.enemy.darkmage.attack:play()
 end
 
 return DarkMage
