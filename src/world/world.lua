@@ -15,8 +15,9 @@ function World:new(camera)
 		Config.world.gravity.y * Config.world.meter,
 		true
 	)
-	self.width  = Config.width
-	self.height = Config.height
+	self.manifest = {}
+	self.width    = Config.width
+	self.height   = Config.height
 
 	-- camera
 	self.camera = camera
@@ -147,19 +148,19 @@ end
 -- Fetch an Entity
 --
 function World:fetchEntityById(id)
-	local bodies = self.world:getBodies()
-	local fixture, entity
+	local entity = false
 
-	for __, body in pairs(bodies) do
-		fixture = body:getFixtures()[1]
-		entity  = fixture:getUserData()
-
-		if entity.id and entity.id == id then
-			return entity
+	self:queryWorld(
+		function(fix)
+			if fix:getUserData().id and fix:getUserData().id == id then
+				entity = fix:getUserData()
+				return false
+			end
+			return true
 		end
-	end
+	)
 
-	return false
+	return entity
 end
 
 -- Event - handle onClick (mouse)

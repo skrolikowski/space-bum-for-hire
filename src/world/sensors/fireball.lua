@@ -17,6 +17,10 @@ function Fireball:new(host, data)
 	self.radius   = host._attack.radius or 5
 	self.damage   = host._attack.damage or 0
 
+	-- scaling
+	self.sx = data.sx or 1.5
+	self.sy = data.sy or 1.5
+
 	if _:isTable(self.damage) then
 		self.damage = _.__random(self.damage.min, self.damage.max)
 	end
@@ -87,26 +91,28 @@ end
 function Fireball:beginContact(other, col)
 	if col:isTouching() then
 		if self.affects[other.name] or self.affects[other.category] then
-			local cx, cy   = self.body:getPosition()
-			local px, py   = Gamestate:current().player:getPosition()
-			local distance = Vec2(cx, cy):distance(Vec2(px, py))
-			local volume   = _.__max(0, 1 - distance / Config.width)
-			local clip
+			if Gamestate:current().player then
+				local cx, cy   = self.body:getPosition()
+				local px, py   = Gamestate:current().player:getPosition()
+				local distance = Vec2(cx, cy):distance(Vec2(px, py))
+				local volume   = _.__max(0, 1 - distance / Config.width)
+				local clip
 
-			if other.name == 'Environment' then
-			-- Impact w/ Environment
-				clip = _.__random(#Config.audio.weapon.impact)
+				if other.name == 'Environment' then
+				-- Impact w/ Environment
+					clip = _.__random(#Config.audio.weapon.impact)
 
-				Config.audio.weapon.impact[clip]:setVolume(volume)
-				Config.audio.weapon.impact[clip]:play()
-				Config.audio.weapon.impact[clip]:seek(0)
-			elseif other.name == 'HitBox' then
-			-- Impact w/ Unit
-				clip = _.__random(#Config.audio.weapon.pierce)
+					Config.audio.weapon.impact[clip]:setVolume(volume)
+					Config.audio.weapon.impact[clip]:play()
+					Config.audio.weapon.impact[clip]:seek(0)
+				elseif other.name == 'HitBox' then
+				-- Impact w/ Unit
+					clip = _.__random(#Config.audio.weapon.pierce)
 
-				Config.audio.weapon.pierce[clip]:setVolume(volume)
-				Config.audio.weapon.pierce[clip]:play()
-				Config.audio.weapon.pierce[clip]:seek(0)
+					Config.audio.weapon.pierce[clip]:setVolume(volume)
+					Config.audio.weapon.pierce[clip]:play()
+					Config.audio.weapon.pierce[clip]:seek(0)
+				end
 			end
 			--
 			self:destroy()

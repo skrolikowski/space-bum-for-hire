@@ -42,6 +42,14 @@ function Mount01:enter(from, ...)
         -- Error!
             error('Missing map section!')
         end
+    elseif self.settings.from == 'mount03' then
+    -- West End
+        if self.settings['section'] == 'A' then
+            self:playerEnterDoor(Config.tileSize*1, Config.tileSize*78, 'left')
+        else
+        -- Error!
+            error('Missing map section!')
+        end
     end
 end
 

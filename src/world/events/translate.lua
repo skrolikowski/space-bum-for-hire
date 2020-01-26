@@ -12,20 +12,20 @@ function Translate:new(data)
 	self.target  = Gamestate:current().world:fetchEntityById(data.properties['Target'])
 	self.pos     = Vec2(self.target:getPosition())
 	self.goalPos = Vec2(data.properties['Goal.x'], data.properties['Goal.y'])
-	self.hosting = 0
-	
+
 	-- animation settings
-	self.delay = data.properties.delay or 0
-	self.pause = data.properties.pause or 3
-	self.delay = data.properties.delay or 10
-	self.tween = data.properties.tween or 'linear'
-	self.once  = data.properties.once  or false
+	self.affects = Util:toBoolean({ data.properties.affects or 'Unit' })
+	self.delay   = data.properties.delay or 0
+	self.pause   = data.properties.pause or 1
+	self.delay   = data.properties.delay or 3
+	self.tween   = data.properties.tween or 'linear'
+	self.once    = data.properties.once  or false
 
 	-- animation/tween
 	self.timer = Timer.new()
 
 	-- flags
-	self.running = nil
+	self.running = false
 end
 
 -- Teardown
@@ -40,29 +40,31 @@ end
 --
 function Translate:beginContact(other, col)
 	if col:isTouching() and not self.running then
-		self.hosting = self.hosting + 1
-		self:trigger()
+		if self.affects[other.name] or self.affects[other.category] then
+			self:trigger()
+		end
 	end
-end
-
--- Check for separations
---
-function Translate:endContact(other, col)
-	self.hosting = self.hosting - 1
 end
 
 -- Start movement animation
 --
 function Translate:trigger()
-	self.running = true
+	self.pos = Vec2(self.target:getPosition())
+
+	if self.pos:distance(self.goalPos) < 100 then
+		return
+	end
 	--
 	-- animation tween
 	-- move target to goal location
+	self.running = true
 	self.timer:tween(self.delay, self.pos, {
 		x = self.goalPos.x,
 		y = self.goalPos.y
 	}, self.tween,
 	function()
+		self.running = false
+
 		if self.once then
 			self:destroy()
 		end

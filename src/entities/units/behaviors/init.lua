@@ -16,6 +16,14 @@ return {
     Double_run    = require 'src.entities.units.behaviors.npc.run',
     Double_talk   = require 'src.entities.units.behaviors.npc.talk',
     Double_walk   = require 'src.entities.units.behaviors.npc.walk',
+    -- captain
+    Captain_attack = require 'src.entities.units.behaviors.npc.attack',
+    Captain_fall   = require 'src.entities.units.behaviors.npc.fall',
+    Captain_guard  = require 'src.entities.units.behaviors.npc.guard',
+    Captain_idle   = require 'src.entities.units.behaviors.npc.idle',
+    Captain_run    = require 'src.entities.units.behaviors.npc.run',
+    Captain_talk   = require 'src.entities.units.behaviors.npc.talk',
+    Captain_walk   = require 'src.entities.units.behaviors.npc.walk',
     -- player
     Player_idle    = require 'src.entities.units.behaviors.player.idle',
     Player_die     = require 'src.entities.units.behaviors.player.die',
@@ -52,4 +60,13 @@ return {
     DarkMage_jump   = require 'src.entities.units.behaviors.enemy.jump',
     DarkMage_run    = require 'src.entities.units.behaviors.enemy.run',
     DarkMage_slide  = require 'src.entities.units.behaviors.enemy.slide',
+    -- boss
+    Boss_attack = require 'src.entities.units.behaviors.enemy.attack',
+    Boss_die    = require 'src.entities.units.behaviors.enemy.die',
+    Boss_fall   = require 'src.entities.units.behaviors.enemy.fall',
+    Boss_hurt   = require 'src.entities.units.behaviors.enemy.hurt',
+    Boss_idle   = require 'src.entities.units.behaviors.enemy.idle',
+    Boss_jump   = require 'src.entities.units.behaviors.enemy.jump',
+    Boss_run    = require 'src.entities.units.behaviors.enemy.run',
+    Boss_slide  = require 'src.entities.units.behaviors.enemy.slide',
 }

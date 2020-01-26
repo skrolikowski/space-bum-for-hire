@@ -16,14 +16,18 @@ function Base:init(data)
 	self.width   = self.map.width  * self.map.tilewidth
 	self.height  = self.map.height * self.map.tileheight
 	self.control = nil
+	
+	-- camera
 	self.camera  = Camera(0, 0, Config.scale)
 	self.filming = nil
+	self.timer   = Timer.new()
+
+	-- world
 	self.world   = nil
+	self.spawner = nil
 
 	-- flags
 	self.comments = false
-	
-	self.timer = Timer.new()
 end
 
 -- Enter screen
@@ -32,8 +36,13 @@ function Base:enter(from, ...)
 	self.from     = from -- previous screen
 	self.settings = ...
 	--
+	--
 	if not self.world then
+	-- fresh world
     	self:setWorld()
+	elseif self.settings.respawn then
+	-- respawn request
+		self.spawner:spawnUnits()
 	end
 end
 
@@ -66,7 +75,8 @@ function Base:setWorld()
 	self.world.height = self.height
 
 	-- spawn entities
-	Spawner(self.map)
+	self.spawner = Spawner(self.world, self.map)
+	self.spawner:reset()
 	--
 	-- register world sensor
 	-- remove bodies outside of bounds

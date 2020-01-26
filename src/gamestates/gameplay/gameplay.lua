@@ -45,7 +45,7 @@ function Gameplay:enter(from, ...)
 		self:playerEnterBeam(
 			Config.tileSize * self.settings['col'],
 			Config.tileSize * self.settings['row'],
-			self.settings.refill or false
+			self.settings.respawn or false
 		)
 	else
 		-- Continue to sub-class
@@ -201,7 +201,7 @@ end
 
 -- Beam In Player
 --
-function Gameplay:playerEnterBeam(x, y, healthRefill)
+function Gameplay:playerEnterBeam(x, y, respawn)
     -- focus camera
     self:lookAt(
         x + Config.spawn.width  / 2,
@@ -225,7 +225,7 @@ function Gameplay:playerEnterBeam(x, y, healthRefill)
 	})
 	self.filming = self.player
 
-	if healthRefill then
+	if respawn then
 		self.player.health = Config.world.hud.stat.health.max
 		
 		self.hud:set({

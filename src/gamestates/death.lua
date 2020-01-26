@@ -42,10 +42,10 @@ function Death:continue()
 
 	-- respawn w/ fresh health
 	Gamestate.switch(Gamestates[checkpoint.map], {
-		from   = 'beam',
-		col    = checkpoint.col,
-		row    = checkpoint.row,
-		refill = true
+		from    = 'beam',
+		col     = checkpoint.col,
+		row     = checkpoint.row,
+		respawn = true
 	})
 end
 

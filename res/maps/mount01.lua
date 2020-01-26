@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 26,
-  nextobjectid = 231,
+  nextobjectid = 232,
   properties = {},
   tilesets = {
     {
@@ -1501,19 +1501,6 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
-        },
-        {
-          id = 211,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 32,
-          y = 1248,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
         }
       }
     },
@@ -1709,19 +1696,6 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
-        },
-        {
-          id = 230,
-          name = "DarkMage",
-          type = "",
-          shape = "rectangle",
-          x = 608,
-          y = 1056,
-          width = 92,
-          height = 93,
-          rotation = 0,
-          visible = true,
-          properties = {}
         }
       }
     },
@@ -1841,10 +1815,10 @@ return {
             ["Goal.y"] = 984,
             ["Target"] = 118,
             ["auto"] = true,
-            ["delay"] = 2,
-            ["delayIn"] = 3,
-            ["delayOut"] = 3,
-            ["pause"] = 2
+            ["delay"] = 3,
+            ["delayIn"] = 4,
+            ["delayOut"] = 4,
+            ["pause"] = 3
           }
         },
         {
@@ -1861,7 +1835,12 @@ return {
           properties = {
             ["Goal.x"] = 400,
             ["Goal.y"] = 632,
-            ["Target"] = 121
+            ["Target"] = 121,
+            ["auto"] = true,
+            ["delay"] = 1,
+            ["delayIn"] = 2,
+            ["delayOut"] = 2,
+            ["pause"] = 1
           }
         },
         {
@@ -2050,7 +2029,7 @@ return {
             ["Goal.x"] = 240,
             ["Goal.y"] = 1336,
             ["Target"] = 214,
-            ["delay"] = 15,
+            ["delay"] = 1.5,
             ["once"] = true
           }
         },
@@ -2120,7 +2099,7 @@ return {
             ["Goal.x"] = 1472,
             ["Goal.y"] = 1048,
             ["Target"] = 174,
-            ["delay"] = 15,
+            ["delay"] = 1.5,
             ["once"] = true
           }
         },
@@ -2173,6 +2152,25 @@ return {
             ["category"] = "ammo",
             ["name"] = "bullets",
             ["value"] = "md"
+          }
+        },
+        {
+          id = 231,
+          name = "Teleport",
+          type = "",
+          shape = "rectangle",
+          x = 16,
+          y = 1248,
+          width = 16,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["exit"] = "left",
+            ["map"] = "mount03",
+            ["method"] = "door",
+            ["onTouch"] = true,
+            ["section"] = "A"
           }
         }
       }

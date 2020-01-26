@@ -432,14 +432,14 @@
 			},
 
 			{
-				"name": "health_sm.png",
+				"name": "health_md.png",
 				"x": "0",
 				"y": "320",
 				"width": "32",
 				"height": "32"
 			},
 			{
-				"name": "shield.png",
+				"name": "health_sm.png",
 				"x": "32",
 				"y": "320",
 				"width": "32",

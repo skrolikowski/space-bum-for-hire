@@ -31,7 +31,7 @@ Control_ = {
 		key_k_off     = function()       Gamestate:current().player.weapon:holster()       end,
 		key_space_off = function()       Gamestate:current().player:keyOff('space_off')    end,
 	
-		-- key_x_on = function() Gamestate:current().player:die() end,
+		key_x_on = function() Gamestate:current().player:die() end,
 	},
 	pause = {
 		key_escape_on = function() Gamestate:current():quit() end,

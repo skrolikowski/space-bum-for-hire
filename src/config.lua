@@ -17,9 +17,10 @@ Config = {
             space01 = 'res/maps/space01.lua',
             mount01 = 'res/maps/mount01.lua',
             mount02 = 'res/maps/mount02.lua',
+            mount03 = 'res/maps/mount03.lua',
         },
         pickup = {
-            health  = { sm = 25 },
+            health  = { sm = 25, md = 50 },
             shield  = {},
             bullets = { sm = 12, md = 24, lg = 50 },
             shells  = { sm = 4, md  = 8,  lg = 20 },
@@ -88,6 +89,34 @@ Config = {
                     radius   = 5,
                 },
                 sight  = { distance = 400, periphery = _.__pi / 4 },
+                sprite = {
+                    width  = 60,
+                    height = 61,
+                    frames = {
+                        attack = { { 2, 5, 2, 6 }, { 3, 1, 3, 3 } },
+                        die    = { { 5, 1, 5, 6 }, { 6, 1, 6, 4 } },
+                        fall   = { { 7, 3, 7, 4 } },
+                        hurt   = { { 4, 4, 4, 6 } },
+                        jump   = { { 6, 5, 6, 6 }, { 7, 1, 7, 2 } },
+                        idle   = { { 1, 1, 1, 4 } },
+                        run    = { { 1, 5, 1, 6 }, { 2, 1, 2, 4 } },
+                        slide  = { { 4, 4, 4, 6 } },
+                        summon = { { 3, 4, 3, 6 }, { 4, 1, 4, 3 } },
+                    },
+                },
+            },
+            Boss = {
+                health = 250,
+                speed  = 500,
+                timing = { cooldown = 0.8 },
+                attack = {
+                    damage   = 25,
+                    distance = 300,
+                    decay    = 1,
+                    speed    = 250,
+                    radius   = 10,
+                },
+                sight  = { distance = 250, periphery = _.__pi / 2 },
                 sprite = {
                     width  = 60,
                     height = 61,
@@ -211,6 +240,11 @@ Config = {
                 attack = la.newSource('res/sfx/enemies/OGSoundFX/Cute Creature_11 - Growl.wav', 'static'),
                 die    = la.newSource('res/sfx/enemies/OGSoundFX/Cute Creature_9 - Dying.wav', 'static'),
             },
+            boss = {
+                hunt   = la.newSource('res/sfx/enemies/OGSoundFX/Zombie_6.wav', 'static'),
+                attack = la.newSource('res/sfx/enemies/OGSoundFX/Flare gun 4.wav', 'static'),
+                die    = la.newSource('res/sfx/enemies/OGSoundFX/Zombie_5.wav', 'static'),
+            },
             darkmage = {
                 hunt   = la.newSource('res/sfx/enemies/OGSoundFX/Zombie_6.wav', 'static'),
                 attack = la.newSource('res/sfx/enemies/OGSoundFX/Flare gun 4.wav', 'static'),
@@ -268,6 +302,19 @@ Config = {
                     walk   = lg.newImage('res/spritesheets/player/walk.png'),
                 }
             },
+            captain = {
+                {
+                    crouch = lg.newImage('res/spritesheets/captain/crouch.png'),
+                    death  = lg.newImage('res/spritesheets/captain/death.png'),
+                    guard  = lg.newImage('res/spritesheets/captain/guard.png'),
+                    idle   = lg.newImage('res/spritesheets/captain/idle.png'),
+                    melee  = lg.newImage('res/spritesheets/captain/melee.png'),
+                    jump   = lg.newImage('res/spritesheets/captain/jump.png'),
+                    run    = lg.newImage('res/spritesheets/captain/run.png'),
+                    talk   = lg.newImage('res/spritesheets/captain/talking.png'),
+                    walk   = lg.newImage('res/spritesheets/captain/walk.png'),
+                }
+            },
             doctor = {
                 {
                     crouch = lg.newImage('res/spritesheets/doctor/crouch.png'),
@@ -293,15 +340,9 @@ Config = {
                 },
             },
             executioner = lg.newImage('res/spritesheets/enemies/executioner.png'),
-            -- fire_golem     = lg.newImage('res/spritesheets/enemies/fire-golem.png'),
-            ghoul = lg.newImage('res/spritesheets/enemies/ghoul.png'),
-            -- ice_golem      = lg.newImage('res/spritesheets/enemies/ice-golem.png'),
-            -- imp            = lg.newImage('res/spritesheets/enemies/imp.png'),
-            darkmage = lg.newImage('res/spritesheets/enemies/necromancer.png'),
-            -- phantom_knight = lg.newImage('res/spritesheets/enemies/phantom-knight.png'),
-            -- reaper         = lg.newImage('res/spritesheets/enemies/reaper.png'),
-            -- slug           = lg.newImage('res/spritesheets/enemies/slug.png'),
-            -- undead_warrior = lg.newImage('res/spritesheets/enemies/undead-warrior.png'),
+            ghoul       = lg.newImage('res/spritesheets/enemies/ghoul.png'),
+            darkmage    = lg.newImage('res/spritesheets/enemies/necromancer.png'),
+            boss        = lg.newImage('res/spritesheets/enemies/necromancer.png'),
         },
         spritesheet = {
             effect = {
@@ -344,6 +385,7 @@ Config = {
                 mountains = lg.newImage('res/sprites/platforms/mountains.png'),
                 castle    = lg.newImage('res/sprites/platforms/castle.png'),
                 spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
+                boss      = lg.newImage('res/sprites/platforms/boss.png'),
             },
             pillar = {
                 castle = lg.newImage('res/sprites/pillars/castle.png'),

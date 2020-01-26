@@ -6,10 +6,12 @@
 Entities = {
 	Player         = require 'src.entities.units.player',
 	Doctor         = require 'src.entities.units.npcs.doctor',
+	Captain        = require 'src.entities.units.npcs.captain',
 	Double         = require 'src.entities.units.npcs.double',
 	Executioner    = require 'src.entities.units.enemies.executioner',
 	Ghoul          = require 'src.entities.units.enemies.ghoul',
 	DarkMage       = require 'src.entities.units.enemies.darkmage',
+	Boss           = require 'src.entities.units.enemies.boss',
     MovingPlatform = require 'src.entities.environments.moving_platform',
     MovingPillar   = require 'src.entities.environments.moving_pillar',
     Environment    = require 'src.entities.environments.environment',

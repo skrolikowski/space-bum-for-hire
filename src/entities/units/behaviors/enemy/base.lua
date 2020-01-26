@@ -15,6 +15,9 @@ function Base:setBounds()
 	if name == 'DarkMage' then
 		self.ox     = w/6
 		self.bounds = AABB:fromContainer(x, y+h*0.15, w/2, h*0.7)
+	elseif name == 'Boss' then
+		self.ox     = w/6
+		self.bounds = AABB:fromContainer(x, y+h*0.15, w/2, h*0.7)
 	elseif name == 'Ghoul' then
 		self.ox     = w/10
 		self.bounds = AABB:fromContainer(x, y, w/2, h)
