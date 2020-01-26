@@ -12,13 +12,15 @@ function Player:new(data)
 		shape      = 'rectangle',
 		speed      = 1000,
 		jumpHeight = 4500,
-		health     = Config.world.hud.stat.health.now,
+		
 	}))
 	--
 	-- properties
-	self.axis     = Vec2()  -- controller axis
-	self.angle    = 0
-	self.cooldown = { now = 0, max = 1 }
+	self.axis       = Vec2()  -- controller axis
+	self.angle      = 0
+	self.cooldown   = { now = 0, max = 1 }
+	self.health     = Config.world.hud.stat.health.now
+	self.initHealth = Config.world.hud.stat.health.max
 
 	-- flags
 	self.lockedIn = false

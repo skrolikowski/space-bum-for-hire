@@ -225,13 +225,15 @@ function Gameplay:playerEnterBeam(x, y, respawn)
 	})
 	self.filming = self.player
 
+	-- respawn flag check..
 	if respawn then
-		self.player.health = Config.world.hud.stat.health.max
+	-- Reset Health
+		self.player.health = self.player.initHealth
 		
 		self.hud:set({
 			category = 'stat',
 			name     = 'health',
-			value    = Config.world.hud.stat.health.max
+			value    = self.player.initHealth
 		})
 	end
 	

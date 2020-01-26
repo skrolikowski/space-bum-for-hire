@@ -47,7 +47,9 @@ end
 function DarkMage:attack(other)
 	-- repeat fire until player out of sight
 	self.handle = self.timer:every(self._timing.cooldown, function()
-		self:projectile(other)
+		if not other:isDestroyed() then
+			self:projectile(other)
+		end
 	end)
 
 	-- unrest

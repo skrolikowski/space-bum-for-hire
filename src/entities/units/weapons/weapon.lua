@@ -83,28 +83,30 @@ end
 -- Draw weapon
 --
 function Weapon:draw()
-	if self.host.locking or self.host.shooting then
-	-- Draw arm starting from host center
-		local cx, cy = self.host:getPosition()
-		local w, h   = self.weaponSprite:getDimensions()
-		local angle  = self.host.aimAngle
-		local tx, ty = cx, cy - h/2
-		local sx, sy = 1, 1
-		local ox, oy = 0, h/4
+	if not self.host.dying then
+		if self.host.locking or self.host.shooting then
+		-- Draw arm starting from host center
+			local cx, cy = self.host:getPosition()
+			local w, h   = self.weaponSprite:getDimensions()
+			local angle  = self.host.aimAngle
+			local tx, ty = cx, cy - h/2
+			local sx, sy = 1, 1
+			local ox, oy = 0, h/4
 
-		-- adjust arm placement for crouch animation
-		--
-		if self.host.behavior.name == 'Player_crouch' then
-			ty = ty + h * 0.65
+			-- adjust arm placement for crouch animation
+			--
+			if self.host.behavior.name == 'Player_crouch' then
+				ty = ty + h * 0.65
+			end
+
+			-- adjust arm angle for shooting animation
+			if self.host.isMirrored then
+				sx    = -sx
+				angle = angle + _.__pi
+			end
+
+			lg.draw(self.weaponSprite, tx, ty, angle, sx, sy, ox, oy)
 		end
-
-		-- adjust arm angle for shooting animation
-		if self.host.isMirrored then
-			sx    = -sx
-			angle = angle + _.__pi
-		end
-
-		lg.draw(self.weaponSprite, tx, ty, angle, sx, sy, ox, oy)
 	end
 end
 

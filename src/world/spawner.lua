@@ -85,9 +85,15 @@ function Spawner:spawnUnits()
 	if self.layers['Units'] then
 		for __, unit in pairs(self.layers['Units']) do
 			if unit.name then
-				if not self.world:fetchEntityById(unit.id) then
-					-- Copy as to not overwrite
+				local existing = self.world:fetchEntityById(unit.id)
+				
+				if not existing then
+				-- Spawn Unit
+				-- *Copy as to not overwrite
 					Entities[unit.name](_:copy(unit))
+				else
+				-- refill unit health
+					existing.health = existing.initHealth
 				end
 			else
 			-- Error!

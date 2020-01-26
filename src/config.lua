@@ -106,17 +106,17 @@ Config = {
                 },
             },
             Boss = {
-                health = 250,
+                health = 300,
                 speed  = 500,
-                timing = { cooldown = 0.8 },
+                timing = { cooldown = 0.5 },
                 attack = {
                     damage   = 25,
                     distance = 300,
                     decay    = 1,
-                    speed    = 250,
+                    speed    = 300,
                     radius   = 10,
                 },
-                sight  = { distance = 250, periphery = _.__pi / 2 },
+                sight  = { distance = 275, periphery = _.__pi / 2 },
                 sprite = {
                     width  = 60,
                     height = 61,

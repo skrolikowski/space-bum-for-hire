@@ -31,6 +31,12 @@ function Entity:destroy()
 	self.body:destroy()
 end
 
+-- Passthrough
+--
+function Entity:isDestroyed()
+	return self.body:isDestroyed()
+end
+
 -- Set whether sleeing is allowed or not
 --
 function Entity:setSleepingAllowed(...)

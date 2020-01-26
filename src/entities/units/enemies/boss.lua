@@ -44,11 +44,13 @@ function Boss:attack(other)
 
 	-- repeat fire until player out of sight
 	self.handle = self.timer:every(self._timing.cooldown, function()
-		self:projectile(other)
+		if not other:isDestroyed() then
+			self:projectile(other)
+		end
 	end)
 
 	-- unrest
-	self.timer:after(self._timing.cooldown * 6, function()
+	self.timer:after(2, function()
 		self:interrupt():patrol()
 	end)
 end
@@ -80,6 +82,16 @@ function Boss:projectile(other)
 	})
 	--
 	Config.audio.enemy.boss.attack:play()
+end
+
+-- Death on contact
+--
+function Boss:beginContact(other, col)
+	if col:isTouching() then
+		if other.name == 'HitBox' and other.host then
+			other.host:die()
+		end
+	end
 end
 
 return Boss

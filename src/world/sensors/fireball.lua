@@ -91,9 +91,11 @@ end
 function Fireball:beginContact(other, col)
 	if col:isTouching() then
 		if self.affects[other.name] or self.affects[other.category] then
-			if Gamestate:current().player then
+			local player = Gamestate:current().player
+
+			if player and not player:isDestroyed() then
+				local px, py   = player:getPosition()
 				local cx, cy   = self.body:getPosition()
-				local px, py   = Gamestate:current().player:getPosition()
 				local distance = Vec2(cx, cy):distance(Vec2(px, py))
 				local volume   = _.__max(0, 1 - distance / Config.width)
 				local clip
