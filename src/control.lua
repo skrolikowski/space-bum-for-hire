@@ -8,6 +8,8 @@ Control_ = {
 	},
 	cutscene = {
 		key_escape_on = function() Gamestate:current():quit() end,
+		key_p_on      = function() Gamestate.push(Gamestates['pause']) end,
+		key_space_on  = function() Gamestate.current():skip() end,
 	},
 	gameplay = {
 		key_1_on      = function()       Gamestate:current().player:setWeapon('pistol')    end,
@@ -34,8 +36,8 @@ Control_ = {
 		key_x_on = function() Gamestate:current().player:die() end,
 	},
 	pause = {
-		key_escape_on = function() Gamestate:current():quit() end,
-		key_p_on      = function() Gamestate.pop() end,
+		key_escape_on = function() Gamestate:current():quit()    end,
+		key_p_on      = function() Gamestate:current():unpause() end,
 	},
 	death = {
 		key_escape_on = function() Gamestate:current():quit()     end,

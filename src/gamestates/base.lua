@@ -57,8 +57,6 @@ end
 function Base:leave()
 	-- nobody to film
 	self.filming = nil
-	--
-	self:unregisterControls()
 end
 
 -- Set World

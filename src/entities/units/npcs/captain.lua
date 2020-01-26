@@ -11,6 +11,7 @@ function Captain:new(data)
 		shape = 'rectangle',
 	}))
 	--
+	self:pace()
 end
 
 return Captain

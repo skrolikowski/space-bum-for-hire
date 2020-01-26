@@ -17,12 +17,12 @@ function Speech:new(host, text)
 	self.height = self.background:getHeight()
 
 	-- scaling
-	self.sx = 0.4
-	self.sy = 0.4
+	self.sx = 0.33
+	self.sy = 0.33
 
 	-- dialogue - title
 	self.title = lg.newText(Config.ui.font.lg)
-	self.title:setf(host.title, Config.tileSize * 8, 'left')
+	self.title:setf(host.title, Config.tileSize * 9, 'left')
 
 	-- dialogue - text
 	self.text = lg.newText(Config.ui.font.lg)
@@ -56,13 +56,13 @@ function Speech:draw()
 	lg.draw(self.background)
 
 	-- avatar
-	self.avatars:draw(self.avatar, Config.tileSize * 34, Config.tileSize * 2, 0, 5, 5)
+	self.avatars:draw(self.avatar, Config.tileSize * 42, Config.tileSize * 2, 0, 5, 5)
 
 	-- title
-	lg.draw(self.title, Config.tileSize * 3.5, Config.tileSize * 1.5)
+	lg.draw(self.title, Config.tileSize * 4, Config.tileSize * 2)
 
 	-- dialogue
-	lg.draw(self.text, Config.tileSize * 4, Config.tileSize * 5)
+	lg.draw(self.text, Config.tileSize * 7, Config.tileSize * 6)
 	
 	--
 	lg.pop()

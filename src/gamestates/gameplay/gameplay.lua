@@ -228,13 +228,12 @@ function Gameplay:playerEnterBeam(x, y, respawn)
 	-- respawn flag check..
 	if respawn then
 	-- Reset Health
-		self.player.health = self.player.initHealth
-		
 		self.hud:set({
 			category = 'stat',
 			name     = 'health',
 			value    = self.player.initHealth
 		})
+		self.player.health = self.player.initHealth
 	end
 	
 	-- update player properties

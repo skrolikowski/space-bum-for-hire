@@ -21,6 +21,13 @@ function Pause:enter(from, ...)
 	self:setControl('pause')
 end
 
+-- Unpause
+--
+function Pause:unpause()
+	self:unregisterControls()
+	Gamestate.pop()
+end
+
 -- Update
 --
 function Pause:update(dt)

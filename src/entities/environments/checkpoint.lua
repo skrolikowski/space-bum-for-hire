@@ -74,7 +74,7 @@ function Checkpoint:draw()
 	local sx, sy  = self.sx, self.sy
 	local r, g, b = unpack(Config.color.white)
 
-	lg.setColor(r, g, b, 0.8)
+	lg.setColor(r, g, b, 0.85)
 	self.sprite:draw(cx, cy, 0, sx, sy, w/2, h/2)
 	--
 	Environment.draw(self)

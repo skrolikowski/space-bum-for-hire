@@ -81,6 +81,7 @@ function Weapon:update(dt)
 end
 
 -- Draw weapon
+-- Warning: lots of fudge below
 --
 function Weapon:draw()
 	if not self.host.dying then

@@ -13,6 +13,9 @@ Config = {
         meter = 32,
         gravity = { x = 0, y = 40 },
         maps = {
+            -- cutscenes
+            cut04  = 'res/maps/cut04.lua',
+            -- gameplay
             space00 = 'res/maps/space00.lua',
             space01 = 'res/maps/space01.lua',
             mount01 = 'res/maps/mount01.lua',
@@ -108,12 +111,12 @@ Config = {
             Boss = {
                 health = 300,
                 speed  = 500,
-                timing = { cooldown = 0.5 },
+                timing = { cooldown = 0.65 },
                 attack = {
                     damage   = 25,
                     distance = 300,
                     decay    = 1,
-                    speed    = 300,
+                    speed    = 250,
                     radius   = 10,
                 },
                 sight  = { distance = 275, periphery = _.__pi / 2 },
@@ -217,7 +220,7 @@ Config = {
             xs = lg.newFont('res/ui/fonts/Marksman.ttf', 18),
             sm = lg.newFont('res/ui/fonts/Marksman.ttf', 24),
             md = lg.newFont('res/ui/fonts/Marksman.ttf', 32),
-            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 48),
+            lg = lg.newFont('res/ui/fonts/Marksman.ttf', 44),
             xl = lg.newFont('res/ui/fonts/Marksman.ttf', 64),
         },
         munitions = {

@@ -51,7 +51,7 @@ end
 function Translate:trigger()
 	self.pos = Vec2(self.target:getPosition())
 
-	if self.pos:distance(self.goalPos) < 100 then
+	if self.pos:distance(self.goalPos) < 80 then
 		return
 	end
 	--

@@ -11,7 +11,7 @@ function HUD:new()
 	--
 	self.spriteUI        = Config.image.spritesheet.ui
 	self.spriteItem      = Config.image.spritesheet.item
-	self.spriteWeapon    = Config.image.spritesheet.item
+	self.spriteWeapon    = Config.image.spritesheet[Config.world.weapon[Config.world.hud.weapon].spritesheet]
 	self.spriteObjective = Config.image.spritesheet.avatars
 
 	-- dimensions

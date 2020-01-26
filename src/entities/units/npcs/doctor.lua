@@ -16,41 +16,4 @@ function Doctor:new(data)
 	self:pace()
 end
 
--- Pace
---
-function Doctor:pace()
-	self.walking = true
-	self.isMirrored = not self.isMirrored
-	--
-	-- Detect Entity
-	-- InFocus (Player): Interrupt to talk to target
-	-- InFocus (Enemy): Interrupt to flee from target
-	self.sightSensor = Sensors['sight'](self, { 'Unit' }, _.__pi/2)
-	self.sightSensor:setShape(Shapes['circle'](75))
-	self.sightSensor:setInFocus(function(other)
-		if other.name == 'Player' then
-			--
-			self.timer:script(function(wait)
-				self:interrupt():comment(other)
-				wait(3)
-				self:interrupt():pace()
-			end)
-			--
-		elseif other.category == 'Enemy' then
-			
-			self.timer:script(function(wait)
-				self:interrupt():flee(other)
-				wait(3)
-				self:interrupt():pace()
-			end)
-			
-		end
-	end)
-
-	-- unrest
-	self.handle = self.timer:after(5, function()
-		self:interrupt():pace()
-	end)
-end
-
 return Doctor
