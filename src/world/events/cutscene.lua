@@ -9,6 +9,8 @@ function Cutscene:new(data)
 	--
 	-- properties
 	self.scene      = data.properties.scene
+	self.require    = data.properties.require or false
+	self.quest      = data.properties.quest   or false
 	self.checkpoint = Gamestate:current().world:fetchEntityById(data.properties.checkpoint)
 end
 
@@ -17,11 +19,27 @@ end
 function Cutscene:beginContact(other, col)
 	if col:isTouching() then
 		if other.name == 'Player' then
-			Gamestate:current():setCheckpoint(self.checkpoint)
-			Gamestate.push(Gamestates[self.scene])
-			self:destroy()
+			if self:passesRequirements() then
+				-- set checkpoint and new quest
+				Gamestate:current():setCheckpoint(self.checkpoint)
+				Gamestate:current():setQuest(self.quest)
+
+				-- switch to 
+				Gamestate.push(Gamestates[self.scene])
+			end
 		end
 	end
+end
+
+-- Check for requirements before starting..
+--
+function Cutscene:passesRequirements()
+	-- requires specific quest
+	if self.require and self.require ~= Config.world.hud.quest then
+		return false
+	end
+
+	return true
 end
 
 return Cutscene

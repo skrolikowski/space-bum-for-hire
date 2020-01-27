@@ -4,11 +4,13 @@
 
 local Base  = require 'src.gamestates.cutscenes.cutscene'
 local Cut04 = Base:extend()
+local Double, Captain
 
 function Cut04:init()
 	Base.init(self, {
-		name = 'Cut04',
-		map  = Config.world.maps['cut04'],
+		name  = 'Cut04',
+		quest = 1,
+		map   = Config.world.maps['cut04'],
 	})
 	--
 	-- foreground canvas
@@ -36,8 +38,6 @@ function Cut04:enter(from, ...)
 	Base.enter(self, from, ...)
 	--
 	-- Casting Call ---------------
-	local Double, Captain
-	
 	Double = Entities['Double']({
 		x          = Config.tileSize * 10,
 		y          = Config.tileSize * 14,
@@ -99,9 +99,18 @@ function Cut04:enter(from, ...)
 		wait(6.5)
 		--
 		-- ~ fin ~
-		self:skip()
+		self:complete()
 	end)
 	-- CUT!!! ---------------------
+end
+
+-- Complete cutscene
+--
+function Cut04:complete()
+	Double:destroy()
+	Captain:destroy()
+	--
+	Base.complete(self)
 end
 
 return Cut04

@@ -19,7 +19,7 @@ function Translate:new(data)
 	self.pause   = data.properties.pause or 1
 	self.delay   = data.properties.delay or 3
 	self.tween   = data.properties.tween or 'linear'
-	self.once    = data.properties.once  or false
+	-- self.once    = data.properties.once  or false
 
 	-- animation/tween
 	self.timer = Timer.new()
@@ -65,9 +65,9 @@ function Translate:trigger()
 	function()
 		self.running = false
 
-		if self.once then
-			self:destroy()
-		end
+		-- if self.once then
+		-- 	self:destroy()
+		-- end
 	end)
 end
 

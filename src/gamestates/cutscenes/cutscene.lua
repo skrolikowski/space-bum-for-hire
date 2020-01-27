@@ -24,6 +24,12 @@ end
 -- Skip cutscene
 --
 function Cutscene:skip()
+	self:complete()
+end
+
+-- Complete cutscene
+--
+function Cutscene:complete()
 	self:unregisterControls()
 	Gamestate.pop()
 end

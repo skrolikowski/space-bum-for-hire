@@ -7,7 +7,7 @@ local Captain = NPC:extend()
 function Captain:new(data)
 	NPC.new(self, _:merge(data, {
 		name  = 'Captain',
-		title = data.title or 'Captain',
+		title = data.title or 'Captain Jenny',
 		shape = 'rectangle',
 	}))
 	--

@@ -21,9 +21,6 @@ end
 function Death:enter(from, ...)
 	self.from    = from -- previous screen
 	self.world   = from.world
-	self.hud     = from.hud
-	self.player  = from.player
-	self.control = from.control
 	--
 	self.timer = Timer.new()
 	self.timer:script(function(wait)

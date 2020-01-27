@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 17,
-  nextobjectid = 135,
+  nextobjectid = 136,
   properties = {},
   tilesets = {
     {
@@ -1646,7 +1646,7 @@ return {
           shape = "rectangle",
           x = 720,
           y = 880,
-          width = 32,
+          width = 16,
           height = 32,
           rotation = 0,
           visible = true,
@@ -1760,6 +1760,8 @@ return {
           visible = true,
           properties = {
             ["checkpoint"] = 71,
+            ["quest"] = 2,
+            ["require"] = 1,
             ["scene"] = "cut04"
           }
         },
@@ -1790,6 +1792,26 @@ return {
           shape = "rectangle",
           x = 128,
           y = 784,
+          width = 16,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Goal.x"] = 656,
+            ["Goal.y"] = 776,
+            ["Target"] = 133,
+            ["affects"] = "Player",
+            ["delay"] = 1.5,
+            ["once"] = true
+          }
+        },
+        {
+          id = 135,
+          name = "Translate",
+          type = "",
+          shape = "rectangle",
+          x = 736,
+          y = 880,
           width = 16,
           height = 32,
           rotation = 0,

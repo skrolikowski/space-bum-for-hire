@@ -18,6 +18,9 @@ function HUD:new()
 	self.width  = self.background:getWidth()
 	self.height = self.background:getHeight()
 
+	-- quest
+	self.quest = nil
+
 	-- scaling
 	self.sx = 0.8
 	self.sy = 0.8
@@ -75,10 +78,15 @@ function HUD:set(payload)
 	-- Set Location
 		Config.world.hud.location = payload.value
 		self.dirty = true
-	elseif payload.name == 'objective' then
-	-- Set Objective
-		Config.world.hud.objective = payload.value
-		self.dirty = true
+	elseif payload.name == 'quest' then
+	-- Set Quest
+		local currQuest = Config.world.quest[Config.world.hud.quest]
+		local newQuest  = Config.world.quest[payload.value]
+
+		-- update quest
+		Config.world.hud.quest = payload.value
+		self.quest             = newQuest
+		self.dirty             = true
 	else
 	-- Set Stat/Ammo
 		return pcall(function()
@@ -221,11 +229,14 @@ function HUD:setCanvas()
 	self.spriteItem:draw('bullets_sm', Config.tileSize*6.5, Config.tileSize*12, 0, 1.5, 1.5)
 	self.spriteItem:draw('shells_sm',  Config.tileSize*7, Config.tileSize*14)
 
-	--TODO:
-	-- -- objective
-	-- if Config.world.hud.objective then
-	-- 	self.spriteObjective:draw(Config.world.hud.objective, Config.tileSize*10, Config.tileSize*10, 0, 5, 5)
-	-- end
+	-- quest
+	if self.quest then
+		local questSheet  = Config.image.spritesheet[self.quest.sheet]
+		local questSprite = self.quest.sprite
+		local sx, sy      = self.quest.sx, self.quest.sy
+
+		questSheet:draw(questSprite, Config.tileSize*32, Config.tileSize*9, 0, sx, sy)
+	end
 
 	-- END DRAW ------------------------
 

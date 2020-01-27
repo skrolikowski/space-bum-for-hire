@@ -84,6 +84,20 @@ function Gameplay:setCheckpoint(data)
 	}
 end
 
+-- Set New Quest (if ~= 0)
+--
+function Gameplay:setQuest(questId)
+	if questId then
+		Config.world.hud.quest = questId
+
+		-- set quest
+		self.hud:set({
+			name  = 'quest',
+			value = questId
+		})
+	end
+end
+
 -- Pause Game
 -- Beam Player to Spaceship
 --
