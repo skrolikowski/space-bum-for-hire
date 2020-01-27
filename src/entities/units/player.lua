@@ -12,6 +12,7 @@ function Player:new(data)
 		shape      = 'rectangle',
 		speed      = 1000,
 		jumpHeight = 4500,
+		visible    = true,
 		
 	}))
 	--

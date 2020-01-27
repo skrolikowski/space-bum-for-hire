@@ -14,6 +14,9 @@ Config = {
         gravity = { x = 0, y = 40 },
         maps = {
             -- cutscenes
+            cut01  = 'res/maps/space00.lua',
+            cut02  = 'res/maps/cut02.lua',
+            cut03  = 'res/maps/cut03.lua',
             cut04  = 'res/maps/cut04.lua',
             -- gameplay
             space00 = 'res/maps/space00.lua',
@@ -23,7 +26,7 @@ Config = {
             mount03 = 'res/maps/mount03.lua',
         },
         pickup = {
-            health  = { sm = 25, md = 50 },
+            health  = { sm = 35, md = 50 },
             shield  = {},
             bullets = { sm = 12, md = 24, lg = 50 },
             shells  = { sm = 4, md  = 8,  lg = 20 },
@@ -140,12 +143,24 @@ Config = {
         -- Player Checkpoint
         --
         checkpoint = {
-            player = { id = 171, map = 'mount01', col = 8, row = 69 },
-            pause  = {           map = 'space00', col = 5, row = 17 },
+            player = { id = 171, map = 'mount01', col = 10, row = 69 },
+            pause  = {           map = 'space00', col = 5,  row = 17 },
         },
         quest = {
             {
-                text   = 'Find Captain Jenny.',
+                text   = 'Talk to Commander Scott.',
+                sheet  = 'avatars',
+                sprite = 'ensign',
+                sx = 5, sy = 5,
+            },
+            {
+                text   = 'Locate Ensign Victor on the Eastside.',
+                sheet  = 'avatars',
+                sprite = 'ensign',
+                sx = 5, sy = 5,
+            },
+            {
+                text   = 'Find Captain Jenny in West End.',
                 sheet  = 'avatars',
                 sprite = 'captain',
                 sx = 5, sy = 5,
@@ -162,7 +177,7 @@ Config = {
         hud = {
             image    = lg.newImage('res/ui/HUD_health.png'),
             location = 'Warp Room',
-            quest    = 0,
+            quest    = 2,
             weapon   = 'pistol',
             stat     = {
                 health = { now = 100, max = 100 },
@@ -188,7 +203,7 @@ Config = {
                 name        = 'shotgun',
                 clip        = 'shells',
                 cooldown    = 1.25,
-                damage      = { min = 20, max = 25 },
+                damage      = { min = 15, max = 18 },
                 radius      = 3,
                 decay       = 3,
                 speed       = 800,
@@ -330,6 +345,32 @@ Config = {
                     run    = lg.newImage('res/spritesheets/captain/run.png'),
                     talk   = lg.newImage('res/spritesheets/captain/talking.png'),
                     walk   = lg.newImage('res/spritesheets/captain/walk.png'),
+                }
+            },
+            ensign = {
+                {
+                    crouch = lg.newImage('res/spritesheets/ensign/crouch.png'),
+                    death  = lg.newImage('res/spritesheets/ensign/death.png'),
+                    guard  = lg.newImage('res/spritesheets/ensign/guard.png'),
+                    idle   = lg.newImage('res/spritesheets/ensign/idle.png'),
+                    melee  = lg.newImage('res/spritesheets/ensign/melee.png'),
+                    jump   = lg.newImage('res/spritesheets/ensign/jump.png'),
+                    run    = lg.newImage('res/spritesheets/ensign/run.png'),
+                    talk   = lg.newImage('res/spritesheets/ensign/talking.png'),
+                    walk   = lg.newImage('res/spritesheets/ensign/walk.png'),
+                }
+            },
+            engineer = {
+                {
+                    crouch = lg.newImage('res/spritesheets/engineer/crouch.png'),
+                    death  = lg.newImage('res/spritesheets/engineer/death.png'),
+                    guard  = lg.newImage('res/spritesheets/engineer/guard.png'),
+                    idle   = lg.newImage('res/spritesheets/engineer/idle.png'),
+                    melee  = lg.newImage('res/spritesheets/engineer/melee.png'),
+                    jump   = lg.newImage('res/spritesheets/engineer/jump.png'),
+                    run    = lg.newImage('res/spritesheets/engineer/run.png'),
+                    talk   = lg.newImage('res/spritesheets/engineer/talking.png'),
+                    walk   = lg.newImage('res/spritesheets/engineer/walk.png'),
                 }
             },
             doctor = {

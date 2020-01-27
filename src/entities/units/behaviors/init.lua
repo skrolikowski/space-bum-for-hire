@@ -24,6 +24,22 @@ return {
     Captain_run    = require 'src.entities.units.behaviors.npc.run',
     Captain_talk   = require 'src.entities.units.behaviors.npc.talk',
     Captain_walk   = require 'src.entities.units.behaviors.npc.walk',
+    -- ensign
+    Ensign_attack = require 'src.entities.units.behaviors.npc.attack',
+    Ensign_fall   = require 'src.entities.units.behaviors.npc.fall',
+    Ensign_guard  = require 'src.entities.units.behaviors.npc.guard',
+    Ensign_idle   = require 'src.entities.units.behaviors.npc.idle',
+    Ensign_run    = require 'src.entities.units.behaviors.npc.run',
+    Ensign_talk   = require 'src.entities.units.behaviors.npc.talk',
+    Ensign_walk   = require 'src.entities.units.behaviors.npc.walk',
+    -- engineer
+    Engineer_attack = require 'src.entities.units.behaviors.npc.attack',
+    Engineer_fall   = require 'src.entities.units.behaviors.npc.fall',
+    Engineer_guard  = require 'src.entities.units.behaviors.npc.guard',
+    Engineer_idle   = require 'src.entities.units.behaviors.npc.idle',
+    Engineer_run    = require 'src.entities.units.behaviors.npc.run',
+    Engineer_talk   = require 'src.entities.units.behaviors.npc.talk',
+    Engineer_walk   = require 'src.entities.units.behaviors.npc.walk',
     -- player
     Player_idle    = require 'src.entities.units.behaviors.player.idle',
     Player_die     = require 'src.entities.units.behaviors.player.die',

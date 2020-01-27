@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 14,
-  nextobjectid = 133,
+  nextobjectid = 169,
   properties = {},
   tilesets = {
     {
@@ -145,7 +145,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "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"
+      data = "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"
     },
     {
       type = "tilelayer",
@@ -162,7 +162,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "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"
+      data = "eAHtnMlyE0cYgCcEzAvkAIll2SZK2VCFIWVzysJjQIIkLxFlQxWGbKdsD5EDJHiDKMVyyGaTS0heIocseAGXqiA5EComlUO2r8szld/SrPJMe2bUXfVJrVn7+7tnNNMatWWZZCJgIpCnCBzZnSebVpcPd22ddj7nvt83+W61z9+np57Mn5Ofkalfv+iYeSYCJgImAumOwAtcg7wIL8HLOb8eUTXxDo7vwnvwfgf4foPjbfgWvusA379w/Bv+gX87wDfdZxdTOhMBE4GwEZjYY30QdlmzXGsECnssqweK0AmpjGcFqh3iO4PnLMxp8m3ur/NrU6rvcqJr8/iNqx9zGc8VWNXkG6U/R/VdXrV94+rHLHRx/EIRdKSo/XXrtm9cZSvjWYGqJt8o9ascD+yN9/toBs9ZmNPkG7V+J2L2XcZzBVY1+cbVLtvdTmEvxy8UoRNSGc8KVDvEtxPq1DiaCHRaBBY5fy3BLfgamj93WjyMr4mAiYCJgImAiYCJgImAXwT+3G2t+c1Pel6UPsokynKRZ/wu2c/53eD9ZsLP/EXtw0rCWec2o/Zh6SxbEvtKW/3ue8Ky9sPT8Ax0Q0HQQ74IvdAHz0IJwiZd9dsQvyHIvFPOfRy3++EEZT8Jr8CrcArKggr5KozCGLwGNUhbKok+V5l3ynkC15NwkbJfgo/gY7gMM4JZ8nMwDwvwCdQhbakmfGXeOT//QJl/hJ/gZ7gDy5DVVBe+Mp9Vn6ByN4SvzAetl9X5NeEr81n1CSq3dJT5oPWyOr8u6lfms+oTVO6S8JX5oPWyOr8mfGU+qz5B5a4LX5kPWi/sfOe6U11vqmvSnU4N4SvzO12upPZfE74y77Y/dW2Z9SQdZd7Ny7nGdJvnNc3pKzi8yzp+DryW0zW9LupX5nXtX/d+GsJX5nWXQ9f+Svyu6SSZd6bl7b3U9f8xJfN583R86NM47pZ3ppl3EwETARMBEwETAROBbEag276v6uG9aOezaeJf6kf8t0KlUzl23DTc+noZ35kcOz+kXn+z61aZ38F1Oae+Q/zeeASOit8duxkfp9A0Rk4fnxVZT9N4nocLwjfrTn7l/wzPz+GLnPgO4DHo4/LQZ55fnNI6bxKfKR+nIdE/lFaHoHIVOLeqawWVruF63fYtMe25gPPuMOfpETgmztebW0rXq3xmv4xTBZTzfVwf2L41Pp8Gv/Qmnm/B2yn39XJQ/1+IkhbxXIJbKfGN6z/DXjHYwPMx/JES37j+M+zlO0zbH4Fj9jHgtZyZrj8Ch2mDQwm0w/6Ac5x+0809nsN1OgHf8ZT6JhXn3/F9I8PO0xG/o77E9asM+6p2cJR2/3zItp+H+8ALuL4e0nct4+056nHey32+bM/rGW/bQf6r+OW5jlVfTtnuu+nhvQjNdRwUo7jmD/BM1CAchEMJPR+lXGV/3Qr169RxXB5B21HP2p+GSZiCM3AWDlKWQxqOJ8c5qJxxzVfP2n8K1+A63ICbcAbXsxp8nXYdl0/Y7dzH8QH8Ar+C87xU2PW3s1zVPqa3s41213U8R7lvG4NxYFy8lpSV/pmWgntMmMdxAa7AVRffne6fcYv3Isffkscx6La8VF/D8S7cg3UX30WuoXayf8Yt3hu4Pha+ss/GbXnp20t/ah/0wwGXvtUNfMP0zyQ1xqFbvIc5D4yIc4Hss3FbXvqO4jgG48C4eC0pbP9MUmMcusVb1mdzgd2Wl8vM47gAV4Bx8dpOcozDWdraHKj73ua2F3UHbvF26tPtOHZbXu5zDce7cA8YF6/tJMc4VNcWjnNz22t7By4rthPLXu7d+6AfGBfPGqCsgxA1NY9x6FxPqTpOKrUTy1Ecx2AcGBfPmqR8U22UsXmMwwrnE3V9EUebTipe29mu2xiHTh23Uw/bKYuOdb3GOHScdZRB5z68xjjcqfuEdtwb9nf6bfHd7rUdvzEOVR1nIZVC9sdFcfkP3j35sA=="
     },
     {
       type = "tilelayer",
@@ -179,7 +179,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "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"
+      data = "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"
     },
     {
       type = "tilelayer",
@@ -196,7 +196,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "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"
+      data = "eAHt3FdsHMcdB+AF3CRRkoH0Xt5FUtVWIakAaQ6SvKTbacy71YslseghsSwjkZDEvY/fTaqRaqxAYlmBLSOJe7ffTapThS0fHRI4HCTdnXg87B53gA/Wkbtz85u73TvOf71RlLZ0BtIZSGcgnYF0BtIZSGcgnYF0BtIZSGcgHjPwwIwoepCHeJhHeJTHeJwneJKneJpnCDxLubQ3ZXmLt3mHd3mP9/mAD/mIcmlfmBlFX+RLfJmv8FW+xtf5Bt+kXNqvZLmTu/g1v+G3/I7fU88fSGJ7wLgf5CEe5hEe5TEe5wme5Cme5hkCz5LE9opxv8prvM4bvMlbvM07vMt7vM8HfMhHpK38Z2DNnChayzrWs4GNbGIz+bZ7Z+e7Zem221URfSv72fbItJd97OcAbbRzkHzb8zHMe6Wxn5TpFKc5w1nOcZ4Byq1Vz42i+SxgIYtYzBJuo9zaGpnWso71bGAjm9hMubU9Mu1lH/s5QBvtHKTc2kmZTnGaM5zlHOcZoNxa9a2OXxawkEUsZgm3kaS2uyL3aNfItJZ1rGcDG9nEZpLQDvkcOcwRjtJBJ11ktz0y7WUf+zlAG+0cJAntglwXucRlBhlimOx2UqZTnOYMZznHeQbIt/3d39O51h7y7avQ7W53nlnKMpazgkaaaGY7xW7/lfcVXuU1XucNMtceiv2c1+qvU8YuuumZgryf8vfWp/kMn+VzfJ7MtYdrja/YvxuScZgRRqcg709k+yk/4+f8gl+SufZQ7EzX6q/GsVhLHSvHj8t7HM9b2Mo2GmikiWaS3HJ9r8g+j3cnPG+u7xXZ5/GRhOfN9b1i4jxe49iupW4KjvFSHh+5vldsk6+BzM+tUo6vFM91SL7DHOEoHWR+bpViDHF4jsl+bu3M43t7HHJOjCH7c2vi5/n+93iBeZfMiXoXs4iFLGA+1VRRyTzyff5Ct2vy+dzM9vHP6UL3L3T787Oj3nOc5QynOcVJ+unjYwrtN9/tu+TspqdEedtlaeMA+9nHXvbQSgvPke/4C91uWM4RRkuUd5MsG9nAetaxljWsZhV3U2iOqdr+WEUUdnC9/S+RZTGLWMgC5lNNFZXM43r7j8t+1v+jsTWY8xWOX85yhtOc4iT99PExcRn3ZMfRLksbB9jPPvayh1ZaeI7JPk9c9t8ky0Y2sJ51rGUNq1nF3cRlvJMdxxJZFrOIhSxgPtVUUck8Jvs86f7Jn4HM9bL0Wp30Wp2kv6PL+VqdK7026bU6V5qVZP6s79bp9ZncMs3yrppmeSunUd7+uf5OJJlnnsJH3SpryzTKu1rWVTHOW+w16SpZK2Oct9A16Vzv8H7r0X1TuCad6/kn+/sW9chWxq5fzafZttc+vflsG8dtvFaR1ywau351OjTHYuSYjKrJ1cxJb65t4v5759rIOfeTplYU1E+CmkKwzh6sPQfrscEaZbBuF6xlhbjnyTW+Fllbx/NWyqtmFNRRgtpCsN4erEEH67LBWmWwfpf4vH2y9o/nrZJXnSyoHQX1lKDGEKy7B2vRwfpssGaZ+Ly+C0dV4/UqddCgNhjUy4IaUlBXCWoNwfp7sCYdrNMmPq+/daLV43nVfoN6aFAjDOpmQS0pqK8ENYdgHT5Ym0583hZZW8fzqncHNeCgLhrUCoP6WVBTCuosQe0hWI9PfN4+WfvH86rxB3XvoBYc1EeDmmFQRwtqS0G9JahBJD5vpP1gZtR7B65rCGr9Qf07qAkHddKgdhjU04IaU1B3KYu8M2WdgWs5gusbgpp/UAcPasNBvTSoIQZ1taDWVJK86tq9XoYpa/+aEfUex/UrwTUdwXUOQe0/qIcHNeKgbhrUEoP6WpiyQWR0rIbfm/Gw6P+8X9adFL3jtMN0BtIZSGcgnYGCZuA/s6Lef1PQTgne+G+y/nUa5U3wSxXLoWdfrxLLQRZxUNn3lili17HsKvveMrEcZBEHlX1vmSJ2Hcuusu8tE8tBxmBQanv16l31UzmUXe5Xsjsh9ywpxjyckPXlaZR3jjrZ3GlSKyvG+yPtI52BdAbSGSjnGbjf2v5OyjljZraJ+k3mz+L275eth5zgJV6c5NrIRP1mqjPOUKe4hZu5iRu5gXyed7eMu/gLf86Rd7c+d12j34n6TT7Pe73bjN1z5rhxvsAxnuef/IPsPq92f5of2/ZH/PAK+2T3ca3Hparf7DTO+9jBvfyJP5I9tqvdn2aObWdTcYV9svuIw+M7jPP7fI/v8h2+TfbYrnZ/mhPOqS/x4jQ6t2bPTfo4nYFizMAW/3/2VrbRQCNNNLOdcmuHZTrCUTropItueii3dlGmS1xmkCGGGWGUibZyZlS/nR5GWTnLY3oYZWXW+tiAz+kLXOQSlxlkiGFGGKXUbak1p2UsZwU11FLHSgZm/f/akjoZm+lmhDoZm+lmhLqMvL4TfXIfg9vdH20py1jOCmqoRX+RObxq22Ft6D52FnmNaItMW9lGA4000cx2Jpox1jfRxTC1MjbRxTC1GXnH9tksyz1sYSvbaKAR/UTmLvJ+uWo7JucLHC9y3sMyHeEoHXTSRTc9TDSvS72x1ncyRI2MjXQyRE1W3oOyHOIwRzhKB/aPzFnkfRI5NorWbnBt7o3cxM3cwgxmMosKxtpFmS5xmUGGGGaEUSaa92K916femOsHWSFjAx0MsiIr74AsF7jIJS5jv8hcRd4fkWMich4oefsfdvTomw=="
     },
     {
       type = "objectgroup",
@@ -253,23 +253,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 448,
+          x = 464,
           y = 208,
-          width = 288,
+          width = 272,
           height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 9,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 736,
-          y = 160,
-          width = 16,
-          height = 272,
           rotation = 0,
           visible = true,
           properties = {}
@@ -281,7 +268,7 @@ return {
           shape = "rectangle",
           x = 496,
           y = 48,
-          width = 256,
+          width = 304,
           height = 16,
           rotation = 0,
           visible = true,
@@ -294,7 +281,7 @@ return {
           shape = "rectangle",
           x = 560,
           y = 464,
-          width = 112,
+          width = 96,
           height = 16,
           rotation = 0,
           visible = true,
@@ -307,7 +294,7 @@ return {
           shape = "rectangle",
           x = 336,
           y = 400,
-          width = 144,
+          width = 128,
           height = 16,
           rotation = 0,
           visible = true,
@@ -318,9 +305,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 288,
+          x = 272,
           y = 288,
-          width = 112,
+          width = 128,
           height = 16,
           rotation = 0,
           visible = true,
@@ -331,9 +318,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 272,
+          x = 240,
           y = 176,
-          width = 16,
+          width = 32,
           height = 128,
           rotation = 0,
           visible = true,
@@ -346,7 +333,7 @@ return {
           shape = "rectangle",
           x = 160,
           y = 304,
-          width = 160,
+          width = 80,
           height = 16,
           rotation = 0,
           visible = true,
@@ -405,19 +392,6 @@ return {
           properties = {}
         },
         {
-          id = 27,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 752,
-          y = 64,
-          width = 16,
-          height = 96,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 28,
           name = "",
           type = "",
@@ -437,7 +411,7 @@ return {
           shape = "rectangle",
           x = 480,
           y = 528,
-          width = 176,
+          width = 192,
           height = 16,
           rotation = 0,
           visible = true,
@@ -451,7 +425,7 @@ return {
           x = 768,
           y = 432,
           width = 16,
-          height = 400,
+          height = 384,
           rotation = 0,
           visible = true,
           properties = {}
@@ -462,7 +436,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 336,
-          y = 704,
+          y = 672,
           width = 144,
           height = 16,
           rotation = 0,
@@ -474,9 +448,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 576,
-          y = 832,
-          width = 272,
+          x = 560,
+          y = 816,
+          width = 288,
           height = 16,
           rotation = 0,
           visible = true,
@@ -487,10 +461,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 848,
-          y = 848,
+          x = 864,
+          y = 832,
           width = 16,
-          height = 144,
+          height = 160,
           rotation = 0,
           visible = true,
           properties = {}
@@ -502,7 +476,7 @@ return {
           shape = "rectangle",
           x = 752,
           y = 992,
-          width = 176,
+          width = 192,
           height = 16,
           rotation = 0,
           visible = true,
@@ -513,10 +487,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 928,
+          x = 944,
           y = 1008,
           width = 16,
-          height = 256,
+          height = 240,
           rotation = 0,
           visible = true,
           properties = {}
@@ -526,9 +500,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 848,
-          y = 1264,
-          width = 96,
+          x = 880,
+          y = 1248,
+          width = 64,
           height = 16,
           rotation = 0,
           visible = true,
@@ -539,9 +513,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 560,
-          y = 1120,
-          width = 256,
+          x = 720,
+          y = 1136,
+          width = 128,
           height = 16,
           rotation = 0,
           visible = true,
@@ -552,9 +526,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
-          y = 1360,
-          width = 160,
+          x = 576,
+          y = 1408,
+          width = 144,
           height = 16,
           rotation = 0,
           visible = true,
@@ -565,36 +539,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 896,
-          y = 1280,
-          width = 48,
-          height = 96,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 46,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 368,
-          y = 720,
+          x = 928,
+          y = 1264,
           width = 16,
-          height = 224,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 50,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 384,
-          y = 1088,
-          width = 16,
-          height = 224,
+          height = 240,
           rotation = 0,
           visible = true,
           properties = {}
@@ -605,9 +553,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 944,
-          y = 1376,
+          y = 1520,
           width = 16,
-          height = 528,
+          height = 384,
           rotation = 0,
           visible = true,
           properties = {}
@@ -619,20 +567,7 @@ return {
           shape = "rectangle",
           x = 832,
           y = 1504,
-          width = 112,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 60,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 528,
-          y = 1408,
-          width = 240,
+          width = 96,
           height = 16,
           rotation = 0,
           visible = true,
@@ -644,9 +579,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 400,
-          y = 1312,
+          y = 1504,
           width = 16,
-          height = 368,
+          height = 176,
           rotation = 0,
           visible = true,
           properties = {}
@@ -656,9 +591,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 400,
+          x = 384,
           y = 1168,
-          width = 176,
+          width = 192,
           height = 16,
           rotation = 0,
           visible = true,
@@ -695,9 +630,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 416,
+          x = 464,
           y = 1536,
-          width = 96,
+          width = 64,
           height = 16,
           rotation = 0,
           visible = true,
@@ -734,8 +669,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 592,
-          y = 1328,
+          x = 624,
+          y = 1344,
           width = 64,
           height = 16,
           rotation = 0,
@@ -747,8 +682,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 704,
-          y = 1280,
+          x = 752,
+          y = 1296,
           width = 80,
           height = 16,
           rotation = 0,
@@ -763,7 +698,7 @@ return {
           x = 336,
           y = 416,
           width = 16,
-          height = 176,
+          height = 64,
           rotation = 0,
           visible = true,
           properties = {}
@@ -775,7 +710,7 @@ return {
           shape = "rectangle",
           x = 592,
           y = 480,
-          width = 48,
+          width = 32,
           height = 48,
           rotation = 0,
           visible = true,
@@ -918,7 +853,7 @@ return {
           shape = "rectangle",
           x = 192,
           y = 1680,
-          width = 256,
+          width = 272,
           height = 32,
           rotation = 0,
           visible = true,
@@ -957,21 +892,8 @@ return {
           shape = "rectangle",
           x = 272,
           y = 1200,
-          width = 96,
+          width = 80,
           height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 114,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 352,
-          y = 944,
-          width = 16,
-          height = 256,
           rotation = 0,
           visible = true,
           properties = {}
@@ -981,10 +903,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 336,
-          y = 1216,
-          width = 48,
-          height = 240,
+          x = 352,
+          y = 688,
+          width = 32,
+          height = 800,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1079,6 +1001,136 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 135,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 560,
+          y = 1104,
+          width = 160,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 150,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 320,
+          width = 128,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 153,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 416,
+          y = 1280,
+          width = 64,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 155,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 384,
+          y = 1488,
+          width = 80,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 157,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 768,
+          y = 1360,
+          width = 112,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 162,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 576,
+          y = 1120,
+          width = 16,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 163,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 720,
+          y = 176,
+          width = 80,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 164,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 800,
+          y = 64,
+          width = 16,
+          height = 128,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 166,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 736,
+          y = 224,
+          width = 16,
+          height = 208,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 168,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 704,
+          width = 64,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -1114,7 +1166,7 @@ return {
           x = 752,
           y = 432,
           width = 16,
-          height = 128,
+          height = 144,
           rotation = 0,
           visible = true,
           properties = {
@@ -1141,22 +1193,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 752,
-          y = 1344,
-          width = 144,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 84,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 560,
+          x = 608,
           y = 1392,
-          width = 192,
+          width = 96,
           height = 16,
           rotation = 0,
           visible = true,
@@ -1204,14 +1243,27 @@ return {
           }
         },
         {
-          id = 121,
+          id = 125,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 336,
-          y = 592,
+          x = 416,
+          y = 1152,
+          width = 128,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 136,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 384,
+          y = 1104,
           width = 16,
-          height = 112,
+          height = 64,
           rotation = 0,
           visible = true,
           properties = {
@@ -1219,17 +1271,107 @@ return {
           }
         },
         {
-          id = 125,
+          id = 137,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 400,
-          y = 1152,
-          width = 144,
+          x = 560,
+          y = 1120,
+          width = 16,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "W"
+          }
+        },
+        {
+          id = 141,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 32,
+          y = 528,
+          width = 48,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "S"
+          }
+        },
+        {
+          id = 142,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 240,
+          y = 528,
+          width = 48,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "S"
+          }
+        },
+        {
+          id = 158,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 768,
+          y = 1344,
+          width = 96,
           height = 16,
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 160,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 624,
+          y = 1424,
+          width = 48,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "S"
+          }
+        },
+        {
+          id = 161,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 912,
+          y = 1264,
+          width = 16,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "W"
+          }
+        },
+        {
+          id = 167,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 384,
+          y = 752,
+          width = 16,
+          height = 48,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["facing"] = "E"
+          }
         }
       }
     },
@@ -1249,7 +1391,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 64,
+          x = 288,
           y = 80,
           width = 16,
           height = 16,
@@ -1262,8 +1404,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 848,
-          y = 1680,
+          x = 816,
+          y = 1824,
           width = 16,
           height = 16,
           rotation = 0,
@@ -1329,7 +1471,7 @@ return {
           name = "Executioner",
           type = "",
           shape = "rectangle",
-          x = 512,
+          x = 576,
           y = 112,
           width = 130.5,
           height = 88.5,
@@ -1342,8 +1484,8 @@ return {
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 672,
-          y = 800,
+          x = 608,
+          y = 672,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1359,19 +1501,6 @@ return {
           y = 896,
           width = 92,
           height = 93,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 96,
-          name = "Executioner",
-          type = "",
-          shape = "rectangle",
-          x = 784,
-          y = 1808,
-          width = 130.5,
-          height = 88.5,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1427,6 +1556,47 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 133,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 352,
+          y = 368,
+          width = 76.5,
+          height = 30,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 145,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 1312,
+          width = 76.5,
+          height = 30,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 149,
+          name = "Ensign",
+          type = "",
+          shape = "rectangle",
+          x = 816,
+          y = 1824,
+          width = 80,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["title"] = "Ensign Victor"
+          }
         }
       }
     },
@@ -1446,7 +1616,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 304,
+          x = 240,
           y = 16,
           width = 32,
           height = 144,
@@ -1474,7 +1644,7 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 656,
+          x = 480,
           y = 160,
           width = 32,
           height = 32,
@@ -1482,8 +1652,8 @@ return {
           visible = true,
           properties = {
             ["category"] = "ammo",
-            ["name"] = "shells",
-            ["value"] = "md"
+            ["name"] = "bullets",
+            ["value"] = "sm"
           }
         },
         {
@@ -1570,25 +1740,8 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 512,
-          y = 480,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["category"] = "ammo",
-            ["name"] = "bullets",
-            ["value"] = "md"
-          }
-        },
-        {
-          id = 90,
-          name = "Pickup",
-          type = "",
-          shape = "rectangle",
-          x = 320,
-          y = 240,
+          x = 624,
+          y = 896,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1604,16 +1757,16 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 464,
-          y = 1664,
+          x = 928,
+          y = 1856,
           width = 32,
           height = 32,
-          rotation = 0,
+          rotation = 90,
           visible = true,
           properties = {
-            ["category"] = "item",
+            ["category"] = "stat",
             ["name"] = "health",
-            ["value"] = "sm"
+            ["value"] = "md"
           }
         },
         {
@@ -1630,7 +1783,7 @@ return {
           properties = {
             ["category"] = "ammo",
             ["name"] = "bullets",
-            ["value"] = "md"
+            ["value"] = "sm"
           }
         },
         {
@@ -1645,9 +1798,9 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["category"] = "item",
-            ["name"] = "health",
-            ["value"] = "sm"
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "md"
           }
         },
         {
@@ -1655,7 +1808,7 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 848,
+          x = 864,
           y = 1456,
           width = 32,
           height = 32,
@@ -1665,6 +1818,127 @@ return {
             ["category"] = "ammo",
             ["name"] = "shells",
             ["value"] = "md"
+          }
+        },
+        {
+          id = 138,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 1136,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "health",
+            ["value"] = "sm"
+          }
+        },
+        {
+          id = 143,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 432,
+          y = 1632,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "md"
+          }
+        },
+        {
+          id = 147,
+          name = "Cutscene",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 1888,
+          width = 192,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["checkpoint"] = 131,
+            ["quest"] = 3,
+            ["require"] = 2,
+            ["scene"] = "cut03"
+          }
+        },
+        {
+          id = 148,
+          name = "Cutscene",
+          type = "",
+          shape = "rectangle",
+          x = 464,
+          y = 1808,
+          width = 144,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["checkpoint"] = 131,
+            ["quest"] = 3,
+            ["require"] = 2,
+            ["scene"] = "cut03"
+          }
+        },
+        {
+          id = 151,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 656,
+          y = 256,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "md"
+          }
+        },
+        {
+          id = 154,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 432,
+          y = 1232,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "shells",
+            ["value"] = "sm"
+          }
+        },
+        {
+          id = 165,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 736,
+          y = 128,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "stat",
+            ["name"] = "health",
+            ["value"] = "sm"
           }
         }
       }

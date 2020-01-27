@@ -39,7 +39,7 @@ function Comment:draw()
 	local w, h   = self.width, self.height
 	local sx, sy = self.sx, self.sy
 	local tx     = cx - w * sx / 2
-	local ty     = cy - h * sy - h
+	local ty     = cy - h * sy - h/2
 
 	lg.push("all")
 	lg.translate(tx, ty)

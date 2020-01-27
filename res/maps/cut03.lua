@@ -1,0 +1,280 @@
+return {
+  version = "1.2",
+  luaversion = "5.1",
+  tiledversion = "1.3.1",
+  orientation = "orthogonal",
+  renderorder = "right-down",
+  width = 30,
+  height = 20,
+  tilewidth = 16,
+  tileheight = 16,
+  nextlayerid = 14,
+  nextobjectid = 153,
+  properties = {},
+  tilesets = {
+    {
+      name = "strangemountains01",
+      firstgid = 1,
+      filename = "tiles/strangemountains01.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 64,
+      image = "tiles/strangemountains01.png",
+      imagewidth = 1024,
+      imageheight = 1024,
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 16,
+        height = 16
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 4096,
+      tiles = {
+        {
+          id = 1678,
+          objectGroup = {
+            type = "objectgroup",
+            id = 3,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0,
+                y = 0,
+                width = 16,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      name = "background",
+      firstgid = 4097,
+      filename = "tiles/background.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 32,
+      image = "tiles/background.png",
+      imagewidth = 512,
+      imageheight = 512,
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 16,
+        height = 16
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1024,
+      tiles = {}
+    }
+  },
+  layers = {
+    {
+      type = "tilelayer",
+      id = 1,
+      name = "Background",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAF7LMzA8HgUj4bBaBoYTQOjaWA0DYymgdE0MJoGqJYGAJ+VQK8="
+    },
+    {
+      type = "tilelayer",
+      id = 3,
+      name = "Decoratives (BG)",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgLUDAEACWAAAQ=="
+    },
+    {
+      type = "tilelayer",
+      id = 4,
+      name = "Castle",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAHtlM0NgzAMRiO6EZSFGIEfdZ3OUEDdC9o7z4ggBJe4wrmUw1MQCn72l4ji5lxhxJA4t8fKta27d6bK+XL6zmBbM+S5W+Z943uA9BHy3Rl7cD/xzZxRL7SGd8paMW8NzZJDaI1f9pHxOm+LT7LvQXvWWjfnunpHfB/4Qqm8Y1qv5MtsszvDdYccrL2+T/FUUEMD/r31+sLVQgd9RK/1XFf9eHfoyvqYdaz/xr9nPwFc+QeU"
+    },
+    {
+      type = "tilelayer",
+      id = 5,
+      name = "Decoratives (MG)",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAG9lUluwjAUQN35FEkoqFILW+A2SRg2BZYdbsO8g2WHXY/CrG7aZaHrPkv5UmSZRojAl56cmG+/bycxSh0vZqdKzeEBDhnOmVI+6HBpPcjAC978iVIFOERo5yS2tinXsuYmzhbk6SvEcg5Rh55T3COcY2jibB3BK/v9hfMbRjjHR/DqNYfsv/gqF0pVoQZ1MKN4rlQJypBm9HD1YQBDi/cR3xM8p+yd41rAElYW7yu+N3hP2Zu5VOoaspADM9b4NvCb4HWo2QXPUrs5p76v4KpCDeoWb5F5SlBOmM/n9wDChDypoYerDwMYWrySl9S28XWgq1u+jy78wBo2YMYc1wKWsNrDO8E3hZlu8Yi7yLdTAjMyVzxfyEIObhlzZ6nPHGfeO9TsghfVLueTXrMtKriqUIM63JPX2JJrGy99Pr4AwsgbsEZ9Tvy31zJ2n7aNrwPdyKvnkjVv2+t9fDJ2gm8Ks5g37pa8tFuHZ+SCB/GQ/4N4X9L1Z/QefljeR3Osjy+A0PDqPL3fu8RNwhm1y1yS+wcAak/P"
+    },
+    {
+      type = "tilelayer",
+      id = 2,
+      name = "Platforms",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAHFls1OwkAQxzegL6ECfgCBi2jUeN3n0Pj9Eb0IRo3yMIAH9Wjx6M0HEfCgXvGiXv2N6SYr0tCWApP8aLftzuxMp/9Fqb+2EVNqEw7gEMJaJa5Ug/kJjmJNy1chrvTvxY6f/Lh6ykHH5X/DBL6SkIEs+LV2TGm/z3Z7LmxtnD7jVsjR1OYuQL7FHnEn8DUJ0y4zHGdhDnKQhzBW6BF3Db/rsO2yw3EX9uAIjiGM3Xv0VRhfQeZQ55EY+Q7dqsSsDSiu+a6f8d9wMedNxq0BxTXf9dQYeuVizpOMUzBsa9NTHyPoK7RZLUCK2KILtiakGYsuBNFcv3UrErMEW/gXXbA1YZ+x6EI/+5HXOuTbLUEVanANn/AF33DDmm4hanPwXQfZF1vwAlfEKcMqvIKtxVHV3NRZ8hG9dKAOD3BJzDS9bmtxFDWfx6/pK4l7QizWoXnf+hSWyH0ZVqAMkvsbvIOpgfSe7PdefSn3RDPsnhXNsPNlHZp1aPpbL8IZc87hAh5Bcs9A1qqB9J78F/LqS7knmiE60U0zfgAnIFBm"
+    },
+    {
+      type = "tilelayer",
+      id = 7,
+      name = "Foreground",
+      x = 0,
+      y = 0,
+      width = 30,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "base64",
+      compression = "zlib",
+      data = "eAHtkUsOgjAURV/irwV1STrV6Jp0phA/S9KOEANrAo9xwgAoDYTEhJuchrSl5/VVZMi/dCDUYgLou94tzo2jN/XEJNCmVo1TOXqvOC8W790Xc4Oq2t5KTAxV62Xze5w7i7fsv+JciDNw9M5x+i29xRqafqe8S+L4Nk3PHvYNHei7A5kSyaHvrLTIGqpyWoicIYAuc8B5rPFG+F4Qd+x94HzWeF3vOFqKjGECU5iBAg0e+PBNhjPv0Ps71T5+AMKtJ/A="
+    },
+    {
+      type = "objectgroup",
+      id = 6,
+      name = "Environment",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 51,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 464,
+          y = 0,
+          width = 16,
+          height = 304,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 68,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 336,
+          y = 160,
+          width = 128,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 92,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 160,
+          y = 304,
+          width = 304,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 93,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 112,
+          y = 272,
+          width = 64,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 94,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 224,
+          width = 128,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    }
+  }
+}

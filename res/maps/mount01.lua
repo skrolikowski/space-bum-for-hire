@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 26,
-  nextobjectid = 242,
+  nextobjectid = 246,
   properties = {},
   tilesets = {
     {
@@ -1483,7 +1483,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 128,
+          x = 96,
           y = 1104,
           width = 16,
           height = 16,
@@ -1543,19 +1543,6 @@ return {
       draworder = "topdown",
       properties = {},
       objects = {
-        {
-          id = 145,
-          name = "Executioner",
-          type = "",
-          shape = "rectangle",
-          x = 752,
-          y = 1056,
-          width = 130.5,
-          height = 88.5,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
         {
           id = 149,
           name = "Ghoul",
@@ -1714,13 +1701,28 @@ return {
         },
         {
           id = 241,
-          name = "Doctor",
+          name = "Ensign",
           type = "",
           shape = "rectangle",
-          x = 272,
+          x = 384,
           y = 1104,
           width = 80,
           height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["title"] = "Commander Scott"
+          }
+        },
+        {
+          id = 243,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 1056,
+          y = 1168,
+          width = 76.5,
+          height = 30,
           rotation = 0,
           visible = true,
           properties = {}
@@ -2189,8 +2191,8 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 384,
-          y = 1136,
+          x = 624,
+          y = 1104,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2199,6 +2201,41 @@ return {
             ["category"] = "ammo",
             ["name"] = "bullets",
             ["value"] = "sm"
+          }
+        },
+        {
+          id = 242,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 880,
+          y = 1104,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "sm"
+          }
+        },
+        {
+          id = 245,
+          name = "Cutscene",
+          type = "",
+          shape = "rectangle",
+          x = 272,
+          y = 992,
+          width = 16,
+          height = 192,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["checkpoint"] = 171,
+            ["quest"] = 2,
+            ["require"] = 1,
+            ["scene"] = "cut02"
           }
         }
       }

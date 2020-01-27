@@ -9,7 +9,6 @@ local Double, Captain
 function Cut04:init()
 	Base.init(self, {
 		name  = 'Cut04',
-		quest = 1,
 		map   = Config.world.maps['cut04'],
 	})
 	--
@@ -39,18 +38,17 @@ function Cut04:enter(from, ...)
 	--
 	-- Casting Call ---------------
 	Double = Entities['Double']({
-		x          = Config.tileSize * 10,
-		y          = Config.tileSize * 14,
-		width      = 80,
-		height     = 80,
+		x       = Config.tileSize * 10,
+		y       = Config.tileSize * 14,
+		width   = Config.spawn.width,
+		height  = Config.spawn.height,
 		isMirrored = true,
 	})
 	Captain = Entities['Captain']({
-		name   = 'Captain',
 		x      = Config.tileSize * 19,
 		y      = Config.tileSize * 14,
-		width  = 80,
-		height = 80,
+		width  = Config.spawn.width,
+		height = Config.spawn.height,
 	}):interrupt()
 
 	-- ACTION!!! ------------------
@@ -104,13 +102,15 @@ function Cut04:enter(from, ...)
 	-- CUT!!! ---------------------
 end
 
--- Complete cutscene
+-- Tear down
 --
 function Cut04:complete()
+	Base.complete(self)
+	--
 	Double:destroy()
 	Captain:destroy()
-	--
-	Base.complete(self)
+	
+	Gamestate.pop()
 end
 
 return Cut04

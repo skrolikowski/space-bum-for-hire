@@ -1,110 +1,160 @@
 -- Cutscene 01
+-- Intro
 --
 
-local Cutscene = require 'src.gamestates.cutscenes.cutscene'
-local Scene01  = Cutscene:extend()
+local Base  = require 'src.gamestates.cutscenes.cutscene'
+local Cut01 = Base:extend()
+local Double, Captain, Roger, Clarence
 
-function Scene01:init()
-	Cutscene.init(self, {
-		name = 'Scene01',
-		map  = Config.world.maps['space00'],
+function Cut01:init()
+	Base.init(self, {
+		name = 'Cut01',
+		id   = 'cut01',
+		map  = Config.world.maps['cut01'],
 	})
 	--
-	
+	-- foreground canvas
+	self.foreground = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.foreground)
+		self.map:drawTileLayer('Foreground')
+	lg.setCanvas()
+
+	-- background canvas
+	self.background = lg.newCanvas(self.width, self.height)
+	lg.setCanvas(self.background)
+		self.map:drawTileLayer('Background')
+		self.map:drawTileLayer('Decoratives (BG)')
+		self.map:drawTileLayer('Walls')
+		self.map:drawTileLayer('Platforms')
+		self.map:drawTileLayer('Decoratives (FG)')
+	lg.setCanvas()
 end
 
 -- Enter Scene
 --
-function Scene01:enter(from, ...)
-	Cutscene.enter(self, from, ...)
+function Cut01:enter(from, ...)
+	Base.enter(self, from, ...)
 	--
 	-- Casting Call ---------------
-	local Player, Roger, Clarence
-	
-	-- Player = Entities['Double']({
-	-- 	x       = Config.tileSize * 4,
-	-- 	y       = Config.tileSize * 17,
-	-- 	width   = 80,
-	-- 	height  = 80,
-	-- 	visible = false,
-	-- })
+	Captain = Entities['Captain']({
+		title   = 'Captain Jenny',
+		x       = Config.tileSize * 10,
+		y       = Config.tileSize * 17,
+		width   = Config.spawn.width,
+		height  = Config.spawn.height,
+		visible  = false,
+	}):interrupt()
 	Roger = Entities['Doctor']({
-		name    = 'Roger',
-		x       = Config.tileSize * 17,
+		title   = 'Dr. Roger',
+		x       = Config.tileSize * 32,
 		y       = Config.tileSize * 17,
-		width   = 80,
-		height  = 80,
-		visible = true,
-	})
+		width   = Config.spawn.width,
+		height  = Config.spawn.height,
+		visible  = false,
+		isMirrored = true,
+	}):interrupt()
 	Clarence = Entities['Doctor']({
-		name    = 'Clarence',
-		x       = Config.tileSize * 26,
+		title   = 'Dr. Clarence',
+		x       = Config.tileSize * 32,
 		y       = Config.tileSize * 17,
-		width   = 80,
-		height  = 80,
-		visible = true,
-	})
+		width   = Config.spawn.width,
+		height  = Config.spawn.height,
+		visible  = false,
+		isMirrored = true,
+	}):interrupt()
 
 	-- ACTION!!! ------------------
     self.timer:script(function(wait)
-    	-- Roger & Clarence enter room together
-		self.filming = Roger
-		-- Roger:move('left', 350, 5)
-		-- Clarence:move('left', 350, 4)
-		-- wait(5)
-		-- --
-		-- Roger:say('right', 'It\'s going to work this time! I just know it!', 6)
-		-- wait(6)
-		-- --
-		-- self.filming = Clarence
-		-- Clarence:say('left', 'Last time you nearly blew out our warp core!', 6)
-		-- wait(3)
-		-- Roger:blame('right', 3)
-		-- wait(3)
-		
-		-- Roger:say('right', 'That\'s because we didn\'t have enough power!.', 6)
-		-- wait(2)
-		-- Clarence:shock('left', 2)
-		-- wait(4)
-		-- --
-		-- Roger:say('right', 'Th', 6)
-		-- Clarence:worry('left', 4)
-		-- wait(6)
-		-- --
-		-- Roger:say('right', 'This time', 6)
-		-- Clarence:worry('left', 4)
-		-- wait(6)
 		--
-		table.insert(self.effects, Effects['flame2']({
+    	-- Something is wrong!!
+    	Effects['flame2']({
 			x = Config.tileSize * 10,
 			y = Config.tileSize * 10,
-			width  = Config.tileSize * 10,
-			height = Config.tileSize * 10,
-		}))
-		Roger:say('right', 'Here goes!!', 4)
-		wait(4)
-		Roger:fiddle('right', 2)
+			width  = Config.tileSize * 5,
+			height = Config.tileSize * 5,
+			total  = 2,
+		})
 		wait(2)
-		Roger:shock('right', 2)
-		Clarence:shock('left', 2)
-		wait(2)
-		--TODO: more shock and suspense!!
+		Effects['flame2']({
+			x = Config.tileSize * 0,
+			y = Config.tileSize * 10,
+			width  = Config.tileSize * 5,
+			height = Config.tileSize * 5,
+			isMirrored = true,
+			total = 4,
+		})
+		wait(3)
 		--
+    	-- Roger & Clarence enter room together
+    	Roger.visible = true
+		Roger:move('left', 500, 3)
 
-
+		Clarence.visible = true
+		Clarence:move('left', 450, 2)
+		wait(3)
+		--
+		-- Clueless..
+		Roger:interrupt():worry('right', 1)
+		Clarence:interrupt():worry('left', 1)
+		wait(2)
+		Roger:say('right', 'What the heck is happening!?', 4)
+		wait(4.5)
+		Clarence:say('left', 'We never should have torrented all those hospital dramas!', 6)
+		wait(6.5)
+		--
+		-- Captain calls in..
+		Captain:say('left', 'Hello? Come in! Is anyone reading this? This is Captain Jenny... Please come in..', 7)
+		wait(5.5)
+		Roger:interrupt():worry('right', 2)
+		Clarence:interrupt():worry('left', 2)
+		wait(2.5)
+		Captain:say('left', 'There is hostile life on the planet and I haven\'t been able to contact any other crew members.', 8)
+		wait(8.5)
+		--
+		-- Doctors come up with a plan..
+		Clarence:say('left', 'What are we going to do? Comm is down and our security is down on the planet!', 6)
+		wait(4.5)
+		Roger:huh('right', 2)
+		wait(2)
+		Roger:interrupt():idea('right', 1)
+		wait(1)
+		--
+		-- Space Bum to the rescue
+		Roger:interrupt():say('right', 'Wait..! They say there is a space venturer who deals in these kinds of matters.', 6)
+		wait(6.5)
+		Clarence:huh('left', 1)
+		wait(1)
+		Clarence:interrupt():say('left', 'Who?', 3)
+		wait(3.5)
+		Roger:say('right', 'They call him.. \'Space Bum\'.', 5)
+		wait(3.5)
+		Clarence:happy('left', 3)
+		wait(5)
+		--
 		-- ~ fin ~
-		-- wait(3)
-		-- self:leave()
+		self:complete()
 	end)
 	-- CUT!!! ---------------------
 end
 
--- Leave Scene
+-- Tear down
 --
-function Scene01:leave()
-	Base.leave(self)
+function Cut01:complete()
+	Base.complete(self)
 	--
-	Gamestate.switch(Gamestates['space01'])
+	Captain:destroy()
+	Roger:destroy()
+	Clarence:destroy()
+	
+	--
+	-- start game
+	local checkpoint = Config.world.checkpoint.player
+
+	Gamestate.switch(Gamestates[checkpoint.map], {
+		from = 'beam',
+		col  = checkpoint.col,
+		row  = checkpoint.row
+	})
 end
 
-return Scene01
+return Cut01

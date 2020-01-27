@@ -8,7 +8,7 @@ local Double = NPC:extend()
 function Double:new(data)
 	NPC.new(self, _:merge(data, {
 		name  = 'Double',
-		title = data.title or 'Double',
+		title = data.title or 'Player',
 		shape = 'rectangle',
 	}))
 	--

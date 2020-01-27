@@ -7,7 +7,7 @@ local Entity = Modern:extend()
 
 function Entity:new(data)
 	self.uuid        = Util:uuid()
-	self.visible     = data.visible     or true
+	self.visible     = data.visible     or false
 	self.id          = data.id          or 0
 	self.category    = data.category    or nil
 	self.name        = data.name        or 'Entity'

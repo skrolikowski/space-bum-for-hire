@@ -22,11 +22,11 @@ function Speech:new(host, text)
 
 	-- dialogue - title
 	self.title = lg.newText(Config.ui.font.lg)
-	self.title:setf(host.title, Config.tileSize * 9, 'left')
+	self.title:setf(host.title, Config.tileSize * 20, 'left')
 
 	-- dialogue - text
 	self.text = lg.newText(Config.ui.font.lg)
-	self.text:setf(text, Config.tileSize * 30, 'center')
+	self.text:setf(text, Config.tileSize * 36, 'center')
 end
 
 -- Update
@@ -39,12 +39,8 @@ function Speech:draw()
 	local cx, cy = self.host:getPosition()
 	local w, h   = self.width, self.height
 	local sx, sy = self.sx, self.sy
-	local tx     = cx - w * sx / 2
+	local tx     = cx - w * sx / 4
 	local ty     = cy - h * sy / 2 - h / 3
-
-	-- if self.host.isMirrored then
-	-- 	sx = -sx
-	-- end
 
 	lg.push("all")
 	lg.translate(tx, ty)
@@ -62,7 +58,7 @@ function Speech:draw()
 	lg.draw(self.title, Config.tileSize * 4, Config.tileSize * 2)
 
 	-- dialogue
-	lg.draw(self.text, Config.tileSize * 7, Config.tileSize * 6)
+	lg.draw(self.text, Config.tileSize * 5, Config.tileSize * 6)
 	
 	--
 	lg.pop()

@@ -1,6 +1,8 @@
 Gamestates = {
 	-- cutscenes
 	cut01   = require 'src.gamestates.cutscenes.01',
+	cut02   = require 'src.gamestates.cutscenes.02',
+	cut03   = require 'src.gamestates.cutscenes.03',
 	cut04   = require 'src.gamestates.cutscenes.04',
 	-- gameplay
 	space00 = require 'src.gamestates.gameplay.space00',

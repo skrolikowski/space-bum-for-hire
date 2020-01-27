@@ -21,6 +21,13 @@ Dialogue_ = {
 	    	"I was sent down here to find dilithium crystals, but I haven't found any.",
 	    	"Send the Ensign, they said. He'll be find, they said."
 	    },
+	    Engineer = {
+	    	"Make sure you're close to the enemy when using the shotgun. Shells decay faster than bullets.",
+	    	"The pistol has a longer range, and does more damage per bullet. Keep this in mind when fighting ranged enemies.",
+	    	"We can regenerate your health if you die.. but we can't respawn your ammo, so use it sparingly",
+	    	"Enemies will respawn when you do. It's an unfortunate bug.. I mean special feature!",
+	    	"Your current quest is marked within your personal HUD module.",
+	    },
 	    Captain = {
 	    	"They say the planet Titan is crawling with trolls.. they could sure use some help.",
 	    	"The Doctors may come off rude, but they're intentions are good.",

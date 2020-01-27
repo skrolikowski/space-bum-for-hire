@@ -82,7 +82,7 @@ function NPC:draw()
 	Unit.draw(self)
 	--
 	-- draw dialogue
-	if self.visible and self.dialogue then
+	if self.dialogue then
 		self.dialogue:draw()
 	end
 end
@@ -139,7 +139,7 @@ function NPC:pace()
 			--
 			self.timer:script(function(wait)
 				self:interrupt():comment(other)
-				wait(3)
+				wait(5)
 				self:interrupt():pace()
 			end)
 			--

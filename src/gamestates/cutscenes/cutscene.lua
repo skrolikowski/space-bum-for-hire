@@ -14,11 +14,18 @@ end
 --
 function Cutscene:enter(from, ...)
 	Base.enter(self, from, ...)
-	from:unregisterControls()
+	pcall(function() from:unregisterControls() end)
 	--
 	-- default controls
 	self:setControl('cutscene')
 	self:lookAt(self.width/2, self.height/2)
+end
+
+-- Tear down
+--
+function Cutscene:leave()
+	Base.leave(self)
+	--
 end
 
 -- Skip cutscene
@@ -31,7 +38,6 @@ end
 --
 function Cutscene:complete()
 	self:unregisterControls()
-	Gamestate.pop()
 end
 
 return Cutscene
