@@ -25,21 +25,21 @@ function love.load()
 
     -- Here's where it begins...
     Gamestate.registerEvents()
-    -- Gamestate.switch(Gamestates['cut01'])
+    Gamestate.switch(Gamestates['cut05'])
 
     --
     -- local checkpoint = Config.world.checkpoint.player
-    local checkpoint = {
-        map = 'space01',
-        col = 58,
-        row = 70,
-    }
+    -- local checkpoint = {
+    --     map = 'space01',
+    --     col = 58,
+    --     row = 70,
+    -- }
 
-    Gamestate.switch(Gamestates[checkpoint.map], {
-        from = 'beam',
-        col  = checkpoint.col,
-        row  = checkpoint.row
-    })
+    -- Gamestate.switch(Gamestates[checkpoint.map], {
+    --     from = 'beam',
+    --     col  = checkpoint.col,
+    --     row  = checkpoint.row
+    -- })
     --
     -- Soundtrack:new(0.5)
     -- Soundtrack:addFolder('res/music/DOS-88')

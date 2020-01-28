@@ -19,14 +19,15 @@ Dialogue_ = {
 	    	"The Doctors love to brag. It's best to just leave them to their devices.",
 	    	"I sure hope the rest of the crew is okay...",
 	    	"We are in search of rare crystals, but found monsters instead.",
-	    	"Send the Ensign, they said. He'll be fun, they said..."
+	    	"Send the Ensign, they said. He'll be fun, they said...",
+	    	"The Captain can be pretty adventurous, she watches Rick & Morty often."
 	    },
 	    Engineer = {
 	    	"Make sure you're close to the enemy when using the shotgun. Shells decay faster than bullets.",
 	    	"The pistol has a longer range, and does more damage per bullet. Keep this in mind when fighting ranged enemies.",
 	    	"We can regenerate your health if you die.. but we can't respawn your ammo, so use it sparingly",
 	    	"Enemies will respawn when you do. It's an unfortunate bug.. I mean special feature!",
-	    	"Your current quest is marked within your personal HUD module.",
+	    	"Your current quest will be relayed to the spaceship and also to your personal HUD module.",
 	    },
 	    Captain = {
 	    	"They say the planet Titan is crawling with trolls.. they could sure use some help.",
