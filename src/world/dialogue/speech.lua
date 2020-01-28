@@ -26,7 +26,7 @@ function Speech:new(host, text)
 
 	-- dialogue - text
 	self.text = lg.newText(Config.ui.font.lg)
-	self.text:setf(text, Config.tileSize * 36, 'center')
+	self.text:setf(text, Config.tileSize * 35, 'center')
 end
 
 -- Update

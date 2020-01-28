@@ -32,7 +32,7 @@ function Mount03:enter(from, ...)
     -- Player will enter from..
     if self.settings.from == 'mount01' then
         if self.settings['section'] == 'A' then
-            self:playerEnterDoor(Config.tileSize*99, Config.tileSize*47, 'right')
+            self:playerEnterDoor(Config.tileSize*96, Config.tileSize*47, 'left')
         else
         -- Error!
             error('Missing map section!')

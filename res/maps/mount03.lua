@@ -222,7 +222,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtmk2KFEEQhYtpfy7hNkFv0eAlFNwm+HMFF8JcQsFtbhS8xFxCD1BrL+DCnEVlfQ3VTMVQERVZREHT36RRES/eqxmHoYchrnAgHAgHwgELBz6fhrPFnJixzoF/N5HHOqeiKhzY1oHx6dyPPJ/uR9RD3k+R/uT8bJ5Bnk/3owRt5P0U6U9mBmT9yQ9PoB7yw3f2W1HwDJI9bEQ9ZA/atDQk5EHWmifpO0IbWdKjt9qMncke9qAesgdtWhoK8iBrzZP0ZQZkSY/eakfkQfawR4E2sgdtWhoydiZrzZP0TdBGlvTorZYZkD3sQT1kD9q0NBQ8g2SteZK+1EOW9OitNiEPsoc9Rmgje9CmpSFjZ7LWPElf6iFLevRWW5AH2cMezIDsQZuWhhF5kLXmSfoWaCNLemjXvh2GL2/qSzKn1g/1vsUrPZ+PyfPpfpSQB3k/RfPklzfD8Kq+vtUsvgrzqPX39y1eGXmQF4uNDzPyIBvLWBz3vmbxob7+1Cx+C/Oo9ff3LV7ck7xYbHxYkAfZWIbpOO5JNhVxZdiIPMhXyg9xnLAz2cNyBdrIHrRpacjYmaw1T9J3hDaypEdvtQU7kz3swd/3yB60aWngc0fWmifpy+eDLOnRWy2fO7KHPRK+d8ketGlp4HNH1pon6VszOE/15OnsiO91z3aR2+GOUD8Dd57Gk6ezI77zuSP3tOsLfMayJ91LWvnckZdqvZ69O1AeXj2W6PpunEd9bttFbocBpg7w/1myqYgY1hzI+B2I3AoCTB0oyINsKiKGNQcS8iC3ggBTBzLyIJuKiGHNgYI8yK0gwNSBEXmQTUXEsOYA/+5KbgUBzYFf+HxGO9wY+DOKvPGYaLfSgYSfV+SVt0fZxg7UDM5TS/J0Fu+2DjADsq2Kbabd1s+Q9X7x7+DkHve6O0AePfp+TfPpdO1f5Od/n8jviTsuHdgyj8vO8dVjHHi94ffHY+bHPZcO3EYel4bEV+FAOBAOhAPhQDig7sDHOuGT+pQYsNaBH7Xw59riTuv+A/lEXbs="
+      data = "eAHtmkuK3EAMhs10HpfItiC5RUMukUC2hnlcIYvAXCKBbGuTQC6RSyQH8DoXmMVUE1z+FjbTmrZklZGh6Y+ySvr1q7qnGdx1cYUD4UA4EA5YOPD50B0t6kSN8xx4uIp5nOdURIUD6zowvJzykafV7Yh6yNsp0q/cv5pqkKfV7ShBG3k7RfqVOQOyfuWnK1AP+emd7UZknEGyh46oh+xBm5aGhHmQtepJ8g7QRpbkaC22R89kD31QD9mDNi0NGfMga9WT5OUMyJIcrcUOmAfZQx8Z2sgetGlp6NEzWaueJG+CNrIkR2uxnAHZQx/UQ/agTUtDxhkka9WT5KUesiRHa7EJ8yB76GOANrIHbVoaevRM1qonyUs9ZEmO1mIz5kH20AdnQPagTUvDgHmQtepJ8mZoI0tyaMd+7LovH8pLUqfEd2Xf7JVeT8vkaXU7SpgHeTtFU+W3V133rry+lVl8Fc6jxJ/2zV495kGeDTZe7DEPsrGM2XLXZRY35fW3zOKPcB4l/rRv9mKf5Nlg48WMeZCNZZiWY59kUxELxQbMg7wQvovlhJ7JHprL0Eb2oE1LQ4+eyVr1JHkHaCNLcrQWm9Ez2UMf/L1H9qBNSwPPHVmrniQvzwdZkqO1WJ47soc+Ej67ZA/atDTw3JG16knylhkcx3jyuLbH99Jnvch1cUMoz8Adx/LkcW2P7zx35JZ6fYNnLFvSPaeV5448F+t17dOO5uHVY4mu78bzKOe2XuS6GGDqAP/Okk1FRLHqQI/fQOQaEGDqQMY8yKYiolh1IGEe5BoQYOpAj3mQTUVEsepAxjzINSDA1IEB8yCbiohi1QH+35VcAwKqA7/wfEZdXBn4HUVeuUykO9OBhO8r8pnbI2xlB8oMjmNK8rgW77YOcAZkWxWXV7svz4/t4eL/wcmt9fZ7J/NozfclvYfD0p3nrf978bx9seu/A2vPI3y9zIH3K38+LlMTu08O3MdM4iCEA+FAOBAOhAPhgLEDt6XenXHNKLfswI9y6+fy7V3ceQT/tF27"
     },
     {
       type = "tilelayer",
@@ -239,7 +239,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtm89uFEcQxid2noI/a2DXVnKIbaQAEnDgOSCxN6yNkkOwuSQS5OAHiQLCgJJDsFESIkEO+yBgS8FwC5hDEim55Pdhl9WMd3p2d2bjZada+nZ6enp6er7arq6q7kmSdyP9NZYkfwNPw8HA6fEkOQM8DQcDD8aTC8PRE++FGLjm8jjwP8I0MpgBs+Cky+PA5fFyLLnwCmyD1+DAO1TxDtxHBmtgHTxweRz4v+EqMlgCy+Cay+PA5TGNDGbALDjp8ojK4wi+2SFweBfHOB4HDTAJpkDR9PI95g+wDV6Dou2N8v2fwPdFcGkXTY6fgQWwCK4AT/8fA9/u8l3DZ54Av3D+ENwBd8E9UEb6jrZvul+eS+UT+H4K5uBqHvxJXjGmLfAcvAB56Sh1amACmL47Qb4OTO9t0PamyyOPyr3r9v89BWeKMTXAJJgCeelTeJ8D88D03WXyLWB6r/Y+8gLHQBVSHd4WwCK40gWHaU5sfKi8VbCtdNtVPJc87oC74B7oNdn4sPtsfNi5H3tjQP/pLfAcvADS2x8E+JB8Xgr1u421vHv8emcGViUDdPMkmALS258H+CJHHjXunwCWbKzZuR+LM/A9MvghRw72lHD+UJmNtdBGKsM3tOf5MZuBH4mBEw9PiIcn6+S1ZmRjrYU8zUZy3zCbwzKvfAn/V8ESWAa2ZnQ7GFsNZCX7tx/brcy+VqGtj5CB1oyIwSbEYBNisPuSzSf92G77GvOCKAN/EHPVmhFrFAlrFAlrFPuSzSey3WK+eOifK0aZ5bOrXli3zrnPT2/Tjs5K0FkJOmtfsvlEtlvMFw/9c8Uos3x21QvrKobp89PbtN9HDmuAOd3TkDAQ+oRD0qVKd2MDvbEJPBVnYAseFSMvktJ+epG2qnyv4ldl+AjpuGKVOS3y7opfleUj+BxSRBI794bx3ePorBNANr3FeGPx3XA/wwZy7eQzpMvcV4jLLIzvypa/DFrAYryx+G56P0MnnyFd5r5CXB66ugr/PwPtSehnbjfb6ib3x5LpxVgdv1acAbOtNnPkYbET04npuEd47nqtmFxsjMRasdiJ6cQw7iEdGZ67XtvZj9CvTunX3v0YOZwCp8EZENp7MdlW4Zq4MJ3yhLzhaYbtJP0iu8qOMXv3K+qGvKf51PWvwbOgD9Jroc3X4HwSVEWXiQvTKUeIxxqOkk/bSdIvitdqf5Qd0xzHzsW9ktkRDzn/FdRpz/ogvRbafFVcb7w+ntw6C/4ZS249AteFDmVnKU/XszId2ZPeZI2qybpI09ar0txvcy2sl5XfkVw1f2/A/TnwL5w+BjeEDmXnKE/XszId+U5AcmiyViXsrFeNJ21i8m1i821i9O1XXJsJ6mXlqymJwb01vCeMBX2T2WbNqs3aVZs1rPbgnugthwx8k+J6hnlpFvBNZvsZcmmQ1x6H6VS9sA3Pl8+AyWUJGSwL8F9HDgtgEXST8nzMbtp4F+vc7pKfXt7N5LGGLNYBY6Td4jnd+jjm9/fyzFGp+/uA5CGZ2PyxyjME01d53M1Rd34A/cp77ihflzxs/tB7anxsAe3frjNmYv5dvz7/KPNZ9N3OB+PjMfk34wOfT/u3hUVkkhWrqrK+Ksp77P5wfPwE/6FfGFu3d30VY7XYtd8YG4/wExULYV7f893xS5pZLbu+ymKmnHLs3jf+OuNlz3dnrnd5lEPvwFvx8TFwinMfoG+ghTCGj35bYUyt5N48YhUOwcNhUAMTu5yE6w/acxLbb1IGHfoGWuuEgn3rjF+/slRBeVyEg0tA6xmd1ju05yS236QMeXgbzoAz4Aw4A86AMzC8DJjtJvtNsD1x2jMi2za049JlsZjj8L7xcPfMbDfZb4LtidOeEdm26X0kYVks5jjcb9177/4DLhRX3g=="
+      data = "eAHtm09vVFUYxo+tKH4F/kyBmTa6sC2JQAIuWOpXAG1HpiW6kJaNJsCiS/EzGCEUiC6kJSom4GJ2gp8B2kQKO6Es1EQ3/h7atzmcztw7nTtzZ9p7TvLM/Xfm3HufZ8573vc9Z5zbHuXvAef+AbH0BwNHB507BmLpDwZuD7qT/fEk8SnEwPmoR89/CKNoMAbGweGoR8/1eDbgTj4Hq+AF6PkDFfwBbqHBAlgEt6MePf81nEODGTALzkc9eq7HKBqMgXFwOOqRqMc+YrM9YO86DrA9CCpgGIyArOXZa4wfYBW8AFnb28nf/wi+T4HT66iy/QRMgWlwFsSSHwPfrPNdImYeAj9zfAdcBzfATdCJ8i1tX4lxeSqVD+H7EZiAq0nwF/vKMa2AJ+ApSCv7qVMCQ8Ds3SH2y8Ds3hJtL0c90qjcuG6/3yNwphxTBQyDEZBWPob3CTAJzN6dYb8GzO6VXkcvcAAUoZThbQpMg7MtcBhyYv1D52sZ2wrbLuKx9LgOboCbYKvF+od9z/qHHcft1hjQb3oFPAFPgez22x7eYT+t+Pbd+lrad+L1xgzMSwNs8zAYAbLbn3r4LEWPEt8fAlasr9lx3GZn4Ds0+D5FB7uLP37onPU130fqRGxo94vb5gz8QA6cfLgjH+4W2deckfW1GnqajxRjw+YcdvLK5/B/DsyAWWBzRte8vlVBK/m/7fhunXzWIrT1LhpozogcrCMH68jBbio2nrTju21qLJ5IZOBPcq6aM2KOwjFH4Zij2FRsPJHvlhSL+/G5cpTNYnbV8+uWOY7j06u0Y7McNsthszYVG0/kuyXF4n58rhxls5hd9fy6ymHG8elV2m+hwwJgTI+lTxjwY8I+eaRCP8YSdmMZxJKdgRV4VI48Swnj9CxtFfm7yl91IkYI84pF5jTLuyt/1akYIY4hWZRY+66f3z2IzToE5NNbjjcpv+uvZ1hC10YxQ3guxgrJmvn5XfnyZ0ANWI43Kb8brmdoFDOE52KskKyHrs7D/09AaxLaGdvNt7rC95OK2cWkOvFadgbMt1pO0cNyJ2YTw7yHfxztWjZdrI8ktWK5E7OJft5DNtI/jnZtbT1CuzalXX/3PXQ4Ao6CY8D395K0LcI1cWE25SH7hkdNfCfZF/lVtk3yd7+grs97yKeufwkee88gu+b7fBWOh0FRbJm4MJuyj3ysYT/7oZ8k+6J8rdZH2TbkOOlY3KuYH3GH419AmfbsGWTXfJ+viPONFwbd1ePg3wF39S64IDQ4d5zzYT07py1r0qvMUVWZF6nafFXI/SrX/HrN9teUK+bnRbg/Af6D03vgotDg3AnOh/XsnLb8T0A6VJmrEtbmqwZdnZx8ndx8nRx9/TnXxrx6zfaLqUT33hreHX1B/8msM2dVZ+6qzhxWvXt3jC37DFwKuB5jXBoH/Cez/hhdKuxrjcNoUM9vI+53ngHTZQYNZgX4L6PDFJgGrZS0GLOVNrZjnWst8rOVdzM9FtBiEdBH6jXu02qMY3H/Vu65XetehpevPQ3+8PY79U7SQ7DxY557CGav0u4zQd3JLjxX2n3zvr7rDece8J6/5/Cu0sPGD72n+scK0PrtMn0mKb5rN+bPm88s9/sNHu4D6aE+0u3yvtc/7rH/sn8Q82n9tjCNJs1yVUWxV74m3dZD7fv940f49+PCpHn7otirN/ld7gZvgbzKr/SNu8SJyoUwrm/E7sQl1WbPUAR7Ze+etx66L37vy3id/rIRuzPWV+2Zwm2R9PiA3+mHOfaPkOtWjoukx1docbkP9dB/oAU/h499m6NPzbWi4Xatcx8tHgR67IGHvaAEhtY58ecftOYkab1JJ7jQf6A1TyjYf52J6+dmdrgeu3cxngO/nIKD00DzGY3mO7TmJGm9id9W3I8MRAYiA5GByEBkYOcxYL6b/DfB1sRpzYh8W9+PC88l5Rx3HlP5vJH5bvLfBFsTpzUj8m3DdST+uaScYz5Pn99d/gcBqmOM"
     },
     {
       type = "tilelayer",
@@ -966,7 +966,7 @@ return {
           x = 1584,
           y = 672,
           width = 16,
-          height = 80,
+          height = 160,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1147,7 +1147,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 1504,
-          y = 752,
+          y = 768,
           width = 0,
           height = 0,
           rotation = 0,
@@ -1400,7 +1400,9 @@ return {
           height = 80,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["title"] = "Captain Jenny"
+          }
         },
         {
           id = 122,
@@ -1625,15 +1627,15 @@ return {
           name = "Teleport",
           type = "",
           shape = "rectangle",
-          x = 1584,
+          x = 1568,
           y = 752,
           width = 16,
           height = 80,
           rotation = 0,
           visible = true,
           properties = {
-            ["exit"] = "left",
-            ["map"] = "mount03",
+            ["exit"] = "right",
+            ["map"] = "mount01",
             ["method"] = "door",
             ["onTouch"] = true,
             ["section"] = "A"
@@ -1754,15 +1756,15 @@ return {
           shape = "rectangle",
           x = 688,
           y = 928,
-          width = 80,
+          width = 112,
           height = 16,
           rotation = 0,
           visible = true,
           properties = {
             ["checkpoint"] = 71,
-            ["quest"] = 2,
-            ["require"] = 1,
-            ["scene"] = "cut04"
+            ["quest"] = 6,
+            ["require"] = 5,
+            ["scene"] = "cut06"
           }
         },
         {

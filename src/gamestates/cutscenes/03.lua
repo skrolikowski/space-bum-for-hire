@@ -38,7 +38,7 @@ function Cut03:enter(from, ...)
 	-- Casting Call ---------------
 	Double = Entities['Double']({
 		title   = 'Player',
-		x       = Config.tileSize * 12,
+		x       = Config.tileSize * 10,
 		y       = Config.tileSize * 14,
 		width   = Config.spawn.width,
 		height  = Config.spawn.height,
@@ -58,60 +58,52 @@ function Cut03:enter(from, ...)
     self.timer:script(function(wait)
     	--
     	-- Player & Captain enter scene..
-    	Double:huh('right', 2)
-    	Victor:shock('left', 2)
-    	wait(2)
+		Victor:shock('left', 2)
+		wait(2)
 		--
 		-- Ensign Victor is caught off guard..
-		Victor:interrupt():say('left', 'Yikes! You have an interesting approach to entering a room..', 6)
-		wait(4)
+		Victor:interrupt():say('left', 'Yikes! You made quite the entrance. Remind me to bring you to the next party.', 8)
+		wait(7)
 		Double:huh('right', 2)
-		wait(2.5)
-		Victor:interrupt():say('left', 'Clarence sent you, didn\'t he. Tell him I didn\'t eat his lunch!', 6)
-		wait(4)
+		wait(2)
+		Victor:interrupt():say('left', 'Clarence sent you, didn\'t he? Tell him I didn\'t eat his lunch!', 8)
+		wait(7)
 		Double:shock('right', 2)
-		wait(2.5)
+		wait(2)
 		--
 		-- Player is here to save the day!
 		Double:explain('right', 3)
-		wait(2.5)
-		Victor:happy('left', 2)
-		wait(2.5)
+		wait(3)
 		--
 		-- Ensign is on board..
-		Victor:say('left', 'Oh! The Commander sent you? No, I haven\'t seen the Captain.', 6)
-		wait(6.5)
-		Victor:say('left', 'However, B.', 6)
-		wait(6.5)
-		-- Double:shock('right', 2)
-		-- wait(2)
-		-- Scott:interrupt():worry('left', 1)
-		-- wait(1)
-		-- Scott:interrupt():say('left', 'I appologize. I haven\'t even introduced myself.. I\'m Commander Scott. Second in command of the startship Senturi.', 8)
-		-- wait(8.5)
-		-- Scott:interrupt():say('left', 'We are in quite the pickle. Resources are low and part of the crew is somewhere on this planet.', 8)
-		-- wait(8.5)
-		-- Scott:interrupt():say('left', 'We are but a research crew. We aren\'t equipped for such harsh conditions.', 8)
-		-- wait(8.5)
-		-- --
-		-- -- Player asks to get to business..
-		-- Double:greed('right', 2)
-		-- wait(2)
-		-- Scott:interrupt():say('left', 'Of course, we are a people of our word. You will be compensated for your work.', 8)
-		-- wait(8.5)
-		-- Double:okay('right', 2)
-		-- wait(2)
-		-- Scott:happy('left', 2)
-		-- wait(2.5)
-		-- --
-		-- -- Next steps..
-		-- Scott:say('left', 'The last crew member I saw was Ensign Victor. He went to explore the structure to the east.', 8)
-		-- wait(8.5)
-		-- Double:okay('right', 2)
-		-- wait(2.5)
+		Victor:say('left', 'Oh! The Commander sent you? Yes, The Captain was here...', 8)
+		wait(8.5)
+		Victor:say('left', 'However, I haven\'t seen her since she left with Bishop. They took off West.', 8)
+		wait(8.5)
+		--
+		-- Player understands and offers to help..
+		Double:okay('right', 2)
+		wait(2.5)
+		Double:explain('right', 3)
+		wait(3)
+		--
+		-- Victor decides to stay behind..
+		Victor:say('left', 'Thank you, but I will be okay here. My mining drill should keep me safe.', 8)
+		wait(8)
+		Victor:interrupt():fiddle('left', 1)
+		wait(1)
+		Victor:interrupt():fiddle('right', 1)
+		Double:shock('right', 2)
+		wait(1)
+		Victor:say('left', 'Plus, I\'ve watched like every Bruce Lee movie!', 8)
+		wait(5)
+		--
+		-- Player agrees and moves on..
+		Double:okay('right', 2)
+		wait(3)
 		--
 		-- ~ fin ~
-		-- self:complete()
+		self:complete()
 	end)
 	-- CUT!!! ---------------------
 end

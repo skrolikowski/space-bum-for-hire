@@ -168,6 +168,7 @@ function Gameplay:playerEnterDoor(x, y, direction)
 	        y      = y,
 	        width  = Config.spawn.width,
 	        height = Config.spawn.height,
+	        visible = true,
 	    })
 	    self.filming = Double
 	    --
@@ -202,6 +203,7 @@ function Gameplay:playerExitDoor(x, y, direction, after)
 		    y      = y - Config.spawn.height/2,
 		    width  = Config.spawn.width,
 		    height = Config.spawn.height,
+		    visible = true,
 		})
 		self.filming = Double
 		--

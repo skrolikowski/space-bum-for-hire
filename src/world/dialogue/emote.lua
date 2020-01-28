@@ -49,7 +49,7 @@ function Emote:center()
 	local hw, hh = self.host:dimensions()
 	local w, h   = self:dimensions()
 
-	return cx - w / 2, cy - hh / 2 - h / 2
+	return cx - w / 2, cy - hh / 2 - h
 end
 
 -- Emote width/height

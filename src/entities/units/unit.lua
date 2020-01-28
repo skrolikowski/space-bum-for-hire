@@ -32,14 +32,14 @@ function Unit:new(data)
 	self.isMirrored = false
 	self.isFlipped  = false
 	self.onGround   = false
-	self.onWall     = false
+	-- self.onWall     = false
 	self.canDestroy = data.canDestroy or true
 
 	-- AI
 	self.timer = Timer.new()
 
 	-- physics
-	self.walls   = {}
+	-- self.walls   = {}
 	self.grounds = {}
 	self:fixedRotation(true)
 	self:setSleepingAllowed(false)
@@ -73,30 +73,42 @@ function Unit:setFixture(shape, ...)
 	self.fixture:setMask(Config.world.filter.mask.unit)
 end
 
--- Handle collisions
 --
-function Unit:beginContact(other, col)
-	if col:isTouching() then
-		self.behavior:beginContact(other, col)
-		--
-		if other.category == 'Environment' then
-		-- Environmental Contact
-			if select(2, col:getNormal()) ~= 0 then
-			-- ground contact
-				if not self.grounds[other.uuid] then
-					self.grounds[other.uuid] = other
-				end
-			end
-			
-			if select(1, col:getNormal()) ~= 0 then
-			-- wall contact
-				if not self.walls[other.uuid] then
-					self.walls[other.uuid] = other
-				end
+--
+function Unit:postSolve(other, col, norm, tang)
+	if other.category == 'Environment' then
+		if select(2, col:getNormal()) ~= 0 then
+			if not self.grounds[other.uuid] then
+				self.grounds[other.uuid] = other
 			end
 		end
 	end
 end
+
+-- -- Handle collisions
+-- --
+-- function Unit:beginContact(other, col)
+-- 	if col:isTouching() then
+-- 		self.behavior:beginContact(other, col)
+-- 		--
+-- 		if other.category == 'Environment' then
+-- 		-- Environmental Contact
+-- 			if select(2, col:getNormal()) ~= 0 then
+-- 			-- ground contact
+-- 				if not self.grounds[other.uuid] then
+-- 					self.grounds[other.uuid] = other
+-- 				end
+-- 			end
+			
+-- 			-- if select(1, col:getNormal()) ~= 0 then
+-- 			-- -- wall contact
+-- 			-- 	if not self.walls[other.uuid] then
+-- 			-- 		self.walls[other.uuid] = other
+-- 			-- 	end
+-- 			-- end
+-- 		end
+-- 	end
+-- end
 
 -- Handle separations
 --
@@ -111,10 +123,10 @@ function Unit:endContact(other, col)
 			self.grounds[other.uuid] = nil
 		end
 
-		if self.walls[other.uuid] then
-		-- wall departure
-			self.walls[other.uuid] = nil
-		end
+		-- if self.walls[other.uuid] then
+		-- -- wall departure
+		-- 	self.walls[other.uuid] = nil
+		-- end
 	end
 end
 
@@ -145,7 +157,7 @@ function Unit:update(dt)
 
 	-- set flags
 	self.onGround = _:size(self.grounds) > 0
-	self.onWall   = _:size(self.walls) > 0
+	-- self.onWall   = _:size(self.walls) > 0
 	--
 	Entity.update(self, dt)
 end

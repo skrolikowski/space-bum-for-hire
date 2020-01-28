@@ -17,9 +17,9 @@ Dialogue_ = {
 	    Ensign = {
 	    	"This planet terrifies me. In fact the whole sector does!",
 	    	"The Doctors love to brag. It's best to just leave them to their devices.",
-	    	"I sure hope the Captain is okay...",
-	    	"I was sent down here to find dilithium crystals, but I haven't found any.",
-	    	"Send the Ensign, they said. He'll be find, they said."
+	    	"I sure hope the rest of the crew is okay...",
+	    	"We are in search of rare crystals, but found monsters instead.",
+	    	"Send the Ensign, they said. He'll be fun, they said..."
 	    },
 	    Engineer = {
 	    	"Make sure you're close to the enemy when using the shotgun. Shells decay faster than bullets.",

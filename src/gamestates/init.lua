@@ -4,8 +4,9 @@ Gamestates = {
 	cut02   = require 'src.gamestates.cutscenes.02',
 	cut03   = require 'src.gamestates.cutscenes.03',
 	cut04   = require 'src.gamestates.cutscenes.04',
+	cut05   = require 'src.gamestates.cutscenes.05',
 	-- gameplay
-	space00 = require 'src.gamestates.gameplay.space00',
+	-- space00 = require 'src.gamestates.gameplay.space00',
 	space01 = require 'src.gamestates.gameplay.space01',
 	mount01 = require 'src.gamestates.gameplay.mount01',
 	mount02 = require 'src.gamestates.gameplay.mount02',

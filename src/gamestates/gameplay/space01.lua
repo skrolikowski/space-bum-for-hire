@@ -28,11 +28,24 @@ end
 function Space01:enter(from, ...)
 	Gameplay.enter(self, from, ...)
 	--
-	-- Player will enter from..
-    if self.settings.from == 'space00' then
-    -- Spaceship - Main Room
-        self:playerEnterDoor(Config.tileSize*5, Config.tileSize*50, 'right')
-    end
+	-- -- Player will enter from..
+	-- if self.settings.from == 'space00' then
+	-- -- Spaceship - Main Room
+	-- 	self:playerEnterDoor(Config.tileSize*5, Config.tileSize*50, 'right')
+	-- end
+
+	-- Display current quest
+	--
+    UI['text']({
+    	x      = Config.tileSize*65,
+    	y      = Config.tileSize*63,
+    	width  = Config.tileSize*10,
+    	height = Config.tileSize*10,
+    	visible = true,
+    	fontfamily = 'Marksman',
+    	pixelsize = 18,
+    	text = Config.world.quest[Config.world.hud.quest].text,
+    })
 end
 
 return Space01

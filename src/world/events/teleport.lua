@@ -19,8 +19,7 @@ function Teleport:new(data)
 	self.section = data.properties.section
 
 	-- flags
-	self.isActive = false
-	self.onTouch  = data.properties.onTouch or false
+	self.onTouch = data.properties.onTouch or false
 
 	_:on('player_request', function() self:request() end)
 end
@@ -34,9 +33,7 @@ end
 -- Some events require a request
 --
 function Teleport:request()
-	if not self.isActive and self.hosting then
-		self.isActive = true
-		--
+	if self.hosting then
 		local cx, cy = self.hosting:getPosition()
 
 		if self.method == 'door' then

@@ -28,11 +28,11 @@ function love.load()
     -- Gamestate.switch(Gamestates['cut01'])
 
     --
-    local checkpoint = Config.world.checkpoint.player
+    -- local checkpoint = Config.world.checkpoint.player
     local checkpoint = {
-        map = 'mount02',
-        col = 46,
-        row = 65,
+        map = 'space01',
+        col = 58,
+        row = 70,
     }
 
     Gamestate.switch(Gamestates[checkpoint.map], {

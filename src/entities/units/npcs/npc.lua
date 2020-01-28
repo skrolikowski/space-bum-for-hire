@@ -260,6 +260,30 @@ function NPC:happy(direction, delay, expression)
 	end)
 end
 
+-- Ouch
+--
+function NPC:ouch(direction, delay, expression)
+	self.guarding   = true
+	self.dialogue   = Dialogue['emote'](self, expression or 'thought', 'emote_anger')
+	self.isMirrored = direction == 'left'
+	
+	self.handle = self.timer:after(delay, function()
+		self.guarding = false
+		self.dialogue = nil
+	end)
+end
+
+-- Anger
+--
+function NPC:anger(direction, delay, expression)
+	self.dialogue   = Dialogue['emote'](self, expression or 'speech', 'emote_bars')
+	self.isMirrored = direction == 'left'
+	
+	self.handle = self.timer:after(delay, function()
+		self.dialogue = nil
+	end)
+end
+
 -- Huh!?
 --
 function NPC:huh(direction, delay, expression)

@@ -14,12 +14,13 @@ Config = {
         gravity = { x = 0, y = 40 },
         maps = {
             -- cutscenes
-            cut01  = 'res/maps/space00.lua',
+            cut01  = 'res/maps/cut01.lua',
             cut02  = 'res/maps/cut02.lua',
             cut03  = 'res/maps/cut03.lua',
             cut04  = 'res/maps/cut04.lua',
+            cut05  = 'res/maps/cut05.lua',
             -- gameplay
-            space00 = 'res/maps/space00.lua',
+            -- space00 = 'res/maps/space00.lua',
             space01 = 'res/maps/space01.lua',
             mount01 = 'res/maps/mount01.lua',
             mount02 = 'res/maps/mount02.lua',
@@ -86,12 +87,12 @@ Config = {
             DarkMage = {
                 health = { min = 75, max = 100 },
                 speed  = 500,
-                timing = { unrest = 1.5, cooldown = 0.75 },
+                timing = { unrest = 1.5, cooldown = 1 },
                 attack = {
                     damage   = { min = 25, max = 50 },
                     distance = 350,
                     decay    = 1,
-                    speed    = 150,
+                    speed    = 125,
                     radius   = 5,
                 },
                 sight  = { distance = 400, periphery = _.__pi / 4 },
@@ -148,15 +149,21 @@ Config = {
         },
         quest = {
             {
-                text   = 'Talk to Commander Scott.',
+                text   = 'Contact Commander Scott on planet for assignment.',
                 sheet  = 'avatars',
                 sprite = 'ensign',
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Locate Ensign Victor on the Eastside.',
+                text   = 'Locate Ensign Victor in the East Castle.',
                 sheet  = 'avatars',
                 sprite = 'ensign',
+                sx = 5, sy = 5,
+            },
+            {
+                text   = 'Find the Castle\'s exit and locate Bishop and the Captain.',
+                sheet  = 'avatars',
+                sprite = 'engineer',
                 sx = 5, sy = 5,
             },
             {
@@ -177,7 +184,7 @@ Config = {
         hud = {
             image    = lg.newImage('res/ui/HUD_health.png'),
             location = 'Warp Room',
-            quest    = 2,
+            quest    = 1,
             weapon   = 'pistol',
             stat     = {
                 health = { now = 100, max = 100 },
