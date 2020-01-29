@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 17,
-  nextobjectid = 136,
+  nextobjectid = 139,
   properties = {},
   tilesets = {
     {
@@ -1086,21 +1086,6 @@ return {
           properties = {
             ["area"] = "castle"
           }
-        },
-        {
-          id = 133,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 640,
-          y = 704,
-          width = 32,
-          height = 144,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["area"] = "castle"
-          }
         }
       }
     },
@@ -1122,19 +1107,6 @@ return {
           shape = "rectangle",
           x = 704,
           y = 864,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 107,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 848,
-          y = 272,
           width = 16,
           height = 16,
           rotation = 0,
@@ -1455,6 +1427,32 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 136,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 1072,
+          y = 720,
+          width = 76.5,
+          height = 30,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 137,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 1024,
+          y = 624,
+          width = 76.5,
+          height = 30,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -1648,7 +1646,7 @@ return {
           shape = "rectangle",
           x = 720,
           y = 880,
-          width = 16,
+          width = 32,
           height = 32,
           rotation = 0,
           visible = true,
@@ -1666,10 +1664,10 @@ return {
           name = "Translate",
           type = "",
           shape = "rectangle",
-          x = 112,
-          y = 784,
-          width = 16,
-          height = 32,
+          x = 64,
+          y = 832,
+          width = 128,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {
@@ -1762,69 +1760,29 @@ return {
           visible = true,
           properties = {
             ["checkpoint"] = 71,
-            ["quest"] = 6,
-            ["require"] = 5,
-            ["scene"] = "cut06"
+            ["quest"] = 5,
+            ["require"] = 4,
+            ["scene"] = "cut05"
           }
         },
         {
-          id = 132,
-          name = "Translate",
+          id = 138,
+          name = "Cutscene",
           type = "",
           shape = "rectangle",
-          x = 592,
-          y = 880,
+          x = 64,
+          y = 720,
           width = 32,
           height = 32,
           rotation = 0,
           visible = true,
           properties = {
-            ["Goal.x"] = 656,
-            ["Goal.y"] = 872,
-            ["Target"] = 133,
-            ["affects"] = "Player",
-            ["delay"] = 1,
-            ["once"] = true
-          }
-        },
-        {
-          id = 134,
-          name = "Translate",
-          type = "",
-          shape = "rectangle",
-          x = 128,
-          y = 784,
-          width = 16,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["Goal.x"] = 656,
-            ["Goal.y"] = 776,
-            ["Target"] = 133,
-            ["affects"] = "Player",
-            ["delay"] = 1.5,
-            ["once"] = true
-          }
-        },
-        {
-          id = 135,
-          name = "Translate",
-          type = "",
-          shape = "rectangle",
-          x = 736,
-          y = 880,
-          width = 16,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["Goal.x"] = 656,
-            ["Goal.y"] = 776,
-            ["Target"] = 133,
-            ["affects"] = "Player",
-            ["delay"] = 1.5,
-            ["once"] = true
+            ["checkpoint"] = 71,
+            ["image"] = "mine03",
+            ["quest"] = 6,
+            ["require"] = 5,
+            ["scene"] = "cut06",
+            ["transition"] = "switch"
           }
         }
       }

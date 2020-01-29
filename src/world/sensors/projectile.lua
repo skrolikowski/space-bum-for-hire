@@ -79,26 +79,30 @@ end
 function Projectile:beginContact(other, col)
 	if col:isTouching() then
 		if self.affects[other.name] or self.affects[other.category] then
-			local cx, cy   = self.body:getPosition()
-			local px, py   = Gamestate:current().player:getPosition()
-			local distance = Vec2(cx, cy):distance(Vec2(px, py))
-			local volume   = _.__max(0, 1 - distance / Config.width)
-			local clip
+			local player = Gamestate:current().player
 
-			if other.name == 'Environment' then
-			-- Impact w/ Environment
-				clip = _.__random(#Config.audio.weapon.impact)
+			if player and not player:isDestroyed() then
+				local cx, cy   = self.body:getPosition()
+				local px, py   = Gamestate:current().player:getPosition()
+				local distance = Vec2(cx, cy):distance(Vec2(px, py))
+				local volume   = _.__max(0, 1 - distance / Config.width)
+				local clip
 
-				Config.audio.weapon.impact[clip]:setVolume(volume)
-				Config.audio.weapon.impact[clip]:play()
-				Config.audio.weapon.impact[clip]:seek(0)
-			elseif other.name == 'HitBox' then
-			-- Impact w/ Unit
-				clip = _.__random(#Config.audio.weapon.pierce)
+				if other.category == 'Environment' then
+				-- Impact w/ Environment
+					clip = _.__random(#Config.audio.weapon.impact)
 
-				Config.audio.weapon.pierce[clip]:setVolume(volume)
-				Config.audio.weapon.pierce[clip]:play()
-				Config.audio.weapon.pierce[clip]:seek(0)
+					Config.audio.weapon.impact[clip]:setVolume(volume)
+					Config.audio.weapon.impact[clip]:play()
+					Config.audio.weapon.impact[clip]:seek(0)
+				elseif other.name == 'HitBox' then
+				-- Impact w/ Unit
+					clip = _.__random(#Config.audio.weapon.pierce)
+
+					Config.audio.weapon.pierce[clip]:setVolume(volume)
+					Config.audio.weapon.pierce[clip]:play()
+					Config.audio.weapon.pierce[clip]:seek(0)
+				end
 			end
 			--
 			self:destroy()

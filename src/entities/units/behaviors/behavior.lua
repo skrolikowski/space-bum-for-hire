@@ -12,7 +12,7 @@ function Behavior:new(name, host)
 	self.name    = host.name .. '_' .. name
 	self.host    = host
 	self.sensors = {}
-	self.color   = Config.color.white
+	self.color   = {1,1,1,1}
 
 	-- scale to fit bounds
 	self.sx = w / sw

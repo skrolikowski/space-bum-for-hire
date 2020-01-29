@@ -30,7 +30,7 @@ function Soundtrack:addFolder(dir)
         files = love.filesystem.getDirectoryItems(dir)
 
         for _, file in pairs(files) do
-            table.insert(self.sources, love.audio.newSource(dir .. '/' .. file, "static"))
+            table.insert(self.sources, love.audio.newSource(dir .. '/' .. file, "stream"))
         end
     end
 end

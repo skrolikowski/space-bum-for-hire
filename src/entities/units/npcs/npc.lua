@@ -249,6 +249,19 @@ function NPC:idea(direction, delay, expression)
 	end)
 end
 
+-- Laugh
+--
+function NPC:laugh(direction, delay, expression)
+	self.talking    = true
+	self.dialogue   = Dialogue['emote'](self, expression or 'speech', 'emote_laugh')
+	self.isMirrored = direction == 'left'
+	
+	self.handle = self.timer:after(delay, function()
+		self.talking = false
+		self.dialogue = nil
+	end)
+end
+
 -- Happy
 --
 function NPC:happy(direction, delay, expression)

@@ -12,7 +12,7 @@ function Gameplay:init(data)
     self.hud = UI['player_hud']()
 
     -- flags
-    self.isPaused = false
+    self.isOnShip = false
 
     -- default foreground canvas
 	self.foreground = lg.newCanvas(self.width, self.height)
@@ -33,6 +33,11 @@ function Gameplay:enter(from, ...)
 
 	-- default controls
 	self:setControl('none')
+
+	-- start quest!
+    if Config.world.hud.quest == 0 then
+	    self:setQuest(1)
+	end
 
 	-- update hud
 	self.hud:set({
@@ -98,10 +103,9 @@ function Gameplay:setQuest(questId)
 	end
 end
 
--- Pause Game
--- Beam Player to Spaceship
+-- Teleport to Spaceship
 --
-function Gameplay:pause()
+function Gameplay:teleport()
 	local cx, cy = self.player:getPosition()
 	local w, h   = Config.spawn.width, Config.spawn.height
 	local x, y   = (cx-w/2), (cy-h/2)
@@ -109,20 +113,20 @@ function Gameplay:pause()
 	local row    = _.__floor(y / Config.tileSize)
 	local checkpoint
 
-	if self.isPaused then
-		checkpoint = Config.world.checkpoint.unpause
+	if self.isOnShip then
+		checkpoint = Config.world.checkpoint.offship
 
-		-- update pause checkpoint
-		Config.world.checkpoint.pause = {
+		-- update `onship` checkpoint
+		Config.world.checkpoint.onship = {
 			map = self.id,
 			col = col,
 			row = row,
 		}
 	else
-		checkpoint = Config.world.checkpoint.pause
+		checkpoint = Config.world.checkpoint.onship
 
-		-- update unpause checkpoint
-		Config.world.checkpoint.unpause = {
+		-- update `offship` checkpoint
+		Config.world.checkpoint.offship = {
 			map = self.id,
 			col = col,
 			row = row,
@@ -138,7 +142,7 @@ function Gameplay:pause()
 		})
 	end)
 	--
-	self.isPaused = not self.isPaused
+	self.isOnShip = not self.isOnShip
 end
 
 -- Update HUD

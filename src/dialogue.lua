@@ -1,10 +1,7 @@
 -- Dialogue
--- Shane Krolikowski
 --
 
 Dialogue_ = {
-	-- quip remarks made when in sight
-	-- can be toggled on/off
 	comment = {
 		Doctor = {
 	        "I wish I was back at Harvard... watching a hospital drama.",
@@ -20,7 +17,8 @@ Dialogue_ = {
 	    	"I sure hope the rest of the crew is okay...",
 	    	"We are in search of rare crystals, but found monsters instead.",
 	    	"Send the Ensign, they said. He'll be fun, they said...",
-	    	"The Captain can be pretty adventurous, she watches Rick & Morty often."
+	    	"The Captain can be pretty adventurous, she watches Rick & Morty often.",
+	    	"There is a parkour course on the Spaceship. Have you seen it?",
 	    },
 	    Engineer = {
 	    	"Make sure you're close to the enemy when using the shotgun. Shells decay faster than bullets.",
@@ -32,7 +30,9 @@ Dialogue_ = {
 	    Captain = {
 	    	"They say the planet Titan is crawling with trolls.. they could sure use some help.",
 	    	"The Doctors may come off rude, but they're intentions are good.",
-	    	"Freddy's Milkshake Hut sells amazing milkshakes. Sadly they aren't in this sector.",
+	    	"Freddy's Milkshake Hut sells amazing milkshakes. Sadly they aren't even in this sector.",
+	    	"Bishop can drive me up a wall sometimes.. but I do find his impeccable logic helpful.",
+	    	"Scott and I met while at our University on IO, we plan to get married near the rings of Kryton.",
 	    },
 	}
 }

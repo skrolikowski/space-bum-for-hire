@@ -83,7 +83,7 @@ function Cut01:enter(from, ...)
 			isMirrored = true,
 			total = 4,
 		})
-		wait(3)
+		wait(2)
 		--
     	-- Roger & Clarence enter room together
     	Roger.visible = true

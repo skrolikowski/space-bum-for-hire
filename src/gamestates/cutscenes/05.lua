@@ -47,7 +47,7 @@ function Cut05:enter(from, ...)
 		visible = true,
 	})
 	Captain = Entities['Captain']({
-		x      = Config.tileSize * 15,
+		x      = Config.tileSize * 17,
 		y      = Config.tileSize * 14,
 		width  = Config.spawn.width,
 		height = Config.spawn.height,
@@ -56,14 +56,15 @@ function Cut05:enter(from, ...)
 
 	-- ACTION!!! ------------------
     self.timer:script(function(wait)
+    	--
     	-- Player & Captain enter scene..
-		Captain:move('left', 350, 2)
-		wait(1.5)
-		Double:huh('right', 1)
-		wait(2)
+		Captain:huh('right', 1)
+		wait(1)
+		Captain:interrupt():move('left', 350, 3)
+		wait(3)
 		--
 		-- Player & Captain meet..
-		Captain:say('left', 'Oh! Thank goodness!!', 3)
+		Captain:interrupt():say('left', 'Oh! Thank goodness!!', 3)
 		wait(3)
 		Captain:interrupt():shock('left', 1)
 		wait(1.5)
@@ -71,7 +72,7 @@ function Cut05:enter(from, ...)
 		wait(4)
 		Double:explain('right', 3)
 		wait(3.5)
-		Captain:say('left', 'Scott sent you? And the rest of the crew is okay? Well that\'s good.', 6)
+		Captain:say('left', 'Scott sent you? And the rest of the crew is okay? Well that\'s a relief.', 6)
 		wait(6.5)
 		Captain:say('left', 'I have been trying to contact everyone, but our Comm signal is down.', 6)
 		wait(6.5)
@@ -93,18 +94,15 @@ function Cut05:enter(from, ...)
 		wait(6)
 		Double:shock('right', 2)
 		wait(2.5)
+		Captain:say('left', 'Once we have the crystal, we could repair our ship and get off this dangerous planet!', 8)
+		wait(6)
+		Double:greed('right', 2)
+		wait(2.5)
+		Captain:say('left', 'Oh! ...and of course reimburse you for your services.', 8)
+		wait(6)
+		Double:okay('right', 2)
+		wait(3.5)
 		--
-		-- -- Player shares idea..
-		-- Double:interrupt():huh('right', 2, 'speech')
-		-- wait(2.5)
-		-- Captain:say('left', 'Of course! We can help you get home, but without the crystals we can\'t even power our ship.', 6.5)
-		-- wait(5.5)
-		-- Double:interrupt():okay('right', 2)
-		-- wait(2.5)
-		-- Captain:happy('left', 3)
-		-- wait(3.5)
-		-- Captain:interrupt():say('left', 'Great! Let me know when you\'re ready and I\'ll be right behind you.', 6)
-		-- wait(6.5)
 		--
 		-- ~ fin ~
 		self:complete()

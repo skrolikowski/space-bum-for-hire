@@ -40,4 +40,12 @@ function Cutscene:complete()
 	self:unregisterControls()
 end
 
+function Cutscene:draw()
+	Base.draw(self)
+	--
+	lg.setColor(Config.color.white)
+	lg.setFont(Config.ui.font.md)
+	lg.printf('SPACE to Skip', 25, Config.height - 100, Config.width, 'center')
+end
+
 return Cutscene

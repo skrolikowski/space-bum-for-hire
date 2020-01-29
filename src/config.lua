@@ -19,8 +19,8 @@ Config = {
             cut03  = 'res/maps/cut03.lua',
             cut04  = 'res/maps/cut04.lua',
             cut05  = 'res/maps/cut05.lua',
+            cut06  = 'res/maps/cut01.lua',
             -- gameplay
-            -- space00 = 'res/maps/space00.lua',
             space01 = 'res/maps/space01.lua',
             mount01 = 'res/maps/mount01.lua',
             mount02 = 'res/maps/mount02.lua',
@@ -145,7 +145,7 @@ Config = {
         --
         checkpoint = {
             player = { id = 171, map = 'mount01', col = 10, row = 69 },
-            pause  = {           map = 'space00', col = 5,  row = 17 },
+            onship = {           map = 'space01', col = 58, row = 70 },
         },
         quest = {
             {
@@ -155,28 +155,34 @@ Config = {
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Locate Ensign Victor in the East Castle.',
+                text   = 'Locate Ensign Victor. His was last scene going towards the Castle in the East.',
                 sheet  = 'avatars',
                 sprite = 'ensign',
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Find the Castle\'s exit and locate Bishop and the Captain.',
+                text   = 'Find the Castle\'s exit to locate Bishop and Captain Jenny.',
                 sheet  = 'avatars',
                 sprite = 'engineer',
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Find Captain Jenny in West End.',
+                text   = 'Captain Jenny may be in danger! Make your way East through the cave into the West End.',
                 sheet  = 'avatars',
                 sprite = 'captain',
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Find the dilithium crystals.',
+                text   = 'Retrieve the rare crystal from the cave where you found The Captain.',
                 sheet  = 'item',
                 sprite = 'mine03',
                 sx = 3, sy = 3,
+            },
+            {
+                text   = 'Congratulations!.',
+                sheet  = 'avatars',
+                sprite = 'cyberpunk',
+                sx = 5, sy = 5,
             }
         },
         -- Player HUD
@@ -184,7 +190,7 @@ Config = {
         hud = {
             image    = lg.newImage('res/ui/HUD_health.png'),
             location = 'Warp Room',
-            quest    = 1,
+            quest    = 0,
             weapon   = 'pistol',
             stat     = {
                 health = { now = 100, max = 100 },

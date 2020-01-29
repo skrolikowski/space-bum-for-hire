@@ -12,12 +12,11 @@ require 'src.gamestates'
 function love.conf(t)
     io.stdout:setvbuf('no')
 
-    t.identity = 'not-moe-jam-9'
+    t.identity = 'space-bum-for-hire'
     t.version  = '11.2'
     t.console  = false
 
-    t.window.title      = 'Star Crusader'
-    -- t.window.icon       = 'res/ui/crossair_black.png'
+    t.window.title      = 'Space Bum For Hire'
     t.window.x          = 200
     t.window.y          = 25
     t.window.width      = 1280

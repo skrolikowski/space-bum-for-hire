@@ -22,6 +22,7 @@ function Death:enter(from, ...)
 	self.from    = from -- previous screen
 	self.world   = from.world
 	self.hud     = from.hud
+	self.control = from.control
 	--
 	self.timer = Timer.new()
 	self.timer:script(function(wait)
@@ -31,6 +32,12 @@ function Death:enter(from, ...)
 		wait(1)
 		self:setControl('death')
 	end)
+end
+
+function Death:leave()
+	self:unregisterControls()
+	--
+	Base.leave(self)
 end
 
 -- Load last checkpoint
@@ -72,7 +79,7 @@ function Death:draw()
 	lg.setColor(self.color2)
     lg.setFont(Config.ui.font.md)
 	lg.printf('[C]ontinue', Config.width/4, Config.height/2, Config.width/2, 'left')
-	lg.printf('[ESC]/Quit', Config.width/4, Config.height/2, Config.width/2, 'right')
+	lg.printf('[Q]uit', Config.width/4, Config.height/2, Config.width/2, 'right')
 end
 
 return Death

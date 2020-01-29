@@ -51,7 +51,7 @@ function Player:keyOn(key)
 		self.axis.x = 1
 		self.running    = true
 		self.isMirrored = false
-	elseif key == 'space_on' then
+	elseif key == 'jump_on' then
 	-- Jump
 		self.jumping = true
 	end
@@ -72,7 +72,7 @@ function Player:keyOff(key)
 	elseif key == 'w' then
 	-- North
 		self.axis.y = 0
-	elseif key == 'space_off' then
+	elseif key == 'jump_off' then
 	-- Terminate Jump
 		self:terminateJump()
 	end
@@ -191,7 +191,7 @@ function Player:getAimAngle()
 	-- end
 end
 
--- Switch weapon
+-- Switch weapon (direct)
 --
 function Player:setWeapon(name)
 	if self.weapon then
@@ -208,6 +208,16 @@ function Player:setWeapon(name)
 	else
 	-- Init
 		self.weapon = Weapons[name](self)
+	end
+end
+
+-- Switch weapon (toggle)
+--
+function Player:toggleWeapon()
+	if self.weapon.name == 'pistol' then
+		self:setWeapon('shotgun')
+	else
+		self:setWeapon('pistol')
 	end
 end
 
