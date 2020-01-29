@@ -131,8 +131,8 @@ end
 -- Draw Fireball
 --
 function Fireball:draw()
-	lg.setColor(Config.color.sensor.projectile)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.projectile)
+	-- self.shape:draw()
 	--
 	local cx, cy = self.body:getPosition()
 	local w, h   = self.sprite:dimensions()

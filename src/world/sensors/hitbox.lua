@@ -35,8 +35,8 @@ end
 -- Draw HitBox
 --
 function HitBox:draw()
-	lg.setColor(Config.color.sensor.hitbox)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.hitbox)
+	-- self.shape:draw()
 end
 
 return HitBox

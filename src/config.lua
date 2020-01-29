@@ -317,6 +317,7 @@ Config = {
         shotgunPickup = la.newSource('res/sfx/effects/SoundBible/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
         ammoPickup    = la.newSource('res/sfx/effects/SoundBible/Pump Shotgun-SoundBible.com-1653268682.wav', 'static'),
         itemPickup    = la.newSource('res/sfx/effects/SoundBible/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
+        statPickup    = la.newSource('res/sfx/effects/SoundBible/Pop Clip In-SoundBible.com-583746573.wav', 'static'),
     },
     image = {
         cast = {

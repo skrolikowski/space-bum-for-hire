@@ -7,9 +7,12 @@ Control_ = {
 		-- key_escape_on = function() Gamestate:current():quit() end,
 	},
 	cutscene = {
-		key_escape_on = function() Gamestate.push(Gamestates['pause']) end,
-		key_p_on      = function() Gamestate.push(Gamestates['pause']) end,
-		key_space_on  = function() Gamestate.current():skip()          end,
+		key_escape_on    = function() Gamestate.push(Gamestates['pause']) end,
+		key_p_on         = function() Gamestate.push(Gamestates['pause']) end,
+		key_space_on     = function() Gamestate.current():skip()          end,
+		button_Start_on  = function() Gamestate.push(Gamestates['pause']) end,
+		button_A_on      = function() Gamestate:current():skip()    end,
+		button_B_on      = function() Gamestate:current():skip()    end,
 	},
 	gameplay = {
 		-- keyboard
@@ -53,6 +56,7 @@ Control_ = {
 		button_R_off    = function() Gamestate:current().player:setLock(false) end,
 		button_L_on     = function() Gamestate:current().player:toggleWeapon() end,
 		button_Start_on = function() Gamestate.push(Gamestates['pause']) end,
+		button_Select_on = function() Gamestate:current():teleport() end,
 	},
 	pause = {
 		key_escape_on    = function() Gamestate:current():unpause() end,

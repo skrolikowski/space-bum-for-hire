@@ -74,8 +74,8 @@ end
 
 -- Draw Event
 function Event:draw()
-	lg.setColor(Config.color.sensor.event)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.event)
+	-- self.shape:draw()
 end
 
 return Event
