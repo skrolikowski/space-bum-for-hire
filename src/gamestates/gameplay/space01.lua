@@ -25,6 +25,16 @@ function Space01:init()
 	lg.setCanvas()
 end
 
+-- Teardown
+--
+function Space01:leave()
+	Gameplay.leave(self)
+	--
+	self.questText:destroy()
+end
+
+-- Enter
+--
 function Space01:enter(from, ...)
 	Gameplay.enter(self, from, ...)
 	--
@@ -36,7 +46,7 @@ function Space01:enter(from, ...)
 
 	-- Display current quest
 	--
-    UI['text']({
+    self.questText = UI['text']({
     	x      = Config.tileSize*65,
     	y      = Config.tileSize*63,
     	width  = Config.tileSize*10,

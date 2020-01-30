@@ -80,12 +80,8 @@ function HUD:set(payload)
 		self.dirty = true
 	elseif payload.name == 'quest' then
 	-- Set Quest
-		local currQuest = Config.world.quest[Config.world.hud.quest]
-		local newQuest  = Config.world.quest[payload.value]
-
-		-- update quest
 		Config.world.hud.quest = payload.value
-		self.quest             = newQuest
+		self.quest             = Config.world.quest[payload.value]
 		self.dirty             = true
 	else
 	-- Set Stat/Ammo

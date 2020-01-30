@@ -143,7 +143,7 @@ end
 -- Controls - Button Pressed
 function love.gamepadpressed(joystick, button)
     -- rename
-    button = _BtnTrns[button]   
+    button = _.__gsub(button, "^%l", _.__upper)
 
     _:dispatch('button_' .. button .. '_on')
     _Buttons[button] = 0
@@ -152,7 +152,7 @@ end
 -- Controls - Button Released
 function love.gamepadreleased(joystick, button)
     -- rename
-    button = _BtnTrns[button]   
+    button = _.__gsub(button, "^%l", _.__upper) 
 
     _:dispatch('button_' .. button .. '_off')
     _Buttons[button] = nil

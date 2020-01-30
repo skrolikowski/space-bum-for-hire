@@ -19,6 +19,7 @@ Dialogue_ = {
 	    	"Send the Ensign, they said. He'll be fun, they said...",
 	    	"The Captain can be pretty adventurous, she watches Rick & Morty often.",
 	    	"There is a parkour course on the Spaceship. Have you seen it?",
+	    	"You can use your personal transporter to visit our ship. Press [TAB].",
 	    },
 	    Engineer = {
 	    	"Make sure you're close to the enemy when using the shotgun. Shells decay faster than bullets.",
@@ -34,6 +35,7 @@ Dialogue_ = {
 	    	"Freddy's Milkshake Hut sells amazing milkshakes. Sadly they aren't even in this sector.",
 	    	"Bishop can drive me up a wall sometimes.. but I do find his impeccable logic helpful.",
 	    	"Scott and I met while at our University on IO, we plan to get married near the rings of Kryton.",
+	    	"I wish I had a personal transporter. You just have to press [TAB] and away you go!",
 	    },
 	}
 }

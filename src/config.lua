@@ -144,8 +144,9 @@ Config = {
         -- Player Checkpoint
         --
         checkpoint = {
-            player = { id = 171, map = 'mount01', col = 10, row = 69 },
-            onship = {           map = 'space01', col = 58, row = 70 },
+            player  = { id = 171, map = 'mount01', col = 10, row = 69 },
+            onship  = {           map = 'space01', col = 58, row = 70 },
+            offship = {           map = 'mount01', col = 10, row = 69 },
         },
         quest = {
             {

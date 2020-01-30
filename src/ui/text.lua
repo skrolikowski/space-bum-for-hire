@@ -35,6 +35,13 @@ function Text:new(data)
 	self.fixture:setSensor(true)
 end
 
+-- Flag for removal
+--
+function Text:destroy()
+	self.remove = true
+	self.body:destroy()
+end
+
 function Text:beginContact(other, col)
 	--
 end

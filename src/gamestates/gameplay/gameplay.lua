@@ -11,9 +11,6 @@ function Gameplay:init(data)
 	-- UI/HUD
     self.hud = UI['player_hud']()
 
-    -- flags
-    self.isOnShip = false
-
     -- default foreground canvas
 	self.foreground = lg.newCanvas(self.width, self.height)
 	lg.setCanvas(self.foreground)
@@ -113,26 +110,24 @@ function Gameplay:teleport()
 	local row    = _.__floor(y / Config.tileSize)
 	local checkpoint
 
-	if self.isOnShip then
-		checkpoint = Config.world.checkpoint.offship
+	if self.id == 'space01' then
+		checkpoint = _:copy(Config.world.checkpoint.offship)
 
-		-- update `onship` checkpoint
 		Config.world.checkpoint.onship = {
 			map = self.id,
 			col = col,
 			row = row,
 		}
 	else
-		checkpoint = Config.world.checkpoint.onship
+		checkpoint = _:copy(Config.world.checkpoint.onship)
 
-		-- update `offship` checkpoint
 		Config.world.checkpoint.offship = {
 			map = self.id,
 			col = col,
 			row = row,
 		}
 	end
-
+	--
 	--
 	self:playerExitBeam(x, y, function()
 		Gamestate.switch(Gamestates[checkpoint.map], {
@@ -141,8 +136,6 @@ function Gameplay:teleport()
 			row  = checkpoint.row,
 		})
 	end)
-	--
-	self.isOnShip = not self.isOnShip
 end
 
 -- Update HUD
