@@ -14,12 +14,13 @@ function Teleport:new(data)
 
 	-- properties
 	self.map     = data.properties.map
-	self.exit    = data.properties.exit
-	self.method  = data.properties.method
-	self.section = data.properties.section
+	self.exit    = data.properties.exit    or 'left'
+	self.method  = data.properties.method  or 'door'
+	self.section = data.properties.section or false
 
 	-- flags
-	self.onTouch = data.properties.onTouch or false
+	self.onTouch     = data.properties.onTouch or false
+	self.teleporting = false
 
 	_:on('player_request', function() self:request() end)
 end
@@ -33,12 +34,15 @@ end
 -- Some events require a request
 --
 function Teleport:request()
-	if self.hosting then
+	if self.hosting and not self.teleporting then
 		local cx, cy = self.hosting:getPosition()
+
+		self.teleporting = true
 
 		if self.method == 'door' then
 		-- Exit into doorway
 			Gamestate:current():playerExitDoor(cx, cy, self.exit, function()
+				self.teleporting = false
 				self:teleport({
 					from    = Gamestate:current().id,
 					section = self.section
@@ -47,6 +51,7 @@ function Teleport:request()
 		elseif self.method == 'beam' then
 		-- Beam me up!
 			Gamestate:current():playerExitBeam(cx, cy, function()
+				self.teleporting = false
 				self:teleport({
 					from    = Gamestate:current().id,
 					section = self.section

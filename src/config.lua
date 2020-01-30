@@ -145,7 +145,7 @@ Config = {
         --
         checkpoint = {
             player  = { id = 171, map = 'mount01', col = 10, row = 69 },
-            onship  = {           map = 'space01', col = 58, row = 70 },
+            onship  = {           map = 'space01', col = 58, row = 90 },
             offship = {           map = 'mount01', col = 10, row = 69 },
         },
         quest = {
@@ -459,6 +459,7 @@ Config = {
                 castle    = lg.newImage('res/sprites/platforms/castle.png'),
                 spaceship = lg.newImage('res/sprites/platforms/spaceship.png'),
                 boss      = lg.newImage('res/sprites/platforms/boss.png'),
+                half      = lg.newImage('res/sprites/platforms/half.png'),
             },
             pillar = {
                 castle = lg.newImage('res/sprites/pillars/castle.png'),

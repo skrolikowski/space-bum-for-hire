@@ -38,9 +38,9 @@ function love.load()
     --
     ---------------------------------------------
     -- local checkpoint = {
-    --     map = 'mount01',
-    --     col = 111,
-    --     row = 29,
+    --     map = 'space01',
+    --     col = 58,
+    --     row = 90,
     -- }
     -- Gamestate.switch(Gamestates[checkpoint.map], {
     --     from = 'beam',

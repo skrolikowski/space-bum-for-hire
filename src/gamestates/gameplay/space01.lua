@@ -38,17 +38,16 @@ end
 function Space01:enter(from, ...)
 	Gameplay.enter(self, from, ...)
 	--
-	-- -- Player will enter from..
-	-- if self.settings.from == 'space00' then
-	-- -- Spaceship - Main Room
-	-- 	self:playerEnterDoor(Config.tileSize*5, Config.tileSize*50, 'right')
-	-- end
+	-- Retry Parkour!!
+	if self.settings.from == self.id then
+		self:playerEnterBeam(Config.tileSize*58, Config.tileSize*62)
+	end
 
 	-- Display current quest
 	--
     self.questText = UI['text']({
     	x      = Config.tileSize*65,
-    	y      = Config.tileSize*63,
+    	y      = Config.tileSize*83,
     	width  = Config.tileSize*10,
     	height = Config.tileSize*10,
     	visible = true,
