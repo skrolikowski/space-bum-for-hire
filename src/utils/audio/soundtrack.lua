@@ -57,7 +57,11 @@ function Soundtrack:play(index, loop)
 end
 
 function Soundtrack:shuffle()
-    self.sources = Util:shuffle(self.sources)
+    for i = #self.sources, 1, -1 do
+        local j = _.__random(i, #self.sources)
+
+        self.sources[i], self.sources[j] = self.sources[j], self.sources[i]
+    end
 
     return self
 end

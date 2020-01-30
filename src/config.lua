@@ -29,8 +29,8 @@ Config = {
         pickup = {
             health  = { sm = 35, md = 50 },
             shield  = {},
-            bullets = { sm = 12, md = 24, lg = 50 },
-            shells  = { sm = 4, md  = 8,  lg = 20 },
+            bullets = { sm = 8, md = 12 },
+            shells  = { sm = 4, md  = 8 },
         },
         -- Enemy Settings
         --
@@ -173,7 +173,7 @@ Config = {
                 sx = 5, sy = 5,
             },
             {
-                text   = 'Retrieve the rare crystal from the cave where you found The Captain.',
+                text   = 'Retrieve the crystals Captain Jenny dropped in the cave before a hostile attacked her.',
                 sheet  = 'item',
                 sprite = 'mine03',
                 sx = 3, sy = 3,
@@ -197,8 +197,8 @@ Config = {
                 shield = { now = 0,   max = 35  },
             },
             ammo = {
-                bullets = { now = 24, max = 50 },
-                shells  = { now = 8,  max = 20 },
+                bullets = { now = 12, max = 24 },
+                shells  = { now = 4,  max = 12 },
             },
         },
         weapon = {

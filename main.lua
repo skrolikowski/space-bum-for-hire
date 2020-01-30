@@ -38,16 +38,16 @@ function love.load()
     --
     ---------------------------------------------
     -- local checkpoint = {
-    --     map = 'mount03',
-    --     col = 33,
-    --     row = 54,
+    --     map = 'mount01',
+    --     col = 111,
+    --     row = 29,
     -- }
     -- Gamestate.switch(Gamestates[checkpoint.map], {
     --     from = 'beam',
     --     col  = checkpoint.col,
     --     row  = checkpoint.row
     -- })
-    -- Config.world.hud.quest=5
+    -- Config.world.hud.quest=4
     -- Gamestate:current().hud:set({
     --     name  = 'quest',
     --     value = Config.world.hud.quest
@@ -57,14 +57,13 @@ function love.load()
     --
     Soundtrack:new(0.33)
     Soundtrack:addFolder('res/music/DOS-88')
-    Soundtrack:shuffle()
-    Soundtrack:play()
+    Soundtrack:shuffle():play()
 end
 
 -- Update
 --
 function love.update(dt)
-    -- Soundtrack:update(dt)
+    Soundtrack:update(dt)
     --
     -- Controls - Key Down
     for code, time in pairs(_Keys) do

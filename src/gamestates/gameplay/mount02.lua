@@ -34,7 +34,7 @@ function Mount02:enter(from, ...)
         elseif self.settings['section'] == 'B' then
             self:playerEnterDoor(0, Config.tileSize*26, 'right')
         elseif self.settings['section'] == 'C' then
-            self:playerEnterDoor(0, Config.tileSize*32, 'right')
+            self:playerEnterDoor(Config.tileSize*2, Config.tileSize*48, 'right')
         else
         -- Error!
             error('Missing map section!')

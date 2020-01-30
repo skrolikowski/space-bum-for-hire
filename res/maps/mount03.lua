@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 17,
-  nextobjectid = 139,
+  nextobjectid = 144,
   properties = {},
   tilesets = {
     {
@@ -205,7 +205,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "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"
+      data = "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"
     },
     {
       type = "tilelayer",
@@ -302,7 +302,7 @@ return {
           shape = "rectangle",
           x = 1312,
           y = 160,
-          width = 144,
+          width = 128,
           height = 16,
           rotation = 0,
           visible = true,
@@ -352,9 +352,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 1328,
+          x = 1312,
           y = 544,
-          width = 112,
+          width = 128,
           height = 16,
           rotation = 0,
           visible = true,
@@ -1035,7 +1035,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 240,
-          y = 928,
+          y = 944,
           width = 80,
           height = 16,
           rotation = 0,
@@ -1050,7 +1050,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 336,
-          y = 928,
+          y = 944,
           width = 80,
           height = 16,
           rotation = 0,
@@ -1150,7 +1150,9 @@ return {
           height = 16,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["facing"] = "S"
+          }
         },
         {
           id = 41,
@@ -1163,7 +1165,9 @@ return {
           height = 16,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["facing"] = "S"
+          }
         },
         {
           id = 78,
@@ -1314,7 +1318,7 @@ return {
           name = "DarkMage",
           type = "",
           shape = "rectangle",
-          x = 608,
+          x = 544,
           y = 112,
           width = 92,
           height = 93,
@@ -1328,9 +1332,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 64,
-          y = 720,
-          width = 132,
-          height = 125,
+          y = 719.152,
+          width = 128,
+          height = 121.212,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1353,7 +1357,7 @@ return {
           name = "DarkMage",
           type = "",
           shape = "rectangle",
-          x = 1312,
+          x = 1264,
           y = 160,
           width = 92,
           height = 93,
@@ -1429,12 +1433,12 @@ return {
           properties = {}
         },
         {
-          id = 136,
+          id = 137,
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 1072,
-          y = 720,
+          x = 1024,
+          y = 624,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1442,12 +1446,12 @@ return {
           properties = {}
         },
         {
-          id = 137,
+          id = 139,
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 1024,
-          y = 624,
+          x = 1008,
+          y = 432,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1545,7 +1549,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 240,
-          y = 912,
+          y = 928,
           width = 80,
           height = 16,
           rotation = 0,
@@ -1567,7 +1571,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 336,
-          y = 912,
+          y = 928,
           width = 80,
           height = 16,
           rotation = 0,
@@ -1588,10 +1592,10 @@ return {
           name = "Translate",
           type = "",
           shape = "rectangle",
-          x = 352,
-          y = 848,
-          width = 48,
-          height = 48,
+          x = 384,
+          y = 800,
+          width = 16,
+          height = 112,
           rotation = 0,
           visible = true,
           properties = {
@@ -1727,7 +1731,7 @@ return {
           properties = {
             ["category"] = "stat",
             ["name"] = "health",
-            ["value"] = "md"
+            ["value"] = "sm"
           }
         },
         {
@@ -1770,8 +1774,8 @@ return {
           name = "Cutscene",
           type = "",
           shape = "rectangle",
-          x = 64,
-          y = 720,
+          x = 48,
+          y = 656,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1783,6 +1787,57 @@ return {
             ["require"] = 5,
             ["scene"] = "cut06",
             ["transition"] = "switch"
+          }
+        },
+        {
+          id = 140,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 1536,
+          y = 192,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "sm"
+          }
+        },
+        {
+          id = 141,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 144,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "bullets",
+            ["value"] = "sm"
+          }
+        },
+        {
+          id = 143,
+          name = "Pickup",
+          type = "",
+          shape = "rectangle",
+          x = 1392,
+          y = 112,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["category"] = "ammo",
+            ["name"] = "shells",
+            ["value"] = "sm"
           }
         }
       }

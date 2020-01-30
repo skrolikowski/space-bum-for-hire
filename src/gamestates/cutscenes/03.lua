@@ -62,7 +62,7 @@ function Cut03:enter(from, ...)
 		wait(2)
 		--
 		-- Ensign Victor is caught off guard..
-		Victor:interrupt():say('left', 'Yikes! You made quite the entrance. Remind me to bring you to the next party.', 8)
+		Victor:interrupt():say('left', 'Yikes! You made quite the entrance. Remind me to bring you to the next party I go to.', 8)
 		wait(7)
 		Double:huh('right', 2)
 		wait(2)

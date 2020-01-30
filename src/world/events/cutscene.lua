@@ -23,7 +23,7 @@ end
 --
 function Cutscene:beginContact(other, col)
 	if col:isTouching() then
-		if other.name == 'Player' then
+		if other.name == 'Player' and not other.dying then
 			if self:passesRequirements() then
 				-- set checkpoint and new quest
 				Gamestate:current():setCheckpoint(self.checkpoint)
@@ -38,7 +38,7 @@ end
 -- Trigger cutscene
 --
 function Cutscene:trigger()
-	self.timer:after(0.5, function()
+	self.timer:after(1, function()
 		Gamestate[self.transition](Gamestates[self.scene])
 	end)
 end

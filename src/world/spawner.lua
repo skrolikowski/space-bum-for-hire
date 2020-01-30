@@ -42,13 +42,6 @@ function Spawner:reset()
 	self:spawnEvents()
 end
 
--- Respawn Request
---
-function Spawner:respawn()
-	self:spawnUnits()
-	self:spawnEvents()
-end
-
 -- Spawn Events
 -- Events are sensors, which cause things to happen.
 --
@@ -56,8 +49,12 @@ function Spawner:spawnEvents()
 	if self.layers['Events'] then
 		for __, event in pairs(self.layers['Events']) do
 			if event.name then
-				if not self.world:fetchEntityById(event.id) then
-					Events[event.name](event)
+				local existing = self.world:fetchEntityById(event.id)
+
+				if not existing then
+				-- Spawn Event
+				-- *Copy as to not overwrite
+					Events[event.name](_:copy(event))
 				end
 			else
 			-- Error!

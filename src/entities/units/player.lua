@@ -25,6 +25,7 @@ function Player:new(data)
 
 	-- flags
 	self.lockedIn = false
+	self.dying    = false
 
 	-- sprite, for behaviors
 	self.sprite = Config.image.cast['player']
@@ -117,7 +118,10 @@ end
 
 -- Player has died :(
 function Player:die()
-	Gamestate:current():playerDeath()
+	if Gamestate:current().playerDeath then
+		Gamestate:current():playerDeath()
+	end
+	--
 	self.dying = true
 	--
 	self.timer:after(2, function()

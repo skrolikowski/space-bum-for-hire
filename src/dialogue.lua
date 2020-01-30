@@ -28,6 +28,7 @@ Dialogue_ = {
 	    	"Your current quest will be relayed to the spaceship and also to your personal HUD module.",
 	    },
 	    Captain = {
+	    	"Do NOT touch the Boss Mage! It's an Insta-Death!!.",
 	    	"They say the planet Titan is crawling with trolls.. they could sure use some help.",
 	    	"The Doctors may come off rude, but they're intentions are good.",
 	    	"Freddy's Milkshake Hut sells amazing milkshakes. Sadly they aren't even in this sector.",

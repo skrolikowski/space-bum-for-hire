@@ -89,7 +89,9 @@ end
 function Boss:beginContact(other, col)
 	if col:isTouching() then
 		if other.name == 'HitBox' and other.host then
-			other.host:die()
+			if not self.dying then
+				other.host:die()
+			end
 		end
 	end
 end

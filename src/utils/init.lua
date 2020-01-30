@@ -28,18 +28,6 @@ function Util:clamp(value, min, max)
 	return _.__max(min, _.__min(value, max))
 end
 
--- Shuffle table
---
-function Util:shuffle(tbl)
-    for i = #tbl, 1, -1 do
-        local j = _.__random(i, #tbl)
-
-        tbl[i], tbl[j] = tbl[j], tbl[i]
-    end
-
-    return tbl
-end
-
 -- Create boolean hash table for convenience
 --
 function Util:toBoolean(value)

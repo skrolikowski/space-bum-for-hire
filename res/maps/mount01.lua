@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 26,
-  nextobjectid = 257,
+  nextobjectid = 261,
   properties = {},
   tilesets = {
     {
@@ -239,7 +239,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eAHtnclvJFcdxzuThHAgmSy3ZKbHM17CdgCBhLghQEJss+XCNm3P2B4IcECCC/dIiCW2Z3IhhLE78SI2gcQirnMiRElsz3BhyXjMuD35C3LP55vUz3opV3XX3tXd7yd9Xa+qXr167/ut96u3VXvh3kZjESyBrPZyjmuz3tNfl4yBTbTZAts5NHrgvmT38rGqZ2ABbRbBUg6NvpDj2upLPFp33ESbLbANzt3TaJwHsvuPNK6/E0jw5yde3wQs9SfKQ/c3GkfBw+AK2l4N9O1Pbvxdi2ZgEz23wDa4Ad6Xot4WnRefXvEMfADf+iD45z2N6y+Df4Cb6OxtOBh4P/X1AeDWYa/vcGirUnweqN4ePcI7GDwCrgBvw8HAMxRjgb7vGTQ9C85pi7/2NhwMfI5i6P27iK5LQHU3T194OFgZnlJI32epv6fR+AzwdXd4tFVJngn0LWIca7iYGezSNKmzJ4DazdauGuwS+dy7DLTQdhqo3az5I2/DxYDp67abh6uEo12aZersCtii/m4H7eY0jBznmmaACbaTYAp4K5eBY3Bs3J8gLA20HQMnwSkwDnbQ9jY4Ch4Gae0CabQCzLGdB5eBt3IZ+BYcG/fThKWBtjPgIrgEZkGTvtAJYPU3ba5e4YLf3Nf4zG+BbdOm4eOXx0ALbadB1vpbXs58ykUykLX+FpkHn1Z5DMTV36dGZI7wa1D79fLo7XvKZ2hbnY1oXz03Ivr+EgWeBx+mTfIRUKa57d4y7+OmbeuvzqKnrb/S/O+/RkTff0PGf8B30fZ7OfRdo46sR9QTl2u33eseLzOs9VcLaLkEbP3Vo5TzsRxlLTO/ZaX9u5zl7aDtPtBYwAfBh3KmV1Q5w+uvVHfPk7enapK/ospZdjoT9EUmgcYCvgOergl/D5GPo8DmGFR3r4LngGvuuyM8VqJndtTHr1bhYA2sgw1QFztNXs6As0BrN1R3o8x9d4THSvTMjvr41R4cdMA+uAvqYgvkZREsAa3dUN31lp6Bcb17wSSYAv2yJvfWvO9YkIdw3fXv3WzKzMLnHJgHlwNus6WU7yqbF5wJ8hCuu+H3br67jc7Vbv3d6KO+Ni/YDvLgrrs6R/vPWzYGVuEzSR84aeofzfieDPtnd93VFa9vUvoPxdtDX+sDqx98F2ge1voW6l8ISefIv59R30P+mXzk+bb7UEGH9MDzPfgep25YH1j94CmgeVjrW6h/ISSZI/898f4AsljYPy8G+mpdrPzzeeAtHwN30Eb9YWENrIN9kNbCazVs3CFuzYb5Cq3b2AWysH++6vV9l5gcf6XrXoBOSNs0fePwWg0bd4hbs2G+Qus2xgIdbX5hm/0b4Cb4ImOUXwJfBl8BXwWngbdkDEhb09Wtt2n7xr8mnWtgByyDFfAi6GaKezuA4rnfdz/CXMOj4Kdo+TPwc/AL8CzQHIS3ZAy4faVkV0THegOdbgV6mm7/D/ajr2DdFX5Z4xtClH2Wg6+g5YOko7Hp1wi/7uxHXeOPvZeBWbi1sY73nsm+Z7qdjNHNTdnaWO4xHy6OAfWVJoD8cZGmOrwLkpjaWFltk3u445pZ0xnW69RXKrr+GldRGj+OHk+AJjgBdtA2j776Xtgd17R7++27DESNdWi8w/ovScc4ovg0P+2e+waafhO0gNZC29pnN44PF8dA1FiHxjus/5JkjCMuNy2ek2kQZ6rfaj/Hta/irvPHq2VA/tbWVMjfyvdqK8j32vhFOFdNzklbr2+YmXrtaz2F+Vz5W/lebc332vhFVK5b6DsNvNWXgRfQcxmsgDZIa6rj3urNgL1Le/WJim4/15uV4cid6q/52bEeddG3nwdT82V0tTrMOPZMr7FJldLi+/bVYGhudTjpeEmTZ0Laen0HR99V9FoD6yCJ2TORJK6P050B66Pa7yLYGNU4708LnySs87Yfd05ji2PA4iveDpqqLdwBWvczybFe378sE28FeMvPgPqpLWC/i2BjVLMcs/DF4LztdzvnxnX7u7b2Z560wt+/WPv5DTS9BeyZyNKvys/IaKeg+b2LYB2dijJrPx9j/OO4MwbSq1+V9/6vksBr4HWwCbbANhhlU19H88O0h0ux46TdBGpf9epXlZKBEU90FV3XQJH116X0Arq2wDSYAd6qZWAPbTugrPp7DU2tfdX2+lYrLncbh/MJUPTaDrcgvv66bFQb1rs36VhF1pz5+puVufzXJRmrsD612xd2+8QT+PdJ0AygfrNB1+zwDKnPvAu8VctAknev9aln0Mr6w7Z1+87qdwvTDnSNzRFrnbu3ahko4t27g4bLgHVA7b17G218Qhu/3662JP5uxgDcH1hR715pTP+nPQZ2jzTabXBwEx+olAHq14GtEU46T3BwUUSgSToaw/AaR5DTx0PjaFKEj1YRVIc71F+emfYcIN12H4vmbw0D8tVo8c7vdBRFCP6gbX3eotL06WRjQL6a+laIj3ZzYH1e95gPV8/AHtp2QBp7Ej/cy+x93CueP18eA/quQZC+mqsfQ7fwuEXUsW8n0Nf8M+0tb31mwObqn0Rrd7zCxjDm0dPCSb9lMf/c9vr2Wd3ybq/29G1Af7jWpt8V8ZaNAWk8Rh1eqTGH+l0Rb9kYuAV3Vo+zpVD+VfpdEW/ZGHDX52RLofyr9LsiVZk7F6c5NrVfbf4tz3fYVeU/fB9XX/npOtqxCvNlc3E2xzaDvnNAbdikbdc6cejXXx1Wg//Bdp3/wXY9vD0cs/5H/Pqr6jT6L37I/L98v7v+/H+cc/dvhfbTnHevVXgH2PoNW8f3Fvf/BMf/Bv4CFNbWW3YGHmf8wvX/7vrzJzjn7mtduruf5rx7rbu+Xd/4T6Ch1vJJT2+Dz8AFNG0B/W/JGaC5jHnwSa/v4IsbUQLpy/yht4wM6P2q37qxeQJ921enfpXNZVifr9e3hxlpGNrL9H7V79zYfIC+7atTv8rmMqzPF/72sM7CuG3TOtWZunHmfhOzwfM3KOa2TftRZ34FV/odFENdeXPXfN0dIH3Fp41JlMFt3d+tScqsuuuu+Zryba0D2ur+bj3IaJeAW3f/6rXtwtRgnnLrrtd3MDXslus56qzGN7wNJwPDPL5h/acmbYxxoG8qR60fFR7fUPnrNsZhOmkOJo0+ah+1AmidosYgLoMq7AI+sQ5rVt3xjbqOcZhOmoNPq88y17wIXgKaK9twUKbO19C3DmtWVe5VoHb0Gtv1oPxllj1L2ln7uVprpnUqKpdM+obN/EM3/604+g06+XmN5brhqOvC87Dhe1a1f4e8CqfgoMN2H9wFYUuzZjUtF+F7FblvPlL9BM2DRpn5h3nKHecfFOcSkJ+Xn7NweF/n7Jh9R9/tt9aj8lPkMekq7JGviYCDqDEOrVmVbmqr6D2oZzbquVXe4rhQ2btxWGS5LC3zkd36CRZnnfzFmT0nP4SjH4EXwCrx14Cui/ILcWlVefwS+dSzrXZ0r36SPed6D0qnOK2K4OJcQSQ0KZe+g1b54uZBLY4931G3/iPX/wl8HEjjTwPViQ7YB1E+Lyqdqo+9RD5XgZV/g3A3q4qLK2TiareMxJxzfYx9q6W1SB2wH0D/i+hNoK2wA8Jx3OTtvJ6TNlp+iu2Pgdos9kxMEa6j3SFfe8DKr/JOUIZxoG04rH2XC4ujrfHwMdIQF8uPZefiBmTdzECY62O01lV9Ivt/qfq/y/a/l/Vtl/4nkaCw4lhfQnHko+x6e49OU6ZdjqtcfycsvzcHevm9DMUo7JJTlMX9f0z2f5hmKcdcADesYyuUybiwc+LCePgB58WFeKiaCz2vcdB6QflW2/45CGurd6qOK2yIS8eOt4lr9bcwQQpO6G1DMm76"
+      data = "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"
     },
     {
       type = "tilelayer",
@@ -653,7 +653,7 @@ return {
           shape = "rectangle",
           x = 1280,
           y = 832,
-          width = 480,
+          width = 416,
           height = 16,
           rotation = 0,
           visible = true,
@@ -808,9 +808,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 1296,
-          y = 224,
+          y = 192,
           width = 16,
-          height = 304,
+          height = 336,
           rotation = 0,
           visible = true,
           properties = {}
@@ -836,7 +836,7 @@ return {
           x = 1296,
           y = 0,
           width = 112,
-          height = 224,
+          height = 176,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1198,7 +1198,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 1824,
-          y = 752,
+          y = 736,
           width = 64,
           height = 16,
           rotation = 0,
@@ -1219,12 +1219,25 @@ return {
           properties = {}
         },
         {
-          id = 253,
+          id = 259,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 1824,
+          x = 1760,
           y = 656,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 260,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1696,
+          y = 816,
           width = 64,
           height = 16,
           rotation = 0,
@@ -1574,8 +1587,8 @@ return {
           name = "DarkMage",
           type = "",
           shape = "rectangle",
-          x = 976,
-          y = 480,
+          x = 1184,
+          y = 384,
           width = 92,
           height = 93,
           rotation = 0,
@@ -1613,8 +1626,8 @@ return {
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 240,
-          y = 240,
+          x = 416,
+          y = 224,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1626,7 +1639,7 @@ return {
           name = "Executioner",
           type = "",
           shape = "rectangle",
-          x = 1472,
+          x = 1456,
           y = 736,
           width = 130.5,
           height = 88.5,
@@ -1639,8 +1652,8 @@ return {
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 16,
-          y = 352,
+          x = 80,
+          y = 560,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1652,8 +1665,8 @@ return {
           name = "DarkMage",
           type = "",
           shape = "rectangle",
-          x = 480,
-          y = 416,
+          x = 432,
+          y = 160,
           width = 92,
           height = 93,
           rotation = 0,
@@ -1708,7 +1721,7 @@ return {
           name = "Ghoul",
           type = "",
           shape = "rectangle",
-          x = 1408,
+          x = 1360,
           y = 496,
           width = 76.5,
           height = 30,
@@ -1723,6 +1736,32 @@ return {
           shape = "rectangle",
           x = 1776,
           y = 528,
+          width = 76.5,
+          height = 30,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 257,
+          name = "Executioner",
+          type = "",
+          shape = "rectangle",
+          x = 1600,
+          y = 608,
+          width = 130.5,
+          height = 88.5,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 258,
+          name = "Ghoul",
+          type = "",
+          shape = "rectangle",
+          x = 384,
+          y = 224,
           width = 76.5,
           height = 30,
           rotation = 0,
@@ -1952,7 +1991,7 @@ return {
           properties = {
             ["category"] = "ammo",
             ["name"] = "bullets",
-            ["value"] = "md"
+            ["value"] = "sm"
           }
         },
         {
@@ -2017,8 +2056,8 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 416,
-          y = 208,
+          x = 560,
+          y = 192,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2087,25 +2126,8 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 560,
-          y = 464,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["category"] = "ammo",
-            ["name"] = "bullets",
-            ["value"] = "md"
-          }
-        },
-        {
-          id = 235,
-          name = "Pickup",
-          type = "",
-          shape = "rectangle",
-          x = 1440,
-          y = 480,
+          x = 528,
+          y = 416,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2121,7 +2143,7 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 1840,
+          x = 1776,
           y = 608,
           width = 32,
           height = 32,
@@ -2130,23 +2152,6 @@ return {
           properties = {
             ["category"] = "ammo",
             ["name"] = "shells",
-            ["value"] = "md"
-          }
-        },
-        {
-          id = 239,
-          name = "Pickup",
-          type = "",
-          shape = "rectangle",
-          x = 624,
-          y = 1104,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["category"] = "ammo",
-            ["name"] = "bullets",
             ["value"] = "sm"
           }
         },
@@ -2155,15 +2160,15 @@ return {
           name = "Pickup",
           type = "",
           shape = "rectangle",
-          x = 880,
-          y = 1104,
+          x = 768,
+          y = 1296,
           width = 32,
           height = 32,
           rotation = 0,
           visible = true,
           properties = {
             ["category"] = "ammo",
-            ["name"] = "bullets",
+            ["name"] = "shells",
             ["value"] = "sm"
           }
         },
@@ -2217,7 +2222,7 @@ return {
           properties = {
             ["category"] = "stat",
             ["name"] = "health",
-            ["value"] = "md"
+            ["value"] = "sm"
           }
         },
         {

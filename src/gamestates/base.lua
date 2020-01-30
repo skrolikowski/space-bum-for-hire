@@ -43,6 +43,7 @@ function Base:enter(from, ...)
 	elseif self.settings.respawn then
 	-- respawn request
 		self.spawner:spawnUnits()
+		self.spawner:spawnEvents()
 	end
 end
 

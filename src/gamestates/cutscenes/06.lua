@@ -159,6 +159,9 @@ end
 function Cut06:complete()
 	Base.complete(self)
 	--
+	if Double and not Double:isDestroyed() then
+		Double:destroy()
+	end
 	Captain:destroy()
 	Scott:destroy()
 	Bishop:destroy()

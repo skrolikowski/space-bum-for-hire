@@ -54,8 +54,8 @@ end
 -- Draw strike
 --
 function Strike:draw()
-	lg.setColor(Config.color.sensor.strike)
-	self.shape:draw()
+	-- lg.setColor(Config.color.sensor.strike)
+	-- self.shape:draw()
 	--
 	local cx, cy = self:getPosition()
 	local w, h   = self.sprite:dimensions()
