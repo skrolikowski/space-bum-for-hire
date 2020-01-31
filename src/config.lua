@@ -117,10 +117,10 @@ Config = {
                 speed  = 500,
                 timing = { cooldown = 0.65 },
                 attack = {
-                    damage   = 25,
+                    damage   = 50,
                     distance = 300,
-                    decay    = 1,
-                    speed    = 250,
+                    decay    = 3,
+                    speed    = 300,
                     radius   = 10,
                 },
                 sight  = { distance = 275, periphery = _.__pi / 2 },
