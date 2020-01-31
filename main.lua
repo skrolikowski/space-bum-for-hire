@@ -38,16 +38,16 @@ function love.load()
     --
     ---------------------------------------------
     -- local checkpoint = {
-    --     map = 'space01',
-    --     col = 58,
-    --     row = 90,
+    --     map = 'mount02',
+    --     col = 5,
+    --     row = 48,
     -- }
     -- Gamestate.switch(Gamestates[checkpoint.map], {
     --     from = 'beam',
     --     col  = checkpoint.col,
     --     row  = checkpoint.row
     -- })
-    -- Config.world.hud.quest=4
+    -- Config.world.hud.quest=3
     -- Gamestate:current().hud:set({
     --     name  = 'quest',
     --     value = Config.world.hud.quest

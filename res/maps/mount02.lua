@@ -2043,8 +2043,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["category"] = "stat",
-            ["name"] = "health",
+            ["category"] = "ammo",
+            ["name"] = "bullets",
             ["value"] = "sm"
           }
         },

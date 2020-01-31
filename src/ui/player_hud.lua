@@ -19,7 +19,7 @@ function HUD:new()
 	self.height = self.background:getHeight()
 
 	-- quest
-	self.quest = nil
+	self.quest = Config.world.quest[Config.world.hud.quest]
 
 	-- scaling
 	self.sx = 0.8
@@ -213,7 +213,8 @@ function HUD:setCanvas()
 	lg.draw(weaponText, Config.tileSize*1.5, Config.tileSize*7.5)
 
 	-- weapon image
-	self.spriteWeapon:draw(weapon.name, Config.tileSize*1.5, Config.tileSize*8, 0, 2, 2)
+	-- Issue #27
+	pcall(function() self.spriteWeapon:draw(weapon.name, Config.tileSize*1.5, Config.tileSize*8, 0, 2, 2) end)
 
 	-- ammo count
 	lg.draw(ammoText, Config.tileSize * 11.25, Config.tileSize * 12, _.__pi / 2)

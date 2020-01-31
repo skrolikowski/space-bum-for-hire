@@ -55,6 +55,12 @@ function Gameplay:enter(from, ...)
 	end
 end
 
+function Gameplay:leave()
+	self:unregisterControls()
+	--
+	Base.leave(self)
+end
+
 -- Reward Player a payload
 --
 function Gameplay:rewardPlayer(payload)

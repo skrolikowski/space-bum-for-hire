@@ -64,7 +64,7 @@ function Cut02:enter(from, ...)
 		wait(2.5)
 		--
 		-- Commander fills in Player..
-		Scott:say('left', 'Greetings. I am Commander Scott. Second in command of the startship Senturi, a research vessel.', 8)
+		Scott:say('left', 'Greetings. I am Commander Scott. Second in command of the starship Senturi, a research vessel.', 8)
 		wait(8.5)
 		Scott:say('left', 'I do not wish to bore you with details so I will get right into the situation.', 8)
 		wait(8.5)
